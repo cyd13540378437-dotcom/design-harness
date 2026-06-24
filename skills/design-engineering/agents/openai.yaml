@@ -1,0 +1,8 @@
+interface:
+  display_name: "Design Engineering"
+  short_description: "交互式 UX 探索、任务状态恢复、原型确认、实现与视觉验收"
+  default_prompt: "使用 $design-engineering 推进当前产品设计任务。先解析或恢复 Work Item，再按适用的 Human Gate 完成设计、实现、验证和关闭确认。"
+
+policy:
+  allow_implicit_invocation: true
+

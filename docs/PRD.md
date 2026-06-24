@@ -767,7 +767,7 @@ product-repository/
 ```yaml
 ---
 name: design-engineering
-description: 对新产品界面、重要功能页面、跨页面用户流程和显著 UI/UX 改造执行人参与的设计工程工作流。负责识别或恢复 Work Item，经过视觉方向、原型、关键交互与完成确认 Gate，并在跨 Codex 对话中通过 STATE.md 恢复状态。Use for human-in-the-loop UX discovery, prototyping, implementation, state recovery, and completion approval.
+description: 对新产品界面、重要功能页面、跨页面用户流程和显著 UI/UX 改造执行人参与的设计工程工作流。负责识别或恢复 Work Item，经过视觉方向、原型、关键交互与完成确认 Gate，并在跨 Codex 对话中通过 STATE.md 恢复状态。适用于有人参与的 UX 探索、原型、实现、状态恢复和完成批准。
 ---
 ```
 
@@ -891,26 +891,26 @@ recommended_action: ""
 ```markdown
 # Design Work Items
 
-> This file is a navigation index. Each Work Item's STATE.md is authoritative.
+> 本文件是导航索引。每个 Work Item 的 STATE.md 才是权威来源。
 
 ## Active
 
-| ID | Title | Release | Phase | Gate | State |
+| ID | 标题 | 版本 | 阶段 | Gate | 状态文件 |
 |---|---|---|---|---|---|
 
 ## Paused
 
-| ID | Title | Release | Phase | Reason | State |
+| ID | 标题 | 版本 | 阶段 | 原因 | 状态文件 |
 |---|---|---|---|---|---|
 
 ## Completed
 
-| ID | Title | Release | Completed | Successors | State |
+| ID | 标题 | 版本 | 完成时间 | 后继 | 状态文件 |
 |---|---|---|---|---|---|
 
 ## Cancelled
 
-| ID | Title | Cancelled | State |
+| ID | 标题 | 取消时间 | 状态文件 |
 |---|---|---|---|
 ```
 
@@ -982,51 +982,51 @@ sealed: false
 
 ## 20. 人工评测场景
 
-每个评测文件使用 Given / When / Then 格式。
+每个评测文件使用“前提 / 当 / 则”格式。
 
-### 20.1 Context Check
+### 20.1 上下文检查
 
-- Given：项目没有活动状态；
-- When：用户要求“检查项目上下文，不要修改文件”；
-- Then：返回 `NO_STATE`，不创建目录。
+- 前提：项目没有活动状态；
+- 当：用户要求“检查项目上下文，不要修改文件”；
+- 则：返回 `NO_STATE`，不创建目录。
 
 ### 20.2 Create
 
-- Given：没有相关 Work Item；
-- When：用户要求设计一个新的重要功能；
-- Then：创建状态，进入适用阶段。
+- 前提：没有相关 Work Item；
+- 当：用户要求设计一个新的重要功能；
+- 则：创建状态，进入适用阶段。
 
 ### 20.3 Resume Across Thread
 
-- Given：已有等待原型批准的 DE-001；
-- When：新 Thread 中用户说“继续上次前端样式任务，我批准原型”；
-- Then：恢复 DE-001，记录批准，不创建新状态。
+- 前提：已有等待原型批准的 DE-001；
+- 当：新 Thread 中用户说“继续上次前端样式任务，我批准原型”；
+- 则：恢复 DE-001，记录批准，不创建新状态。
 
 ### 20.4 Successor
 
-- Given：DE-001 已 completed + sealed；
-- When：用户提出相关但独立的新优化；
-- Then：创建 DE-002，引用 DE-001，不修改 DE-001。
+- 前提：DE-001 已 completed + sealed；
+- 当：用户提出相关但独立的新优化；
+- 则：创建 DE-002，引用 DE-001，不修改 DE-001。
 
 ### 20.5 Parallel Work Items
 
-- Given：DE-002 active；
-- When：用户开启另一项独立产品功能；
-- Then：创建 DE-003；索引同时显示 DE-002 和 DE-003 active。
+- 前提：DE-002 active；
+- 当：用户开启另一项独立产品功能；
+- 则：创建 DE-003；索引同时显示 DE-002 和 DE-003 active。
 
 ### 20.6 Ambiguous Binding
 
-- Given：存在两个语义相近的 active Work Item；
-- When：用户只说“继续之前的界面改动”；
-- Then：返回 `AMBIGUOUS`，列出候选，不写状态。
+- 前提：存在两个语义相近的 active Work Item；
+- 当：用户只说“继续之前的界面改动”；
+- 则：返回 `AMBIGUOUS`，列出候选，不写状态。
 
 ### 20.7 Close and Seal
 
-- Given：实现和 QA 已完成；
-- When：Codex 进入 completion review，但用户尚未批准；
-- Then：不得 completed。
-- When：用户明确回复“关闭”；
-- Then：completed + sealed，索引移动到 Completed。
+- 前提：实现和 QA 已完成；
+- 当：Codex 进入 completion review，但用户尚未批准；
+- 则：不得 completed。
+- 当：用户明确回复“关闭”；
+- 则：completed + sealed，索引移动到 Completed。
 
 ---
 
@@ -1153,7 +1153,7 @@ v0.1 交付必须包含：
 - 七个人工评测场景；
 - 架构说明；
 - 手动测试指南；
-- MIT License；
+- MIT 许可证；
 - `CHANGELOG.md`；
 - 仓库自身 `AGENTS.md`。
 
@@ -1244,13 +1244,13 @@ v0.1 交付必须包含：
 ### Milestone 4：示例与评测
 
 - 完成 idea-storm-lab 示例；
-- 完成七个 Given / When / Then 场景；
+- 完成七个“前提 / 当 / 则”场景；
 - 验证索引、状态和 successor 关系。
 
 ### Milestone 5：使用与验收
 
 - 完成手动安装说明；
-- 完成 manual test guide；
+- 完成手动测试指南；
 - 检查 Markdown 链接、YAML、TOML；
 - 对照 Definition of Done 自检；
 - 输出最终实现摘要和已知限制。
