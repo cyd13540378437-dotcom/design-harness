@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="600" viewBox="0 0 960 600">
+  <rect width="960" height="600" fill="#f4f2ee"/>
+  <rect x="54" y="42" width="852" height="516" rx="8" fill="#fffefa" stroke="#d8d2c7"/>
+  <text x="88" y="98" font-family="Georgia" font-size="42" font-weight="700" fill="#171717">Content Desk</text>
+  <rect x="90" y="128" width="500" height="2" fill="#171717"/>
+  <rect x="88" y="166" width="340" height="188" fill="#e7eadf"/>
+  <rect x="456" y="166" width="178" height="188" fill="#dfe7ee"/>
+  <rect x="662" y="166" width="176" height="188" fill="#eee0d6"/>
+  <text x="114" y="408" font-family="Georgia" font-size="26" font-weight="700" fill="#171717">Lead story headline</text>
+  <rect x="114" y="440" width="304" height="12" rx="6" fill="#66625d"/>
+  <rect x="114" y="468" width="248" height="12" rx="6" fill="#8e887f"/>
+  <rect x="456" y="398" width="164" height="1" fill="#d8d2c7"/>
+  <rect x="456" y="430" width="164" height="1" fill="#d8d2c7"/>
+  <rect x="456" y="462" width="164" height="1" fill="#d8d2c7"/>
+  <rect x="662" y="398" width="146" height="14" rx="7" fill="#171717"/>
+  <rect x="662" y="432" width="116" height="10" rx="5" fill="#8e887f"/>
+</svg>

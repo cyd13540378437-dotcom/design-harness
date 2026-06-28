@@ -1,23 +1,25 @@
-# 设计 Work Items
+# Design Work Items
 
-> 本文件是导航索引。每个 Work Item 的 STATE.md 才是权威来源。
+> This file is a navigation index. Each Work Item's STATE.md is authoritative.
+
+`palette-selection` and `design-exclusions` are visual substeps under `visual-direction-approval`; they are not Gate enum values.
 
 ## Active
 
-| ID | 标题 | 版本 | 阶段 | Gate | 状态文件 |
+| ID | Title | Release | Phase | Gate | State |
 |---|---|---|---|---|---|
 
 ## Paused
 
-| ID | 标题 | 版本 | 阶段 | 原因 | 状态文件 |
+| ID | Title | Release | Phase | Reason | State |
 |---|---|---|---|---|---|
 
 ## Completed
 
-| ID | 标题 | 版本 | 完成时间 | 后继 | 状态文件 |
+| ID | Title | Release | Completed | Successors | State |
 |---|---|---|---|---|---|
 
 ## Cancelled
 
-| ID | 标题 | 取消时间 | 状态文件 |
+| ID | Title | Cancelled | State |
 |---|---|---|---|

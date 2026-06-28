@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="600" viewBox="0 0 960 600">
+  <rect width="960" height="600" fill="#f7f2e8"/>
+  <rect x="56" y="48" width="848" height="504" rx="20" fill="#fffdf8" stroke="#ded3c1"/>
+  <rect x="88" y="86" width="158" height="430" rx="16" fill="#f8f1e5"/>
+  <rect x="276" y="86" width="374" height="430" rx="16" fill="#ffffff" stroke="#e4d8c8"/>
+  <rect x="680" y="86" width="184" height="430" rx="16" fill="#fbf4e8" stroke="#e4d8c8"/>
+  <rect x="116" y="120" width="92" height="12" rx="6" fill="#20251f"/>
+  <rect x="116" y="164" width="104" height="10" rx="5" fill="#8b7d69"/>
+  <rect x="116" y="204" width="76" height="10" rx="5" fill="#2f6b53"/>
+  <text x="316" y="136" font-family="Georgia" font-size="30" font-weight="700" fill="#20251f">Draft title</text>
+  <rect x="316" y="182" width="282" height="12" rx="6" fill="#8b7d69"/>
+  <rect x="316" y="226" width="292" height="10" rx="5" fill="#c0ad94"/>
+  <rect x="316" y="256" width="252" height="10" rx="5" fill="#c0ad94"/>
+  <rect x="316" y="286" width="310" height="10" rx="5" fill="#c0ad94"/>
+  <rect x="316" y="346" width="118" height="32" rx="10" fill="#2f6b53"/>
+  <text x="345" y="367" font-family="Arial" font-size="13" fill="#ffffff">Refine</text>
+  <rect x="712" y="122" width="92" height="12" rx="6" fill="#20251f"/>
+  <rect x="712" y="170" width="118" height="56" rx="12" fill="#fffdf8" stroke="#e4d8c8"/>
+  <rect x="734" y="194" width="72" height="10" rx="5" fill="#b77a3d"/>
+  <rect x="712" y="252" width="118" height="56" rx="12" fill="#fffdf8" stroke="#e4d8c8"/>
+  <rect x="734" y="276" width="78" height="10" rx="5" fill="#2f6b53"/>
+</svg>

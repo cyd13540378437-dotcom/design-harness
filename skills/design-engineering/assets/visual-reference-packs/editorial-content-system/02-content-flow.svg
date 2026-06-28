@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="600" viewBox="0 0 960 600">
+  <rect width="960" height="600" fill="#f4f2ee"/>
+  <rect x="48" y="44" width="216" height="512" rx="8" fill="#fffefa" stroke="#d8d2c7"/>
+  <rect x="294" y="44" width="618" height="512" rx="8" fill="#fffefa" stroke="#d8d2c7"/>
+  <text x="78" y="92" font-family="Georgia" font-size="24" font-weight="700" fill="#171717">Sections</text>
+  <rect x="78" y="132" width="128" height="28" rx="14" fill="#171717"/>
+  <rect x="78" y="184" width="110" height="10" rx="5" fill="#8e887f"/>
+  <rect x="78" y="226" width="130" height="10" rx="5" fill="#8e887f"/>
+  <text x="330" y="94" font-family="Georgia" font-size="34" font-weight="700" fill="#171717">Publishing Flow</text>
+  <rect x="330" y="134" width="532" height="1" fill="#d8d2c7"/>
+  <rect x="330" y="178" width="160" height="118" fill="#e7eadf"/>
+  <rect x="512" y="178" width="160" height="118" fill="#dfe7ee"/>
+  <rect x="694" y="178" width="160" height="118" fill="#eee0d6"/>
+  <rect x="330" y="336" width="532" height="1" fill="#d8d2c7"/>
+  <rect x="330" y="382" width="532" height="1" fill="#d8d2c7"/>
+  <rect x="330" y="428" width="532" height="1" fill="#d8d2c7"/>
+  <rect x="330" y="474" width="532" height="1" fill="#d8d2c7"/>
+</svg>

@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="600" viewBox="0 0 960 600">
+  <rect width="960" height="600" fill="#f7f2e8"/>
+  <rect x="42" y="38" width="180" height="524" rx="18" fill="#fffdf8" stroke="#ded3c1"/>
+  <rect x="252" y="38" width="408" height="524" rx="18" fill="#fffdf8" stroke="#ded3c1"/>
+  <rect x="690" y="38" width="228" height="524" rx="18" fill="#fbf4e8" stroke="#ded3c1"/>
+  <circle cx="82" cy="82" r="15" fill="#2f6b53"/>
+  <rect x="110" y="73" width="78" height="12" rx="6" fill="#20251f"/>
+  <rect x="74" y="142" width="110" height="10" rx="5" fill="#8b7d69"/>
+  <rect x="74" y="184" width="88" height="10" rx="5" fill="#2f6b53"/>
+  <rect x="74" y="226" width="120" height="10" rx="5" fill="#8b7d69"/>
+  <text x="284" y="82" font-family="Georgia" font-size="28" font-weight="700" fill="#20251f">Idea Desk</text>
+  <rect x="284" y="120" width="142" height="30" rx="15" fill="#ead8bd"/>
+  <rect x="284" y="178" width="330" height="82" rx="14" fill="#f8f1e5" stroke="#ded3c1"/>
+  <rect x="310" y="206" width="194" height="14" rx="7" fill="#20251f"/>
+  <rect x="310" y="234" width="260" height="10" rx="5" fill="#8b7d69"/>
+  <rect x="284" y="286" width="330" height="82" rx="14" fill="#ffffff" stroke="#ded3c1"/>
+  <rect x="310" y="314" width="220" height="14" rx="7" fill="#20251f"/>
+  <rect x="310" y="342" width="238" height="10" rx="5" fill="#8b7d69"/>
+  <rect x="724" y="82" width="106" height="12" rx="6" fill="#20251f"/>
+  <rect x="724" y="132" width="152" height="72" rx="14" fill="#fffdf8" stroke="#ded3c1"/>
+  <rect x="746" y="158" width="94" height="10" rx="5" fill="#2f6b53"/>
+  <rect x="724" y="230" width="152" height="72" rx="14" fill="#fffdf8" stroke="#ded3c1"/>
+  <rect x="746" y="256" width="112" height="10" rx="5" fill="#b77a3d"/>
+</svg>

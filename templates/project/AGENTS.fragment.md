@@ -13,12 +13,16 @@ CREATE / RESUME / SUCCESSOR / NO_STATE / AMBIGUOUS
 - Codex Thread 不是 Work Item。
 - 每个独立 Work Item 最多有一个权威 `STATE.md`。
 - `docs/design/WORK_ITEMS.md` 是索引；`STATE.md` 是权威来源。
+- `docs/design/VISUAL_DESIGN.md` 是项目视觉基线；后续 Work Item 必须先读取它。
 - 不要恢复或修改 `completed + sealed` Work Item。
 - 封存后的相关工作必须创建 Successor。
 - 每个 Gate 前，由 Steward 写入等待用户的检查点。
+- 配色确认和设计禁区确认使用 `visual-direction-approval`，正文分别写 `palette-selection` 与 `design-exclusions`。
 - 每次 Gate 回复后，先更新状态再继续实现。
 - 完成封存需要用户在 `completion-approval` 明确批准。
 - Steward 只管理状态；实现留给父级 Agent。
+- 不要求用户填写产品人格、品牌气质矩阵或用户感受目标表单。
+- 不新增 `palette-approval`、`design-exclusion-approval` 或 `anti-homogeneity` Gate。
 
 有效状态解析决定：
 
@@ -31,4 +35,3 @@ CREATE / RESUME / SUCCESSOR / NO_STATE / AMBIGUOUS
 ```text
 none / work-item-binding / visual-direction-approval / prototype-approval / interaction-decision / completion-approval
 ```
-

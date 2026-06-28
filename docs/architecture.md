@@ -18,19 +18,24 @@ Skill
 项目状态
   docs/design/WORK_ITEMS.md
   docs/design/work-items/<state-id-slug>/STATE.md
+        ↓
+项目视觉基线
+  docs/design/VISUAL_DESIGN.md
 ```
 
 ## 职责
 
-`AGENTS.md` 给出项目级不变量：术语、枚举、sealed 状态规则和范围限制。
+`AGENTS.md` 给出项目级不变量：术语、枚举、sealed 状态规则、视觉子检查点和范围限制。
 
-`design-engineering` 是流程编排器。它判断适用的设计模式，要求父级 Codex 会话调用 Steward，在 Human Gate 停止，并且只有在状态更新后才继续实现。
+`design-engineering` 是流程编排器。它判断适用的设计模式，要求父级 Codex 会话调用 Steward，在 Human Gate 停止，并且只有在状态更新后才继续实现。它负责 Visual Seed、参考图解析、配色样张、设计禁区、视觉原型、实现和验证。
 
-`design_state_steward` 是状态管理员。它解析 Work Item 绑定，创建或更新 `STATE.md`，更新 `WORK_ITEMS.md`，准备 Gate 检查点，记录用户批准，检查关闭准备情况，并且只在用户明确批准后封存。
+`design_state_steward` 是状态管理员。它解析 Work Item 绑定，创建或更新 `STATE.md`，更新 `WORK_ITEMS.md`，准备 Gate 和视觉子检查点，记录用户批准，检查关闭准备情况，并且只在用户明确批准后封存。
 
-`STATE.md` 是权威 Work Item 快照。它是有损压缩，只保留当前事实、已批准决定、待确认问题、证据和下一步行动，不保存完整对话。
+`STATE.md` 是权威 Work Item 快照。它是有损压缩，只保留当前事实、已批准决定、视觉上下文、待确认问题、证据和下一步行动，不保存完整对话。
 
 `WORK_ITEMS.md` 是导航索引。它便于浏览项目状态，但不是权威来源。
+
+`VISUAL_DESIGN.md` 是项目级视觉基线。它只记录已确认视觉结果，不替代 `STATE.md`，后续 Work Item 必须先读取它。
 
 ## 状态流
 
@@ -47,12 +52,31 @@ active
 
 已完成并 sealed 的状态对后续实现不可变。新的相关工作应创建 successor。
 
+## 视觉子检查点
+
+配色确认和设计禁区确认都属于：
+
+```yaml
+phase: visual-direction
+gate: visual-direction-approval
+awaiting_user: true
+```
+
+它们在 `STATE.md` 正文中分别记录为：
+
+```text
+palette-selection
+design-exclusions
+```
+
+它们不是新的 Gate enum。
+
 ## 为什么需要独立 Steward Agent
 
 Steward 边界把实现和状态写入分开：
 
-- 父级 Agent 负责产品工作和代码实现。
-- Steward 负责写入状态、Gate、批准决定、证据和索引更新。
+- 父级 Agent 负责产品工作、视觉分析和代码实现。
+- Steward 负责写入状态、Gate、批准决定、证据、视觉基线更新状态和索引。
 - 用户保留高影响决策和最终关闭权。
 
 这种分工可以避免设计实现 Agent 静默改写历史，或自行批准自己的关闭。
@@ -72,4 +96,3 @@ Steward 边界把实现和状态写入分开：
 ```
 
 项目模板位于 [templates/project](../templates/project/)。
-

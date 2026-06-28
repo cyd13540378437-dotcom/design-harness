@@ -1,0 +1,774 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>创意交流社群 - 小队匹配原型</title>
+  <style>
+    :root {
+      --bg: #f4f1ec;
+      --surface: #fffdf8;
+      --surface-2: #f8f6f0;
+      --ink: #222426;
+      --muted: #636766;
+      --line: #d8d2c5;
+      --accent: #207a73;
+      --accent-2: #8b4f24;
+      --focus: #0b5fff;
+      --danger: #9b2c2c;
+      --shadow: 0 18px 50px rgba(47, 43, 34, 0.12);
+      color-scheme: light;
+      font-family: Inter, "Segoe UI", "Microsoft YaHei", Arial, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    button, input {
+      font: inherit;
+    }
+
+    button {
+      border: 1px solid var(--line);
+      background: var(--surface);
+      color: var(--ink);
+      min-height: 36px;
+      padding: 0 12px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    button:focus-visible,
+    input:focus-visible,
+    a:focus-visible {
+      outline: 3px solid var(--focus);
+      outline-offset: 2px;
+    }
+
+    .shell {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 248px minmax(0, 1fr);
+    }
+
+    .sidebar {
+      border-right: 1px solid var(--line);
+      background: #ebe5d9;
+      padding: 20px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 750;
+      letter-spacing: 0;
+    }
+
+    .brand-mark {
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+      background: var(--accent);
+      color: white;
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+    }
+
+    .nav {
+      display: grid;
+      gap: 6px;
+    }
+
+    .nav a {
+      color: var(--ink);
+      text-decoration: none;
+      padding: 9px 10px;
+      border-radius: 6px;
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .nav a[aria-current="page"] {
+      background: var(--surface);
+      box-shadow: inset 3px 0 0 var(--accent);
+      font-weight: 700;
+    }
+
+    .count {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .sidebar-panel {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255, 253, 248, 0.7);
+      padding: 12px;
+    }
+
+    .sidebar-panel h2 {
+      margin: 0 0 8px;
+      font-size: 13px;
+    }
+
+    .sidebar-panel p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .main {
+      display: grid;
+      grid-template-rows: auto 1fr;
+      min-width: 0;
+    }
+
+    .topbar {
+      height: 68px;
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 0 24px;
+      background: rgba(255, 253, 248, 0.78);
+      backdrop-filter: blur(12px);
+      position: sticky;
+      top: 0;
+      z-index: 4;
+    }
+
+    .search {
+      width: min(520px, 100%);
+      position: relative;
+    }
+
+    .search input {
+      width: 100%;
+      min-height: 40px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 0 12px;
+      background: var(--surface);
+      color: var(--ink);
+    }
+
+    .actions {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .primary {
+      background: var(--accent);
+      color: white;
+      border-color: var(--accent);
+      font-weight: 700;
+    }
+
+    .content {
+      padding: 24px;
+      display: grid;
+      gap: 20px;
+      min-width: 0;
+    }
+
+    .overview {
+      display: grid;
+      grid-template-columns: minmax(0, 1.45fr) minmax(300px, 0.75fr);
+      gap: 20px;
+    }
+
+    .panel,
+    .group-card,
+    .feed-card,
+    .feedback-item,
+    .progress-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: 0 1px 0 rgba(47, 43, 34, 0.05);
+    }
+
+    .panel {
+      padding: 18px;
+    }
+
+    .panel-title {
+      display: flex;
+      align-items: start;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 14px;
+    }
+
+    h1, h2, h3, p {
+      margin-top: 0;
+    }
+
+    h1 {
+      margin-bottom: 8px;
+      font-size: 26px;
+      line-height: 1.2;
+      letter-spacing: 0;
+    }
+
+    h2 {
+      margin-bottom: 4px;
+      font-size: 18px;
+      letter-spacing: 0;
+    }
+
+    h3 {
+      margin-bottom: 6px;
+      font-size: 15px;
+      letter-spacing: 0;
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    .hero-copy {
+      max-width: 680px;
+      color: var(--muted);
+      margin-bottom: 18px;
+    }
+
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .metric {
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--surface-2);
+    }
+
+    .metric strong {
+      display: block;
+      font-size: 22px;
+      line-height: 1.15;
+    }
+
+    .metric span {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .group-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .group-card {
+      padding: 14px;
+      display: grid;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .group-head {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .symbol {
+      width: 42px;
+      height: 42px;
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      color: white;
+      font-weight: 800;
+      flex: none;
+    }
+
+    .teal { background: #207a73; }
+    .copper { background: #8b4f24; }
+    .indigo { background: #465a94; }
+
+    .group-card p,
+    .feed-card p,
+    .feedback-item p {
+      margin-bottom: 0;
+      color: var(--muted);
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .tag {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 3px 8px;
+      font-size: 12px;
+      color: var(--muted);
+      background: #fffaf0;
+    }
+
+    .match-steps {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .match-step {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--surface-2);
+      padding: 14px;
+      min-width: 0;
+    }
+
+    .step-number {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: var(--accent);
+      color: white;
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+
+    .columns {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(300px, 0.8fr);
+      gap: 20px;
+      align-items: start;
+    }
+
+    .feed {
+      display: grid;
+      gap: 12px;
+    }
+
+    .feed-card {
+      padding: 14px;
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
+      gap: 12px;
+    }
+
+    .avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      color: white;
+      font-size: 13px;
+      font-weight: 800;
+      flex: none;
+    }
+
+    .feed-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      color: var(--muted);
+      font-size: 12px;
+      margin-bottom: 4px;
+    }
+
+    .feedback-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .feedback-item {
+      padding: 12px;
+    }
+
+    .feedback-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 6px;
+    }
+
+    .status {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .status::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: currentColor;
+    }
+
+    .progress-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .progress-card {
+      padding: 14px;
+      min-width: 0;
+    }
+
+    .bar {
+      height: 8px;
+      border-radius: 999px;
+      background: #e5ded1;
+      overflow: hidden;
+      margin: 12px 0 8px;
+    }
+
+    .bar span {
+      display: block;
+      height: 100%;
+      background: var(--accent);
+    }
+
+    .member-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .mini-avatar {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: #465a94;
+      color: white;
+      display: grid;
+      place-items: center;
+      font-size: 11px;
+      font-weight: 800;
+      border: 2px solid var(--surface);
+    }
+
+    .mini-avatar + .mini-avatar {
+      margin-left: -12px;
+    }
+
+    @media (max-width: 1080px) {
+      .overview,
+      .columns {
+        grid-template-columns: 1fr;
+      }
+
+      .group-grid,
+      .progress-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 760px) {
+      .shell {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar {
+        position: static;
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .nav {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .topbar {
+        height: auto;
+        padding: 14px 16px;
+        align-items: stretch;
+        flex-direction: column;
+      }
+
+      .actions {
+        justify-content: stretch;
+      }
+
+      .actions button {
+        flex: 1;
+      }
+
+      .content {
+        padding: 16px;
+      }
+
+      .metrics,
+      .group-grid,
+      .progress-grid,
+      .match-steps {
+        grid-template-columns: 1fr;
+      }
+
+      .feed-card {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <aside class="sidebar" aria-label="主导航">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true">共</div>
+        <div>
+          <div>共创小队</div>
+          <div class="muted">创意交流社群原型</div>
+        </div>
+      </div>
+
+      <nav class="nav">
+        <a href="#" aria-current="page">小队工作台 <span class="count">12</span></a>
+        <a href="#">匹配池 <span class="count">28</span></a>
+        <a href="#">创意挑战 <span class="count">4</span></a>
+        <a href="#">反馈队列 <span class="count">18</span></a>
+        <a href="#">项目进展 <span class="count">7</span></a>
+        <a href="#">成员地图 <span class="count">64</span></a>
+        <a href="#">社群规范</a>
+      </nav>
+
+      <section class="sidebar-panel" aria-labelledby="ritual-title">
+        <h2 id="ritual-title">今日匹配节奏</h2>
+        <p>先填写创作目标、可投入时间和擅长能力，再进入 3-6 人小队，晚上统一开题。</p>
+      </section>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div class="search">
+          <label class="muted" for="search">搜索小队、挑战或成员能力</label>
+          <input id="search" value="空间叙事、叙事策划、每周两晚">
+        </div>
+        <div class="actions">
+          <button>查看邀请</button>
+          <button class="primary">开始小队匹配</button>
+        </div>
+      </header>
+
+      <div class="content">
+        <section class="overview">
+          <div class="panel">
+            <div class="panel-title">
+              <div>
+                <h1>把灵感变成有人参与的作品</h1>
+                <p class="hero-copy">小队制匹配把“主题房间 + 挑战任务 + 反馈队列 + 项目进度”组织成 3-6 人协作单元。用户不是随意加入讨论，而是带着目标、能力和时间承诺进入一个可推进的小队。</p>
+              </div>
+            </div>
+            <div class="metrics" aria-label="社群概况">
+              <div class="metric"><strong>28</strong><span>待匹配创作者</span></div>
+              <div class="metric"><strong>12</strong><span>进行中的共创小队</span></div>
+              <div class="metric"><strong>186</strong><span>本周具体反馈</span></div>
+              <div class="metric"><strong>9</strong><span>进入展示阶段的项目</span></div>
+            </div>
+          </div>
+
+          <div class="panel">
+            <div class="panel-title">
+              <div>
+                <h2>本周匹配池</h2>
+                <p class="muted">把合适的人放进同一条创作节奏</p>
+              </div>
+              <span class="status">匹配中</span>
+            </div>
+            <p class="muted">参与方式：选择一个主题挑战，补充你能提供的能力和本周可投入时间。系统优先匹配目标互补、节奏相近、反馈偏好明确的成员。</p>
+            <div class="member-row" aria-label="参与成员">
+              <span class="mini-avatar">林</span>
+              <span class="mini-avatar">Q</span>
+              <span class="mini-avatar">周</span>
+              <span class="mini-avatar">K</span>
+              <span class="muted">28 人等待匹配</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel" aria-labelledby="match-title">
+          <div class="panel-title">
+            <div>
+              <h2 id="match-title">小队匹配流程</h2>
+              <p class="muted">先匹配目标和节奏，再进入小组讨论，减少低质量围观。</p>
+            </div>
+          </div>
+          <div class="match-steps">
+            <article class="match-step">
+              <div class="step-number">1</div>
+              <h3>提交创作画像</h3>
+              <p class="muted">说明你正在推进的想法、需要哪类帮助，以及本周可以投入的时间。</p>
+            </article>
+            <article class="match-step">
+              <div class="step-number">2</div>
+              <h3>生成候选小队</h3>
+              <p class="muted">系统按目标互补、能力差异、反馈偏好和可用时间生成 3-6 人小队。</p>
+            </article>
+            <article class="match-step">
+              <div class="step-number">3</div>
+              <h3>开启七日共创</h3>
+              <p class="muted">小队围绕一个挑战推进，每天有轻量反馈，周末产出阶段复盘。</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="panel" aria-labelledby="groups-title">
+          <div class="panel-title">
+            <div>
+              <h2 id="groups-title">推荐匹配小队</h2>
+              <p class="muted">每个小队都带有明确目标、缺口能力和本周节奏。</p>
+            </div>
+            <button>浏览全部</button>
+          </div>
+          <div class="group-grid">
+            <article class="group-card">
+              <div class="group-head">
+                <div class="symbol teal">叙</div>
+                <div>
+                  <h3>空间叙事小队</h3>
+                  <p>展览、装置、城市漫游</p>
+                </div>
+              </div>
+              <div class="tags"><span class="tag">匹配度 92%</span><span class="tag">缺视觉策展</span></div>
+            </article>
+
+            <article class="group-card">
+              <div class="group-head">
+                <div class="symbol copper">游</div>
+                <div>
+                  <h3>独立游戏火花小队</h3>
+                  <p>机制、关卡、叙事原型</p>
+                </div>
+              </div>
+              <div class="tags"><span class="tag">匹配度 87%</span><span class="tag">缺测试者</span></div>
+            </article>
+
+            <article class="group-card">
+              <div class="group-head">
+                <div class="symbol indigo">写</div>
+                <div>
+                  <h3>短篇脚本共修小队</h3>
+                  <p>人物关系、节奏、对白</p>
+                </div>
+              </div>
+              <div class="tags"><span class="tag">匹配度 84%</span><span class="tag">缺声音演员</span></div>
+            </article>
+          </div>
+        </section>
+
+        <section class="columns">
+          <div class="panel">
+            <div class="panel-title">
+              <div>
+                <h2>创意动态</h2>
+                <p class="muted">每条动态都带有明确的反馈请求，避免只剩点赞。</p>
+              </div>
+            </div>
+            <div class="feed">
+              <article class="feed-card">
+                <div class="avatar teal">南</div>
+                <div>
+                  <div class="feed-meta"><span>空间叙事小队</span><span>需要结构建议</span><span>18 分钟前</span></div>
+                  <h3>我想把废弃候车厅改成“记忆交换站”，但入口动线还很散。</h3>
+                  <p>希望有人帮我判断：是先让观众选择物件，还是先听到一段别人的回忆？</p>
+                </div>
+              </article>
+
+              <article class="feed-card">
+                <div class="avatar copper">麦</div>
+                <div>
+                  <div class="feed-meta"><span>独立游戏火花小队</span><span>需要测试者</span><span>42 分钟前</span></div>
+                  <h3>一个“不能说真话”的双人解谜机制，如何避免玩家太快看穿规则？</h3>
+                  <p>我准备了三个关卡草图，想找两位成员今晚试跑。</p>
+                </div>
+              </article>
+            </div>
+          </div>
+
+          <aside class="panel">
+            <div class="panel-title">
+              <div>
+                <h2>匹配与反馈队列</h2>
+                <p class="muted">让成员知道自己为什么被放进这个小队，以及现在最需要帮谁。</p>
+              </div>
+            </div>
+            <div class="feedback-list">
+              <article class="feedback-item">
+                <div class="feedback-top"><strong>确认匹配画像</strong><span class="status">高优先</span></div>
+                <p>空间叙事小队需要确认成员目标、能力和本周可用时间。</p>
+              </article>
+              <article class="feedback-item">
+                <div class="feedback-top"><strong>3 条结构建议待补</strong><span class="status">高优先</span></div>
+                <p>空间叙事组的“记忆交换站”需要入口路径建议。</p>
+              </article>
+              <article class="feedback-item">
+                <div class="feedback-top"><strong>2 位测试者缺口</strong><span class="status">匹配中</span></div>
+                <p>独立游戏火花小队今晚 21:00 试跑双人机制。</p>
+              </article>
+              <article class="feedback-item">
+                <div class="feedback-top"><strong>1 份视觉参考包</strong><span class="status">可领取</span></div>
+                <p>短篇脚本共修小队需要“旧影院大厅”的画面参考。</p>
+              </article>
+            </div>
+          </aside>
+        </section>
+
+        <section class="panel" aria-labelledby="progress-title">
+          <div class="panel-title">
+            <div>
+              <h2 id="progress-title">项目进展</h2>
+              <p class="muted">把小队协作从匹配推进到可展示成果。</p>
+            </div>
+          </div>
+          <div class="progress-grid">
+            <article class="progress-card">
+              <h3>记忆交换站</h3>
+              <div class="bar"><span style="width: 64%"></span></div>
+              <p class="muted">完成路径草图，等待入口动线评审。</p>
+            </article>
+            <article class="progress-card">
+              <h3>沉默协定</h3>
+              <div class="bar"><span style="width: 42%"></span></div>
+              <p class="muted">机制清楚，但新手引导仍不稳定。</p>
+            </article>
+            <article class="progress-card">
+              <h3>旧影院脚本</h3>
+              <div class="bar"><span style="width: 78%"></span></div>
+              <p class="muted">对白已收敛，正在准备朗读测试。</p>
+            </article>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

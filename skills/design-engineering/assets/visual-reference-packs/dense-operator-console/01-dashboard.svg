@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="600" viewBox="0 0 960 600">
+  <rect width="960" height="600" fill="#151a20"/>
+  <rect x="28" y="28" width="904" height="58" rx="10" fill="#1f2630" stroke="#303946"/>
+  <text x="54" y="64" font-family="Arial" font-size="20" font-weight="700" fill="#e7edf5">Operator Console</text>
+  <rect x="690" y="44" width="86" height="26" rx="7" fill="#263342" stroke="#435063"/>
+  <rect x="794" y="44" width="102" height="26" rx="7" fill="#2f7d59"/>
+  <rect x="28" y="110" width="210" height="462" rx="12" fill="#1f2630" stroke="#303946"/>
+  <rect x="262" y="110" width="214" height="126" rx="12" fill="#1f2630" stroke="#303946"/>
+  <rect x="500" y="110" width="200" height="126" rx="12" fill="#1f2630" stroke="#303946"/>
+  <rect x="724" y="110" width="208" height="126" rx="12" fill="#1f2630" stroke="#303946"/>
+  <rect x="262" y="260" width="438" height="312" rx="12" fill="#1f2630" stroke="#303946"/>
+  <rect x="724" y="260" width="208" height="312" rx="12" fill="#1f2630" stroke="#303946"/>
+  <text x="54" y="146" font-family="Arial" font-size="13" fill="#9ba7b5">Filters</text>
+  <rect x="54" y="172" width="150" height="28" rx="6" fill="#27313d"/>
+  <rect x="54" y="214" width="150" height="28" rx="6" fill="#27313d"/>
+  <rect x="54" y="268" width="132" height="10" rx="5" fill="#596679"/>
+  <rect x="54" y="300" width="112" height="10" rx="5" fill="#596679"/>
+  <text x="288" y="144" font-family="Arial" font-size="12" fill="#9ba7b5">Open Alerts</text>
+  <text x="288" y="190" font-family="Arial" font-size="40" fill="#f1c453">128</text>
+  <text x="526" y="144" font-family="Arial" font-size="12" fill="#9ba7b5">Healthy Jobs</text>
+  <text x="526" y="190" font-family="Arial" font-size="40" fill="#60c18c">94%</text>
+  <text x="750" y="144" font-family="Arial" font-size="12" fill="#9ba7b5">Risk Queue</text>
+  <text x="750" y="190" font-family="Arial" font-size="40" fill="#e06b65">17</text>
+  <rect x="292" y="308" width="372" height="1" fill="#384252"/>
+  <rect x="292" y="348" width="372" height="1" fill="#384252"/>
+  <rect x="292" y="388" width="372" height="1" fill="#384252"/>
+  <rect x="292" y="428" width="372" height="1" fill="#384252"/>
+  <rect x="750" y="304" width="72" height="22" rx="11" fill="#4b2f34"/>
+  <rect x="750" y="348" width="86" height="22" rx="11" fill="#4b4028"/>
+  <rect x="750" y="392" width="64" height="22" rx="11" fill="#283d34"/>
+</svg>

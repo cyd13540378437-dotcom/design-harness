@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="600" viewBox="0 0 960 600">
+  <rect width="960" height="600" fill="#f6f8fb"/>
+  <rect x="40" y="36" width="180" height="528" rx="16" fill="#ffffff" stroke="#d8dee8"/>
+  <rect x="250" y="36" width="670" height="80" rx="16" fill="#ffffff" stroke="#d8dee8"/>
+  <rect x="250" y="144" width="420" height="190" rx="16" fill="#ffffff" stroke="#d8dee8"/>
+  <rect x="700" y="144" width="220" height="190" rx="16" fill="#ffffff" stroke="#d8dee8"/>
+  <rect x="250" y="362" width="670" height="202" rx="16" fill="#ffffff" stroke="#d8dee8"/>
+  <circle cx="82" cy="76" r="16" fill="#3454d1"/>
+  <rect x="112" y="66" width="70" height="12" rx="6" fill="#283142"/>
+  <rect x="70" y="132" width="110" height="10" rx="5" fill="#8a93a4"/>
+  <rect x="70" y="174" width="118" height="10" rx="5" fill="#3454d1"/>
+  <rect x="70" y="216" width="92" height="10" rx="5" fill="#8a93a4"/>
+  <rect x="278" y="62" width="170" height="16" rx="8" fill="#283142"/>
+  <rect x="278" y="88" width="260" height="10" rx="5" fill="#8a93a4"/>
+  <rect x="804" y="62" width="86" height="30" rx="8" fill="#3454d1"/>
+  <text x="826" y="82" font-family="Arial" font-size="12" fill="#ffffff">Action</text>
+  <rect x="282" y="178" width="210" height="18" rx="9" fill="#283142"/>
+  <rect x="282" y="216" width="340" height="12" rx="6" fill="#c7cfdb"/>
+  <rect x="282" y="246" width="286" height="12" rx="6" fill="#c7cfdb"/>
+  <rect x="282" y="290" width="94" height="28" rx="8" fill="#e8edff"/>
+  <rect x="730" y="176" width="74" height="74" rx="18" fill="#e8edff"/>
+  <rect x="730" y="270" width="150" height="12" rx="6" fill="#c7cfdb"/>
+  <rect x="282" y="402" width="586" height="1" fill="#d8dee8"/>
+  <rect x="282" y="432" width="530" height="1" fill="#d8dee8"/>
+  <rect x="282" y="462" width="568" height="1" fill="#d8dee8"/>
+  <rect x="282" y="492" width="504" height="1" fill="#d8dee8"/>
+</svg>

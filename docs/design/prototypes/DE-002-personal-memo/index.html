@@ -1,0 +1,777 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>个人备忘录</title>
+  <style>
+    :root {
+      --bg: #faf8f3;
+      --surface: #ffffff;
+      --surface-soft: #f6f1e9;
+      --ink: #24211d;
+      --text: #3a352f;
+      --muted: #716b62;
+      --faint: #9a9288;
+      --border: #e8e1d6;
+      --divider: #efe8de;
+      --action: #2b2a28;
+      --accent: #d8b56d;
+      --success: #5f8f73;
+      --error: #b75e55;
+      --info: #7b8fa8;
+      --shadow: 0 18px 42px rgba(70, 57, 38, 0.08);
+      --radius: 18px;
+      color-scheme: light;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.72), rgba(255, 255, 255, 0) 280px),
+        var(--bg);
+      color: var(--text);
+    }
+
+    button,
+    input,
+    textarea {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .app {
+      min-height: 100vh;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 20px clamp(18px, 4vw, 48px) 14px;
+      background: rgba(250, 248, 243, 0.88);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(232, 225, 214, 0.7);
+    }
+
+    .date {
+      margin: 0 0 4px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.3;
+    }
+
+    h1 {
+      margin: 0;
+      color: var(--ink);
+      font-size: clamp(25px, 5vw, 40px);
+      line-height: 1.05;
+      letter-spacing: 0;
+    }
+
+    .save-state {
+      min-width: 92px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 9px 12px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: var(--surface);
+      color: var(--muted);
+      font-size: 13px;
+      box-shadow: 0 8px 22px rgba(70, 57, 38, 0.05);
+      white-space: nowrap;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--success);
+    }
+
+    .main {
+      width: min(1160px, 100%);
+      margin: 0 auto;
+      padding: 18px clamp(18px, 4vw, 48px) 96px;
+    }
+
+    .layout {
+      display: grid;
+      gap: 18px;
+    }
+
+    .quick-entry {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      box-shadow: var(--shadow);
+      padding: 14px;
+    }
+
+    .quick-entry textarea {
+      width: 100%;
+      min-height: 112px;
+      resize: vertical;
+      border: 0;
+      outline: 0;
+      color: var(--ink);
+      background: transparent;
+      line-height: 1.6;
+      font-size: 17px;
+    }
+
+    .quick-entry textarea::placeholder {
+      color: var(--faint);
+    }
+
+    .entry-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding-top: 8px;
+      border-top: 1px solid var(--divider);
+    }
+
+    .chip-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .chip {
+      min-height: 32px;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 6px 10px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: var(--surface-soft);
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .primary {
+      min-height: 40px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border: 0;
+      border-radius: 999px;
+      background: var(--action);
+      color: #fff;
+      padding: 10px 16px;
+      font-weight: 650;
+      box-shadow: 0 12px 24px rgba(43, 42, 40, 0.16);
+    }
+
+    .toolbar {
+      display: grid;
+      gap: 12px;
+      margin: 18px 0 12px;
+    }
+
+    .search {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-height: 44px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.78);
+      padding: 0 14px;
+    }
+
+    .search svg {
+      color: var(--muted);
+      flex: 0 0 auto;
+    }
+
+    .search input {
+      width: 100%;
+      min-width: 0;
+      border: 0;
+      outline: 0;
+      background: transparent;
+      color: var(--ink);
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 12px;
+      margin: 18px 0 10px;
+    }
+
+    h2 {
+      margin: 0;
+      color: var(--ink);
+      font-size: 18px;
+      letter-spacing: 0;
+    }
+
+    .count {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .memo-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .memo-card {
+      position: relative;
+      display: grid;
+      gap: 10px;
+      padding: 16px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--surface);
+      box-shadow: 0 10px 26px rgba(70, 57, 38, 0.06);
+      text-align: left;
+    }
+
+    .memo-card::before {
+      content: "";
+      position: absolute;
+      inset: 18px auto auto 0;
+      width: 3px;
+      height: 36px;
+      border-radius: 0 3px 3px 0;
+      background: var(--accent);
+      opacity: 0;
+    }
+
+    .memo-card.pinned::before {
+      opacity: 1;
+    }
+
+    .memo-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .memo-title {
+      margin: 0;
+      color: var(--ink);
+      font-weight: 720;
+      line-height: 1.35;
+      overflow-wrap: anywhere;
+    }
+
+    .memo-time {
+      color: var(--faint);
+      font-size: 12px;
+      white-space: nowrap;
+    }
+
+    .memo-text {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.55;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      overflow-wrap: anywhere;
+    }
+
+    .memo-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .icon-button {
+      width: 34px;
+      height: 34px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      background: var(--surface);
+      color: var(--muted);
+    }
+
+    .detail {
+      display: none;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      padding: 24px;
+    }
+
+    .detail h2 {
+      font-size: 26px;
+      line-height: 1.18;
+      margin-bottom: 12px;
+    }
+
+    .detail p {
+      line-height: 1.7;
+      color: var(--muted);
+    }
+
+    .detail-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 22px;
+    }
+
+    .secondary {
+      min-height: 38px;
+      padding: 8px 13px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: var(--surface);
+      color: var(--text);
+    }
+
+    .status-stack {
+      display: grid;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .notice,
+    .empty-state,
+    .trash-note {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.72);
+      padding: 14px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .notice.error {
+      border-color: rgba(183, 94, 85, 0.32);
+      color: #7f3d36;
+      background: #fff6f4;
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 26px 18px;
+    }
+
+    .empty-mark {
+      width: 54px;
+      height: 54px;
+      margin: 0 auto 12px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, #fff, #f3ecdf);
+      border: 1px solid var(--border);
+      display: grid;
+      place-items: center;
+      color: var(--accent);
+    }
+
+    .skeleton {
+      display: grid;
+      gap: 10px;
+      padding: 16px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--surface);
+    }
+
+    .bar {
+      height: 12px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #eee7dc, #f7f2ea, #eee7dc);
+      background-size: 220% 100%;
+      animation: shimmer 1.8s infinite linear;
+    }
+
+    .bar.short {
+      width: 48%;
+    }
+
+    .bar.mid {
+      width: 72%;
+    }
+
+    @keyframes shimmer {
+      to {
+        background-position: -220% 0;
+      }
+    }
+
+    .bottom-nav {
+      position: fixed;
+      left: 50%;
+      bottom: 16px;
+      z-index: 30;
+      transform: translateX(-50%);
+      width: min(430px, calc(100% - 28px));
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      padding: 8px;
+      border: 1px solid rgba(232, 225, 214, 0.85);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.9);
+      box-shadow: 0 18px 48px rgba(70, 57, 38, 0.14);
+      backdrop-filter: blur(18px);
+    }
+
+    .nav-button {
+      min-height: 42px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border: 0;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .nav-button.active {
+      background: var(--action);
+      color: #fff;
+    }
+
+    .desktop-rail {
+      display: none;
+    }
+
+    svg {
+      width: 18px;
+      height: 18px;
+      stroke: currentColor;
+      stroke-width: 2;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    :focus-visible {
+      outline: 3px solid rgba(216, 181, 109, 0.42);
+      outline-offset: 3px;
+    }
+
+    @media (min-width: 900px) {
+      .app {
+        grid-template-rows: auto 1fr;
+      }
+
+      .main {
+        padding-bottom: 46px;
+      }
+
+      .layout {
+        grid-template-columns: minmax(360px, 460px) minmax(420px, 1fr);
+        align-items: start;
+      }
+
+      .detail {
+        display: block;
+        position: sticky;
+        top: 102px;
+        min-height: 620px;
+      }
+
+      .toolbar {
+        grid-template-columns: 1fr auto;
+        align-items: center;
+      }
+
+      .bottom-nav {
+        display: none;
+      }
+
+      .desktop-rail {
+        display: flex;
+        gap: 8px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .topbar {
+        padding-top: 16px;
+      }
+
+      .save-state {
+        min-width: 42px;
+        padding: 9px;
+      }
+
+      .save-state span:last-child {
+        display: none;
+      }
+
+      .entry-actions {
+        align-items: stretch;
+      }
+
+      .primary {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <div>
+        <p class="date">6月28日 星期日</p>
+        <h1>今天记点什么</h1>
+      </div>
+      <div class="save-state" id="saveState" aria-live="polite">
+        <span class="dot" id="saveDot"></span>
+        <span id="saveText">已保存</span>
+      </div>
+    </header>
+
+    <main class="main">
+      <div class="layout">
+        <section aria-label="备忘列表">
+          <form class="quick-entry" id="memoForm">
+            <textarea id="memoInput" placeholder="快速写一条备忘"></textarea>
+            <div class="entry-actions">
+              <div class="chip-row">
+                <span class="chip">#日常</span>
+                <span class="chip">#灵感</span>
+                <span class="chip">今天</span>
+              </div>
+              <button class="primary" type="submit">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+                新备忘
+              </button>
+            </div>
+          </form>
+
+          <div class="toolbar">
+            <label class="search">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+              <input id="searchInput" type="search" placeholder="搜索备忘、标签或日期">
+            </label>
+            <div class="desktop-rail" aria-label="桌面导航">
+              <button class="secondary" type="button">备忘</button>
+              <button class="secondary" type="button">搜索</button>
+              <button class="secondary" type="button">设置</button>
+            </div>
+          </div>
+
+          <div class="section-head">
+            <h2>最近</h2>
+            <span class="count" id="countText">3 条备忘</span>
+          </div>
+
+          <div class="memo-list" id="memoList">
+            <article class="memo-card pinned">
+              <div class="memo-top">
+                <p class="memo-title">买一个小号文件夹，放报销票据</p>
+                <span class="memo-time">09:42</span>
+              </div>
+              <p class="memo-text">顺手把上周的交通票也整理进去，晚上拍照备份。</p>
+              <div class="memo-meta">
+                <span class="chip">#生活</span>
+                <button class="icon-button" type="button" aria-label="删除到回收站">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 14h10l1-14M9 7V4h6v3"/></svg>
+                </button>
+              </div>
+            </article>
+
+            <article class="memo-card">
+              <div class="memo-top">
+                <p class="memo-title">个人备忘录第一版先做离线可用</p>
+                <span class="memo-time">昨天</span>
+              </div>
+              <p class="memo-text">自动保存、标签、置顶、回收站先跑通，同步和提醒后面再拆。</p>
+              <div class="memo-meta">
+                <span class="chip">#产品</span>
+                <button class="icon-button" type="button" aria-label="删除到回收站">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 14h10l1-14M9 7V4h6v3"/></svg>
+                </button>
+              </div>
+            </article>
+
+            <article class="memo-card">
+              <div class="memo-top">
+                <p class="memo-title">周三给自己留半小时散步</p>
+                <span class="memo-time">周一</span>
+              </div>
+              <p class="memo-text">不用安排路线，带耳机出门就行。</p>
+              <div class="memo-meta">
+                <span class="chip">#提醒</span>
+                <button class="icon-button" type="button" aria-label="删除到回收站">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 14h10l1-14M9 7V4h6v3"/></svg>
+                </button>
+              </div>
+            </article>
+          </div>
+
+          <div class="status-stack">
+            <div class="notice error" id="errorNotice">保存失败，点此重试</div>
+            <div class="skeleton" aria-label="加载中的备忘">
+              <div class="bar short"></div>
+              <div class="bar mid"></div>
+              <div class="bar"></div>
+            </div>
+            <div class="empty-state" id="emptyState" hidden>
+              <div class="empty-mark">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 7h8M8 12h6M8 17h4"/><rect x="5" y="3" width="14" height="18" rx="3"/></svg>
+              </div>
+              <strong>还没有备忘</strong>
+              <p>写下第一条，它会自动保存。</p>
+              <button class="secondary" type="button">新建第一条</button>
+            </div>
+            <div class="trash-note">已删除的备忘会进入回收站，7 天后清除。</div>
+          </div>
+        </section>
+
+        <aside class="detail" aria-label="备忘详情">
+          <div class="chip-row">
+            <span class="chip">置顶</span>
+            <span class="chip">#产品</span>
+          </div>
+          <h2>个人备忘录第一版先做离线可用</h2>
+          <p>自动保存、标签、置顶、回收站先跑通。首页保持快速记录优先，搜索和设置留在底部导航。删除动作先进回收站，避免误删造成不安。</p>
+          <p>视觉保持暖白、轻边框和克制强调，少用大色块，让内容成为第一注意力。</p>
+          <div class="detail-actions">
+            <button class="primary" type="button">继续编辑</button>
+            <button class="secondary" type="button">取消置顶</button>
+            <button class="secondary" type="button">移到回收站</button>
+          </div>
+        </aside>
+      </div>
+    </main>
+
+    <nav class="bottom-nav" aria-label="底部导航">
+      <button class="nav-button active" type="button">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 7h8M8 12h6M8 17h4"/><rect x="5" y="3" width="14" height="18" rx="3"/></svg>
+        备忘
+      </button>
+      <button class="nav-button" type="button">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        搜索
+      </button>
+      <button class="nav-button" type="button">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.9 4.9 7 7M17 17l2.1 2.1M2 12h3M19 12h3M4.9 19.1 7 17M17 7l2.1-2.1"/></svg>
+        设置
+      </button>
+    </nav>
+  </div>
+
+  <script>
+    const form = document.querySelector("#memoForm");
+    const input = document.querySelector("#memoInput");
+    const list = document.querySelector("#memoList");
+    const countText = document.querySelector("#countText");
+    const saveText = document.querySelector("#saveText");
+    const saveDot = document.querySelector("#saveDot");
+    const searchInput = document.querySelector("#searchInput");
+    const emptyState = document.querySelector("#emptyState");
+
+    function setSaveState(label, color) {
+      saveText.textContent = label;
+      saveDot.style.background = color;
+    }
+
+    input.addEventListener("input", () => {
+      setSaveState("保存中", "#d8b56d");
+      window.clearTimeout(input._timer);
+      input._timer = window.setTimeout(() => setSaveState("已保存", "#5f8f73"), 520);
+    });
+
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const value = input.value.trim();
+      if (!value) {
+        input.focus();
+        return;
+      }
+      const safeValue = escapeHTML(value);
+      const card = document.createElement("article");
+      card.className = "memo-card";
+      card.innerHTML = `
+        <div class="memo-top">
+          <p class="memo-title">${escapeHTML(value.slice(0, 34))}</p>
+          <span class="memo-time">刚刚</span>
+        </div>
+        <p class="memo-text">${safeValue}</p>
+        <div class="memo-meta">
+          <span class="chip">#日常</span>
+          <button class="icon-button" type="button" aria-label="删除到回收站">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 14h10l1-14M9 7V4h6v3"/></svg>
+          </button>
+        </div>
+      `;
+      list.prepend(card);
+      input.value = "";
+      setSaveState("已保存", "#5f8f73");
+      updateCount();
+    });
+
+    list.addEventListener("click", (event) => {
+      const button = event.target.closest(".icon-button");
+      if (!button) return;
+      const card = button.closest(".memo-card");
+      card.remove();
+      setSaveState("已移到回收站", "#7b8fa8");
+      updateCount();
+    });
+
+    searchInput.addEventListener("input", () => {
+      const query = searchInput.value.trim().toLowerCase();
+      let visible = 0;
+      for (const card of list.querySelectorAll(".memo-card")) {
+        const matched = card.textContent.toLowerCase().includes(query);
+        card.hidden = !matched;
+        if (matched) visible += 1;
+      }
+      emptyState.hidden = visible !== 0;
+      countText.textContent = `${visible} 条备忘`;
+    });
+
+    function updateCount() {
+      const visible = list.querySelectorAll(".memo-card:not([hidden])").length;
+      countText.textContent = `${visible} 条备忘`;
+      emptyState.hidden = visible !== 0;
+    }
+
+    function escapeHTML(value) {
+      return value
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+  </script>
+</body>
+</html>

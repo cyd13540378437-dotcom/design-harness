@@ -1,13 +1,13 @@
 # Codex Design Harness
 
-Codex Design Harness 是一套给 Codex 使用的人参与设计工程协议。它把重要 UI/UX 工作组织成可恢复、可审计、需要用户明确批准 Gate 的 Work Item，并在完成后写入 sealed 状态。
+Codex Design Harness is a human-in-the-loop design engineering protocol for Codex. It turns important UI/UX work into recoverable, auditable Work Items with explicit user approval gates, and it preserves approved visual decisions in a project-level `VISUAL_DESIGN.md`.
 
-v0.1.0-alpha 刻意保持手动和文档型：不包含安装器、CLI、Hook、Plugin 打包、云服务或运行时依赖。本仓库提供 Skill、Steward Agent、模板、示例和人工评测场景，方便在真实项目中试运行。
+v0.1.0-alpha stays deliberately manual and document-based. It includes a Skill, a narrow state Steward Agent, templates, visual reference packs, examples, and manual evaluation scenarios. It does not include an installer, CLI, hook, plugin package, cloud service, or runtime dependency.
 
-## 核心模型
+## Core Model
 
 ```text
-项目 AGENTS.md
+Project AGENTS.md
         ↓
 design-engineering Skill
         ↓
@@ -15,86 +15,109 @@ design_state_steward Agent
         ↓
 Work Item STATE.md
         ↓
-Human Gate、实现、QA、封存
+Human Gates, visual workflow, implementation, QA, seal
+        ↓
+VISUAL_DESIGN.md
 ```
 
-- Thread 是临时 Codex 对话，不是任务身份。
-- Work Item 是可独立验收的产品或设计任务。
-- `STATE.md` 是单个 Work Item 的权威状态快照。
-- `WORK_ITEMS.md` 是导航索引；若与 `STATE.md` 冲突，以 `STATE.md` 为准。
-- Gate 是 Codex 必须等待用户决定的阶段边界。
-- `completed + sealed` 是只读历史记录；后续相关工作必须创建 Successor。
+- A Thread is a temporary Codex conversation, not the durable task identity.
+- A Work Item is an independently reviewable product or design task.
+- `STATE.md` is the authoritative state snapshot for one Work Item.
+- `WORK_ITEMS.md` is a navigation index; `STATE.md` wins on conflict.
+- `VISUAL_DESIGN.md` is the long-lived project visual baseline.
+- Gates are points where Codex must wait for user approval.
+- `completed + sealed` is read-only history; related follow-up work must create a Successor.
 
-完整中文指南见 [README.zh-CN.md](README.zh-CN.md)，系统结构见 [docs/architecture.md](docs/architecture.md)。
+See [README.zh-CN.md](README.zh-CN.md) for the full Chinese guide and [docs/architecture.md](docs/architecture.md) for system structure.
 
-## 状态解析
+## State Resolution
 
-`design_state_steward` 在绑定任务时只能返回五种决定：
+`design_state_steward` can return only five binding decisions:
 
-- `CREATE`：创建新的独立 Work Item。
-- `RESUME`：继续未封存的 active 或 paused Work Item。
-- `SUCCESSOR`：创建新的 Work Item，并引用已封存前任。
-- `NO_STATE`：只读或极小一次性工作，不持久化状态。
-- `AMBIGUOUS`：停止并请用户在候选项中选择。
+- `CREATE`: create a new independent Work Item.
+- `RESUME`: continue an unsealed active or paused Work Item.
+- `SUCCESSOR`: create a new Work Item that references a sealed predecessor.
+- `NO_STATE`: skip durable state for read-only or tiny one-off work.
+- `AMBIGUOUS`: stop and ask the user to choose among candidates.
 
-## 工作流
+## Visual Workflow
 
-`design-engineering` 负责编排设计流程。它必须在状态化设计任务开始前、每个 Gate 检查点前、Gate 回复后、任务切换前、关闭检查前和封存前显式调用 `design_state_steward`。
+Full Mode uses concrete visual artifacts instead of requiring abstract product-personality forms:
 
-Full Mode 使用这些 Gate：
+```text
+Visual Seed
+→ Reference Images / Reference Packs
+→ Reference Analysis
+→ Palette Proposal
+→ Palette Confirmation
+→ Design Exclusions
+→ Exclusions Confirmation
+→ Visual Prototype
+```
 
-1. `visual-direction-approval`
+Palette confirmation and design-exclusion confirmation are sub-checkpoints under `visual-direction-approval`; they are not new Gate enum values. `palette-selection` must present at least three candidate palette boards with comparable mini UI samples and contrast/readability notes. The user may choose a candidate or provide a custom color direction; either way, the state records the original user input, final palette, source, and reason. The state body records `palette-selection` and `design-exclusions` as visual substeps.
+
+Users may provide images in `docs/design/reference-images/`. When they have no references, the Skill can use the built-in self-made packs in `skills/design-engineering/assets/visual-reference-packs/`.
+
+## Workflow
+
+`design-engineering` orchestrates the design process. It must explicitly call `design_state_steward` before stateful design work, before each Gate checkpoint, after Gate replies, before task switches, before closure review, and before sealing.
+
+Full Mode uses:
+
+1. `visual-direction-approval`, including palette and design-exclusion substeps
 2. `prototype-approval`
-3. `interaction-decision`，仅用于高影响 UX 分歧
+3. `interaction-decision`, only for high-impact UX ambiguity
 4. `completion-approval`
 
-Lightweight Mode 可为小范围修改跳过视觉方向和原型 Gate。Delegated Mode 可让 Codex 自行处理普通细节，但封存仍需要用户明确批准。
+Lightweight Mode may skip the full visual flow for local changes, but it still reads `VISUAL_DESIGN.md`. Delegated Mode lets Codex handle ordinary details, while final sealing still requires explicit user approval.
 
-## 手动安装
+## Manual Install
 
-1. 将 [skills/design-engineering](skills/design-engineering/) 复制到：
+1. Copy [skills/design-engineering](skills/design-engineering/) to:
 
    ```text
    ~/.agents/skills/design-engineering/
    ```
 
-2. 将 [agents/design-state-steward.toml](agents/design-state-steward.toml) 复制到目标项目：
+2. Copy [agents/design-state-steward.toml](agents/design-state-steward.toml) into the target project:
 
    ```text
    .codex/agents/design-state-steward.toml
    ```
 
-3. 将 [templates/project/AGENTS.fragment.md](templates/project/AGENTS.fragment.md) 合并进目标项目根目录 `AGENTS.md`。不要直接覆盖已有文件。
+3. Merge [templates/project/AGENTS.fragment.md](templates/project/AGENTS.fragment.md) into the target project `AGENTS.md`. Do not overwrite existing user rules.
 
-4. 将 [templates/project/docs/design](templates/project/docs/design/) 复制到目标项目。
+4. Copy [templates/project/docs/design](templates/project/docs/design/) into the target project.
 
-5. 开启新的 Codex 会话并运行：
+5. Start a new Codex session and run:
 
    ```text
    使用 $design-engineering 检查项目上下文，不要修改文件。
    ```
 
-   预期结果：返回 `NO_STATE`，且不创建 Work Item 目录。
+   Expected result: `NO_STATE`, with no Work Item directory created.
 
-## 示例
+## Example
 
-[examples/idea-storm-lab](examples/idea-storm-lab/) 展示 PRD 要求的三个请求：
+[examples/idea-storm-lab](examples/idea-storm-lab/) demonstrates the three PRD requests:
 
-- “检查项目上下文”返回 `NO_STATE`。
-- “优化前端样式”创建并封存 `DE-001`。
-- “统一内容模块问题长度换行”创建 successor `DE-002`，并引用已封存的 `DE-001`。
+- “检查项目上下文” returns `NO_STATE`.
+- “优化前端样式” creates and seals `DE-001` after visual seed, reference analysis, palette confirmation, design-exclusion confirmation, visual prototype, implementation, QA, and `VISUAL_DESIGN.md` update.
+- “统一内容模块问题长度换行” creates successor `DE-002`, references sealed `DE-001`, reads `VISUAL_DESIGN.md`, and waits at `completion-approval`.
 
-## 评测
+## Evaluation
 
-人工“前提 / 当 / 则”场景位于 [evals/scenarios](evals/scenarios/)。它们覆盖上下文检查、创建、跨 Thread 恢复、创建 Successor、并行 Work Items、模糊绑定以及关闭封存。
+Manual Given / When / Then scenarios live in [evals/scenarios](evals/scenarios/). They cover context checks, create, resume, successor, parallel Work Items, ambiguous binding, close-and-seal, the new visual workflow, avoiding product-personality taxonomy, and `VISUAL_DESIGN.md` creation.
 
-## 当前限制
+## Limits
 
-- 没有安装器、Plugin、Marketplace 包、Hook、CLI、`statectl`、云服务或外部运行时依赖。
-- 没有确定性 Schema 校验器或自动索引生成器。
-- 没有多用户写锁。
-- 浏览器 QA 是推荐流程，v0.1 不绑定特定工具。
+- No installer, plugin package, marketplace metadata, hook, CLI, `statectl`, cloud service, or external runtime dependency.
+- No deterministic schema validator or automatic index generator.
+- No multi-user write lock.
+- No automatic web scraping or bundled third-party product screenshots.
+- Browser QA is recommended, but v0.1 does not require a specific browser tool.
 
-## 许可证
+## License
 
-MIT。见 [LICENSE](LICENSE)。
+MIT. See [LICENSE](LICENSE).
