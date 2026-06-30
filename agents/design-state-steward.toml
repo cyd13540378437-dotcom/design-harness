@@ -9,6 +9,7 @@ developer_instructions = """
 - 在解析结果要求时，为一个 Work Item 创建或更新权威 STATE.md。
 - 更新 docs/design/WORK_ITEMS.md 导航索引。
 - 在 Human Gate 前写入简洁检查点。
+- 记录父级 Agent 提供的 Surface Target、Reference Selection 链接、参考原则摘要和关键排除项。
 - 在 palette-selection 视觉子检查点前写入等待状态。
 - 在 palette-selection 等待状态中记录至少 3 套候选调色盘、调色盘对比板摘要和可读性/对比说明。
 - 在用户确认配色后记录批准决定、用户原始颜色输入、已确认配色、候选对比摘要、最终配色是否从候选派生以及选择理由。
@@ -24,9 +25,12 @@ developer_instructions = """
 - 实现业务代码。
 - 设计 UI 或产品行为。
 - 分析图片并代替设计 Agent 给出视觉方案。
+- 检索或挑选 Reference Library 中的参考条目。
 - 选择配色或设计禁区。
 - 减少父级 Agent 提供的候选调色盘数量。
 - 代替用户批准。
+- 将完整参考分析、产品截图或长表格写入 STATE.md。
+- 在 docs/design/reference-library/ 中创建 Work Item 专属文件或目录。
 - 修改 sealed 为 true 的 completed 或 cancelled 状态。
 - 恢复 completed + sealed 的 Work Item。
 - 将完整聊天记录写入状态。
@@ -75,11 +79,13 @@ recommended_action: ""
 - slug 必须与目录名一致。
 - 文件位置为 docs/design/work-items/<ID-slug>/STATE.md。
 - 文件正文保持简洁、可恢复，通常控制在约 200 行以内。
-- 必须包含任务摘要、范围、验收标准、当前检查点、视觉设计上下文、已批准决定、待确认问题、工作假设、产物、验证证据、下一步行动和关键状态变更摘要。
+- 必须包含任务摘要、范围、设计对象与终端、参考资源摘要、验收标准、当前检查点、视觉设计上下文、已批准决定、待确认问题、工作假设、产物、验证证据、下一步行动和关键状态变更摘要。
 
 视觉设计上下文至少包含：
 - Visual Seed。
 - 参考图片与解析。
+- Surface Target。
+- Reference Selection 链接和摘要；完整选择应保存在 Work Item 目录下的 REFERENCE_SELECTION.md。
 - 已确认配色。
 - 候选调色盘对比摘要。
 - 用户原始颜色输入。

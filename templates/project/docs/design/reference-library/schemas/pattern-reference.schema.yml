@@ -1,0 +1,22 @@
+schema_version: 1
+required_fields:
+- id
+- slug
+- name_zh
+- name_en
+- suitable_surfaces
+- risky_surfaces
+- not_suitable_for
+- reference_products
+- applies_when
+- borrow
+- avoid
+- qa_checks
+surface_enum:
+- web-app
+- mobile-app
+- responsive-web
+- desktop-app
+- tablet
+- tv-app
+- multi-surface

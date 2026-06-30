@@ -38,6 +38,21 @@ completed_at: ""
 
 - 相关但不在本任务内处理的内容。
 
+## 设计对象与终端
+
+- Primary surface: `web-app | mobile-app | responsive-web | desktop-app | tablet | multi-surface`
+- Secondary surfaces:
+- Explicitly out of scope:
+- Evidence:
+- Open questions:
+
+## 参考资源摘要
+
+- Reference Selection: `REFERENCE_SELECTION.md` 链接；若未使用参考库，说明原因。
+- 采用的参考原则：只写本任务真正采用的 2-4 条设计原则摘要。
+- 明确不采用：记录被排除的参考、跨终端风险或不适合本任务的模式。
+- 版权边界：仅用于内部设计分析和模式抽象，不复制第三方品牌资产、图标、插画、文案或完整页面布局。
+
 ## 验收标准
 
 - 可验证的完成标准。

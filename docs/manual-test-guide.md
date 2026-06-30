@@ -1,6 +1,6 @@
 # 手动测试指南
 
-使用本指南验证 v0.1.0-alpha / visual-workflow revision 仓库，不需要安装任何运行时依赖。
+使用本指南验证 v0.1.1-alpha / reference-library increment 仓库，不需要安装任何运行时依赖。
 
 ## 1. 文件结构
 
@@ -17,23 +17,36 @@ skills/design-engineering/agents/openai.yaml
 skills/design-engineering/assets/STATE.template.md
 skills/design-engineering/assets/WORK_ITEMS.template.md
 skills/design-engineering/assets/VISUAL_DESIGN.template.md
+skills/design-engineering/assets/REFERENCE_SELECTION.template.md
 skills/design-engineering/assets/AGENTS.fragment.md
 skills/design-engineering/assets/visual-reference-packs/reference-index.md
 skills/design-engineering/references/visual-workflow.md
+skills/design-engineering/references/reference-library-consumption.md
 agents/design-state-steward.toml
 templates/project/docs/design/WORK_ITEMS.md
 templates/project/docs/design/VISUAL_DESIGN.md
 templates/project/docs/design/reference-images/.gitkeep
+templates/project/docs/design/reference-library/README.md
+templates/project/docs/design/reference-library/product-index.md
+templates/project/docs/design/reference-library/product-index.yml
+templates/project/docs/design/reference-library/pattern-index.md
+templates/project/docs/design/reference-library/pattern-index.yml
+templates/project/docs/design/reference-library/assets/color-cards/color-card.schema.yml
+templates/project/docs/design/work-items/REFERENCE_SELECTION.template.md
 examples/idea-storm-lab/docs/design/WORK_ITEMS.md
 examples/idea-storm-lab/docs/design/VISUAL_DESIGN.md
 evals/scenarios/01-no-state-for-context-check.md
-evals/scenarios/10-visual-design-document.md
+evals/scenarios/13-reference-selection-belongs-to-work-item.md
 docs/PRD.md
+docs/PRD.reference-library-v0.1.1.md
+docs/PRD.v0.1-to-v0.1.1-delta.md
 docs/architecture.md
 docs/manual-test-guide.md
 ```
 
 确认 `skills/design-engineering/assets/visual-reference-packs/` 下有 5 个参考包，每个包至少包含 2 张自制 SVG 和 `notes.md`。
+
+确认 `templates/project/docs/design/reference-library/` 包含产品索引、模式索引、单产品条目、单模式条目、截图素材目录、schema 和 `assets/color-cards/` 预留结构。不得存在 `templates/project/docs/design/reference-library/reference-packs/`。
 
 ## 2. 手动安装冒烟测试
 
@@ -43,7 +56,7 @@ docs/manual-test-guide.md
 2. 将 `agents/design-state-steward.toml` 复制到 `.codex/agents/design-state-steward.toml`。
 3. 将 `templates/project/AGENTS.fragment.md` 合并进业务项目的 `AGENTS.md`。
 4. 将 `templates/project/docs/design/` 复制到 `docs/design/`。
-5. 如有参考图片，放入 `docs/design/reference-images/`。
+5. 如有参考图片，放入 `docs/design/reference-images/`；长期可复用产品参考放入 `docs/design/reference-library/`，不要放入 Work Item 目录。
 6. 开启新的 Codex 会话。
 
 Prompt：
@@ -75,7 +88,8 @@ Prompt：
 检查：
 
 - `DE-001` 包含 `status: "completed"` 和 `sealed: true`。
-- `DE-001` 展示 Visual Seed、参考解析、已确认配色、已确认设计禁区和视觉原型摘要。
+- `DE-001` 展示 Visual Seed、参考解析、已确认配色、已确认设计禁区和视觉原型摘要，且没有为适配新模板而改写 sealed 历史。
+- `DE-002` 的 Work Item 目录中包含 `REFERENCE_SELECTION.md`，并且 `STATE.md` 只记录其链接和摘要。
 - `DE-001` 封存后没有被恢复。
 - `VISUAL_DESIGN.md` 包含已确认配色、设计禁区、组件语言和示例入口。
 - `DE-002` 包含 `predecessors: ["DE-001"]`。
@@ -84,7 +98,7 @@ Prompt：
 
 ## 4. 评测场景
 
-阅读 [evals/scenarios](../evals/scenarios/) 下的全部文件。应共有 10 个场景，每个场景都使用“前提 / 当 / 则”的结构，并与 Skill 和 Steward 使用相同的状态决定：
+阅读 [evals/scenarios](../evals/scenarios/) 下的全部文件。应共有 13 个场景，每个场景都使用“前提 / 当 / 则”的结构，并与 Skill 和 Steward 使用相同的状态决定：
 
 ```text
 CREATE / RESUME / SUCCESSOR / NO_STATE / AMBIGUOUS
@@ -98,6 +112,13 @@ CREATE / RESUME / SUCCESSOR / NO_STATE / AMBIGUOUS
 - 不要求产品人格表单。
 - `VISUAL_DESIGN.md` 创建或更新。
 
+Reference Library 场景应覆盖：
+
+- Web 工作台任务优先使用 `web-app` / `responsive-web` 参考，原生 mobile app 只能作为抽象模式补充。
+- Mobile App 任务优先使用 `mobile-app` 参考，Web 表格、侧栏和多列 dashboard 不得直接落地布局。
+- Work Item 级参考选择写入 `docs/design/work-items/<id>-<slug>/REFERENCE_SELECTION.md`，不写入 `reference-library/reference-packs/`。
+- 用户看到的是业务语义方向，不是产品名选择题。
+
 ## 5. 禁止项检查
 
 允许这些词出现在“禁止事项”语境中，但不得作为正向用户流程要求或 Gate enum：
@@ -108,6 +129,7 @@ CREATE / RESUME / SUCCESSOR / NO_STATE / AMBIGUOUS
 用户感受目标
 palette-approval
 anti-homogeneity
+reference-library/reference-packs
 ```
 
 ## 6. 完成定义自检
@@ -117,6 +139,9 @@ anti-homogeneity
 - `openai.yaml` 只声明展示元数据和隐式调用策略。
 - Steward TOML 包含 `name`、`description` 和 `developer_instructions`。
 - 模板使用与 PRD 一致的 `status`、`phase` 和 `gate` 枚举。
+- Surface Target 使用 `web-app / mobile-app / responsive-web / desktop-app / tablet / multi-surface`，不新增 Gate。
+- `STATE.md` 只记录 Reference Selection 摘要和链接，完整分析在 `REFERENCE_SELECTION.md`。
+- 色卡目录已预留但未预填具体色卡。
 - 配色和设计禁区是视觉子步骤，不是新增 Gate。
 - 不允许只给 1 套配色让用户确认。
 - 不允许用户输入自定义颜色后只口头接受而不写入状态。

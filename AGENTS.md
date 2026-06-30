@@ -1,11 +1,12 @@
 # Codex Design Harness 仓库规则
 
-本仓库定义 v0.1.0-alpha 的 Design Engineering Harness。后续修改必须保持 PRD、Skill、Steward Agent、模板、示例、评测和 README 彼此一致。
+本仓库定义 v0.1.x 的 Design Engineering Harness。后续修改必须保持 PRD、Skill、Steward Agent、模板、示例、评测和 README 彼此一致。
 
 ## 范围
 
 - v0.1 保持手动、文档型交付。
 - 不添加安装器、Codex Plugin 包、Marketplace 元数据、Hook、CLI、`statectl`、云服务或外部运行时依赖。
+- 不自动下载、OCR、视觉识别或托管第三方截图。
 - 不虚构 Codex 不支持的配置字段。
 - 第三方 UI 或浏览器 Skill 只能作为可选增强被提及。
 
@@ -15,7 +16,11 @@
 - Work Item 是持久任务身份。
 - 每个独立 Work Item 最多只有一个权威 `STATE.md`。
 - `WORK_ITEMS.md` 只是索引；若与 `STATE.md` 冲突，以 `STATE.md` 为准。
+- `reference-library/` 是长期视觉参考资料层，不保存 Work Item 专属选择。
+- `REFERENCE_SELECTION.md` 是 Work Item 级参考消费结果。
+- `STATE.md` 只记录 Reference Selection 链接和摘要，不吞完整参考分析。
 - `completed + sealed` 状态只读，不得恢复，也不得用于新的实现修改。
+- 不创建 `reference-library/reference-packs/`。
 
 ## 必须保持的枚举
 
@@ -52,6 +57,9 @@ none / work-item-binding / visual-direction-approval / prototype-approval / inte
 - [agents/design-state-steward.toml](agents/design-state-steward.toml)
 - [skills/design-engineering/assets/STATE.template.md](skills/design-engineering/assets/STATE.template.md)
 - [skills/design-engineering/assets/WORK_ITEMS.template.md](skills/design-engineering/assets/WORK_ITEMS.template.md)
+- [skills/design-engineering/assets/REFERENCE_SELECTION.template.md](skills/design-engineering/assets/REFERENCE_SELECTION.template.md)
+- [skills/design-engineering/references/reference-library-consumption.md](skills/design-engineering/references/reference-library-consumption.md)
+- [templates/project/docs/design/reference-library](templates/project/docs/design/reference-library/)
 - [examples/idea-storm-lab/docs/design/WORK_ITEMS.md](examples/idea-storm-lab/docs/design/WORK_ITEMS.md)
 - [evals/scenarios](evals/scenarios/)
 
@@ -60,4 +68,3 @@ none / work-item-binding / visual-direction-approval / prototype-approval / inte
 1. 检查项目上下文
 2. 优化前端样式
 3. 统一内容模块问题长度换行
-

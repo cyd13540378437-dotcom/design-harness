@@ -2,7 +2,7 @@
 
 Codex Design Harness is a human-in-the-loop design engineering protocol for Codex. It turns important UI/UX work into recoverable, auditable Work Items with explicit user approval gates, and it preserves approved visual decisions in a project-level `VISUAL_DESIGN.md`.
 
-v0.1.0-alpha stays deliberately manual and document-based. It includes a Skill, a narrow state Steward Agent, templates, visual reference packs, examples, and manual evaluation scenarios. It does not include an installer, CLI, hook, plugin package, cloud service, or runtime dependency.
+v0.1.1-alpha is an incremental update on top of the v0.1.0-alpha visual-workflow revision. It stays deliberately manual and document-based, and adds a Product Visual Reference Library so Codex can choose design references by target surface and task type before proposing directions. It does not include an installer, CLI, hook, plugin package, cloud service, or runtime dependency.
 
 ## Core Model
 
@@ -13,7 +13,11 @@ design-engineering Skill
         ↓
 design_state_steward Agent
         ↓
+Reference Library + Surface Resolution
+        ↓
 Work Item STATE.md
+        ↓
+Work Item REFERENCE_SELECTION.md
         ↓
 Human Gates, visual workflow, implementation, QA, seal
         ↓
@@ -25,6 +29,8 @@ VISUAL_DESIGN.md
 - `STATE.md` is the authoritative state snapshot for one Work Item.
 - `WORK_ITEMS.md` is a navigation index; `STATE.md` wins on conflict.
 - `VISUAL_DESIGN.md` is the long-lived project visual baseline.
+- `reference-library/` is the long-lived product visual reference layer.
+- `REFERENCE_SELECTION.md` records how one Work Item consumed that library.
 - Gates are points where Codex must wait for user approval.
 - `completed + sealed` is read-only history; related follow-up work must create a Successor.
 
@@ -42,11 +48,12 @@ See [README.zh-CN.md](README.zh-CN.md) for the full Chinese guide and [docs/arch
 
 ## Visual Workflow
 
-Full Mode uses concrete visual artifacts instead of requiring abstract product-personality forms:
+Full Mode uses concrete visual artifacts and target-surface reference selection instead of requiring abstract product-personality forms:
 
 ```text
 Visual Seed
-→ Reference Images / Reference Packs
+→ Surface Resolution
+→ Reference Library / Reference Images / Reference Packs
 → Reference Analysis
 → Palette Proposal
 → Palette Confirmation
@@ -57,7 +64,9 @@ Visual Seed
 
 Palette confirmation and design-exclusion confirmation are sub-checkpoints under `visual-direction-approval`; they are not new Gate enum values. `palette-selection` must present at least three candidate palette boards with comparable mini UI samples and contrast/readability notes. The user may choose a candidate or provide a custom color direction; either way, the state records the original user input, final palette, source, and reason. The state body records `palette-selection` and `design-exclusions` as visual substeps.
 
-Users may provide images in `docs/design/reference-images/`. When they have no references, the Skill can use the built-in self-made packs in `skills/design-engineering/assets/visual-reference-packs/`.
+Before reference retrieval, Codex records the target surface: `web-app`, `mobile-app`, `responsive-web`, `desktop-app`, `tablet`, or `multi-surface`. If `docs/design/reference-library/` exists, Codex filters it by surface, page type, task type, density, complexity, user maturity, industry, and visual tags. The task-level result goes into `docs/design/work-items/<ID-slug>/REFERENCE_SELECTION.md`; `STATE.md` keeps only a summary and link.
+
+Users may provide images in `docs/design/reference-images/`. When they have no references, the Skill can also use the built-in self-made packs in `skills/design-engineering/assets/visual-reference-packs/`.
 
 ## Workflow
 
@@ -90,6 +99,8 @@ Lightweight Mode may skip the full visual flow for local changes, but it still r
 
 4. Copy [templates/project/docs/design](templates/project/docs/design/) into the target project.
 
+   This includes `reference-library/`, color-card placeholders, and the Work Item `REFERENCE_SELECTION.template.md`.
+
 5. Start a new Codex session and run:
 
    ```text
@@ -104,11 +115,11 @@ Lightweight Mode may skip the full visual flow for local changes, but it still r
 
 - “检查项目上下文” returns `NO_STATE`.
 - “优化前端样式” creates and seals `DE-001` after visual seed, reference analysis, palette confirmation, design-exclusion confirmation, visual prototype, implementation, QA, and `VISUAL_DESIGN.md` update.
-- “统一内容模块问题长度换行” creates successor `DE-002`, references sealed `DE-001`, reads `VISUAL_DESIGN.md`, and waits at `completion-approval`.
+- “统一内容模块问题长度换行” creates successor `DE-002`, references sealed `DE-001`, reads `VISUAL_DESIGN.md`, records task-level reference use in `REFERENCE_SELECTION.md`, and waits at `completion-approval`.
 
 ## Evaluation
 
-Manual Given / When / Then scenarios live in [evals/scenarios](evals/scenarios/). They cover context checks, create, resume, successor, parallel Work Items, ambiguous binding, close-and-seal, the new visual workflow, avoiding product-personality taxonomy, and `VISUAL_DESIGN.md` creation.
+Manual Given / When / Then scenarios live in [evals/scenarios](evals/scenarios/). They cover context checks, create, resume, successor, parallel Work Items, ambiguous binding, close-and-seal, the visual workflow, avoiding product-personality taxonomy, `VISUAL_DESIGN.md` creation, and Reference Library surface selection.
 
 ## Limits
 
@@ -116,6 +127,7 @@ Manual Given / When / Then scenarios live in [evals/scenarios](evals/scenarios/)
 - No deterministic schema validator or automatic index generator.
 - No multi-user write lock.
 - No automatic web scraping or bundled third-party product screenshots.
+- No Work Item-specific `reference-library/reference-packs/`; task-level reference choices belong in `REFERENCE_SELECTION.md`.
 - Browser QA is recommended, but v0.1 does not require a specific browser tool.
 
 ## License

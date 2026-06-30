@@ -1,0 +1,1910 @@
+schema_version: 1
+updated_at: '2026-06-30'
+products:
+- id: REF-001
+  name: Airbnb
+  slug: airbnb
+  industry: 旅行/住宿
+  surfaces:
+  - mobile-app
+  - responsive-web
+  - web-app
+  primary_surface: mobile-app
+  platforms:
+  - web
+  - iOS
+  - Android
+  page_types:
+  - home
+  - search
+  - listing-detail
+  - map-list
+  - booking
+  task_types:
+  - 找房源、预订旅行体验、行程管理
+  pattern_tags:
+  - content-card-discovery
+  - trust-signals
+  - map-list-hybrid
+  visual_tags:
+  - 温暖
+  - 图片驱动
+  - 卡片式
+  - 强信任感
+  content_density: high
+  user_maturity: mixed
+  good_for: 需要展示真实对象、案例、作品或空间的产品
+  borrow: 大图先行 + 少量关键指标；用卡片承载价格/评分/地点；搜索入口非常轻；留白让用户专注内容。
+  avoid: 不要复用第三方品牌资产、图标、插画、文案或完整页面布局。 若当前任务是 Web/桌面端，不得直接照搬移动端导航、底部栏、手势或屏幕比例；只能抽象借鉴信息层级、反馈机制和文案语气。
+  source_urls:
+  - https://apps.apple.com/us/app/airbnb/id401626263
+  priority: S
+  notes: 适合研究“内容/商品即界面”的视觉策略
+- id: REF-002
+  name: Vrbo
+  slug: vrbo
+  industry: 旅行/住宿
+  surfaces:
+  - mobile-app
+  - responsive-web
+  - web-app
+  primary_surface: mobile-app
+  platforms:
+  - web
+  - iOS
+  - Android
+  page_types:
+  - search
+  - listing-detail
+  - trip-planner
+  - saved-list
+  task_types:
+  - 私人民宿搜索、多人旅行规划
+  pattern_tags:
+  - collaborative-planning
+  - saved-comparison
+  - trust-signals
+  visual_tags:
+  - 家庭旅行
+  - 列表/详情
+  - 协同感
+  content_density: medium-high
+  user_maturity: mixed
+  good_for: 多角色共同决策、收藏对比、长周期消费
+  borrow: 家庭/多人决策场景里，把收藏、评论、投票等协同动作放在旅行对象旁边。
+  avoid: 不要复用第三方品牌资产、图标、插画、文案或完整页面布局。 若当前任务是 Web/桌面端，不得直接照搬移动端导航、底部栏、手势或屏幕比例；只能抽象借鉴信息层级、反馈机制和文案语气。
+  source_urls:
+  - https://apps.apple.com/us/app/vrbo-vacation-rentals/id1245772818
+  priority: A
+  notes: 对比 Airbnb：更偏家庭/协作语境
+- id: REF-003
+  name: Uber
+  slug: uber
+  industry: 出行/本地服务
+  surfaces:
+  - mobile-app
+  primary_surface: mobile-app
+  platforms:
+  - iOS
+  - Android
+  page_types:
+  - map-home
+  - bottom-sheet-selection
+  - price-confirmation
+  - in-trip-status
+  task_types:
+  - 叫车、车型选择、路线与价格确认
+  pattern_tags:
+  - map-canvas-bottom-sheet
+  - stepwise-confirmation
+  - realtime-status
+  visual_tags:
+  - 地图画布
+  - 底部抽屉
+  - 低干扰
+  - 高效率
+  content_density: high
+  user_maturity: mixed
+  good_for: 需要把复杂服务流程压缩成一步步确认
+  borrow: 地图作为主画布；核心选择集中在 bottom sheet；只在必要时出现品牌色和行动按钮。
+  avoid: 不要复用第三方品牌资产、图标、插画、文案或完整页面布局。 若当前任务是 Web/桌面端，不得直接照搬移动端导航、底部栏、手势或屏幕比例；只能抽象借鉴信息层级、反馈机制和文案语气。
+  source_urls:
+  - https://apps.apple.com/us/app/uber-request-a-ride/id368677368
+  priority: S
+  notes: 适合研究实时状态、位置、价格、时长的可视化
+- id: REF-004
+  name: Uber Eats
+  slug: uber-eats
+  industry: 出行/本地服务
+  surfaces:
+  - mobile-app
+  primary_surface: mobile-app
+  platforms:
+  - iOS
+  - Android
+  page_types:
+  - merchant-list
+  - product-detail
+  - cart
+  - delivery-tracking
+  task_types:
+  - 餐食/杂货浏览、下单、配送追踪
+  pattern_tags:
+  - commerce-list-density
+  - delivery-tracking
+  - transparent-decision
+  visual_tags:
+  - 高频消费
+  - 图文密集
+  - 促销明确
+  content_density: medium-high
+  user_maturity: mixed
+  good_for: 多 SKU、电商/本地生活、即时履约
+  borrow: 把商家图、标签、评分、配送时间、折扣信息压缩进小卡片；CTA 与价格始终清晰。
+  avoid: 不要复用第三方品牌资产、图标、插画、文案或完整页面布局。 若当前任务是 Web/桌面端，不得直接照搬移动端导航、底部栏、手势或屏幕比例；只能抽象借鉴信息层级、反馈机制和文案语气。
+  source_urls:
+  - https://apps.apple.com/us/app/uber-eats-food-groceries/id1058959277
+  priority: A
+  notes: 适合研究商品列表的信息密度
+- id: REF-005
+  name: Apple Store
+  slug: apple-store
+  industry: 电商/零售
+  surfaces:
+  - mobile-app
+  - responsive-web
+  primary_surface: mobile-app
+  platforms:
+  - web
+  - iOS
+  - Android
+  page_types:
+  - product-home
+  - configuration
+  - checkout
+  - service-booking
+  task_types:
+  - 浏览、学习、购买 Apple 产品
+  pattern_tags:
+  - premium-product-storytelling
+  - configuration-flow
+  - minimal-commerce
+  visual_tags:
+  - 极简
+  - 高级
+  - 白底
+  - 产品大图
+  - 强留白
+  content_density: high
+  user_maturity: mixed
+  good_for: 高客单价、品牌型、硬件/服务购买路径
+  borrow: 以产品大图和清晰层级建立高级感；用少量文字讲清价值，避免过度营销。
+  avoid: 不要复用第三方品牌资产、图标、插画、文案或完整页面布局。 若当前任务是 Web/桌面端，不得直接照搬移动端导航、底部栏、手势或屏幕比例；只能抽象借鉴信息层级、反馈机制和文案语气。
+  source_urls:
+  - https://apps.apple.com/us/app/apple-store/id375380948
+  priority: S
+  notes: 适合研究高级感和配置型购买流程
+- id: REF-006
+  name: Nike
+  slug: nike
+  industry: 电商/零售
+  surfaces:
+  - mobile-app
+  - responsive-web
+  - web-app
+  primary_surface: mobile-app
+  platforms:
+  - web
+  - iOS
+  - Android
+  page_types:
+  - brand-home
+  - product-detail
+  - member-content
+  - commerce
+  task_types:
+  - 运动装备购买、品牌内容、会员体验
+  pattern_tags:
+  - brand-led-commerce
+  - membership-content
+  - emotional-hero
+  visual_tags:
+  - 强品牌
+  - 运动感
+  - 黑白灰
+  - 大图
+  content_density: medium-high
+  user_maturity: mixed
+  good_for: 品牌强、内容+交易混合产品
+  borrow: 大幅视觉图强化情绪；商品卡保持克制；品牌资产与购买路径结合。
+  avoid: 不要复用第三方品牌资产、图标、插画、文案或完整页面布局。 若当前任务是 Web/桌面端，不得直接照搬移动端导航、底部栏、手势或屏幕比例；只能抽象借鉴信息层级、反馈机制和文案语气。
+  source_urls:
+  - https://www.nike.com/mobile-apps
+  priority: A
+  notes: 以官方产品页和 App Store 图为准补充截图
+- id: REF-007
+  name: Revolut
+  slug: revolut
+  industry: 金融/银行
+  surfaces:
+  - mobile-app
+  - responsive-web
+  primary_surface: mobile-app
+  platforms:
+  - web
+  - iOS
+  - Android
+  page_types:
+  - account-dashboard
+  - budget
+  - transfer
+  - card-management
+  task_types:
+  - 账户、预算、转账、储蓄和投资
+  pattern_tags:
+  - data-card-dashboard
+  - financial-trust
+  - modular-account-center
+  visual_tags:
+  - 干净
+  - 模块化
+  - 蓝白
+  - 数据卡片
+  content_density: high
+  user_maturity: mixed
+  good_for: Dashboard、账户中心、数据分析页
+  borrow: 余额、交易、预算、投资等高风险信息用卡片分区；关键数字醒目但不压迫。
+  avoid: 不要复用第三方品牌资产、图标、插画、文案或完整页面布局。 若当前任务是 Web/桌面端，不得直接照搬移动端导航、底部栏、手势或屏幕比例；只能抽象借鉴信息层级、反馈机制和文案语气。
+  source_urls:
+  - https://apps.apple.com/us/app/revolut-send-spend-and-save/id932493382
+  priority: S
+  notes: 适合研究金融产品的安全感与效率
+- id: REF-008
+  name: Wise
+  slug: wise
+  industry: 金融/银行
+  surfaces:
+  - mobile-app
+  - responsive-web
+  - web-app
+  primary_surface: mobile-app
+  platforms:
+  - web
+  - iOS
+  - Android
+  page_types:
+  - transfer-flow
+  - fee-breakdown
+  - account-list
+  - currency-conversion
+  task_types:
+  - 跨境汇款、多币种账户
+  pattern_tags:
+  - transparent-decision
+  - stepwise-finance
+  - fee-explainer
+  visual_tags:
+  - 清晰
+  - 可信
+  - 费用透明
+  - 步骤化
+  content_density: medium-high
+  user_maturity: mixed
+  good_for: 涉及价格、费率、额度、时效解释的产品
+  borrow: 把费用、汇率、到账时间显性化；用步骤条降低跨境金融焦虑。
+  avoid: 不要复用第三方品牌资产、图标、插画、文案或完整页面布局。 若当前任务是 Web/桌面端，不得直接照搬移动端导航、底部栏、手势或屏幕比例；只能抽象借鉴信息层级、反馈机制和文案语气。
+  source_urls:
+  - https://apps.apple.com/us/app/wise-international-transfers/id612261027
+  priority: A
+  notes: 重点看“透明费用”表达
+- id: REF-009
+  name: ChatGPT
+  slug: chatgpt
+  industry: AI/搜索/助手
+  surfaces:
+  - mobile-app
+  - responsive-web
+  - web-app
+  - desktop-app
+  primary_surface: mobile-app
+  platforms:
+  - web
+  - iOS
+  - Android
+  - macOS
+  - Windows
+  page_types:
+  - conversation-home
+  - composer
+  - history
+  - multimodal-entry
+  task_types:
+  - 移动 AI 对话、语音、图像生成与历史同步
+  pattern_tags:
+  - ai-composer-first
+  - low-chrome-conversation
+  - multimodal-entry
+  visual_tags:
+  - 简洁
+  - 对话中心
+  - 低 chrome
+  - 跨模态入口
+  content_density: high
+  user_maturity: mixed
+  good_for: AI 助手、知识问答、创作工具
+  borrow: 把输入框作为核心界面；减少装饰；能力入口围绕用户意图而不是功能菜单堆叠。
+  avoid: 不要复用第三方品牌资产、图标、插画、文案或完整页面布局。 若当前任务是 Web/桌面端，不得直接照搬移动端导航、底部栏、手势或屏幕比例；只能抽象借鉴信息层级、反馈机制和文案语气。
+  source_urls:
+  - https://apps.apple.com/us/app/chatgpt/id6448311069
+  priority: S
+  notes: 适合研究 AI 产品如何保持低学习成本
+- id: REF-010
+  name: Perplexity
+  slug: perplexity
+  industry: AI/搜索/助手
+  surfaces:
+  - mobile-app
+  - responsive-web
+  - web-app
+  primary_surface: mobile-app
+  platforms:
+  - web
+  - iOS
+  - Android
+  page_types:
+  - search-home
+  - answer-page
+  - source-cards
+  - follow-up
+  task_types:
+  - AI 搜索、问答、引用式探索
+  pattern_tags:
+  - cited-ai-answer
+  - source-cards
+  - follow-up-exploration
+  visual_tags:
+  - 搜索感
+  - 结果卡片
+  - 可信引用
+  content_density: medium-high
+  user_maturity: mixed
+  good_for: 搜索/研究/知识产品
+  borrow: 把回答、来源、后续问题组合在一屏；减少传统搜索结果噪音。
+  avoid: 不要复用第三方品牌资产、图标、插画、文案或完整页面布局。 若当前任务是 Web/桌面端，不得直接照搬移动端导航、底部栏、手势或屏幕比例；只能抽象借鉴信息层级、反馈机制和文案语气。
+  source_urls:
+  - https://apps.apple.com/us/app/perplexity-ai-search-chat/id1668000334
+  priority: A
+  notes: 重点看答案与来源的层级
+- id: REF-011
+  name: Notion
+  slug: notion
+  industry: 生产力/协作
+  surfaces:
+  - web-app
+  - desktop-app
+  - mobile-app
+  primary_surface: web-app
+  platforms:
+  - web
+  - iOS
+  - Android
+  - macOS
+  - Windows
+  page_types:
+  - workspace-home
+  - document-editor
+  - database-view
+  - template-gallery
+  task_types:
+  - 笔记、任务、项目、文档与 AI workspace
+  pattern_tags:
+  - low-noise-workspace
+  - block-editor
+  - template-first-creation
+  visual_tags:
+  - 黑白
+  - 文档感
+  - 可组合
+  - 低饱和
+  content_density: high
+  user_maturity: mixed
+  good_for: 工具型、知识管理、项目管理
+  borrow: 复杂能力隐藏在块和页面结构里；用朴素排版提升长期使用耐看度。
+  avoid: 不要复用第三方品牌资产、图标、插画、文案或完整页面布局。
+  source_urls:
+  - https://apps.apple.com/us/app/notion-notes-tasks-ai/id1232780281
+  priority: S
+  notes: 适合研究“复杂但不吵”的界面
+- id: REF-012
+  name: Linear
+  slug: linear
+  industry: 生产力/协作
+  surfaces:
+  - web-app
+  - desktop-app
+  - mobile-app
+  primary_surface: web-app
+  platforms:
+  - web
+  - iOS
+  - Android
+  - macOS
+  - Windows
+  page_types:
+  - workspace-home
+  - issue-list
+  - project
+  - roadmap
+  - inbox
+  task_types:
+  - Issue、项目、路线图的移动伴侣
+  pattern_tags:
+  - dense-productivity-workspace
+  - status-label-system
+  - keyboard-speed
+  visual_tags:
+  - 专业
+  - 紧凑
+  - 深色高级
+  - 工程团队感
+  content_density: high
+  user_maturity: mixed
+  good_for: B2B SaaS、工作流、看板/列表
+  borrow: 信息密度高但层级清晰；通过状态、优先级、标签形成一眼可扫的系统。
+  avoid: 不要复用第三方品牌资产、图标、插画、文案或完整页面布局。
+  source_urls:
+  - https://apps.apple.com/us/app/linear-mobile/id1645587184
+  priority: S
+  notes: 适合研究专业工具的高密度 UI
+- id: REF-013
+  name: Todoist
+  slug: todoist
+  industry: 生产力/协作
+  surfaces:
+  - web-app
+  - desktop-app
+  - mobile-app
+  primary_surface: web-app
+  platforms:
+  - web
+  - iOS
+  - Android
+  - macOS
+  - Windows
+  page_types:
+  - task-list
+  - quick-add
+  - calendar
+  - board
+  task_types:
+  - 个人和团队任务管理
+  pattern_tags:
+  - natural-language-capture
+  - task-hierarchy
+  - calendar-workflow
+  visual_tags:
+  - 轻量
+  - 快录入
+  - 自然语言
+  - 红色强调
+  content_density: medium-high
+  user_maturity: mixed
+  good_for: 待办、轻量项目、个人效率
+  borrow: 把输入效率放在第一位；用色彩只强调优先级和完成动作。
+  avoid: 不要复用第三方品牌资产、图标、插画、文案或完整页面布局。
+  source_urls:
+  - https://apps.apple.com/us/app/todoist-to-do-list-calendar/id572688855
+  priority: A
+  notes: 重点看快速录入和任务层级
+- id: REF-014
+  name: Canva
+  slug: canva
+  industry: 创意/设计
+  surfaces:
+  - web-app
+  - mobile-app
+  primary_surface: web-app
+  platforms:
+  - web
+  - iOS
+  - Android
+  page_types:
+  - template-gallery
+  - editor
+  - asset-panel
+  - export-flow
+  task_types:
+  - 图形设计、照片/视频编辑、AI 创作
+  pattern_tags:
+  - template-first-creation
+  - editor-canvas-inspector
+  - asset-gallery
+  visual_tags:
+  - 模板化
+  - 多彩
+  - 创意资产密集
+  content_density: high
+  user_maturity: mixed
+  good_for: 内容创作、模板市场、编辑器
+  borrow: 模板先行降低创作门槛；用大面积缩略图预览让用户快速选择风格。
+  avoid: 不要复用第三方品牌资产、图标、插画、文案或完整页面布局。
+  source_urls:
+  - https://apps.apple.com/us/app/canva-ai-video-photo-editor/id897446215
+  priority: S
+  notes: 适合研究复杂编辑器如何从模板引导
+- id: REF-015
+  name: Pinterest
+  slug: pinterest
+  industry: 创意/设计
+  surfaces:
+  - mobile-app
+  - responsive-web
+  - web-app
+  primary_surface: mobile-app
+  platforms:
+  - web
+  - iOS
+  - Android
+  page_types:
+  - masonry-feed
+  - board
+  - pin-detail
+  - search
+  task_types:
+  - 灵感发现、收藏、拼贴与购物
+  pattern_tags:
+  - content-card-discovery
+  - masonry-exploration
+  - collection-building
+  visual_tags:
+  - 瀑布流
+  - 视觉探索
+  - 收藏驱动
+  content_density: high
+  user_maturity: mixed
+  good_for: 灵感库、内容发现、UGC 收藏
+  borrow: 内容缩略图不强行统一高度；用户通过收藏构建个人意义。
+  avoid: 不要复用第三方品牌资产、图标、插画、文案或完整页面布局。 若当前任务是 Web/桌面端，不得直接照搬移动端导航、底部栏、手势或屏幕比例；只能抽象借鉴信息层级、反馈机制和文案语气。
+  source_urls:
+  - https://apps.apple.com/us/app/pinterest/id429047995
+  priority: S
+  notes: 适合研究“探索而非任务完成”的界面
+- id: REF-016
+  name: Duolingo
+  slug: duolingo
+  industry: 教育/学习
+  surfaces:
+  - mobile-app
+  - responsive-web
+  primary_surface: mobile-app
+  platforms:
+  - web
+  - iOS
+  - Android
+  page_types:
+  - learning-path
+  - lesson
+  - achievement
+  - shop
+  task_types:
+  - 语言、数学等碎片化学习
+  pattern_tags:
+  - gamified-path
+  - habit-feedback
+  - character-driven-feedback
+  visual_tags:
+  - 游戏化
+  - 明亮
+  - 角色驱动
+  - 强反馈
+  content_density: high
+  user_maturity: mixed
+  good_for: 习惯养成、教育、训练营、打卡产品
+  borrow: 路径、徽章、连胜、角色表情让学习像游戏；反馈即时、情绪明确。
+  avoid: 不要复用第三方品牌资产、图标、插画、文案或完整页面布局。 若当前任务是 Web/桌面端，不得直接照搬移动端导航、底部栏、手势或屏幕比例；只能抽象借鉴信息层级、反馈机制和文案语气。
+  source_urls:
+  - https://apps.apple.com/us/app/duolingo-language-lessons/id570060128
+  priority: S
+  notes: 适合研究激励体系和情绪化反馈
+- id: REF-017
+  name: Khan Academy
+  slug: khan-academy
+  industry: 教育/学习
+  surfaces:
+  - mobile-app
+  - responsive-web
+  - web-app
+  primary_surface: mobile-app
+  platforms:
+  - web
+  - iOS
+  - Android
+  page_types:
+  - course-home
+  - lesson
+  - practice
+  - progress
+  task_types:
+  - 免费课程、练习与学习进度
+  pattern_tags:
+  - learning-progress
+  - course-navigation
+  - low-noise-learning
+  visual_tags:
+  - 清晰
+  - 公益
+  - 内容导向
+  - 低干扰
+  content_density: medium
+  user_maturity: mixed
+  good_for: 知识平台、课程产品、进度系统
+  borrow: 把学习目标、进度和下一步练习摆在前面，减少商业视觉干扰。
+  avoid: 不要复用第三方品牌资产、图标、插画、文案或完整页面布局。 若当前任务是 Web/桌面端，不得直接照搬移动端导航、底部栏、手势或屏幕比例；只能抽象借鉴信息层级、反馈机制和文案语气。
+  source_urls:
+  - https://apps.apple.com/us/app/khan-academy/id469863705
+  priority: B
+  notes: 适合研究非游戏化学习产品
+- id: REF-018
+  name: Headspace
+  slug: headspace
+  industry: 健康/心理
+  surfaces:
+  - mobile-app
+  - responsive-web
+  primary_surface: mobile-app
+  platforms:
+  - web
+  - iOS
+  - Android
+  page_types:
+  - today
+  - course-library
+  - sleep-content
+  - support-entry
+  task_types:
+  - 冥想、睡眠、心理健康、教练/AI 陪伴
+  pattern_tags:
+  - low-stimulation-health
+  - companion-tone
+  - soft-illustration
+  visual_tags:
+  - 柔和
+  - 插画
+  - 暖色
+  - 陪伴感
+  content_density: high
+  user_maturity: mixed
+  good_for: 情绪管理、健康、陪伴型产品
+  borrow: 用插画和圆角降低压力；任务语言更像陪伴而不是命令。
+  avoid: 不要复用第三方品牌资产、图标、插画、文案或完整页面布局。 若当前任务是 Web/桌面端，不得直接照搬移动端导航、底部栏、手势或屏幕比例；只能抽象借鉴信息层级、反馈机制和文案语气。
+  source_urls:
+  - https://apps.apple.com/us/app/headspace-sleep-meditation/id493145008
+  priority: S
+  notes: 适合研究“让用户放松”的视觉语气
+- id: REF-019
+  name: Calm
+  slug: calm
+  industry: 健康/心理
+  surfaces:
+  - mobile-app
+  - responsive-web
+  primary_surface: mobile-app
+  platforms:
+  - web
+  - iOS
+  - Android
+  page_types:
+  - welcome
+  - content-library
+  - audio-player
+  - program
+  task_types:
+  - 冥想、睡眠故事、放松训练
+  pattern_tags:
+  - low-stimulation-health
+  - audio-focus
+  - natural-visuals
+  visual_tags:
+  - 沉静
+  - 自然图像
+  - 深色/渐变
+  - 低刺激
+  content_density: medium-high
+  user_maturity: mixed
+  good_for: 音频内容、健康、睡眠/放松
+  borrow: 用自然意象和慢节奏减少焦虑；播放页信息少、控制清楚。
+  avoid: 不要复用第三方品牌资产、图标、插画、文案或完整页面布局。 若当前任务是 Web/桌面端，不得直接照搬移动端导航、底部栏、手势或屏幕比例；只能抽象借鉴信息层级、反馈机制和文案语气。
+  source_urls:
+  - https://apps.apple.com/us/app/calm/id571800810
+  priority: A
+  notes: 适合研究低刺激视觉体验
+- id: REF-020
+  name: Strava
+  slug: strava
+  industry: 运动/社区
+  surfaces:
+  - mobile-app
+  - web-app
+  primary_surface: mobile-app
+  platforms:
+  - web
+  - iOS
+  - Android
+  page_types:
+  - activity-record
+  - map
+  - leaderboard
+  - challenge
+  task_types:
+  - 跑步/骑行记录、数据、排名和社交挑战
+  pattern_tags:
+  - community-achievement-feedback
+  - map-storytelling
+  - data-motivation
+  visual_tags:
+  - 数据化
+  - 社区
+  - 地图轨迹
+  - 橙色强调
+  content_density: high
+  user_maturity: mixed
+  good_for: 运动记录、社区、数据可视化
+  borrow: 用地图轨迹讲故事；把个人数据和社区互动结合，形成晒图动机。
+  avoid: 不要复用第三方品牌资产、图标、插画、文案或完整页面布局。 若当前任务是 Web/桌面端，不得直接照搬移动端导航、底部栏、手势或屏幕比例；只能抽象借鉴信息层级、反馈机制和文案语气。
+  source_urls:
+  - https://apps.apple.com/us/app/strava-run-bike-walk/id426826309
+  priority: S
+  notes: 适合研究成就和社交反馈
+- id: REF-021
+  name: Nike Run Club
+  slug: nike-run-club
+  industry: 运动/社区
+  surfaces:
+  - mobile-app
+  primary_surface: mobile-app
+  platforms:
+  - iOS
+  - Android
+  page_types:
+  - training-plan
+  - run-record
+  - guided-run
+  - achievement
+  task_types:
+  - 跑步计划、Guided Runs、社区挑战
+  pattern_tags:
+  - guided-plan
+  - brand-motivation
+  - achievement-feedback
+  visual_tags:
+  - 运动品牌
+  - 黑白基底
+  - 强动机
+  content_density: medium-high
+  user_maturity: mixed
+  good_for: 训练、打卡、计划型产品
+  borrow: 用教练语气和计划结构降低开始门槛；数据呈现服务于激励而非炫技。
+  avoid: 不要复用第三方品牌资产、图标、插画、文案或完整页面布局。 若当前任务是 Web/桌面端，不得直接照搬移动端导航、底部栏、手势或屏幕比例；只能抽象借鉴信息层级、反馈机制和文案语气。
+  source_urls:
+  - https://apps.apple.com/us/app/nike-run-club-running-coach/id387771637
+  priority: A
+  notes: 可与 Strava 对比：品牌激励 vs 社区竞争
+- id: REF-022
+  name: Spotify
+  slug: spotify
+  industry: 娱乐/音频
+  surfaces:
+  - mobile-app
+  - desktop-app
+  - web-app
+  primary_surface: mobile-app
+  platforms:
+  - web
+  - iOS
+  - Android
+  - macOS
+  - Windows
+  page_types:
+  - recommendation-home
+  - player
+  - playlist
+  - podcast
+  task_types:
+  - 音乐、播客、有声书发现和播放
+  pattern_tags:
+  - dark-content-immersion
+  - personalized-home
+  - media-player
+  visual_tags:
+  - 深色
+  - 封面驱动
+  - 个性化
+  - 内容密集
+  content_density: high
+  user_maturity: mixed
+  good_for: 媒体内容、推荐流、会员内容
+  borrow: 用封面图形成视觉节奏；深色背景让内容资产更突出。
+  avoid: 不要复用第三方品牌资产、图标、插画、文案或完整页面布局。 若当前任务是 Web/桌面端，不得直接照搬移动端导航、底部栏、手势或屏幕比例；只能抽象借鉴信息层级、反馈机制和文案语气。
+  source_urls:
+  - https://apps.apple.com/us/app/spotify-music-and-podcasts/id324684580
+  priority: S
+  notes: 适合研究个性化首页和媒体播放体验
+- id: REF-023
+  name: Netflix
+  slug: netflix
+  industry: 娱乐/视频
+  surfaces:
+  - mobile-app
+  - responsive-web
+  - tv-app
+  primary_surface: mobile-app
+  platforms:
+  - web
+  - iOS
+  - Android
+  - TV
+  page_types:
+  - poster-wall
+  - title-detail
+  - player
+  - watchlist
+  task_types:
+  - 视频内容发现与播放
+  pattern_tags:
+  - dark-content-immersion
+  - poster-wall
+  - low-chrome-player
+  visual_tags:
+  - 深色
+  - 海报墙
+  - 沉浸
+  - 品牌红
+  content_density: medium-high
+  user_maturity: mixed
+  good_for: 视频、课程、内容库、沉浸浏览
+  borrow: 内容缩略图/海报是核心视觉；操作 chrome 被压低，避免打断沉浸。
+  avoid: 不要复用第三方品牌资产、图标、插画、文案或完整页面布局。 若当前任务是 Web/桌面端，不得直接照搬移动端导航、底部栏、手势或屏幕比例；只能抽象借鉴信息层级、反馈机制和文案语气。
+  source_urls:
+  - https://apps.apple.com/us/app/netflix/id363590051
+  priority: A
+  notes: 适合研究暗色内容浏览
+- id: REF-024
+  name: Instagram
+  slug: instagram
+  industry: 社交/内容
+  surfaces:
+  - mobile-app
+  - responsive-web
+  primary_surface: mobile-app
+  platforms:
+  - web
+  - iOS
+  - Android
+  page_types:
+  - feed
+  - stories
+  - reels
+  - profile
+  - creation
+  task_types:
+  - 照片/视频分享、Stories、Reels、私信
+  pattern_tags:
+  - ugc-creation-consumption
+  - low-chrome-content
+  - creator-entry
+  visual_tags:
+  - 内容优先
+  - 低界面感
+  - 多入口
+  content_density: medium-high
+  user_maturity: mixed
+  good_for: 社交、UGC、创作者工具
+  borrow: 把视觉内容放到最大；导航和工具图标克制；创作入口常驻。
+  avoid: 不要复用第三方品牌资产、图标、插画、文案或完整页面布局。 若当前任务是 Web/桌面端，不得直接照搬移动端导航、底部栏、手势或屏幕比例；只能抽象借鉴信息层级、反馈机制和文案语气。
+  source_urls:
+  - https://apps.apple.com/us/app/instagram/id389801252
+  priority: A
+  notes: 适合研究内容生产与消费的平衡
+- id: REF-025
+  name: TikTok
+  slug: tiktok
+  industry: 社交/内容
+  surfaces:
+  - mobile-app
+  - responsive-web
+  primary_surface: mobile-app
+  platforms:
+  - web
+  - iOS
+  - Android
+  page_types:
+  - full-screen-feed
+  - creator
+  - live
+  - profile
+  task_types:
+  - 短视频浏览、创作、直播
+  pattern_tags:
+  - full-screen-immersion
+  - gesture-feedback
+  - creator-loop
+  visual_tags:
+  - 全屏沉浸
+  - 高对比
+  - 手势驱动
+  content_density: medium-high
+  user_maturity: mixed
+  good_for: 短内容、推荐流、沉浸式消费
+  borrow: 全屏内容 + 右侧操作栏；界面让位给内容，用户通过手势快速反馈。
+  avoid: 不要复用第三方品牌资产、图标、插画、文案或完整页面布局。 若当前任务是 Web/桌面端，不得直接照搬移动端导航、底部栏、手势或屏幕比例；只能抽象借鉴信息层级、反馈机制和文案语气。
+  source_urls:
+  - https://apps.apple.com/us/app/tiktok/id835599320
+  priority: A
+  notes: 适合研究单内容沉浸模式
+- id: REF-026
+  name: Slack
+  slug: slack
+  industry: 商务/团队沟通
+  surfaces:
+  - web-app
+  - desktop-app
+  - mobile-app
+  primary_surface: web-app
+  platforms:
+  - web
+  - iOS
+  - Android
+  - macOS
+  - Windows
+  page_types:
+  - channel-list
+  - message-thread
+  - search
+  - notifications
+  task_types:
+  - 团队频道、消息、通知与协作
+  pattern_tags:
+  - collaboration-comments-mentions
+  - channel-thread-system
+  - notification-triage
+  visual_tags:
+  - 专业
+  - 彩色身份系统
+  - 信息流
+  content_density: medium-high
+  user_maturity: mixed
+  good_for: 团队沟通、协作工具、通知中心
+  borrow: 用频道/线程承载复杂协作；品牌色只用于身份和状态，不抢阅读。
+  avoid: 不要复用第三方品牌资产、图标、插画、文案或完整页面布局。
+  source_urls:
+  - https://apps.apple.com/us/app/slack-business-communication/id618783545
+  priority: A
+  notes: 适合研究信息流和多层级导航
+- id: REF-027
+  name: Shopify
+  slug: shopify
+  industry: 商务/电商后台
+  surfaces:
+  - web-app
+  - mobile-app
+  primary_surface: web-app
+  platforms:
+  - web
+  - iOS
+  - Android
+  page_types:
+  - business-dashboard
+  - order-list
+  - product-edit
+  - notification
+  task_types:
+  - 店铺管理、订单、商品和数据
+  pattern_tags:
+  - web-saas-dashboard
+  - business-operations-dashboard
+  - mobile-admin
+  visual_tags:
+  - 清晰
+  - 业务仪表盘
+  - 卡片化
+  - 可信
+  content_density: medium-high
+  user_maturity: mixed
+  good_for: 商家后台、运营工具、订单系统
+  borrow: 移动端后台需要把关键指标、待办和最近订单放在一屏内；编辑流程要非常稳。
+  avoid: 不要复用第三方品牌资产、图标、插画、文案或完整页面布局。
+  source_urls:
+  - https://apps.apple.com/us/app/shopify-ecommerce-business/id371294472
+  priority: A
+  notes: 适合研究移动 B 端后台
+- id: REF-028
+  name: MyFitnessPal
+  slug: myfitnesspal
+  industry: 医疗/健康工具
+  surfaces:
+  - mobile-app
+  - responsive-web
+  primary_surface: mobile-app
+  platforms:
+  - web
+  - iOS
+  - Android
+  page_types:
+  - log-home
+  - food-search
+  - nutrition-chart
+  - goal
+  task_types:
+  - 饮食记录、营养追踪、目标管理
+  pattern_tags:
+  - high-frequency-logging
+  - goal-progress
+  - health-data-feedback
+  visual_tags:
+  - 数据输入
+  - 图表
+  - 目标进度
+  content_density: medium
+  user_maturity: mixed
+  good_for: 记录型、健康数据、日常习惯
+  borrow: 高频记录要减少输入成本；图表要帮助用户判断偏差而不是制造焦虑。
+  avoid: 不要复用第三方品牌资产、图标、插画、文案或完整页面布局。 若当前任务是 Web/桌面端，不得直接照搬移动端导航、底部栏、手势或屏幕比例；只能抽象借鉴信息层级、反馈机制和文案语气。
+  source_urls:
+  - https://apps.apple.com/us/app/myfitnesspal-calorie-counter/id341232718
+  priority: B
+  notes: 适合研究记录/目标/反馈闭环
+- id: REF-029
+  name: Medium
+  slug: medium
+  industry: 内容/阅读
+  surfaces:
+  - responsive-web
+  - mobile-app
+  - web-app
+  primary_surface: responsive-web
+  platforms:
+  - web
+  - iOS
+  - Android
+  page_types:
+  - article
+  - recommendation-feed
+  - author
+  - membership
+  task_types:
+  - 长文阅读、订阅、发现
+  pattern_tags:
+  - reading-typography
+  - low-noise-content
+  - membership-gating
+  visual_tags:
+  - 排版优先
+  - 黑白
+  - 低干扰
+  content_density: medium
+  user_maturity: mixed
+  good_for: 内容阅读、知识社区、博客产品
+  borrow: 字体、行宽、标题层级比装饰更重要；会员和推荐应不破坏阅读节奏。
+  avoid: 不要复用第三方品牌资产、图标、插画、文案或完整页面布局。
+  source_urls:
+  - https://apps.apple.com/us/app/medium-read-write-stories/id828256236
+  priority: B
+  notes: 适合研究长内容阅读体验
+- id: REF-030
+  name: Figma
+  slug: figma
+  industry: 创意/设计协作
+  surfaces:
+  - web-app
+  - desktop-app
+  primary_surface: web-app
+  platforms:
+  - web
+  - macOS
+  - Windows
+  page_types:
+  - file-browser
+  - design-canvas
+  - prototype
+  - comments
+  - dev-mode
+  task_types:
+  - collaborative design
+  - editor workflow
+  pattern_tags:
+  - editor-canvas-inspector
+  - collaboration-comments-mentions
+  - design-system-assets
+  visual_tags:
+  - collaborative
+  - canvas
+  - professional
+  - asset-rich
+  content_density: high
+  user_maturity: mixed
+  good_for: 多人设计、编辑器、画布型产品
+  borrow: 画布居中，左右工具/属性面板承载复杂度；协作评论和开发交接可以作为二级层。
+  avoid: 不要复用第三方品牌资产、图标、插画、文案或完整页面布局；跨终端参考只能抽象借鉴模式，不得直接照搬布局和交互。
+  source_urls:
+  - https://www.figma.com/
+  priority: S
+  notes: 补充的 Web/桌面端参考，用于减少资料库对 native mobile app 的偏置。
+- id: REF-031
+  name: GitHub
+  slug: github
+  industry: 开发者工具
+  surfaces:
+  - web-app
+  - mobile-app
+  primary_surface: web-app
+  platforms:
+  - web
+  - iOS
+  - Android
+  page_types:
+  - repository
+  - pull-request
+  - issue
+  - project-board
+  - actions
+  task_types:
+  - code collaboration
+  - review workflow
+  pattern_tags:
+  - dense-productivity-workspace
+  - collaboration-comments-mentions
+  - status-label-system
+  visual_tags:
+  - technical
+  - dense
+  - trustworthy
+  - workflow-led
+  content_density: high
+  user_maturity: expert
+  good_for: 代码协作、评审、issue/PR 流程
+  borrow: 将状态、评论、文件差异和操作按钮分区；让复杂协作对象可以被逐层扫描。
+  avoid: 不要复用第三方品牌资产、图标、插画、文案或完整页面布局；跨终端参考只能抽象借鉴模式，不得直接照搬布局和交互。
+  source_urls:
+  - https://github.com/
+  priority: S
+  notes: 补充的 Web/桌面端参考，用于减少资料库对 native mobile app 的偏置。
+- id: REF-032
+  name: Vercel
+  slug: vercel
+  industry: 开发者平台
+  surfaces:
+  - web-app
+  primary_surface: web-app
+  platforms:
+  - web
+  page_types:
+  - project-dashboard
+  - deployment-detail
+  - environment
+  - domain-settings
+  - logs
+  task_types:
+  - deployment
+  - cloud dashboard
+  pattern_tags:
+  - web-saas-dashboard
+  - realtime-status
+  - settings-permissions-and-billing
+  visual_tags:
+  - clean
+  - developer-first
+  - status-driven
+  content_density: medium-high
+  user_maturity: expert
+  good_for: 开发者 SaaS、部署、监控、环境管理
+  borrow: 用项目卡片、部署状态、日志和设置页建立“可靠运行”的工作台体验。
+  avoid: 不要复用第三方品牌资产、图标、插画、文案或完整页面布局；跨终端参考只能抽象借鉴模式，不得直接照搬布局和交互。
+  source_urls:
+  - https://vercel.com/
+  priority: S
+  notes: 补充的 Web/桌面端参考，用于减少资料库对 native mobile app 的偏置。
+- id: REF-033
+  name: Stripe Dashboard
+  slug: stripe-dashboard
+  industry: 金融/支付后台
+  surfaces:
+  - web-app
+  - mobile-app
+  primary_surface: web-app
+  platforms:
+  - web
+  - iOS
+  - Android
+  page_types:
+  - payments-list
+  - transaction-detail
+  - disputes
+  - balance
+  - settings
+  task_types:
+  - financial operations
+  - risk management
+  pattern_tags:
+  - data-table-filtering-and-bulk-actions
+  - transparent-decision
+  - financial-trust
+  visual_tags:
+  - precise
+  - trustworthy
+  - data-heavy
+  content_density: high
+  user_maturity: expert
+  good_for: 支付、账务、风控、后台运营
+  borrow: 金额、状态、时间、风险信息必须可过滤、可追踪、可解释；动作要有强确认。
+  avoid: 不要复用第三方品牌资产、图标、插画、文案或完整页面布局；跨终端参考只能抽象借鉴模式，不得直接照搬布局和交互。
+  source_urls:
+  - https://docs.stripe.com/dashboard/basics
+  priority: S
+  notes: 补充的 Web/桌面端参考，用于减少资料库对 native mobile app 的偏置。
+- id: REF-034
+  name: Airtable
+  slug: airtable
+  industry: 低代码/协作数据
+  surfaces:
+  - web-app
+  - mobile-app
+  primary_surface: web-app
+  platforms:
+  - web
+  - iOS
+  - Android
+  page_types:
+  - base
+  - grid-view
+  - interface
+  - automation
+  - form
+  task_types:
+  - data workflow
+  - low-code app building
+  pattern_tags:
+  - data-table-filtering-and-bulk-actions
+  - template-first-creation
+  - web-saas-dashboard
+  visual_tags:
+  - structured
+  - flexible
+  - template-led
+  content_density: high
+  user_maturity: mixed
+  good_for: 业务应用搭建、表格、流程自动化
+  borrow: 用表格作为数据底座，用 Interface/视图为不同角色提供不同入口。
+  avoid: 不要复用第三方品牌资产、图标、插画、文案或完整页面布局；跨终端参考只能抽象借鉴模式，不得直接照搬布局和交互。
+  source_urls:
+  - https://www.airtable.com/
+  priority: S
+  notes: 补充的 Web/桌面端参考，用于减少资料库对 native mobile app 的偏置。
+- id: REF-035
+  name: Miro
+  slug: miro
+  industry: 白板/协作
+  surfaces:
+  - web-app
+  - desktop-app
+  - tablet
+  primary_surface: web-app
+  platforms:
+  - web
+  - macOS
+  - Windows
+  - iPadOS
+  page_types:
+  - board
+  - template-picker
+  - comments
+  - presentation
+  - sharing
+  task_types:
+  - collaboration
+  - workshop
+  pattern_tags:
+  - editor-canvas-inspector
+  - template-first-creation
+  - collaboration-comments-mentions
+  visual_tags:
+  - infinite-canvas
+  - collaborative
+  - template-rich
+  content_density: medium-high
+  user_maturity: mixed
+  good_for: 白板、脑暴、协作画布
+  borrow: 空白画布前置模板和引导；协作状态与评论不应遮挡内容。
+  avoid: 不要复用第三方品牌资产、图标、插画、文案或完整页面布局；跨终端参考只能抽象借鉴模式，不得直接照搬布局和交互。
+  source_urls:
+  - https://miro.com/
+  priority: A
+  notes: 补充的 Web/桌面端参考，用于减少资料库对 native mobile app 的偏置。
+- id: REF-036
+  name: Asana
+  slug: asana
+  industry: 项目管理
+  surfaces:
+  - web-app
+  - mobile-app
+  primary_surface: web-app
+  platforms:
+  - web
+  - iOS
+  - Android
+  page_types:
+  - project-list
+  - task-detail
+  - timeline
+  - goals
+  - inbox
+  task_types:
+  - task management
+  - team planning
+  pattern_tags:
+  - dense-productivity-workspace
+  - status-label-system
+  - onboarding-progressive-disclosure
+  visual_tags:
+  - organized
+  - friendly
+  - work-management
+  content_density: medium-high
+  user_maturity: mixed
+  good_for: 团队任务、项目计划、目标管理
+  borrow: 在列表、时间线和任务详情间保持对象一致；降低团队协作的认知负担。
+  avoid: 不要复用第三方品牌资产、图标、插画、文案或完整页面布局；跨终端参考只能抽象借鉴模式，不得直接照搬布局和交互。
+  source_urls:
+  - https://asana.com/
+  priority: A
+  notes: 补充的 Web/桌面端参考，用于减少资料库对 native mobile app 的偏置。
+- id: REF-037
+  name: Jira
+  slug: jira
+  industry: 工程项目管理
+  surfaces:
+  - web-app
+  - mobile-app
+  primary_surface: web-app
+  platforms:
+  - web
+  - iOS
+  - Android
+  page_types:
+  - board
+  - backlog
+  - issue-detail
+  - roadmap
+  - reports
+  task_types:
+  - agile planning
+  - issue tracking
+  pattern_tags:
+  - dense-productivity-workspace
+  - data-table-filtering-and-bulk-actions
+  - status-label-system
+  visual_tags:
+  - technical
+  - configurable
+  - dense
+  content_density: high
+  user_maturity: expert
+  good_for: 敏捷项目、issue、复杂工作流
+  borrow: 状态、字段和筛选是核心；适合研究复杂 B 端对象如何分层。
+  avoid: 不要复用第三方品牌资产、图标、插画、文案或完整页面布局；跨终端参考只能抽象借鉴模式，不得直接照搬布局和交互。
+  source_urls:
+  - https://www.atlassian.com/software/jira
+  priority: A
+  notes: 补充的 Web/桌面端参考，用于减少资料库对 native mobile app 的偏置。
+- id: REF-038
+  name: Webflow
+  slug: webflow
+  industry: 网站构建/设计开发
+  surfaces:
+  - web-app
+  primary_surface: web-app
+  platforms:
+  - web
+  page_types:
+  - designer
+  - cms
+  - site-dashboard
+  - publish
+  - settings
+  task_types:
+  - website builder
+  - visual development
+  pattern_tags:
+  - editor-canvas-inspector
+  - settings-permissions-and-billing
+  - template-first-creation
+  visual_tags:
+  - visual-builder
+  - canvas
+  - technical
+  content_density: high
+  user_maturity: expert
+  good_for: 可视化编辑器、CMS、网站构建
+  borrow: 画布、左侧结构、右侧属性面板、顶部发布入口构成典型 Web 编辑器骨架。
+  avoid: 不要复用第三方品牌资产、图标、插画、文案或完整页面布局；跨终端参考只能抽象借鉴模式，不得直接照搬布局和交互。
+  source_urls:
+  - https://webflow.com/
+  priority: A
+  notes: 补充的 Web/桌面端参考，用于减少资料库对 native mobile app 的偏置。
+- id: REF-039
+  name: Framer
+  slug: framer
+  industry: 网站构建/原型
+  surfaces:
+  - web-app
+  - desktop-app
+  primary_surface: web-app
+  platforms:
+  - web
+  - macOS
+  - Windows
+  page_types:
+  - site-dashboard
+  - canvas
+  - components
+  - publish
+  - templates
+  task_types:
+  - site builder
+  - prototype
+  pattern_tags:
+  - editor-canvas-inspector
+  - template-first-creation
+  - ai-copilot-side-panel
+  visual_tags:
+  - polished
+  - visual
+  - motion-aware
+  content_density: medium-high
+  user_maturity: mixed
+  good_for: 视觉建站、模板、发布流程
+  borrow: 模板和 AI 生成入口可以降低首次创作门槛；编辑器要保持输出预览优先。
+  avoid: 不要复用第三方品牌资产、图标、插画、文案或完整页面布局；跨终端参考只能抽象借鉴模式，不得直接照搬布局和交互。
+  source_urls:
+  - https://www.framer.com/
+  priority: A
+  notes: 补充的 Web/桌面端参考，用于减少资料库对 native mobile app 的偏置。
+- id: REF-040
+  name: Supabase
+  slug: supabase
+  industry: 开发者后台
+  surfaces:
+  - web-app
+  primary_surface: web-app
+  platforms:
+  - web
+  page_types:
+  - project-dashboard
+  - database-table
+  - auth
+  - storage
+  - edge-functions
+  - logs
+  task_types:
+  - developer console
+  - database management
+  pattern_tags:
+  - web-saas-dashboard
+  - data-table-filtering-and-bulk-actions
+  - settings-permissions-and-billing
+  visual_tags:
+  - technical
+  - console
+  - structured
+  content_density: high
+  user_maturity: expert
+  good_for: 开发者控制台、数据库、权限配置
+  borrow: 高风险配置需要清晰分区和确认；表格/日志适合强筛选和上下文链接。
+  avoid: 不要复用第三方品牌资产、图标、插画、文案或完整页面布局；跨终端参考只能抽象借鉴模式，不得直接照搬布局和交互。
+  source_urls:
+  - https://supabase.com/
+  priority: A
+  notes: 补充的 Web/桌面端参考，用于减少资料库对 native mobile app 的偏置。
+- id: REF-041
+  name: Retool
+  slug: retool
+  industry: 内部工具构建
+  surfaces:
+  - web-app
+  primary_surface: web-app
+  platforms:
+  - web
+  page_types:
+  - app-builder
+  - component-panel
+  - query-editor
+  - workflow
+  - permissions
+  task_types:
+  - internal tools
+  - app builder
+  pattern_tags:
+  - editor-canvas-inspector
+  - data-table-filtering-and-bulk-actions
+  - settings-permissions-and-billing
+  visual_tags:
+  - builder
+  - data-connected
+  - enterprise
+  content_density: high
+  user_maturity: expert
+  good_for: 内部工具、企业低代码、数据表单
+  borrow: 组件面板、画布、查询编辑器和权限管理需要互相保持上下文。
+  avoid: 不要复用第三方品牌资产、图标、插画、文案或完整页面布局；跨终端参考只能抽象借鉴模式，不得直接照搬布局和交互。
+  source_urls:
+  - https://retool.com/
+  priority: A
+  notes: 补充的 Web/桌面端参考，用于减少资料库对 native mobile app 的偏置。
+- id: REF-042
+  name: Intercom
+  slug: intercom
+  industry: 客服/客户沟通
+  surfaces:
+  - web-app
+  - mobile-app
+  primary_surface: web-app
+  platforms:
+  - web
+  - iOS
+  - Android
+  page_types:
+  - inbox
+  - conversation
+  - user-profile
+  - bot-builder
+  - help-center
+  task_types:
+  - support workflow
+  - customer messaging
+  pattern_tags:
+  - collaboration-comments-mentions
+  - ai-copilot-side-panel
+  - inbox-triage
+  visual_tags:
+  - friendly
+  - conversation-first
+  - operator-console
+  content_density: medium-high
+  user_maturity: mixed
+  good_for: 客服、消息中心、AI 支持
+  borrow: 收件箱、对话、客户资料和自动化建议要形成一屏决策面板。
+  avoid: 不要复用第三方品牌资产、图标、插画、文案或完整页面布局；跨终端参考只能抽象借鉴模式，不得直接照搬布局和交互。
+  source_urls:
+  - https://www.intercom.com/
+  priority: A
+  notes: 补充的 Web/桌面端参考，用于减少资料库对 native mobile app 的偏置。
+- id: REF-043
+  name: HubSpot CRM
+  slug: hubspot-crm
+  industry: CRM/营销销售
+  surfaces:
+  - web-app
+  - mobile-app
+  primary_surface: web-app
+  platforms:
+  - web
+  - iOS
+  - Android
+  page_types:
+  - crm-home
+  - contact-detail
+  - pipeline
+  - campaign
+  - reports
+  task_types:
+  - crm
+  - marketing automation
+  pattern_tags:
+  - web-saas-dashboard
+  - data-table-filtering-and-bulk-actions
+  - settings-permissions-and-billing
+  visual_tags:
+  - business
+  - modular
+  - data-rich
+  content_density: high
+  user_maturity: mixed
+  good_for: CRM、销售管道、客户数据
+  borrow: 对象详情、活动流、下一步行动和指标必须清晰区分。
+  avoid: 不要复用第三方品牌资产、图标、插画、文案或完整页面布局；跨终端参考只能抽象借鉴模式，不得直接照搬布局和交互。
+  source_urls:
+  - https://www.hubspot.com/products/crm
+  priority: A
+  notes: 补充的 Web/桌面端参考，用于减少资料库对 native mobile app 的偏置。
+- id: REF-044
+  name: Mailchimp
+  slug: mailchimp
+  industry: 营销/邮件
+  surfaces:
+  - web-app
+  - mobile-app
+  primary_surface: web-app
+  platforms:
+  - web
+  - iOS
+  - Android
+  page_types:
+  - campaign-builder
+  - audience
+  - automation
+  - reports
+  - template-gallery
+  task_types:
+  - email marketing
+  - campaign creation
+  pattern_tags:
+  - template-first-creation
+  - data-card-dashboard
+  - pricing-plan-comparison
+  visual_tags:
+  - friendly
+  - template-led
+  - campaign
+  content_density: medium
+  user_maturity: mixed
+  good_for: 营销活动、模板、报表
+  borrow: 先让用户选模板/目标，再逐步进入内容、受众、发送和报表。
+  avoid: 不要复用第三方品牌资产、图标、插画、文案或完整页面布局；跨终端参考只能抽象借鉴模式，不得直接照搬布局和交互。
+  source_urls:
+  - https://mailchimp.com/
+  priority: B
+  notes: 补充的 Web/桌面端参考，用于减少资料库对 native mobile app 的偏置。
+- id: REF-045
+  name: Typeform
+  slug: typeform
+  industry: 表单/调查
+  surfaces:
+  - web-app
+  primary_surface: web-app
+  platforms:
+  - web
+  page_types:
+  - form-builder
+  - question-editor
+  - theme
+  - share
+  - results
+  task_types:
+  - form creation
+  - survey
+  pattern_tags:
+  - editor-canvas-inspector
+  - progressive-question-flow
+  - template-first-creation
+  visual_tags:
+  - clean
+  - question-focused
+  - conversational
+  content_density: medium
+  user_maturity: mixed
+  good_for: 表单、问卷、逐题交互
+  borrow: 逐题预览和编辑器侧栏让用户同时看到结构与最终体验。
+  avoid: 不要复用第三方品牌资产、图标、插画、文案或完整页面布局；跨终端参考只能抽象借鉴模式，不得直接照搬布局和交互。
+  source_urls:
+  - https://www.typeform.com/
+  priority: B
+  notes: 补充的 Web/桌面端参考，用于减少资料库对 native mobile app 的偏置。
+- id: REF-046
+  name: Google Analytics
+  slug: google-analytics
+  industry: 数据分析
+  surfaces:
+  - web-app
+  primary_surface: web-app
+  platforms:
+  - web
+  page_types:
+  - overview
+  - reports
+  - explore
+  - realtime
+  - audience
+  task_types:
+  - analytics
+  - reporting
+  pattern_tags:
+  - data-card-dashboard
+  - data-table-filtering-and-bulk-actions
+  - web-saas-dashboard
+  visual_tags:
+  - data-heavy
+  - enterprise
+  - reporting
+  content_density: high
+  user_maturity: expert
+  good_for: 数据报表、流量分析、指标探索
+  borrow: 指标卡、趋势图、维度筛选和报告导航要有清晰层级。
+  avoid: 不要复用第三方品牌资产、图标、插画、文案或完整页面布局；跨终端参考只能抽象借鉴模式，不得直接照搬布局和交互。
+  source_urls:
+  - https://analytics.google.com/
+  priority: B
+  notes: 补充的 Web/桌面端参考，用于减少资料库对 native mobile app 的偏置。
+- id: REF-047
+  name: Amplitude
+  slug: amplitude
+  industry: 产品分析
+  surfaces:
+  - web-app
+  primary_surface: web-app
+  platforms:
+  - web
+  page_types:
+  - dashboard
+  - funnel
+  - retention
+  - cohort
+  - chart-builder
+  task_types:
+  - product analytics
+  - experimentation
+  pattern_tags:
+  - data-card-dashboard
+  - data-table-filtering-and-bulk-actions
+  - web-saas-dashboard
+  visual_tags:
+  - analytical
+  - chart-heavy
+  - precise
+  content_density: high
+  user_maturity: expert
+  good_for: 漏斗、留存、用户分群、实验
+  borrow: 分析产品的首要目标是帮助用户提出问题、筛选条件并解释结果。
+  avoid: 不要复用第三方品牌资产、图标、插画、文案或完整页面布局；跨终端参考只能抽象借鉴模式，不得直接照搬布局和交互。
+  source_urls:
+  - https://amplitude.com/
+  priority: B
+  notes: 补充的 Web/桌面端参考，用于减少资料库对 native mobile app 的偏置。
+- id: REF-048
+  name: Mixpanel
+  slug: mixpanel
+  industry: 产品分析
+  surfaces:
+  - web-app
+  primary_surface: web-app
+  platforms:
+  - web
+  page_types:
+  - reports
+  - funnels
+  - retention
+  - cohorts
+  - dashboard
+  task_types:
+  - product analytics
+  pattern_tags:
+  - data-card-dashboard
+  - data-table-filtering-and-bulk-actions
+  - web-saas-dashboard
+  visual_tags:
+  - analytical
+  - chart-heavy
+  - structured
+  content_density: high
+  user_maturity: expert
+  good_for: 产品数据、漏斗、用户行为分析
+  borrow: 对比指标、筛选器和图表注释必须避免混淆；适合研究复杂筛选 UX。
+  avoid: 不要复用第三方品牌资产、图标、插画、文案或完整页面布局；跨终端参考只能抽象借鉴模式，不得直接照搬布局和交互。
+  source_urls:
+  - https://mixpanel.com/
+  priority: B
+  notes: 补充的 Web/桌面端参考，用于减少资料库对 native mobile app 的偏置。
+- id: REF-049
+  name: Plausible
+  slug: plausible
+  industry: 轻量网站分析
+  surfaces:
+  - web-app
+  primary_surface: web-app
+  platforms:
+  - web
+  page_types:
+  - analytics-dashboard
+  - traffic-source
+  - goals
+  - settings
+  task_types:
+  - analytics
+  - privacy-friendly reporting
+  pattern_tags:
+  - data-card-dashboard
+  - low-noise-workspace
+  - transparent-decision
+  visual_tags:
+  - minimal
+  - clear
+  - privacy-first
+  content_density: medium
+  user_maturity: mixed
+  good_for: 轻量报表、隐私友好数据产品
+  borrow: 用少量关键指标回答主要问题，避免企业分析工具的复杂感。
+  avoid: 不要复用第三方品牌资产、图标、插画、文案或完整页面布局；跨终端参考只能抽象借鉴模式，不得直接照搬布局和交互。
+  source_urls:
+  - https://plausible.io/
+  priority: B
+  notes: 补充的 Web/桌面端参考，用于减少资料库对 native mobile app 的偏置。
+- id: REF-050
+  name: Loom
+  slug: loom
+  industry: 视频沟通
+  surfaces:
+  - web-app
+  - desktop-app
+  - mobile-app
+  primary_surface: web-app
+  platforms:
+  - web
+  - macOS
+  - Windows
+  - iOS
+  - Android
+  page_types:
+  - recording
+  - library
+  - video-detail
+  - comments
+  - sharing
+  task_types:
+  - async video
+  - team communication
+  pattern_tags:
+  - media-player
+  - collaboration-comments-mentions
+  - empty-state-activation
+  visual_tags:
+  - simple
+  - media-led
+  - collaborative
+  content_density: medium
+  user_maturity: mixed
+  good_for: 异步视频、内容库、评论反馈
+  borrow: 视频资产要成为主要对象；评论、转录和分享链接围绕视频组织。
+  avoid: 不要复用第三方品牌资产、图标、插画、文案或完整页面布局；跨终端参考只能抽象借鉴模式，不得直接照搬布局和交互。
+  source_urls:
+  - https://www.loom.com/
+  priority: B
+  notes: 补充的 Web/桌面端参考，用于减少资料库对 native mobile app 的偏置。
+- id: REF-051
+  name: Dropbox
+  slug: dropbox
+  industry: 文件协作
+  surfaces:
+  - web-app
+  - desktop-app
+  - mobile-app
+  primary_surface: web-app
+  platforms:
+  - web
+  - macOS
+  - Windows
+  - iOS
+  - Android
+  page_types:
+  - file-browser
+  - preview
+  - sharing
+  - sync-status
+  - team-folder
+  task_types:
+  - file management
+  - collaboration
+  pattern_tags:
+  - data-table-filtering-and-bulk-actions
+  - collaboration-comments-mentions
+  - settings-permissions-and-billing
+  visual_tags:
+  - quiet
+  - reliable
+  - file-centric
+  content_density: medium-high
+  user_maturity: mixed
+  good_for: 文件、共享、权限、同步状态
+  borrow: 文件列表要低噪音但状态明确；分享和权限属于高影响操作。
+  avoid: 不要复用第三方品牌资产、图标、插画、文案或完整页面布局；跨终端参考只能抽象借鉴模式，不得直接照搬布局和交互。
+  source_urls:
+  - https://www.dropbox.com/
+  priority: B
+  notes: 补充的 Web/桌面端参考，用于减少资料库对 native mobile app 的偏置。

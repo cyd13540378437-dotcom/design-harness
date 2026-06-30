@@ -1,0 +1,30 @@
+schema_version: 1
+fields:
+  id: CLR-001
+  name: Human readable palette name
+  image: images/<filename>.png
+  source: user-provided | generated | official | captured
+  source_url: ''
+  created_at: YYYY-MM-DD
+  surfaces:
+  - web-app
+  - mobile-app
+  - responsive-web
+  - desktop-app
+  mood_tags:
+  - calm
+  - professional
+  - warm
+  tokens:
+    background: ''
+    surface: ''
+    primary: ''
+    secondary: ''
+    accent: ''
+    text_primary: ''
+    text_secondary: ''
+    border: ''
+  suitable_for: []
+  not_suitable_for: []
+  accessibility_notes: []
+  usage_notes: []

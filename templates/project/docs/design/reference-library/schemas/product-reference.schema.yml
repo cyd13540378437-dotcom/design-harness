@@ -1,0 +1,27 @@
+schema_version: 1
+required_fields:
+- id
+- name
+- industry
+- surfaces
+- primary_surface
+- platforms
+- page_types
+- task_types
+- pattern_tags
+- visual_tags
+- source_urls
+- borrow
+- avoid
+surface_enum:
+- web-app
+- mobile-app
+- responsive-web
+- desktop-app
+- tablet
+- tv-app
+- multi-surface
+priority_enum:
+- S
+- A
+- B

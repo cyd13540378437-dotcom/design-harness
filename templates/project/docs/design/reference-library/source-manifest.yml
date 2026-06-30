@@ -1,0 +1,51 @@
+schema_version: 1
+updated_at: '2026-06-30'
+sources:
+- name: Mobbin
+  best_for: 真实移动和 Web App 截图库，适合按行业、模式、App 搜索
+  url: https://mobbin.com/explore/mobile
+  usage_note: 适合系统性找 UI 截图；部分内容可能需要登录/订阅
+- name: Page Flows
+  best_for: 按用户流程拆解头部 App 的视觉与 UX 案例
+  url: https://pageflows.com/
+  usage_note: 适合研究 onboarding、checkout、upgrade 等流程
+- name: Nakxi App Screenshot Gallery
+  best_for: 按 App Store / Google Play 截图风格整理的图库
+  url: https://www.nakxi.com/app-screenshot-gallery/
+  usage_note: 适合 ASO 截图和商店页视觉参考
+- name: Noesis App Screenshots
+  best_for: 按 AI、Finance、Health、Productivity 等分类的 App Store 截图
+  url: https://noesiscode.com/app-screenshots
+  usage_note: 适合快速横向浏览行业商店图
+- name: Muzli Mobile Inspiration
+  best_for: 移动 App UI 灵感集合
+  url: https://muz.li/inspiration/mobile-app-design-inspiration/
+  usage_note: 适合扩展设计风格参考，不一定都是官方截图
+- name: UI Sources - Duolingo
+  best_for: Duolingo App Store 截图案例
+  url: https://www.uisources.com/explainer/duolingo-app-store-screenshots
+  usage_note: 适合研究教育/游戏化截图叙事
+- name: Apple App Store 官方页
+  best_for: 各 App 当前商店页截图、产品描述和评分信息
+  url: https://apps.apple.com/
+  usage_note: 适合拿官方当前版本图片；注意地区差异
+- name: Google Play 官方页
+  best_for: Android 版本截图和商店页素材
+  url: https://play.google.com/store/apps
+  usage_note: 适合补齐 Android 视觉差异
+- name: Official product websites
+  best_for: Web/desktop SaaS 当前产品定位、官网产品图、功能说明
+  url: 各产品官网
+  usage_note: 优先用于确认产品定位；截图仍需遵守版权边界。
+- name: Internal captured screenshots
+  best_for: 项目团队自行截取的内部分析素材
+  url: assets/screenshots/
+  usage_note: 截图文件必须配套来源、日期、终端、页面类型和使用边界。
+- name: User-provided color cards
+  best_for: 色卡图片、配色来源、情绪说明和适用边界
+  url: assets/color-cards/
+  usage_note: 由后续对话补充；当前只预留目录和 schema。
+copyright_policy:
+- 只用于内部研究和模式抽象。
+- 不得直接复用第三方截图、商标、图标、插画、文案或完整页面布局。
+- 对外材料使用前必须替换为自有素材或获得授权。

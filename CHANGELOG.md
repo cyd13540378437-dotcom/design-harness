@@ -1,5 +1,16 @@
 # 变更日志
 
+## v0.1.1-alpha / reference-library increment
+
+- 在 v0.1.0-alpha visual-workflow revision 基础上新增 Product Visual Reference Library。
+- 新增 `templates/project/docs/design/reference-library/`，包含产品索引、模式索引、产品/模式条目、截图目录、schema 和色卡预留结构。
+- 新增 `REFERENCE_SELECTION.template.md`，用于记录 Work Item 级参考消费结果。
+- 新增 Surface Resolution，视觉方向前先明确 `web-app / mobile-app / responsive-web / desktop-app / tablet / multi-surface`。
+- 更新 Skill、Steward、AGENTS 片段、PRD、README、架构说明和手动测试指南，明确 `STATE.md` 只记录参考摘要和链接。
+- 新增 `reference-library-consumption.md`，说明参考库检索顺序、用户方向表达和跨终端借鉴边界。
+- 新增 3 个 Reference Library 人工评测场景，总评测场景扩展为 13 个。
+- 明确禁止 `reference-library/reference-packs/`、自动截图下载、自动 OCR、外部运行时依赖和第三方资产复制。
+
 ## v0.1.0-alpha / visual-workflow revision
 
 - 保留 Work Item、`STATE.md`、Gate、Steward 和 sealed 状态架构。

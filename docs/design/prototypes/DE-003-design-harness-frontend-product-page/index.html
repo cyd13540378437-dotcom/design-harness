@@ -1,0 +1,1156 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Design Harness Workspace</title>
+  <style>
+    :root {
+      --color-bg: #f7f8f6;
+      --color-surface: #ffffff;
+      --color-surface-muted: #eef3ef;
+      --color-surface-strong: #e4ece7;
+      --color-text: #202622;
+      --color-text-secondary: #68726c;
+      --color-text-muted: #8b958f;
+      --color-border: #dce3dd;
+      --color-border-strong: #bdcac2;
+      --color-primary: #206b5f;
+      --color-primary-strong: #174b44;
+      --color-info: #315c84;
+      --color-warning: #b77a20;
+      --color-success: #4d7c5b;
+      --color-danger: #a95d55;
+      --shadow-panel: 0 18px 46px rgba(41, 56, 49, 0.08);
+      --radius-sm: 6px;
+      --radius-md: 8px;
+      --space-1: 4px;
+      --space-2: 8px;
+      --space-3: 12px;
+      --space-4: 16px;
+      --space-5: 24px;
+      --space-6: 32px;
+      color-scheme: light;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      letter-spacing: 0;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        linear-gradient(180deg, rgba(238, 243, 239, 0.88), rgba(247, 248, 246, 0) 300px),
+        var(--color-bg);
+      color: var(--color-text);
+    }
+
+    button,
+    input,
+    textarea {
+      font: inherit;
+    }
+
+    button {
+      border: 0;
+      cursor: pointer;
+    }
+
+    button:focus-visible,
+    textarea:focus-visible,
+    .work-item:focus-visible,
+    .tab:focus-visible,
+    .check-row:focus-visible {
+      outline: 3px solid rgba(32, 107, 95, 0.24);
+      outline-offset: 2px;
+    }
+
+    .app-shell {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: minmax(220px, 264px) minmax(0, 1fr) minmax(300px, 340px);
+      gap: var(--space-4);
+      padding: var(--space-4);
+    }
+
+    .rail,
+    .workspace,
+    .handoff {
+      min-width: 0;
+    }
+
+    .rail {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-4);
+    }
+
+    .brand {
+      min-height: 116px;
+      padding: var(--space-5);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      background: var(--color-surface);
+      box-shadow: var(--shadow-panel);
+    }
+
+    .brand-mark {
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      margin-bottom: var(--space-4);
+      border-radius: var(--radius-sm);
+      background: var(--color-primary);
+      color: #ffffff;
+    }
+
+    .brand h1 {
+      margin: 0;
+      font-size: 24px;
+      line-height: 1.08;
+      font-weight: 720;
+    }
+
+    .brand p {
+      margin: var(--space-2) 0 0;
+      color: var(--color-text-secondary);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .section-label {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 0 0 var(--space-2);
+      color: var(--color-text-secondary);
+      font-size: 12px;
+      font-weight: 680;
+      text-transform: uppercase;
+    }
+
+    .work-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+    }
+
+    .work-item {
+      width: 100%;
+      display: grid;
+      grid-template-columns: 34px minmax(0, 1fr);
+      gap: var(--space-3);
+      padding: var(--space-3);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      background: var(--color-surface);
+      color: var(--color-text);
+      text-align: left;
+    }
+
+    .work-item.is-active {
+      border-color: rgba(32, 107, 95, 0.55);
+      background: #f9fcfa;
+      box-shadow: 0 8px 24px rgba(32, 107, 95, 0.09);
+    }
+
+    .work-id {
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      border-radius: var(--radius-sm);
+      background: var(--color-surface-muted);
+      color: var(--color-primary-strong);
+      font-size: 12px;
+      font-weight: 760;
+    }
+
+    .work-title {
+      margin: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      font-size: 14px;
+      font-weight: 680;
+    }
+
+    .work-meta {
+      margin: 4px 0 0;
+      color: var(--color-text-secondary);
+      font-size: 12px;
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      min-height: 26px;
+      padding: 0 10px;
+      border: 1px solid var(--color-border);
+      border-radius: 999px;
+      background: var(--color-surface);
+      color: var(--color-text-secondary);
+      font-size: 12px;
+      font-weight: 650;
+      white-space: nowrap;
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--color-success);
+    }
+
+    .status-dot.warning {
+      background: var(--color-warning);
+    }
+
+    .status-dot.info {
+      background: var(--color-info);
+    }
+
+    .workspace {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-4);
+    }
+
+    .hero-panel {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 260px;
+      gap: var(--space-5);
+      min-height: 238px;
+      padding: var(--space-6);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      background: var(--color-surface);
+      box-shadow: var(--shadow-panel);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      margin-bottom: var(--space-3);
+      color: var(--color-primary);
+      font-size: 13px;
+      font-weight: 720;
+    }
+
+    .hero-title {
+      max-width: 760px;
+      margin: 0;
+      font-size: 34px;
+      line-height: 1.06;
+      font-weight: 760;
+    }
+
+    .hero-copy {
+      max-width: 700px;
+      margin: var(--space-4) 0 0;
+      color: var(--color-text-secondary);
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-3);
+      margin-top: var(--space-5);
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-2);
+      min-height: 40px;
+      padding: 0 var(--space-4);
+      border-radius: var(--radius-sm);
+      font-size: 14px;
+      font-weight: 690;
+    }
+
+    .button.primary {
+      background: var(--color-primary);
+      color: #ffffff;
+    }
+
+    .button.secondary {
+      border: 1px solid var(--color-border-strong);
+      background: var(--color-surface);
+      color: var(--color-text);
+    }
+
+    .workflow-map {
+      min-width: 0;
+      align-self: stretch;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      background: #fbfcfb;
+      overflow: hidden;
+    }
+
+    .workflow-map svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+      min-height: 174px;
+    }
+
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: var(--space-3);
+    }
+
+    .metric {
+      min-height: 92px;
+      padding: var(--space-4);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      background: var(--color-surface);
+    }
+
+    .metric-value {
+      margin: 0;
+      font-size: 26px;
+      font-weight: 760;
+    }
+
+    .metric-label {
+      margin: var(--space-2) 0 0;
+      color: var(--color-text-secondary);
+      font-size: 13px;
+      line-height: 1.4;
+    }
+
+    .panel {
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      background: var(--color-surface);
+      box-shadow: var(--shadow-panel);
+      overflow: hidden;
+    }
+
+    .panel-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: var(--space-4);
+      padding: var(--space-5);
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .panel-title {
+      margin: 0;
+      font-size: 18px;
+      font-weight: 730;
+    }
+
+    .panel-copy {
+      margin: var(--space-2) 0 0;
+      color: var(--color-text-secondary);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .tabs {
+      display: flex;
+      gap: var(--space-2);
+      padding: var(--space-3) var(--space-5) 0;
+      overflow-x: auto;
+    }
+
+    .tab {
+      min-height: 34px;
+      padding: 0 var(--space-3);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-sm);
+      background: var(--color-surface);
+      color: var(--color-text-secondary);
+      font-size: 13px;
+      font-weight: 680;
+      white-space: nowrap;
+    }
+
+    .tab.is-active {
+      border-color: rgba(32, 107, 95, 0.55);
+      background: var(--color-surface-muted);
+      color: var(--color-primary-strong);
+    }
+
+    .tab-body {
+      padding: var(--space-5);
+    }
+
+    .tab-pane {
+      display: none;
+    }
+
+    .tab-pane.is-active {
+      display: block;
+    }
+
+    .state-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--space-3);
+    }
+
+    .state-row {
+      min-height: 76px;
+      padding: var(--space-4);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      background: #fbfcfb;
+    }
+
+    .state-label {
+      margin: 0;
+      color: var(--color-text-secondary);
+      font-size: 12px;
+      font-weight: 680;
+    }
+
+    .state-value {
+      margin: var(--space-2) 0 0;
+      font-size: 15px;
+      font-weight: 720;
+    }
+
+    .timeline {
+      display: grid;
+      gap: var(--space-3);
+    }
+
+    .gate-step {
+      display: grid;
+      grid-template-columns: 30px minmax(0, 1fr);
+      gap: var(--space-3);
+      align-items: start;
+      padding: var(--space-3);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      background: #fbfcfb;
+    }
+
+    .gate-icon {
+      width: 30px;
+      height: 30px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--color-surface-muted);
+      color: var(--color-text-secondary);
+      font-size: 12px;
+      font-weight: 760;
+    }
+
+    .gate-step.done .gate-icon {
+      background: rgba(77, 124, 91, 0.14);
+      color: var(--color-success);
+    }
+
+    .gate-step.current .gate-icon {
+      background: rgba(183, 122, 32, 0.16);
+      color: var(--color-warning);
+    }
+
+    .gate-name {
+      margin: 0;
+      font-size: 14px;
+      font-weight: 720;
+    }
+
+    .gate-desc {
+      margin: 5px 0 0;
+      color: var(--color-text-secondary);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .prototype-frame {
+      display: grid;
+      grid-template-columns: 1.12fr 0.88fr;
+      gap: var(--space-4);
+      align-items: stretch;
+    }
+
+    .screen-card {
+      min-height: 270px;
+      padding: var(--space-5);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      background: #fbfcfb;
+    }
+
+    .screen-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-3);
+      margin-bottom: var(--space-4);
+    }
+
+    .screen-title {
+      margin: 0;
+      font-size: 15px;
+      font-weight: 720;
+    }
+
+    .mini-flow {
+      display: grid;
+      gap: var(--space-2);
+    }
+
+    .mini-flow-row {
+      display: grid;
+      grid-template-columns: 110px minmax(0, 1fr);
+      gap: var(--space-3);
+      align-items: center;
+      min-height: 44px;
+      padding: var(--space-2);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-sm);
+      background: var(--color-surface);
+      color: var(--color-text-secondary);
+      font-size: 13px;
+    }
+
+    .mini-flow-row strong {
+      color: var(--color-text);
+      font-size: 13px;
+    }
+
+    .note-form {
+      display: grid;
+      gap: var(--space-3);
+    }
+
+    .note-form textarea {
+      width: 100%;
+      min-height: 92px;
+      resize: vertical;
+      padding: var(--space-3);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-sm);
+      background: var(--color-surface);
+      color: var(--color-text);
+    }
+
+    .note-list {
+      display: grid;
+      gap: var(--space-2);
+      margin-top: var(--space-4);
+    }
+
+    .note-item {
+      padding: var(--space-3);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-sm);
+      background: #fbfcfb;
+      color: var(--color-text-secondary);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .handoff {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-4);
+    }
+
+    .handoff .panel {
+      box-shadow: var(--shadow-panel);
+    }
+
+    .token-list,
+    .component-list,
+    .checklist {
+      display: grid;
+      gap: var(--space-2);
+      padding: var(--space-4);
+    }
+
+    .token-row,
+    .component-row,
+    .check-row {
+      display: grid;
+      grid-template-columns: 22px minmax(0, 1fr);
+      gap: var(--space-3);
+      align-items: center;
+      min-height: 40px;
+      color: var(--color-text-secondary);
+      font-size: 13px;
+    }
+
+    .token-swatch {
+      width: 22px;
+      height: 22px;
+      border: 1px solid var(--color-border-strong);
+      border-radius: var(--radius-sm);
+      background: var(--swatch);
+    }
+
+    .component-mark {
+      width: 22px;
+      height: 22px;
+      display: grid;
+      place-items: center;
+      border-radius: var(--radius-sm);
+      background: var(--color-surface-muted);
+      color: var(--color-primary);
+      font-size: 12px;
+      font-weight: 760;
+    }
+
+    .check-row {
+      width: 100%;
+      grid-template-columns: 22px minmax(0, 1fr);
+      padding: 0;
+      background: transparent;
+      color: var(--color-text);
+      text-align: left;
+    }
+
+    .check-box {
+      width: 22px;
+      height: 22px;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--color-border-strong);
+      border-radius: var(--radius-sm);
+      background: var(--color-surface);
+      color: transparent;
+      font-size: 14px;
+      font-weight: 760;
+    }
+
+    .check-row.is-done .check-box {
+      border-color: var(--color-primary);
+      background: var(--color-primary);
+      color: #ffffff;
+    }
+
+    .risk-list {
+      display: grid;
+      gap: var(--space-2);
+      padding: var(--space-4);
+      border-top: 1px solid var(--color-border);
+      color: var(--color-text-secondary);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .risk {
+      display: grid;
+      grid-template-columns: 7px minmax(0, 1fr);
+      gap: var(--space-2);
+      align-items: start;
+    }
+
+    .risk::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      margin-top: 6px;
+      border-radius: 50%;
+      background: var(--color-warning);
+    }
+
+    .mobile-summary {
+      display: none;
+      padding: var(--space-4);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      background: var(--color-surface);
+      color: var(--color-text-secondary);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    @media (max-width: 1180px) {
+      .app-shell {
+        grid-template-columns: 232px minmax(0, 1fr);
+      }
+
+      .handoff {
+        grid-column: 1 / -1;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 900px) {
+      .app-shell {
+        grid-template-columns: 1fr;
+      }
+
+      .rail {
+        display: block;
+      }
+
+      .brand {
+        min-height: auto;
+        margin-bottom: var(--space-3);
+      }
+
+      .work-list {
+        grid-auto-flow: column;
+        grid-auto-columns: minmax(210px, 72vw);
+        display: grid;
+        overflow-x: auto;
+        padding-bottom: var(--space-1);
+      }
+
+      .hero-panel,
+      .prototype-frame {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-title {
+        font-size: 28px;
+      }
+
+      .metrics {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .handoff {
+        display: grid;
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .app-shell {
+        padding: var(--space-3);
+      }
+
+      .hero-panel {
+        padding: var(--space-5);
+      }
+
+      .hero-title {
+        font-size: 24px;
+      }
+
+      .hero-actions {
+        display: grid;
+      }
+
+      .button {
+        width: 100%;
+      }
+
+      .metrics,
+      .state-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .panel-header {
+        display: grid;
+      }
+
+      .mobile-summary {
+        display: block;
+      }
+
+      .mini-flow-row {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="app-shell">
+    <aside class="rail" aria-label="Work Item navigation">
+      <section class="brand">
+        <div class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="20" height="20" role="img" aria-label="Design Harness">
+            <path fill="currentColor" d="M5 4h14v4H5V4Zm0 6h6v10H5V10Zm8 0h6v10h-6V10Z"></path>
+          </svg>
+        </div>
+        <h1>Design Harness</h1>
+        <p>把 Codex 的设计工作变成可恢复、可批准、可交接的产品流程。</p>
+      </section>
+
+      <section aria-labelledby="work-items-title">
+        <div class="section-label">
+          <span id="work-items-title">Work Items</span>
+          <span>3 active</span>
+        </div>
+        <div class="work-list" id="workList"></div>
+      </section>
+    </aside>
+
+    <section class="workspace" aria-label="Workspace">
+      <section class="hero-panel">
+        <div>
+          <div class="eyebrow">
+            <span class="status-dot info"></span>
+            Frontend-ready design state
+          </div>
+          <h2 class="hero-title">从用户确认，到前端页面，不再丢掉中间的设计决定。</h2>
+          <p class="hero-copy">
+            这个试作把 Work Item 状态、Gate、视觉基线和 Frontend Handoff 放在同一个工作台里，
+            用来验证 Design Harness 是否能从设计流程继续走到真实前端实现。
+          </p>
+          <div class="hero-actions">
+            <button class="button primary" type="button" id="focusHandoff">
+              <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
+                <path fill="currentColor" d="M5 4h14v2H5V4Zm0 5h14v2H5V9Zm0 5h9v2H5v-2Zm0 5h6v2H5v-2Zm12-5 4 3.5-4 3.5v-7Z"></path>
+              </svg>
+              查看交接
+            </button>
+            <button class="button secondary" type="button" data-tab-target="prototype">
+              <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
+                <path fill="currentColor" d="M4 5h16v12H4V5Zm2 2v8h12V7H6Zm3 12h6v2H9v-2Z"></path>
+              </svg>
+              看原型
+            </button>
+          </div>
+        </div>
+        <div class="workflow-map" aria-label="Design Harness workflow map">
+          <svg viewBox="0 0 280 210" role="img" aria-labelledby="workflow-title">
+            <title id="workflow-title">Work Item to Frontend Handoff</title>
+            <rect x="18" y="18" width="244" height="174" rx="8" fill="#ffffff" stroke="#dce3dd"></rect>
+            <rect x="38" y="42" width="78" height="32" rx="6" fill="#eef3ef"></rect>
+            <text x="77" y="62" text-anchor="middle" font-size="11" fill="#206b5f" font-weight="700">STATE</text>
+            <rect x="38" y="96" width="78" height="32" rx="6" fill="#f8f4ea"></rect>
+            <text x="77" y="116" text-anchor="middle" font-size="11" fill="#b77a20" font-weight="700">GATE</text>
+            <rect x="164" y="42" width="78" height="32" rx="6" fill="#eef2f6"></rect>
+            <text x="203" y="62" text-anchor="middle" font-size="11" fill="#315c84" font-weight="700">VISUAL</text>
+            <rect x="164" y="96" width="78" height="32" rx="6" fill="#eef3ef"></rect>
+            <text x="203" y="116" text-anchor="middle" font-size="11" fill="#206b5f" font-weight="700">HANDOFF</text>
+            <rect x="80" y="150" width="120" height="26" rx="6" fill="#206b5f"></rect>
+            <text x="140" y="167" text-anchor="middle" font-size="11" fill="#ffffff" font-weight="700">Frontend Page</text>
+            <path d="M116 58h48M77 74v22M203 74v22M116 112h48M77 128l35 22M203 128l-35 22" stroke="#9bac9f" stroke-width="2" fill="none"></path>
+          </svg>
+        </div>
+      </section>
+
+      <section class="metrics" aria-label="Workspace metrics">
+        <div class="metric">
+          <p class="metric-value" id="metricState">DE-003</p>
+          <p class="metric-label">当前聚焦 Work Item</p>
+        </div>
+        <div class="metric">
+          <p class="metric-value" id="metricGate">approval</p>
+          <p class="metric-label">当前需要的人类决定</p>
+        </div>
+        <div class="metric">
+          <p class="metric-value">5</p>
+          <p class="metric-label">前端交接检查项</p>
+        </div>
+        <div class="metric">
+          <p class="metric-value">3</p>
+          <p class="metric-label">验收视口</p>
+        </div>
+      </section>
+
+      <section class="panel" aria-labelledby="workbench-title">
+        <header class="panel-header">
+          <div>
+            <h2 class="panel-title" id="workbench-title">Work Item 工作区</h2>
+            <p class="panel-copy" id="activeSummary">Design Harness 前端产品页试作正在等待 completion-approval。</p>
+          </div>
+          <span class="status-pill" id="activeStatus"><span class="status-dot warning"></span>awaiting user</span>
+        </header>
+
+        <nav class="tabs" aria-label="Workbench tabs">
+          <button class="tab is-active" type="button" data-tab="state">State Snapshot</button>
+          <button class="tab" type="button" data-tab="gates">Gate Timeline</button>
+          <button class="tab" type="button" data-tab="prototype">Prototype Shape</button>
+        </nav>
+
+        <div class="tab-body">
+          <section class="tab-pane is-active" id="tab-state">
+            <div class="state-grid" id="stateGrid"></div>
+          </section>
+
+          <section class="tab-pane" id="tab-gates">
+            <div class="timeline" id="gateTimeline"></div>
+          </section>
+
+          <section class="tab-pane" id="tab-prototype">
+            <div class="prototype-frame">
+              <div class="screen-card">
+                <div class="screen-top">
+                  <h3 class="screen-title">产品页面骨架</h3>
+                  <span class="status-pill"><span class="status-dot info"></span>desktop first</span>
+                </div>
+                <div class="mini-flow">
+                  <div class="mini-flow-row"><strong>左侧</strong><span>Work Items、状态、当前 Gate</span></div>
+                  <div class="mini-flow-row"><strong>中间</strong><span>STATE、Gate timeline、原型形态</span></div>
+                  <div class="mini-flow-row"><strong>右侧</strong><span>Frontend Handoff、tokens、组件与风险</span></div>
+                  <div class="mini-flow-row"><strong>移动端</strong><span>单列堆叠，Work Items 横向滚动</span></div>
+                </div>
+              </div>
+
+              <div class="screen-card">
+                <div class="screen-top">
+                  <h3 class="screen-title">Gate note</h3>
+                  <span class="status-pill" id="noteStatus"><span class="status-dot"></span>local only</span>
+                </div>
+                <form class="note-form" id="noteForm">
+                  <label class="section-label" for="gateNote">记录一个本地 Gate 观察</label>
+                  <textarea id="gateNote" placeholder="例如：Frontend Handoff 应该变成正式协议产物。"></textarea>
+                  <button class="button primary" type="submit">添加观察</button>
+                </form>
+                <div class="note-list" id="noteList">
+                  <div class="note-item">DE-003 不写入真实 STATE.md；这里只验证前端交互结构。</div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </section>
+    </section>
+
+    <aside class="handoff" id="handoffPanel" aria-label="Frontend handoff">
+      <section class="panel">
+        <header class="panel-header">
+          <div>
+            <h2 class="panel-title">Frontend Handoff</h2>
+            <p class="panel-copy">把用户确认的设计决定翻译成前端能实现的结构。</p>
+          </div>
+          <span class="status-pill"><span class="status-dot info"></span>trial</span>
+        </header>
+        <div class="checklist" id="checklist"></div>
+      </section>
+
+      <section class="panel">
+        <header class="panel-header">
+          <div>
+            <h2 class="panel-title">Design Tokens</h2>
+            <p class="panel-copy">本次试作的前端令牌，不依赖外部设计系统。</p>
+          </div>
+        </header>
+        <div class="token-list">
+          <div class="token-row"><span class="token-swatch" style="--swatch:#f7f8f6"></span><span>--color-bg #F7F8F6</span></div>
+          <div class="token-row"><span class="token-swatch" style="--swatch:#ffffff"></span><span>--color-surface #FFFFFF</span></div>
+          <div class="token-row"><span class="token-swatch" style="--swatch:#206b5f"></span><span>--color-primary #206B5F</span></div>
+          <div class="token-row"><span class="token-swatch" style="--swatch:#315c84"></span><span>--color-info #315C84</span></div>
+          <div class="token-row"><span class="token-swatch" style="--swatch:#b77a20"></span><span>--color-warning #B77A20</span></div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <header class="panel-header">
+          <div>
+            <h2 class="panel-title">Components</h2>
+            <p class="panel-copy">这些组件可以直接映射到真实前端模块。</p>
+          </div>
+        </header>
+        <div class="component-list">
+          <div class="component-row"><span class="component-mark">W</span><span>WorkItemNav</span></div>
+          <div class="component-row"><span class="component-mark">G</span><span>GateTimeline</span></div>
+          <div class="component-row"><span class="component-mark">S</span><span>StateSnapshot</span></div>
+          <div class="component-row"><span class="component-mark">H</span><span>HandoffPanel</span></div>
+          <div class="component-row"><span class="component-mark">P</span><span>PrototypePreview</span></div>
+        </div>
+        <div class="risk-list">
+          <div class="risk">正式产品需要路由、真实状态读写和权限模型。</div>
+          <div class="risk">`FRONTEND_HANDOFF.md` 仍是试作产物，还没有进入正式协议。</div>
+        </div>
+      </section>
+
+      <div class="mobile-summary">
+        移动端下，Work Items 会变成横向选择，中间工作区和交接栏顺序堆叠，保持同一信息架构。
+      </div>
+    </aside>
+  </main>
+
+  <script>
+    const workItems = [
+      {
+        id: "DE-001",
+        shortId: "001",
+        title: "设计一个创意交流社群",
+        phase: "qa",
+        gate: "none",
+        status: "active",
+        summary: "共创小组方向已实现到静态原型，等待真实浏览器 QA。",
+        awaiting: false,
+        gates: [
+          ["done", "visual-direction-approval", "选择共创小组方向"],
+          ["done", "prototype-approval", "确认静态原型"],
+          ["done", "interaction-decision", "选择小队制匹配"],
+          ["current", "qa", "等待视觉验证"]
+        ]
+      },
+      {
+        id: "DE-002",
+        shortId: "002",
+        title: "个人备忘录",
+        phase: "completion-review",
+        gate: "completion-approval",
+        status: "active",
+        summary: "暖白极简备忘录原型已完成，等待用户关闭确认。",
+        awaiting: true,
+        gates: [
+          ["done", "visual-direction-approval", "确认暖白极简方向"],
+          ["done", "prototype-approval", "确认备忘录原型"],
+          ["done", "interaction-decision", "确认自动保存与回收站"],
+          ["current", "completion-approval", "等待关闭确认"]
+        ]
+      },
+      {
+        id: "DE-003",
+        shortId: "003",
+        title: "Design Harness 前端产品页试作",
+        phase: "completion-review",
+        gate: "completion-approval",
+        status: "active",
+        summary: "前端产品工作台、交接文档和静态实现已进入完成确认。",
+        awaiting: true,
+        gates: [
+          ["done", "work-item-binding", "Steward 返回 CREATE"],
+          ["done", "visual-direction-approval", "delegated 工作台方向"],
+          ["done", "prototype-approval", "原型与实现合并试作"],
+          ["current", "completion-approval", "等待用户评估"]
+        ]
+      }
+    ];
+
+    const handoffChecks = [
+      "页面地图和路由意图已定义",
+      "布局断点和三栏框架已定义",
+      "颜色、间距、圆角 tokens 已定义",
+      "组件契约可以映射到前端模块",
+      "移动端、桌面端验收视口已列出"
+    ];
+
+    let activeId = "DE-003";
+
+    const workList = document.querySelector("#workList");
+    const stateGrid = document.querySelector("#stateGrid");
+    const gateTimeline = document.querySelector("#gateTimeline");
+    const activeSummary = document.querySelector("#activeSummary");
+    const activeStatus = document.querySelector("#activeStatus");
+    const metricState = document.querySelector("#metricState");
+    const metricGate = document.querySelector("#metricGate");
+    const checklist = document.querySelector("#checklist");
+
+    function renderWorkItems() {
+      workList.innerHTML = workItems.map((item) => `
+        <button class="work-item ${item.id === activeId ? "is-active" : ""}" type="button" data-work-id="${item.id}">
+          <span class="work-id">${item.shortId}</span>
+          <span>
+            <span class="work-title">${item.title}</span>
+            <span class="work-meta">${item.phase} · ${item.gate}</span>
+          </span>
+        </button>
+      `).join("");
+    }
+
+    function getActiveItem() {
+      return workItems.find((item) => item.id === activeId) || workItems[0];
+    }
+
+    function renderState() {
+      const item = getActiveItem();
+      activeSummary.textContent = item.summary;
+      activeStatus.innerHTML = `<span class="status-dot ${item.awaiting ? "warning" : "info"}"></span>${item.awaiting ? "awaiting user" : "in progress"}`;
+      metricState.textContent = item.id;
+      metricGate.textContent = item.gate === "completion-approval" ? "approval" : item.gate;
+
+      const rows = [
+        ["State ID", item.id],
+        ["Status", item.status],
+        ["Phase", item.phase],
+        ["Gate", item.gate],
+        ["Awaiting user", item.awaiting ? "true" : "false"],
+        ["Sealed", "false"]
+      ];
+
+      stateGrid.innerHTML = rows.map(([label, value]) => `
+        <div class="state-row">
+          <p class="state-label">${label}</p>
+          <p class="state-value">${value}</p>
+        </div>
+      `).join("");
+
+      gateTimeline.innerHTML = item.gates.map(([state, name, desc]) => `
+        <div class="gate-step ${state}">
+          <span class="gate-icon">${state === "done" ? "✓" : state === "current" ? "!" : "•"}</span>
+          <span>
+            <p class="gate-name">${name}</p>
+            <p class="gate-desc">${desc}</p>
+          </span>
+        </div>
+      `).join("");
+    }
+
+    function renderChecklist() {
+      checklist.innerHTML = handoffChecks.map((item, index) => `
+        <button class="check-row ${index < 3 ? "is-done" : ""}" type="button" data-check="${index}">
+          <span class="check-box">✓</span>
+          <span>${item}</span>
+        </button>
+      `).join("");
+    }
+
+    function activateTab(tabId) {
+      document.querySelectorAll(".tab").forEach((tab) => {
+        tab.classList.toggle("is-active", tab.dataset.tab === tabId);
+      });
+      document.querySelectorAll(".tab-pane").forEach((pane) => {
+        pane.classList.toggle("is-active", pane.id === `tab-${tabId}`);
+      });
+    }
+
+    workList.addEventListener("click", (event) => {
+      const button = event.target.closest("[data-work-id]");
+      if (!button) return;
+      activeId = button.dataset.workId;
+      renderWorkItems();
+      renderState();
+    });
+
+    document.querySelectorAll("[data-tab]").forEach((button) => {
+      button.addEventListener("click", () => activateTab(button.dataset.tab));
+    });
+
+    document.querySelectorAll("[data-tab-target]").forEach((button) => {
+      button.addEventListener("click", () => activateTab(button.dataset.tabTarget));
+    });
+
+    document.querySelector("#focusHandoff").addEventListener("click", () => {
+      document.querySelector("#handoffPanel").scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+
+    checklist.addEventListener("click", (event) => {
+      const row = event.target.closest(".check-row");
+      if (!row) return;
+      row.classList.toggle("is-done");
+    });
+
+    document.querySelector("#noteForm").addEventListener("submit", (event) => {
+      event.preventDefault();
+      const textarea = document.querySelector("#gateNote");
+      const value = textarea.value.trim();
+      if (!value) return;
+      const note = document.createElement("div");
+      note.className = "note-item";
+      note.textContent = value;
+      document.querySelector("#noteList").prepend(note);
+      document.querySelector("#noteStatus").innerHTML = '<span class="status-dot warning"></span>unsaved local note';
+      textarea.value = "";
+    });
+
+    renderWorkItems();
+    renderState();
+    renderChecklist();
+  </script>
+</body>
+</html>

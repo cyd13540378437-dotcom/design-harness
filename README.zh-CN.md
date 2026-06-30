@@ -2,7 +2,7 @@
 
 Codex Design Harness 是一套给 Codex 使用的 Human-in-the-loop 设计工程协议：它把重要 UI/UX 工作组织成可恢复、可审计、可由用户批准关闭的 Work Item，并把已确认的视觉结果沉淀为项目级 `VISUAL_DESIGN.md`。
 
-它不是组件库、CLI 或自动化平台。v0.1.0-alpha 仍然是手动、文档型交付：Skill、Steward Agent、模板、视觉参考包、示例和人工评测场景。
+它不是组件库、CLI 或自动化平台。v0.1.1-alpha 是在 v0.1.0-alpha visual-workflow revision 基础上的增量：继续保持手动、文档型交付，并新增 Product Visual Reference Library，让 Agent 能先按终端和任务类型筛选参考，再把结果压缩成用户能判断的业务方向。
 
 ## 它解决的问题
 
@@ -10,12 +10,16 @@ Codex Design Harness 是一套给 Codex 使用的 Human-in-the-loop 设计工程
 
 视觉设计还有一个常见问题：如果只让用户输入“产品人格”“品牌气质”这类抽象词，Agent 容易回到通用 SaaS 页面、白底卡片和蓝紫渐变。新版流程改为让用户确认更具体的材料：Visual Seed、参考图片、配色样张、设计禁区和视觉原型。
 
+Reference Library 增量进一步解决另一个问题：用户不需要知道“某个产品的具体设计优势”。Agent 应先判断这是 Web 工作台、移动 App、响应式 Web、桌面端还是多端任务，再从长期参考资料中筛选依据，并转译成“效率工作台”“引导式助手”“内容探索”“快速记录”等业务语义。
+
 核心约定：
 
 - Thread 是一次 Codex 对话，是临时工作现场。
 - Work Item 是可独立验收的产品或设计任务。
 - `STATE.md` 是 Work Item 的权威状态快照。
 - `WORK_ITEMS.md` 只是索引，冲突时以 `STATE.md` 为准。
+- `reference-library/` 是长期视觉参考资料层。
+- `REFERENCE_SELECTION.md` 是某个 Work Item 本次如何消费参考库的记录。
 - `VISUAL_DESIGN.md` 是项目级视觉基线，不替代任何 Work Item 状态。
 - Gate 是必须等用户决定的阶段边界。
 - `completed + sealed` 的状态只能只读引用，后续工作必须创建 Successor。
@@ -28,6 +32,10 @@ AGENTS.md 项目规则
 design-engineering Skill
         ↓
 design_state_steward Agent
+        ↓
+docs/design/reference-library/
+        ↓
+Surface Resolution + REFERENCE_SELECTION.md
         ↓
 docs/design/work-items/<ID-slug>/STATE.md
         ↓
@@ -54,7 +62,8 @@ Full Mode 的视觉流程是：
 
 ```text
 Visual Seed
-→ Reference Images / Reference Packs
+→ Surface Resolution
+→ Reference Library / Reference Images / Reference Packs
 → Reference Analysis
 → Palette Proposal
 → Palette Confirmation
@@ -79,6 +88,32 @@ awaiting_user: true
 palette-selection
 design-exclusions
 ```
+
+## Reference Library 与 Surface Resolution
+
+如果目标项目存在：
+
+```text
+docs/design/reference-library/
+```
+
+Agent 在视觉方向前必须先判断目标终端：
+
+```text
+web-app / mobile-app / responsive-web / desktop-app / tablet / multi-surface
+```
+
+然后按同终端、同页面类型、同任务类型、相近内容密度和交互复杂度、相近用户成熟度、相邻行业、视觉标签的顺序筛选参考。
+
+Reference Library 是长期资料层；每个 Work Item 的实际参考选择写入：
+
+```text
+docs/design/work-items/<ID-slug>/REFERENCE_SELECTION.md
+```
+
+`STATE.md` 只记录目标终端、Reference Selection 链接、采用原则摘要、用户批准方向和关键排除项。不要在 `reference-library/` 下创建任务专属 `reference-packs/`。
+
+给用户看的方向必须是业务语义和取舍，不是产品名选择题。跨终端参考只能抽象借鉴，不能直接复制布局、导航、手势、密度或视觉比例。
 
 ## 为什么不要求产品人格
 
@@ -114,18 +149,20 @@ skills/design-engineering/assets/visual-reference-packs/
 
 1. 解析 Work Item 归属，并读取已有 `VISUAL_DESIGN.md`。
 2. 理解业务目标、约束和 Visual Seed。
-3. 解析参考图片或参考包。
-4. 在 `visual-direction-approval` 下写入 `palette-selection` 等待状态。
-5. 用户确认配色或输入自定义颜色后，写入用户原始颜色输入、最终配色和选择理由。
-6. 在同一 Gate 下写入 `design-exclusions` 等待状态。
-7. 用户确认设计禁区后，再输出视觉原型。
-8. 在 `prototype-approval` Gate 前写入检查点并等待。
-9. 处理高影响 UX 交互问题，必要时进入 `interaction-decision` Gate。
-10. 按已批准方向生产实现。
-11. 用浏览器或可替代证据完成 QA。
-12. 创建或更新 `VISUAL_DESIGN.md`。
-13. 在 `completion-approval` Gate 展示证据，等待用户明确关闭。
-14. 用户批准后，Steward 才能写入 `status: completed` 与 `sealed: true`。
+3. 执行 Surface Resolution，记录目标终端和证据。
+4. 若存在 Reference Library，筛选参考并写入 Work Item 的 `REFERENCE_SELECTION.md`。
+5. 解析参考图片、参考库条目或参考包，并把结果转译成业务语义方向。
+6. 在 `visual-direction-approval` 下写入 `palette-selection` 等待状态。
+7. 用户确认配色或输入自定义颜色后，写入用户原始颜色输入、最终配色和选择理由。
+8. 在同一 Gate 下写入 `design-exclusions` 等待状态。
+9. 用户确认设计禁区后，再输出视觉原型。
+10. 在 `prototype-approval` Gate 前写入检查点并等待。
+11. 处理高影响 UX 交互问题，必要时进入 `interaction-decision` Gate。
+12. 按已批准方向生产实现。
+13. 按目标终端完成浏览器或可替代证据 QA。
+14. 创建或更新 `VISUAL_DESIGN.md`。
+15. 在 `completion-approval` Gate 展示证据，等待用户明确关闭。
+16. 用户批准后，Steward 才能写入 `status: completed` 与 `sealed: true`。
 
 Lightweight Mode 可跳过完整视觉流程，但仍必须读取已有 `VISUAL_DESIGN.md`。Delegated Mode 可让 Codex 自动处理普通设计细节，但任务封存仍必须由用户明确批准。
 
@@ -155,6 +192,8 @@ v0.1 只提供手动方式，不包含安装器。
    docs/design/reference-images/
    ```
 
+   长期可复用产品参考放在 `docs/design/reference-library/`；某个任务的实际参考选择放在该 Work Item 的 `REFERENCE_SELECTION.md`。
+
 6. 开启新的 Codex 会话，用只读 Prompt 验证：
 
    ```text
@@ -176,9 +215,16 @@ product-repository/
         ├── WORK_ITEMS.md
         ├── VISUAL_DESIGN.md
         ├── reference-images/
+        ├── reference-library/
+        │   ├── product-index.md
+        │   ├── pattern-index.md
+        │   ├── products/
+        │   ├── patterns/
+        │   └── assets/color-cards/
         └── work-items/
             └── DE-001-example/
-                └── STATE.md
+                ├── STATE.md
+                └── REFERENCE_SELECTION.md
 ```
 
 ## 完整示例
@@ -187,7 +233,7 @@ product-repository/
 
 1. “检查项目上下文”返回 `NO_STATE`。
 2. “优化前端样式”创建 `DE-001`，完成 Visual Seed、参考解析、配色确认、设计禁区确认、视觉原型、实现、QA、`VISUAL_DESIGN.md` 更新和用户关闭批准，最终 `completed + sealed`。
-3. “统一内容模块问题长度换行”与 `DE-001` 相关，但因为前任已封存，所以创建 `DE-002` successor，读取并遵守 `VISUAL_DESIGN.md`，停在 `completion-approval`。
+3. “统一内容模块问题长度换行”与 `DE-001` 相关，但因为前任已封存，所以创建 `DE-002` successor，读取并遵守 `VISUAL_DESIGN.md`，用 `REFERENCE_SELECTION.md` 记录本任务参考选择，停在 `completion-approval`。
 
 ## 跨 Thread 恢复
 
@@ -215,11 +261,12 @@ sealed: true
 - 没有并发写锁；写入前需要重新读取索引和状态。
 - 不自动读取全部历史对话。
 - 不自动从互联网抓取或保存第三方参考图。
+- 不在 `reference-library/` 下创建 Work Item 专属 `reference-packs/`。
 - 浏览器验证是推荐流程，不绑定特定工具。
 
 ## v0.1 路线图
 
-本仓库的 v0.1.0-alpha 范围是文档型、可手动复用、可真实试运行的协议闭环。visual-workflow revision 仍属于 v0.1.0-alpha，不是 v0.2。后续版本计划见 [CHANGELOG.md](CHANGELOG.md) 和 [docs/PRD.md](docs/PRD.md) 的路线图。
+本仓库的 v0.1.1-alpha 范围仍是文档型、可手动复用、可真实试运行的协议闭环。Reference Library 是 v0.1.0-alpha visual-workflow revision 之上的增量，不是 v0.2。后续版本计划见 [CHANGELOG.md](CHANGELOG.md) 和 [docs/PRD.md](docs/PRD.md) 的路线图。
 
 ## 官方 Codex 机制参考
 

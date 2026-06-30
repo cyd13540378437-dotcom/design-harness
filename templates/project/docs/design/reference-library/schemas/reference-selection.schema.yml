@@ -1,0 +1,13 @@
+schema_version: 1
+location: docs/design/work-items/<STATE_ID>-<slug>/REFERENCE_SELECTION.md
+required_sections:
+- Work Item
+- Surface Target
+- Task Diagnosis
+- Reference Query
+- Selected References
+- Rejected References
+- Design Principles
+- User-facing Direction Summary
+- STATE.md Summary
+rule: Reference Selection belongs to the Work Item, not to reference-library.

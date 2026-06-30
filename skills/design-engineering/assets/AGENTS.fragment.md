@@ -23,3 +23,25 @@ CREATE / RESUME / SUCCESSOR / NO_STATE / AMBIGUOUS
 - Steward 只管理状态，不实现产品代码，也不替用户批准。
 - 不要求用户填写产品人格、品牌气质矩阵或用户感受目标表单。
 - 不新增 `palette-approval`、`design-exclusion-approval` 或 `anti-homogeneity` Gate。
+
+## Design Reference Library
+
+如果 UI/UX 任务中存在 `docs/design/reference-library/`，提出视觉方向前必须先明确目标终端：
+
+```text
+web-app / mobile-app / responsive-web / desktop-app / tablet / multi-surface
+```
+
+按同终端、同页面类型、同任务类型、相近内容密度和交互复杂度、相近用户成熟度、相邻行业、视觉标签的顺序筛选参考。
+
+参考资源是 Agent 的判断证据，不是用户必须掌握的专业词汇。不要让用户在命名产品之间做选择，除非用户已经这样表达需求；应把参考转译为“效率工作台”“引导式助手”“内容探索”“快速记录”等业务语义和取舍。
+
+每个状态化 Work Item 的实际参考消费结果写入：
+
+```text
+docs/design/work-items/<STATE_ID>-<slug>/REFERENCE_SELECTION.md
+```
+
+`STATE.md` 只记录目标终端、Reference Selection 链接、采用原则摘要、用户批准方向和关键排除项。不要在 `reference-library/` 下创建 Work Item 专属 `reference-packs/` 或其他任务目录。
+
+不要复制第三方品牌资产、图标、插画、截图、专有文案或完整页面布局。跨终端参考只能用于抽象模式，不能直接复制为布局、导航、手势、密度或视觉比例。

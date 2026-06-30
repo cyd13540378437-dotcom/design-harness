@@ -1,10 +1,10 @@
 # 工作流模型
 
-Design Engineering 工作流包含状态解析、视觉流程、实现验证和关闭封存。
+Design Engineering 工作流包含状态解析、Surface Resolution、参考库消费、视觉流程、实现验证和关闭封存。
 
 ## 0. 状态解析
 
-读取项目规则、设计状态索引、相关 `STATE.md` 和已有 `VISUAL_DESIGN.md`，然后显式调用 `design_state_steward`。Steward 必须返回且只能返回一个决定：
+读取项目规则、设计状态索引、相关 `STATE.md`、已有 `VISUAL_DESIGN.md`，并检查 `docs/design/reference-library/` 是否存在，然后显式调用 `design_state_steward`。Steward 必须返回且只能返回一个决定：
 
 ```text
 CREATE / RESUME / SUCCESSOR / NO_STATE / AMBIGUOUS
@@ -12,12 +12,13 @@ CREATE / RESUME / SUCCESSOR / NO_STATE / AMBIGUOUS
 
 如果决定是 `AMBIGUOUS`，停止并请用户选择，不写入状态。
 
-## 1. 业务理解与 Visual Seed
+## 1. 业务理解、Surface Resolution 与 Visual Seed
 
 澄清：
 
 - 目标用户
 - 主要用户任务
+- 目标终端
 - 成功标准
 - 业务约束
 - 技术约束
@@ -26,7 +27,29 @@ CREATE / RESUME / SUCCESSOR / NO_STATE / AMBIGUOUS
 
 Visual Seed 可以为空，不应强制归纳为产品人格。
 
-## 2. 参考图片与解析
+Surface Resolution 必须发生在参考检索前：
+
+```yaml
+primary_surface: web-app | mobile-app | responsive-web | desktop-app | tablet | multi-surface
+secondary_surfaces: []
+explicitly_out_of_scope: []
+evidence: []
+open_questions: []
+```
+
+如果终端可从用户请求、项目结构或技术栈判断，记录假设并继续。只有终端不明确且会显著影响参考选择、原型范围或实现方式时，才询问用户。
+
+## 2. Reference Library、参考图片与解析
+
+若项目存在 `docs/design/reference-library/`，按同终端、同页面类型、同任务类型、相近内容密度和交互复杂度、相近用户成熟度、相邻行业、视觉标签的顺序检索。
+
+本任务实际采用和排除的参考写入：
+
+```text
+docs/design/work-items/<STATE_ID>-<slug>/REFERENCE_SELECTION.md
+```
+
+`STATE.md` 只记录目标终端、Reference Selection 链接和摘要。跨终端参考只能用于抽象模式，不得直接落地布局、导航、密度、手势或视觉比例。
 
 优先使用用户上传图片和项目 `docs/design/reference-images/`。若没有，读取已有 `VISUAL_DESIGN.md` 或使用内置 `visual-reference-packs/`。
 
@@ -98,11 +121,11 @@ awaiting_user: true
 
 ## 7. 生产实现
 
-按照已批准决定实现。复用本地组件和令牌。不要创建平行设计系统，也不要静默偏离已批准方向。
+按照已批准决定、目标终端和 Reference Selection 实现。复用本地组件和令牌。不要创建平行设计系统，也不要静默偏离已批准方向或直接复制第三方资产。
 
 ## 8. 审查与验证
 
-优先使用真实浏览器在桌面和移动尺寸下检查。如果无法完成浏览器验证，将限制写入 `STATE.md`，不要声称视觉 QA 已通过。
+优先使用真实浏览器按目标终端检查，并对照 `REFERENCE_SELECTION.md` 的设计原则。如果无法完成浏览器验证，将限制写入 `STATE.md`，不要声称视觉 QA 已通过。
 
 ## 9. 视觉基线更新
 

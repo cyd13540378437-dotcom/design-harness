@@ -48,6 +48,21 @@ completed_at: ""
 - 改变问题内容的数据结构或编辑语义。
 - 修改项目级视觉基线；本任务无需更新 `VISUAL_DESIGN.md`。
 
+## 设计对象与终端
+
+- Primary surface: `responsive-web`。
+- Secondary surfaces: 无。
+- Explicitly out of scope: 原生移动 App 重设计、完整 dashboard 重设计。
+- Evidence: 本任务处理现有 idea-storm-lab Web 界面的桌面列表/详情布局与 390px 移动响应式宽度。
+- Open questions: 无。
+
+## 参考资源摘要
+
+- Reference Selection: [REFERENCE_SELECTION.md](REFERENCE_SELECTION.md)。
+- 采用的参考原则：沿用 DE-001 `VISUAL_DESIGN.md`；使用 editorial content system 的长文本可读性原则；借鉴 dense productivity workspace 的列表扫描稳定性。
+- 明确不采用：不采用原生移动底部抽屉、营销 Hero、完整内容发现卡片流或企业表格密度。
+- 版权边界：仅使用内部视觉基线和抽象模式，不复制第三方品牌资产、截图、文案或完整页面布局。
+
 ## 验收标准
 
 - 问题文本在卡片和详情区域内自然换行，不横向溢出。
@@ -110,6 +125,7 @@ completed_at: ""
 ## 产物与链接
 
 - 前任状态：`../DE-001-optimize-frontend-style/STATE.md`
+- Reference Selection：[REFERENCE_SELECTION.md](REFERENCE_SELECTION.md)
 - 视觉基线：[../../VISUAL_DESIGN.md](../../VISUAL_DESIGN.md)
 - 实现入口：`/modules`
 - 长文本测试数据：`fixtures/long-question-modules.json`

@@ -1,6 +1,6 @@
 # Visual Workflow
 
-This reference defines the visual workflow used by `design-engineering` in v0.1.0-alpha / visual-workflow revision.
+This reference defines the visual workflow used by `design-engineering` in v0.1.1-alpha / reference-library increment on top of the v0.1.0-alpha visual-workflow revision.
 
 ## Intent
 
@@ -10,7 +10,8 @@ The agent should ask for or provide concrete material:
 
 ```text
 Visual Seed
-→ Reference Images / Reference Packs
+→ Surface Resolution
+→ Reference Library / Reference Images / Reference Packs
 → Reference Analysis
 → Palette Proposal
 → Palette Confirmation
@@ -29,6 +30,42 @@ Rules:
 - Do not force it into product-personality labels.
 - Treat it as a starting hint, not a complete strategy.
 
+## Surface Resolution
+
+Before searching references, resolve the target surface:
+
+```yaml
+primary_surface: web-app | mobile-app | responsive-web | desktop-app | tablet | multi-surface
+secondary_surfaces: []
+explicitly_out_of_scope: []
+evidence: []
+open_questions: []
+```
+
+If the surface is clear from the request, repository structure, technology stack, or existing state, record the assumption and continue. Ask the user only when the ambiguity would materially change reference selection, prototype scope, or implementation.
+
+## Reference Library
+
+If `docs/design/reference-library/` exists, use it before presenting visual directions. Filter by:
+
+1. Same surface.
+2. Same page type.
+3. Same task type.
+4. Similar content density and interaction complexity.
+5. Similar user maturity.
+6. Adjacent industry.
+7. Visual tags.
+
+Save task-level reference consumption in:
+
+```text
+docs/design/work-items/<STATE_ID>-<slug>/REFERENCE_SELECTION.md
+```
+
+References are evidence for the agent, not vocabulary the user is expected to know. Present directions as product-language trade-offs such as "efficiency workspace", "guided assistant", "content discovery", or "quick logging"; product names may appear as supporting rationale, not as required user choices.
+
+`STATE.md` records only the surface target, Reference Selection link, adopted principles, approved direction, and important exclusions. Cross-surface references may inform abstract patterns, but must not be directly copied into layout, navigation, gesture, density, or visual ratio decisions.
+
 ## Reference Images
 
 Use sources in this order:
@@ -36,8 +73,9 @@ Use sources in this order:
 1. Images uploaded in the conversation.
 2. Images placed in `docs/design/reference-images/`.
 3. References already recorded in `docs/design/VISUAL_DESIGN.md`.
-4. Built-in packs under `assets/visual-reference-packs/`.
-5. Text-only candidates inferred from Visual Seed.
+4. Product or pattern references from `docs/design/reference-library/`, when present.
+5. Built-in packs under `assets/visual-reference-packs/`.
+6. Text-only candidates inferred from Visual Seed.
 
 Analyze only observable visual features: layout, density, color behavior, hierarchy, component shape, borders, typography, motion cues, and responsive implications.
 

@@ -1,6 +1,6 @@
 # idea-storm-lab 示例
 
-本示例展示 Codex Design Harness v0.1.0-alpha / visual-workflow revision 要求的三个请求序列。
+本示例展示 Codex Design Harness v0.1.1-alpha / reference-library increment 要求的三个请求序列，并保留 v0.1.0-alpha visual-workflow 的 sealed 示例语义。
 
 ## 请求 1：检查项目上下文
 
@@ -76,4 +76,4 @@ user_question: ""
 recommended_action: "创建 DE-002，记录 predecessor: DE-001，并读取 VISUAL_DESIGN.md。"
 ```
 
-`DE-002` 保持 active，并停在 `completion-approval`，用于展示“实现可完成，但最终关闭仍属于用户”的状态。它读取并遵守 `VISUAL_DESIGN.md`，只处理长文本换行，不重新激活 sealed 的 `DE-001`。
+`DE-002` 保持 active，并停在 `completion-approval`，用于展示“实现可完成，但最终关闭仍属于用户”的状态。它读取并遵守 `VISUAL_DESIGN.md`，创建 Work Item 级 `REFERENCE_SELECTION.md` 记录 responsive-web 目标终端和参考原则，只处理长文本换行，不重新激活 sealed 的 `DE-001`。

@@ -1,0 +1,645 @@
+schema_version: 1
+updated_at: '2026-06-30'
+patterns:
+- id: PAT-001
+  slug: content-card-discovery
+  name_zh: 内容卡片式发现
+  name_en: Content card discovery
+  suitable_surfaces:
+  - mobile-app
+  - responsive-web
+  - web-app
+  risky_surfaces:
+  - desktop-app
+  not_suitable_for:
+  - 强任务推进型工作台
+  - 需要大量批量操作的后台
+  reference_products:
+  - Airbnb
+  - Pinterest
+  - Spotify
+  - Medium
+  applies_when: 用户需要浏览、比较、收藏或从大量内容/商品/案例中发现目标。
+  borrow:
+  - 卡片承载标题、缩略图、关键指标和行动入口
+  - 列表中只保留最关键的 2–4 个判断字段
+  - 详情页再展开完整信息
+  avoid:
+  - 不要把移动端瀑布流直接搬到 Web 工作台
+  - 不要让装饰性图片压过任务行动
+  qa_checks:
+  - 无图、长标题、价格/状态缺失时卡片仍可读
+  - 桌面端卡片密度与行宽合理
+  - 移动端点击热区清晰
+- id: PAT-002
+  slug: map-canvas-bottom-sheet
+  name_zh: 地图画布 + 底部抽屉
+  name_en: Map canvas with bottom sheet
+  suitable_surfaces:
+  - mobile-app
+  - responsive-web
+  risky_surfaces:
+  - web-app
+  - desktop-app
+  not_suitable_for:
+  - 无空间关系的列表型产品
+  - 需要复杂表格对比的后台
+  reference_products:
+  - Uber
+  - Airbnb
+  - Strava
+  applies_when: 空间位置、距离、路线或现场状态是用户决策语境。
+  borrow:
+  - 地图作为背景语境
+  - 底部抽屉承载当前选择和下一步动作
+  - 实时状态用轻量标签和进度反馈表达
+  avoid:
+  - Web 端不要机械使用移动端 bottom sheet；更适合侧栏或分栏
+  - 不要让地图遮挡关键决策信息
+  qa_checks:
+  - 位置权限失败有替代路径
+  - 抽屉展开/收起不丢失上下文
+  - 小屏幕地图与 CTA 不互相遮挡
+- id: PAT-003
+  slug: data-card-dashboard
+  name_zh: 数据卡片化 Dashboard
+  name_en: Data-card dashboard
+  suitable_surfaces:
+  - web-app
+  - responsive-web
+  - mobile-app
+  risky_surfaces: []
+  not_suitable_for:
+  - 纯内容阅读页
+  - 一次性表单提交页
+  reference_products:
+  - Revolut
+  - Shopify
+  - Strava
+  - Google Analytics
+  - Plausible
+  applies_when: 用户需要快速知道当前状态、异常、趋势和下一步。
+  borrow:
+  - 首屏回答“现在怎样、哪里异常、下一步做什么”
+  - 指标卡和趋势图按决策优先级排序
+  - 异常状态比完整数据更优先
+  avoid:
+  - 不要把所有表格字段都塞进首屏
+  - 不要只追求漂亮图表而忽略可行动信息
+  qa_checks:
+  - 空数据、极端数字、异常值和权限不足都能解释
+  - 桌面和移动端指标排序一致
+  - 图表有文字辅助说明
+- id: PAT-004
+  slug: gamified-path
+  name_zh: 游戏化路径
+  name_en: Gamified progress path
+  suitable_surfaces:
+  - mobile-app
+  - responsive-web
+  risky_surfaces:
+  - enterprise-web-app
+  not_suitable_for:
+  - 严肃金融审批
+  - 专业后台批量操作
+  reference_products:
+  - Duolingo
+  - Nike Run Club
+  - Strava
+  applies_when: 产品需要持续召回、进度感、打卡或训练动力。
+  borrow:
+  - 路径、连胜、徽章、即时反馈
+  - 正反馈语言明确但不过度夸张
+  - 下一步任务永远清楚
+  avoid:
+  - 不要把奖励做得廉价或喧宾夺主
+  - 不适合所有 B 端效率场景
+  qa_checks:
+  - 失败/中断时不羞辱用户
+  - 奖励不会挡住主任务
+  - 新用户能理解路径含义
+- id: PAT-005
+  slug: low-stimulation-health
+  name_zh: 低刺激健康视觉
+  name_en: Low-stimulation health UI
+  suitable_surfaces:
+  - mobile-app
+  - responsive-web
+  risky_surfaces:
+  - data-heavy-web-app
+  not_suitable_for:
+  - 高频交易
+  - 强竞争排行榜
+  reference_products:
+  - Headspace
+  - Calm
+  - MyFitnessPal
+  applies_when: 用户处于压力、健康、睡眠、心理或陪伴型场景。
+  borrow:
+  - 低饱和配色、宽松间距、柔和插画
+  - 文案像陪伴而不是命令
+  - 播放/训练页减少不必要信息
+  avoid:
+  - 不要使用过强对比和焦虑型数字表达
+  - 不要把健康反馈做成竞争惩罚
+  qa_checks:
+  - 深浅主题可读性
+  - 危险/异常信息仍足够醒目
+  - 空状态不制造挫败感
+- id: PAT-006
+  slug: dark-content-immersion
+  name_zh: 深色内容沉浸
+  name_en: Dark content immersion
+  suitable_surfaces:
+  - mobile-app
+  - desktop-app
+  - web-app
+  - tv-app
+  risky_surfaces:
+  - text-heavy-reading
+  not_suitable_for:
+  - 复杂表单
+  - 长时间办公后台
+  reference_products:
+  - Spotify
+  - Netflix
+  - TikTok
+  applies_when: 内容资产本身具有强视觉/音视频吸引力，界面应让位给内容。
+  borrow:
+  - 深色背景突出封面/视频/海报
+  - 播放控制和导航 chrome 尽量低噪音
+  - 推荐内容形成节奏
+  avoid:
+  - 不要让暗色导致长文本可读性下降
+  - 不要在工具型场景盲目追求沉浸
+  qa_checks:
+  - 低亮度环境可读
+  - 焦点状态清晰
+  - 海报缺失时有占位方案
+- id: PAT-007
+  slug: dense-productivity-workspace
+  name_zh: 专业工具高密度工作台
+  name_en: Dense productivity workspace
+  suitable_surfaces:
+  - web-app
+  - desktop-app
+  - tablet
+  risky_surfaces:
+  - mobile-app
+  not_suitable_for:
+  - 首次 onboarding
+  - 内容情绪化浏览
+  reference_products:
+  - Linear
+  - Notion
+  - Slack
+  - GitHub
+  - Jira
+  applies_when: 熟练用户需要快速扫描任务、状态、消息、对象关系和下一步。
+  borrow:
+  - 侧边导航、列表/表格、状态标签、快捷入口
+  - 高密度但用分组和层级保持可扫读
+  - 主操作与状态变化靠近对象
+  avoid:
+  - 不要让新用户一进来就面对无解释的高密度界面
+  - 移动端只能借鉴对象层级，不能照搬布局
+  qa_checks:
+  - 1440 宽度首屏可完成主要扫描
+  - 390 宽度有合理降级
+  - 长名称、空列表、权限不足可处理
+- id: PAT-008
+  slug: template-first-creation
+  name_zh: 模板先行降低门槛
+  name_en: Template-first creation
+  suitable_surfaces:
+  - web-app
+  - mobile-app
+  - responsive-web
+  risky_surfaces: []
+  not_suitable_for:
+  - 用户目标极其明确的快速录入
+  reference_products:
+  - Canva
+  - Notion
+  - Airtable
+  - Miro
+  - Framer
+  - Mailchimp
+  applies_when: 用户面对空白画布、复杂配置或创作任务时容易不知道从何开始。
+  borrow:
+  - 模板缩略图让用户先看到结果
+  - 按目标/行业/复杂度分类
+  - 允许从模板开始后再自由编辑
+  avoid:
+  - 不要用模板替代真正的产品结构
+  - 不要让模板选择成为必须步骤
+  qa_checks:
+  - 无模板/搜索无结果时有替代创建路径
+  - 模板预览和最终结果一致
+  - 模板分类不会过度营销化
+- id: PAT-009
+  slug: cited-ai-answer
+  name_zh: AI 答案与来源可信化
+  name_en: Cited AI answer
+  suitable_surfaces:
+  - web-app
+  - responsive-web
+  - mobile-app
+  - desktop-app
+  risky_surfaces: []
+  not_suitable_for:
+  - 无需解释的简单自动化按钮
+  reference_products:
+  - Perplexity
+  - ChatGPT
+  applies_when: AI 输出会影响用户判断，用户需要知道答案依据和下一步怎么做。
+  borrow:
+  - 答案、来源、追问、操作建议分层
+  - 引用和不确定性靠近相关结论
+  - 主输入框保持低学习成本
+  avoid:
+  - 不要把来源藏到二级页面
+  - 不要让 AI 建议看起来像已被验证的事实
+  qa_checks:
+  - 无来源时明确说明
+  - 长答案有摘要和结构
+  - 移动端来源卡不会挤压主答案
+- id: PAT-010
+  slug: natural-language-capture
+  name_zh: 自然语言快速输入
+  name_en: Natural-language capture
+  suitable_surfaces:
+  - mobile-app
+  - web-app
+  - desktop-app
+  risky_surfaces: []
+  not_suitable_for:
+  - 必须严格字段校验的高风险提交
+  reference_products:
+  - Todoist
+  - ChatGPT
+  - Superhuman
+  applies_when: 用户希望先表达意图，再由系统结构化成任务、文档、查询或动作。
+  borrow:
+  - 输入框常驻或足够容易触达
+  - 提交后自动结构化并允许轻量编辑
+  - 建议项围绕用户意图生成
+  avoid:
+  - 不要把自然语言结果直接提交到不可逆系统
+  - 不要隐藏字段解析结果
+  qa_checks:
+  - 解析错误可纠正
+  - 键盘和移动输入友好
+  - 空输入和长输入有合理反馈
+- id: PAT-011
+  slug: community-achievement-feedback
+  name_zh: 社区成就反馈
+  name_en: Community achievement feedback
+  suitable_surfaces:
+  - mobile-app
+  - responsive-web
+  risky_surfaces:
+  - enterprise-web-app
+  not_suitable_for:
+  - 隐私敏感或不适合公开比较的场景
+  reference_products:
+  - Strava
+  - Instagram
+  - TikTok
+  - Nike Run Club
+  applies_when: 用户愿意分享“我做到了”或“我发现了”，社区反馈能强化动机。
+  borrow:
+  - 成就卡、可分享截图、评论/点赞围绕核心内容
+  - 社区反馈与个人进度结合
+  - 默认保护隐私
+  avoid:
+  - 不要把私人健康/财务数据变成默认公开
+  - 不要让竞争压过自我成长
+  qa_checks:
+  - 分享前可预览
+  - 敏感信息默认隐藏
+  - 无社交反馈时也有个人价值
+- id: PAT-012
+  slug: transparent-decision
+  name_zh: 价格/服务透明决策
+  name_en: Transparent commerce/service decision
+  suitable_surfaces:
+  - mobile-app
+  - web-app
+  - responsive-web
+  risky_surfaces: []
+  not_suitable_for:
+  - 纯内容消费
+  reference_products:
+  - Wise
+  - Uber Eats
+  - Apple Store
+  - Stripe Dashboard
+  applies_when: 用户需要在价格、费率、时效、限制、配置或风险之间做决定。
+  borrow:
+  - 把价格、费用、时效、限制和 CTA 放在同一决策面板
+  - 关键变化显性化
+  - 步骤条降低不确定性
+  avoid:
+  - 不要把费用藏到确认后
+  - 不要用视觉装饰掩盖限制
+  qa_checks:
+  - 费用为 0、异常、优惠、失败时表达清楚
+  - CTA 前能看到完整影响
+  - 移动端不折叠关键费用
+- id: PAT-013
+  slug: web-saas-dashboard
+  name_zh: Web SaaS 工作台首页
+  name_en: Web SaaS dashboard home
+  suitable_surfaces:
+  - web-app
+  - desktop-app
+  - responsive-web
+  risky_surfaces:
+  - mobile-app
+  not_suitable_for:
+  - 纯浏览内容流
+  - 一次性营销落地页
+  reference_products:
+  - Shopify
+  - Vercel
+  - Airtable
+  - HubSpot CRM
+  - Supabase
+  applies_when: 用户进入产品后需要知道业务状态、待办、最近对象和下一步。
+  borrow:
+  - 首屏分为状态、行动、最近对象和风险提醒
+  - 二级导航承担复杂模块
+  - 移动端响应式保留主行动
+  avoid:
+  - 不要只做漂亮欢迎页
+  - 不要把所有模块入口平均铺开
+  qa_checks:
+  - 桌面首屏能看见主行动和关键状态
+  - 移动端信息顺序合理
+  - 空账户也能激活
+- id: PAT-014
+  slug: data-table-filtering-and-bulk-actions
+  name_zh: 数据表格筛选与批量操作
+  name_en: Data table filtering and bulk actions
+  suitable_surfaces:
+  - web-app
+  - desktop-app
+  risky_surfaces:
+  - mobile-app
+  not_suitable_for:
+  - 图片发现流
+  - 沉浸式视频
+  reference_products:
+  - Stripe Dashboard
+  - Airtable
+  - Jira
+  - GitHub
+  - Google Analytics
+  applies_when: 用户需要从大量对象中筛选、排序、批量处理或追踪状态。
+  borrow:
+  - 筛选器、列、状态、批量操作和详情抽屉协作
+  - 默认视图回答最常见问题
+  - 危险批量操作需二次确认
+  avoid:
+  - 不要在移动端硬塞完整表格
+  - 不要把筛选结果和原始数据混淆
+  qa_checks:
+  - 长字段、空列、大量选中、无结果可处理
+  - 键盘与焦点状态可用
+  - 批量操作后反馈明确
+- id: PAT-015
+  slug: editor-canvas-inspector
+  name_zh: 编辑器画布 + 属性面板
+  name_en: Editor canvas and inspector
+  suitable_surfaces:
+  - web-app
+  - desktop-app
+  - tablet
+  risky_surfaces:
+  - mobile-app
+  not_suitable_for:
+  - 简单内容发布表单
+  reference_products:
+  - Figma
+  - Canva
+  - Webflow
+  - Framer
+  - Retool
+  - Miro
+  applies_when: 产品需要用户在可视化画布上创建、排列、配置或预览复杂对象。
+  borrow:
+  - 画布居中，工具/图层/属性面板分区
+  - 对象选中后属性面板随上下文变化
+  - 发布/导出入口保持明确
+  avoid:
+  - 不要让面板抢占画布核心空间
+  - 移动端只能提供轻量编辑或预览
+  qa_checks:
+  - 选中/未选中状态清楚
+  - 小屏幕有降级策略
+  - 撤销、保存、发布反馈明确
+- id: PAT-016
+  slug: onboarding-progressive-disclosure
+  name_zh: 渐进式新手引导
+  name_en: Progressive onboarding
+  suitable_surfaces:
+  - web-app
+  - mobile-app
+  - responsive-web
+  risky_surfaces: []
+  not_suitable_for:
+  - 用户已经非常熟悉的高频内部工具
+  reference_products:
+  - Asana
+  - Notion
+  - Canva
+  - Airtable
+  - Duolingo
+  applies_when: 新用户需要理解价值、完成首个结果，而不是先学习完整系统。
+  borrow:
+  - 先让用户得到小结果，再逐步开放复杂能力
+  - 用示例数据和模板降低空白感
+  - 引导可以跳过和恢复
+  avoid:
+  - 不要把引导做成强制教程
+  - 不要提前暴露所有设置
+  qa_checks:
+  - 跳过后仍能找到下一步
+  - 回访用户不被反复打扰
+  - 无数据状态可激活
+- id: PAT-017
+  slug: settings-permissions-and-billing
+  name_zh: 设置、权限与计费中心
+  name_en: Settings permissions and billing
+  suitable_surfaces:
+  - web-app
+  - desktop-app
+  - responsive-web
+  risky_surfaces:
+  - mobile-app
+  not_suitable_for:
+  - 娱乐内容流
+  reference_products:
+  - Stripe Dashboard
+  - Vercel
+  - Supabase
+  - Dropbox
+  - HubSpot CRM
+  applies_when: 产品涉及团队、权限、额度、账单、集成和不可逆配置。
+  borrow:
+  - 设置按风险和对象分组
+  - 权限/账单变化前解释影响
+  - 危险操作隔离并强确认
+  avoid:
+  - 不要把设置入口藏得过深
+  - 不要把高风险设置做成普通表单
+  qa_checks:
+  - 权限不足、账单失败、删除/转移有明确反馈
+  - 移动端不隐藏关键信息
+  - 审计/记录入口可追踪
+- id: PAT-018
+  slug: pricing-plan-comparison
+  name_zh: 定价与套餐比较
+  name_en: Pricing plan comparison
+  suitable_surfaces:
+  - responsive-web
+  - web-app
+  risky_surfaces:
+  - mobile-app
+  not_suitable_for:
+  - 免费内部工具
+  reference_products:
+  - Mailchimp
+  - Airtable
+  - Stripe
+  - Canva
+  - Notion
+  applies_when: 用户需要选择套餐、理解限制、升级或取消。
+  borrow:
+  - 按用户目标组织套餐差异
+  - 价格、限制、权益和 CTA 同屏
+  - 解释 trial、席位、用量和取消规则
+  avoid:
+  - 不要隐藏关键限制
+  - 不要用对比表制造误导性默认选择
+  qa_checks:
+  - 移动端套餐表可比较
+  - 价格地区/周期变化可解释
+  - 升级/降级影响明确
+- id: PAT-019
+  slug: ai-copilot-side-panel
+  name_zh: AI Copilot 侧栏/辅助面板
+  name_en: AI copilot side panel
+  suitable_surfaces:
+  - web-app
+  - desktop-app
+  risky_surfaces:
+  - mobile-app
+  not_suitable_for:
+  - 无上下文的普通聊天
+  reference_products:
+  - Intercom
+  - Framer
+  - Airtable
+  - GitHub
+  - Figma
+  applies_when: AI 需要读取当前对象上下文，给出建议、草稿、分析或自动化动作。
+  borrow:
+  - AI 面板靠近当前对象但不遮挡主任务
+  - 建议可以接受、编辑、撤销
+  - 显示使用了哪些上下文
+  avoid:
+  - 不要让 AI 面板替代核心工作流
+  - 不要默认执行高风险动作
+  qa_checks:
+  - 来源上下文清楚
+  - 接受建议后可撤销
+  - 移动端有抽屉/全屏降级
+- id: PAT-020
+  slug: collaboration-comments-mentions
+  name_zh: 协作评论与 @ 提及
+  name_en: Collaboration comments and mentions
+  suitable_surfaces:
+  - web-app
+  - desktop-app
+  - mobile-app
+  risky_surfaces: []
+  not_suitable_for:
+  - 完全个人单机工具
+  reference_products:
+  - Figma
+  - Slack
+  - GitHub
+  - Loom
+  - Dropbox
+  - Intercom
+  applies_when: 多人需要围绕同一个对象、页面、视频、文件或任务讨论并形成行动。
+  borrow:
+  - 评论锚定到具体对象
+  - '@ 提及和通知形成闭环'
+  - 已解决/未解决状态降低噪音
+  avoid:
+  - 不要把评论流和系统日志混在一起
+  - 不要过度打扰非相关成员
+  qa_checks:
+  - 通知可追踪
+  - 权限变化时评论可见性正确
+  - 长线程可折叠
+- id: PAT-021
+  slug: empty-state-activation
+  name_zh: 空状态激活
+  name_en: Empty-state activation
+  suitable_surfaces:
+  - web-app
+  - mobile-app
+  - responsive-web
+  risky_surfaces: []
+  not_suitable_for: []
+  reference_products:
+  - Notion
+  - Linear
+  - Loom
+  - Canva
+  - Airtable
+  applies_when: 新账号、无数据、无权限或筛选无结果时，界面不能只显示空白。
+  borrow:
+  - 解释为什么为空
+  - 给出一个最小下一步
+  - 必要时提供模板/示例数据
+  avoid:
+  - 不要用大段营销文案代替行动
+  - 不要让空状态变成死路
+  qa_checks:
+  - 无数据、无权限、无结果三类空状态区分
+  - CTA 可用
+  - 移动端文案不拥挤
+- id: PAT-022
+  slug: responsive-navigation-reflow
+  name_zh: 响应式导航重排
+  name_en: Responsive navigation reflow
+  suitable_surfaces:
+  - responsive-web
+  - web-app
+  risky_surfaces:
+  - mobile-app
+  not_suitable_for:
+  - 单一终端原生 App
+  reference_products:
+  - Medium
+  - Shopify
+  - GitHub
+  - Notion
+  - Airbnb
+  applies_when: 同一 Web 产品需要同时覆盖桌面和移动 Web，但不是原生 App。
+  borrow:
+  - 桌面侧栏/顶部导航在移动端重排为抽屉或底部辅助入口
+  - 主行动保留在首屏
+  - 次级信息延后
+  avoid:
+  - 不要把 native app 的 tab bar 当作 mobile web 的默认答案
+  - 不要牺牲桌面效率来迁就移动端
+  qa_checks:
+  - 1440、768、390 三档可用
+  - 导航层级不丢失
+  - 移动端主 CTA 不被菜单遮挡

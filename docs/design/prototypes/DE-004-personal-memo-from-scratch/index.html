@@ -1,0 +1,748 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>个人备忘录 - 墨白速记原型</title>
+  <style>
+    :root {
+      --bg: #f7f7f4;
+      --surface: #ffffff;
+      --surface-soft: #fbfbf8;
+      --ink: #20211f;
+      --text: #30322e;
+      --muted: #62665f;
+      --faint: #888d84;
+      --border: #e1e3dc;
+      --border-strong: #cdd2c7;
+      --primary: #2d5a3e;
+      --primary-pressed: #244a33;
+      --tag: #e3ecdd;
+      --success: #2f7d4e;
+      --warning: #b26a2c;
+      --danger: #9f3d2f;
+      --shadow: 0 18px 48px rgba(32, 33, 31, 0.12);
+      --radius-sm: 8px;
+      --radius-xs: 6px;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background: var(--bg);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      min-height: 100%;
+      background: var(--bg);
+    }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      display: grid;
+      place-items: center;
+      padding: 22px;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.72), rgba(247, 247, 244, 0)),
+        var(--bg);
+      letter-spacing: 0;
+    }
+
+    button,
+    textarea,
+    input {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .phone {
+      width: min(390px, 100%);
+      min-height: 844px;
+      max-height: 844px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--bg);
+      box-shadow: var(--shadow);
+    }
+
+    .app {
+      flex: 1;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 18px 18px 10px;
+    }
+
+    .brand {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      min-width: 0;
+    }
+
+    .brand h1 {
+      margin: 0;
+      color: var(--ink);
+      font-size: 26px;
+      line-height: 1.05;
+      font-weight: 760;
+      letter-spacing: 0;
+    }
+
+    .brand span {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.35;
+    }
+
+    .icon-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex: 0 0 auto;
+    }
+
+    .icon-button {
+      width: 40px;
+      height: 40px;
+      display: inline-grid;
+      place-items: center;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      color: var(--ink);
+      background: var(--surface);
+    }
+
+    .icon-button:hover {
+      border-color: var(--border-strong);
+      background: var(--surface-soft);
+    }
+
+    .icon {
+      width: 18px;
+      height: 18px;
+      display: block;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .content {
+      flex: 1;
+      min-height: 0;
+      overflow-y: auto;
+      padding: 0 14px 14px;
+      scrollbar-width: thin;
+      scrollbar-color: var(--border-strong) transparent;
+    }
+
+    .composer {
+      margin: 4px 0 14px;
+      padding: 14px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      background: var(--surface);
+    }
+
+    .composer-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 10px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .status {
+      min-height: 24px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      color: var(--success);
+      background: #eef6ef;
+      white-space: nowrap;
+    }
+
+    .status.failed {
+      color: var(--danger);
+      background: #f8ece9;
+    }
+
+    .textarea-wrap {
+      position: relative;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 112px;
+      resize: none;
+      padding: 0;
+      border: 0;
+      outline: 0;
+      color: var(--ink);
+      background: transparent;
+      font-size: 20px;
+      line-height: 1.42;
+    }
+
+    textarea::placeholder {
+      color: #9a9f95;
+    }
+
+    .composer-actions {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+    }
+
+    .chips {
+      min-width: 0;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .chips::-webkit-scrollbar {
+      display: none;
+    }
+
+    .chip {
+      min-height: 30px;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 5px 9px;
+      border: 1px solid transparent;
+      border-radius: 999px;
+      color: var(--primary);
+      background: var(--tag);
+      font-size: 13px;
+      white-space: nowrap;
+    }
+
+    .chip.secondary {
+      color: var(--muted);
+      background: transparent;
+      border-color: var(--border);
+    }
+
+    .primary-button {
+      min-width: 84px;
+      min-height: 40px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border: 0;
+      border-radius: var(--radius-sm);
+      color: #ffffff;
+      background: var(--primary);
+      font-weight: 680;
+      box-shadow: 0 10px 24px rgba(45, 90, 62, 0.2);
+    }
+
+    .primary-button:hover {
+      background: var(--primary-pressed);
+    }
+
+    .section-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin: 2px 2px 10px;
+    }
+
+    .section-head h2 {
+      margin: 0;
+      color: var(--ink);
+      font-size: 16px;
+      line-height: 1.2;
+      font-weight: 730;
+    }
+
+    .section-head span {
+      color: var(--muted);
+      font-size: 13px;
+      white-space: nowrap;
+    }
+
+    .note-list {
+      display: grid;
+      gap: 8px;
+    }
+
+    .note-card {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 12px;
+      padding: 12px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      background: var(--surface);
+    }
+
+    .note-card.pinned {
+      border-color: #bed0b1;
+      background: #fbfdf8;
+    }
+
+    .note-copy {
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .note-title {
+      margin: 0;
+      color: var(--ink);
+      font-size: 15px;
+      line-height: 1.45;
+      font-weight: 700;
+      overflow-wrap: anywhere;
+    }
+
+    .note-body {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.45;
+      overflow-wrap: anywhere;
+    }
+
+    .note-meta {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 6px;
+      color: var(--faint);
+      font-size: 12px;
+    }
+
+    .mini-tag {
+      min-height: 22px;
+      display: inline-flex;
+      align-items: center;
+      padding: 3px 7px;
+      border-radius: 999px;
+      color: var(--primary);
+      background: var(--tag);
+      font-size: 12px;
+    }
+
+    .note-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .small-icon {
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xs);
+      color: var(--muted);
+      background: var(--surface-soft);
+    }
+
+    .small-icon:hover {
+      color: var(--ink);
+      border-color: var(--border-strong);
+    }
+
+    .state-stack {
+      display: grid;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .notice,
+    .empty-state,
+    .toast {
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      background: var(--surface);
+    }
+
+    .notice {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 11px 12px;
+      color: var(--warning);
+      background: #fff8ef;
+      border-color: #efd3b5;
+      font-size: 13px;
+      line-height: 1.42;
+    }
+
+    .empty-state {
+      display: grid;
+      grid-template-columns: 42px 1fr;
+      gap: 12px;
+      align-items: center;
+      padding: 12px;
+      color: var(--muted);
+    }
+
+    .empty-icon {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: var(--radius-sm);
+      color: var(--primary);
+      background: var(--tag);
+    }
+
+    .empty-state strong {
+      display: block;
+      margin-bottom: 3px;
+      color: var(--ink);
+      font-size: 14px;
+    }
+
+    .empty-state p {
+      margin: 0;
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .toast {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 11px 12px;
+      background: var(--ink);
+      color: #ffffff;
+      font-size: 13px;
+    }
+
+    .toast button {
+      min-height: 30px;
+      padding: 0 9px;
+      border: 1px solid rgba(255, 255, 255, 0.32);
+      border-radius: var(--radius-xs);
+      color: #ffffff;
+      background: transparent;
+      font-weight: 650;
+    }
+
+    .bottom-nav {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      padding: 9px 14px 14px;
+      border-top: 1px solid var(--border);
+      background: rgba(247, 247, 244, 0.94);
+    }
+
+    .nav-button {
+      min-width: 0;
+      min-height: 42px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      border: 1px solid transparent;
+      border-radius: var(--radius-sm);
+      color: var(--muted);
+      background: transparent;
+      font-size: 13px;
+      font-weight: 650;
+    }
+
+    .nav-button.active {
+      color: var(--primary);
+      background: var(--tag);
+    }
+
+    .nav-button span {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    @media (max-width: 480px) {
+      body {
+        min-height: 100vh;
+        display: block;
+        padding: 0;
+        overflow: hidden;
+        background: var(--bg);
+      }
+
+      .phone {
+        width: 100%;
+        height: 100vh;
+        min-height: 100vh;
+        max-height: 100vh;
+        border: 0;
+        border-radius: 0;
+        box-shadow: none;
+      }
+
+      .content {
+        padding-inline: 12px;
+      }
+
+      .composer {
+        padding: 13px;
+      }
+
+      .brand h1 {
+        font-size: 25px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <svg aria-hidden="true" width="0" height="0" style="position:absolute">
+    <symbol id="icon-search" viewBox="0 0 24 24">
+      <circle cx="11" cy="11" r="7"></circle>
+      <path d="m20 20-3.6-3.6"></path>
+    </symbol>
+    <symbol id="icon-plus" viewBox="0 0 24 24">
+      <path d="M12 5v14"></path>
+      <path d="M5 12h14"></path>
+    </symbol>
+    <symbol id="icon-clock" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="9"></circle>
+      <path d="M12 7v5l3 2"></path>
+    </symbol>
+    <symbol id="icon-pin" viewBox="0 0 24 24">
+      <path d="M14 4 20 10"></path>
+      <path d="M8 14 4 20"></path>
+      <path d="M14.5 4.5 8 11l5 5 6.5-6.5"></path>
+    </symbol>
+    <symbol id="icon-trash" viewBox="0 0 24 24">
+      <path d="M4 7h16"></path>
+      <path d="M10 11v6"></path>
+      <path d="M14 11v6"></path>
+      <path d="M6 7l1 13h10l1-13"></path>
+      <path d="M9 7V4h6v3"></path>
+    </symbol>
+    <symbol id="icon-note" viewBox="0 0 24 24">
+      <path d="M6 3h9l3 3v15H6z"></path>
+      <path d="M14 3v4h4"></path>
+      <path d="M9 11h6"></path>
+      <path d="M9 15h4"></path>
+    </symbol>
+    <symbol id="icon-check" viewBox="0 0 24 24">
+      <path d="m5 12 4 4L19 6"></path>
+    </symbol>
+  </svg>
+
+  <main class="phone" aria-label="个人备忘录原型">
+    <div class="app">
+      <header class="topbar">
+        <div class="brand">
+          <h1>备忘</h1>
+          <span>今天 3 条，1 条置顶</span>
+        </div>
+        <div class="icon-row">
+          <button class="icon-button" type="button" aria-label="搜索备忘">
+            <svg class="icon"><use href="#icon-search"></use></svg>
+          </button>
+          <button class="icon-button" type="button" aria-label="新增备忘">
+            <svg class="icon"><use href="#icon-plus"></use></svg>
+          </button>
+        </div>
+      </header>
+
+      <div class="content">
+        <section class="composer" aria-labelledby="capture-title">
+          <div class="composer-meta">
+            <span id="capture-title">快速记录</span>
+            <span class="status" id="save-status">
+              <svg class="icon" aria-hidden="true"><use href="#icon-check"></use></svg>
+              已保存
+            </span>
+          </div>
+          <div class="textarea-wrap">
+            <textarea id="memo-input" aria-label="写一条备忘" spellcheck="false">周三前确认护照照片，顺手把旧证件夹放进行李箱。</textarea>
+          </div>
+          <div class="composer-actions">
+            <div class="chips" aria-label="快速标签">
+              <span class="chip">旅行</span>
+              <span class="chip secondary">今天</span>
+              <span class="chip secondary">稍后</span>
+            </div>
+            <button class="primary-button" type="button" id="save-button">
+              <svg class="icon" aria-hidden="true"><use href="#icon-plus"></use></svg>
+              保存
+            </button>
+          </div>
+        </section>
+
+        <div class="section-head">
+          <h2>最近</h2>
+          <span>按时间排序</span>
+        </div>
+
+        <section class="note-list" aria-label="最近备忘">
+          <article class="note-card pinned">
+            <div class="note-copy">
+              <p class="note-title">今晚 9 点前把周报最后一段改短。</p>
+              <p class="note-body">只保留结论、风险、下一步，不写过程。</p>
+              <div class="note-meta">
+                <span class="mini-tag">工作</span>
+                <span>置顶</span>
+                <span>8 分钟前</span>
+              </div>
+            </div>
+            <div class="note-actions" aria-label="备忘操作">
+              <button class="small-icon" type="button" aria-label="取消置顶">
+                <svg class="icon"><use href="#icon-pin"></use></svg>
+              </button>
+              <button class="small-icon delete-note" type="button" aria-label="删除备忘">
+                <svg class="icon"><use href="#icon-trash"></use></svg>
+              </button>
+            </div>
+          </article>
+
+          <article class="note-card">
+            <div class="note-copy">
+              <p class="note-title">买咖啡滤纸，顺便看一下厨房灯泡型号。</p>
+              <p class="note-body">别再只买咖啡豆了。</p>
+              <div class="note-meta">
+                <span class="mini-tag">生活</span>
+                <span>今天 14:20</span>
+              </div>
+            </div>
+            <div class="note-actions" aria-label="备忘操作">
+              <button class="small-icon" type="button" aria-label="置顶备忘">
+                <svg class="icon"><use href="#icon-pin"></use></svg>
+              </button>
+              <button class="small-icon delete-note" type="button" aria-label="删除备忘">
+                <svg class="icon"><use href="#icon-trash"></use></svg>
+              </button>
+            </div>
+          </article>
+
+          <article class="note-card">
+            <div class="note-copy">
+              <p class="note-title">给妈妈回电话。</p>
+              <p class="note-body">问她明天几点方便视频。</p>
+              <div class="note-meta">
+                <span class="mini-tag">家人</span>
+                <span>昨天 22:04</span>
+              </div>
+            </div>
+            <div class="note-actions" aria-label="备忘操作">
+              <button class="small-icon" type="button" aria-label="置顶备忘">
+                <svg class="icon"><use href="#icon-pin"></use></svg>
+              </button>
+              <button class="small-icon delete-note" type="button" aria-label="删除备忘">
+                <svg class="icon"><use href="#icon-trash"></use></svg>
+              </button>
+            </div>
+          </article>
+        </section>
+
+        <section class="state-stack" aria-label="状态反馈">
+          <div class="notice">
+            <svg class="icon" aria-hidden="true"><use href="#icon-clock"></use></svg>
+            <span>上一条未同步到本机存储。内容还在输入框里，可以重试保存。</span>
+          </div>
+          <div class="empty-state">
+            <div class="empty-icon">
+              <svg class="icon" aria-hidden="true"><use href="#icon-note"></use></svg>
+            </div>
+            <div>
+              <strong>“旅行”里没有更多备忘</strong>
+              <p>写下第一条，标签会自动留在这里。</p>
+            </div>
+          </div>
+          <div class="toast" id="undo-toast" role="status">
+            <span>备忘已移到回收站</span>
+            <button type="button">撤销</button>
+          </div>
+        </section>
+      </div>
+
+      <nav class="bottom-nav" aria-label="主要导航">
+        <button class="nav-button active" type="button">
+          <svg class="icon" aria-hidden="true"><use href="#icon-note"></use></svg>
+          <span>备忘</span>
+        </button>
+        <button class="nav-button" type="button">
+          <svg class="icon" aria-hidden="true"><use href="#icon-search"></use></svg>
+          <span>查找</span>
+        </button>
+        <button class="nav-button" type="button">
+          <svg class="icon" aria-hidden="true"><use href="#icon-trash"></use></svg>
+          <span>回收站</span>
+        </button>
+      </nav>
+    </div>
+  </main>
+
+  <script>
+    const textarea = document.querySelector("#memo-input");
+    const saveButton = document.querySelector("#save-button");
+    const saveStatus = document.querySelector("#save-status");
+    const deleteButtons = document.querySelectorAll(".delete-note");
+    const undoToast = document.querySelector("#undo-toast");
+
+    function setSaved(label, failed) {
+      saveStatus.classList.toggle("failed", failed);
+      saveStatus.innerHTML = failed
+        ? '<svg class="icon" aria-hidden="true"><use href="#icon-clock"></use></svg>' + label
+        : '<svg class="icon" aria-hidden="true"><use href="#icon-check"></use></svg>' + label;
+    }
+
+    textarea.addEventListener("input", () => {
+      setSaved("编辑中", true);
+    });
+
+    saveButton.addEventListener("click", () => {
+      setSaved("已保存", false);
+      textarea.value = textarea.value.trim() || "刚刚想到的一件小事。";
+    });
+
+    deleteButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        undoToast.animate(
+          [
+            { transform: "translateY(8px)", opacity: 0.7 },
+            { transform: "translateY(0)", opacity: 1 }
+          ],
+          { duration: 180, easing: "ease-out" }
+        );
+      });
+    });
+  </script>
+</body>
+</html>
