@@ -1,0 +1,35 @@
+schema_version: 1
+id: aurora-data-gradient
+title: 极光数据渐变
+source_image: ../images/aurora-data-gradient.png
+colors:
+- role: primary
+  name: 极光深蓝黑
+  hex: '#0B2434'
+  usage: 主按钮、关键导航、重要标题或深色信息锚点
+- role: secondary
+  name: 数据深青蓝
+  hex: '#206A83'
+  usage: 次级行动、链接、图表主系列或模块重点
+- role: accent
+  name: 洞察蓝绿
+  hex: '#4ECDC4'
+  usage: 状态反馈、局部强调、插画点缀或关键数字高亮
+- role: soft_background
+  name: 极光浅绿
+  hex: '#A7F3D0'
+  usage: 卡片浅底、空状态、标签底色或轻量分区
+- role: page_background
+  name: 清透冷白底
+  hex: '#F2FFFB'
+  usage: 页面底色、低噪音背景或大面积留白区域
+token_suggestions:
+  color.primary: primary
+  color.secondary: secondary
+  color.accent: accent
+  color.surface.tint: soft_background
+  color.background: page_background
+token_hint: 深蓝黑做数据背景，蓝绿做洞察重点，浅绿做趋势/成功信号。
+accessibility_notes:
+- 中等风险：浅色底上的彩色小字、细线和禁用态需要单独验证对比度。
+- 主 CTA 建议优先使用最深色阶或高饱和强调色，避免只用浅色承担关键行动。

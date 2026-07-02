@@ -1,6 +1,6 @@
 # 手动测试指南
 
-使用本指南验证 v0.1.1-alpha / reference-library increment 仓库，不需要安装任何运行时依赖。
+使用本指南验证 v0.1.2-alpha / color-card-registry increment 仓库，不需要安装任何运行时依赖。
 
 ## 1. 文件结构
 
@@ -12,16 +12,20 @@ README.zh-CN.md
 CHANGELOG.md
 LICENSE
 AGENTS.md
+CODEX_BUILD_BRIEF.color-card-registry.md
+CODEX_PROMPT.color-card-knowledge-production.md
 skills/design-engineering/SKILL.md
 skills/design-engineering/agents/openai.yaml
 skills/design-engineering/assets/STATE.template.md
 skills/design-engineering/assets/WORK_ITEMS.template.md
 skills/design-engineering/assets/VISUAL_DESIGN.template.md
 skills/design-engineering/assets/REFERENCE_SELECTION.template.md
+skills/design-engineering/assets/REFERENCE_SELECTION.color-card-section.template.md
 skills/design-engineering/assets/AGENTS.fragment.md
 skills/design-engineering/assets/visual-reference-packs/reference-index.md
 skills/design-engineering/references/visual-workflow.md
 skills/design-engineering/references/reference-library-consumption.md
+skills/design-engineering/references/color-card-consumption.md
 agents/design-state-steward.toml
 templates/project/docs/design/WORK_ITEMS.md
 templates/project/docs/design/VISUAL_DESIGN.md
@@ -31,22 +35,31 @@ templates/project/docs/design/reference-library/product-index.md
 templates/project/docs/design/reference-library/product-index.yml
 templates/project/docs/design/reference-library/pattern-index.md
 templates/project/docs/design/reference-library/pattern-index.yml
+templates/project/docs/design/reference-library/assets/color-cards/README.md
 templates/project/docs/design/reference-library/assets/color-cards/color-card.schema.yml
+templates/project/docs/design/reference-library/assets/color-cards/palette-index.md
+templates/project/docs/design/reference-library/assets/color-cards/palette-index.yml
 templates/project/docs/design/work-items/REFERENCE_SELECTION.template.md
 examples/idea-storm-lab/docs/design/WORK_ITEMS.md
 examples/idea-storm-lab/docs/design/VISUAL_DESIGN.md
 evals/scenarios/01-no-state-for-context-check.md
 evals/scenarios/13-reference-selection-belongs-to-work-item.md
+evals/scenarios/14-color-card-registry-integrity.md
+evals/scenarios/15-color-card-ready-only-visual-gate.md
+evals/scenarios/16-color-card-business-language-confirmation.md
 docs/PRD.md
 docs/PRD.reference-library-v0.1.1.md
 docs/PRD.v0.1-to-v0.1.1-delta.md
+docs/PRD.color-card-registry-v0.1.2.md
+docs/PRD.v0.1.1-to-v0.1.2-color-card-registry-delta.md
+docs/product-summary.color-card-registry-version.md
 docs/architecture.md
 docs/manual-test-guide.md
 ```
 
 确认 `skills/design-engineering/assets/visual-reference-packs/` 下有 5 个参考包，每个包至少包含 2 张自制 SVG 和 `notes.md`。
 
-确认 `templates/project/docs/design/reference-library/` 包含产品索引、模式索引、单产品条目、单模式条目、截图素材目录、schema 和 `assets/color-cards/` 预留结构。不得存在 `templates/project/docs/design/reference-library/reference-packs/`。
+确认 `templates/project/docs/design/reference-library/` 包含产品索引、模式索引、单产品条目、单模式条目、截图素材目录、schema 和 `assets/color-cards/` 注册表结构。`color-cards/` 必须包含 `palette-index.yml`、`palette-index.md`、`color-card.schema.yml`、集中式 `images/`、`palettes/`、`annotations/`。不得存在 `templates/project/docs/design/reference-library/reference-packs/` 或 `color-cards/cards/`。
 
 ## 2. 手动安装冒烟测试
 
@@ -98,7 +111,7 @@ Prompt：
 
 ## 4. 评测场景
 
-阅读 [evals/scenarios](../evals/scenarios/) 下的全部文件。应共有 13 个场景，每个场景都使用“前提 / 当 / 则”的结构，并与 Skill 和 Steward 使用相同的状态决定：
+阅读 [evals/scenarios](../evals/scenarios/) 下的全部文件。应共有 16 个场景，每个场景都使用“前提 / 当 / 则”的结构，并与 Skill 和 Steward 使用相同的状态决定：
 
 ```text
 CREATE / RESUME / SUCCESSOR / NO_STATE / AMBIGUOUS
@@ -119,6 +132,15 @@ Reference Library 场景应覆盖：
 - Work Item 级参考选择写入 `docs/design/work-items/<id>-<slug>/REFERENCE_SELECTION.md`，不写入 `reference-library/reference-packs/`。
 - 用户看到的是业务语义方向，不是产品名选择题。
 
+
+Color Card Registry 场景应覆盖：
+
+- `images/`、`palettes/`、`annotations/` 中不得存在 orphan 正式资产。
+- 只有 `status: ready` 且 `gate_preview: true` 的色卡可进入 `visual-direction-approval`。
+- `draft` 与 `deprecated` 不得作为默认用户确认候选。
+- 配色确认必须展示大图色卡和业务语义，不得只展示 HEX/RGB 或小 icon。
+- Work Item 级色卡采用结果写入 `REFERENCE_SELECTION.md`，`STATE.md` 只写摘要和链接。
+
 ## 5. 禁止项检查
 
 允许这些词出现在“禁止事项”语境中，但不得作为正向用户流程要求或 Gate enum：
@@ -130,6 +152,7 @@ Reference Library 场景应覆盖：
 palette-approval
 anti-homogeneity
 reference-library/reference-packs
+color-cards/cards/<id>
 ```
 
 ## 6. 完成定义自检
@@ -141,9 +164,9 @@ reference-library/reference-packs
 - 模板使用与 PRD 一致的 `status`、`phase` 和 `gate` 枚举。
 - Surface Target 使用 `web-app / mobile-app / responsive-web / desktop-app / tablet / multi-surface`，不新增 Gate。
 - `STATE.md` 只记录 Reference Selection 摘要和链接，完整分析在 `REFERENCE_SELECTION.md`。
-- 色卡目录已预留但未预填具体色卡。
+- 色卡目录已升级为 Color Card Registry：包含 `palette-index.yml`，但未预填具体 ready 色卡。
 - 配色和设计禁区是视觉子步骤，不是新增 Gate。
 - 不允许只给 1 套配色让用户确认。
 - 不允许用户输入自定义颜色后只口头接受而不写入状态。
 - 示例和评测都与 `DE-001`、`DE-002` 的关系一致。
-- 没有安装器、Plugin 包、Hook、CLI、`statectl`、云服务或外部运行时依赖。
+- 没有安装器、Plugin 包、Hook、CLI、`statectl`、云服务、自动 OCR、自动截图下载或外部运行时依赖。

@@ -2,7 +2,7 @@
 
 Codex Design Harness is a human-in-the-loop design engineering protocol for Codex. It turns important UI/UX work into recoverable, auditable Work Items with explicit user approval gates, and it preserves approved visual decisions in a project-level `VISUAL_DESIGN.md`.
 
-v0.1.1-alpha is an incremental update on top of the v0.1.0-alpha visual-workflow revision. It stays deliberately manual and document-based, and adds a Product Visual Reference Library so Codex can choose design references by target surface and task type before proposing directions. It does not include an installer, CLI, hook, plugin package, cloud service, or runtime dependency.
+v0.1.2-alpha is an incremental update on top of the v0.1.1-alpha Reference Library revision. It stays deliberately manual and document-based, and upgrades `assets/color-cards/` into a Color Card Registry so Codex can use complete visual color-card objects during palette confirmation. It does not include an installer, CLI, hook, plugin package, cloud service, or runtime dependency.
 
 ## Core Model
 
@@ -30,7 +30,8 @@ VISUAL_DESIGN.md
 - `WORK_ITEMS.md` is a navigation index; `STATE.md` wins on conflict.
 - `VISUAL_DESIGN.md` is the long-lived project visual baseline.
 - `reference-library/` is the long-lived product visual reference layer.
-- `REFERENCE_SELECTION.md` records how one Work Item consumed that library.
+- `REFERENCE_SELECTION.md` records how one Work Item consumed the reference library and color-card registry.
+- Color Card Registry is the checked color-reference layer under `reference-library/assets/color-cards/`.
 - Gates are points where Codex must wait for user approval.
 - `completed + sealed` is read-only history; related follow-up work must create a Successor.
 
@@ -46,6 +47,25 @@ See [README.zh-CN.md](README.zh-CN.md) for the full Chinese guide and [docs/arch
 - `NO_STATE`: skip durable state for read-only or tiny one-off work.
 - `AMBIGUOUS`: stop and ask the user to choose among candidates.
 
+
+## Color Card Registry
+
+When a project has:
+
+```text
+docs/design/reference-library/assets/color-cards/palette-index.yml
+```
+
+Codex must treat `palette-index.yml` as the source of truth. A valid color card is not just an image; it is:
+
+```text
+palette-index.yml entry + image + palette + annotation
+```
+
+The centralized `images/`, `palettes/`, and `annotations/` directories remain intentional for browsing. Do not convert them into per-card folders. User-facing palette confirmation may use only cards that are `status: ready`, `gate_preview: true`, and pass image / palette / annotation integrity checks.
+
+Palette confirmation should show large color-card visuals and business semantics, not raw HEX/RGB values or tiny swatches as the primary decision surface. Selected color-card use belongs in the Work Item `REFERENCE_SELECTION.md`; `STATE.md` keeps only a compact summary and link.
+
 ## Visual Workflow
 
 Full Mode uses concrete visual artifacts and target-surface reference selection instead of requiring abstract product-personality forms:
@@ -53,7 +73,7 @@ Full Mode uses concrete visual artifacts and target-surface reference selection 
 ```text
 Visual Seed
 → Surface Resolution
-→ Reference Library / Reference Images / Reference Packs
+→ Reference Library / Color Card Registry / Reference Images / Reference Packs
 → Reference Analysis
 → Palette Proposal
 → Palette Confirmation
@@ -99,7 +119,7 @@ Lightweight Mode may skip the full visual flow for local changes, but it still r
 
 4. Copy [templates/project/docs/design](templates/project/docs/design/) into the target project.
 
-   This includes `reference-library/`, color-card placeholders, and the Work Item `REFERENCE_SELECTION.template.md`.
+   This includes `reference-library/`, Color Card Registry placeholders, and the Work Item `REFERENCE_SELECTION.template.md`.
 
 5. Start a new Codex session and run:
 
@@ -119,7 +139,7 @@ Lightweight Mode may skip the full visual flow for local changes, but it still r
 
 ## Evaluation
 
-Manual Given / When / Then scenarios live in [evals/scenarios](evals/scenarios/). They cover context checks, create, resume, successor, parallel Work Items, ambiguous binding, close-and-seal, the visual workflow, avoiding product-personality taxonomy, `VISUAL_DESIGN.md` creation, and Reference Library surface selection.
+Manual Given / When / Then scenarios live in [evals/scenarios](evals/scenarios/). They cover context checks, create, resume, successor, parallel Work Items, ambiguous binding, close-and-seal, the visual workflow, avoiding product-personality taxonomy, `VISUAL_DESIGN.md` creation, and Reference Library surface selection, and Color Card Registry integrity / ready-only / business-language confirmation.
 
 ## Limits
 
@@ -128,6 +148,7 @@ Manual Given / When / Then scenarios live in [evals/scenarios](evals/scenarios/)
 - No multi-user write lock.
 - No automatic web scraping or bundled third-party product screenshots.
 - No Work Item-specific `reference-library/reference-packs/`; task-level reference choices belong in `REFERENCE_SELECTION.md`.
+- No automatic ready color-card generation; complete color-card knowledge requires user-provided images or explicit visual descriptions.
 - Browser QA is recommended, but v0.1 does not require a specific browser tool.
 
 ## License

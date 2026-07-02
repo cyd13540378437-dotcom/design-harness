@@ -1,30 +1,99 @@
 schema_version: 1
-fields:
-  id: CLR-001
-  name: Human readable palette name
-  image: images/<filename>.png
-  source: user-provided | generated | official | captured
-  source_url: ''
-  created_at: YYYY-MM-DD
+schema_name: color-card-registry
+
+registry_contract:
+  definition: "A valid color card equals one palette-index.yml entry plus one image file, one palette file, and one annotation file."
+  source_of_truth: palette-index.yml
+  human_index: palette-index.md
+  per_card_directories_allowed: false
+  centralized_image_browsing_required: true
+
+index_entry_required_fields:
+  - id
+  - title
+  - status
+  - image
+  - palette
+  - annotation
+  - surfaces
+  - mood_tags
+  - business_semantics
+  - user_facing_summary
+  - gate_preview
+
+index_entry_fields:
+  id:
+    type: string
+    pattern: "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    description: Stable identifier. File stems must match this value.
+  title:
+    type: string
+    description: Human-readable color-card name.
+  status:
+    type: enum
+    values: [draft, ready, deprecated]
+  image:
+    type: path
+    pattern: "^images/<id>\\.(png|jpg|jpeg|webp)$"
+  palette:
+    type: path
+    pattern: "^palettes/<id>\\.yml$"
+  annotation:
+    type: path
+    pattern: "^annotations/<id>\\.md$"
   surfaces:
-  - web-app
-  - mobile-app
-  - responsive-web
-  - desktop-app
+    type: array
+    values: [web-app, mobile-app, responsive-web, desktop-app, tablet, multi-surface]
   mood_tags:
-  - calm
-  - professional
-  - warm
-  tokens:
-    background: ''
-    surface: ''
-    primary: ''
-    secondary: ''
-    accent: ''
-    text_primary: ''
-    text_secondary: ''
-    border: ''
-  suitable_for: []
-  not_suitable_for: []
-  accessibility_notes: []
-  usage_notes: []
+    type: array
+    description: Short user-facing emotional or visual tags.
+  business_semantics:
+    type: object
+    required: [best_for, avoid_for]
+  user_facing_summary:
+    type: string
+    description: One-sentence explanation suitable for visual-direction approval.
+  gate_preview:
+    type: boolean
+    description: Whether this card may be shown in visual-direction-approval.
+
+palette_file_required_fields:
+  - id
+  - schema_version
+  - colors
+  - token_suggestions
+  - accessibility_notes
+
+palette_color_roles:
+  suggested_values:
+    - primary
+    - secondary
+    - accent
+    - page_background
+    - surface_background
+    - border
+    - text_primary
+    - text_secondary
+    - success
+    - warning
+    - danger
+  hex_optional: true
+  note: "HEX values are useful for implementation but should not be the primary user-facing decision language."
+
+annotation_frontmatter_required_fields:
+  - id
+  - title
+  - status
+  - image
+  - palette
+
+integrity_checks:
+  - every_index_id_unique
+  - every_index_path_exists
+  - every_image_palette_annotation_file_referenced_exactly_once
+  - file_stem_matches_id
+  - palette_id_matches_index_id
+  - annotation_frontmatter_id_matches_index_id
+  - draft_cards_not_used_for_gate
+  - deprecated_cards_not_used_by_default
+  - ready_gate_cards_have_gate_preview_true

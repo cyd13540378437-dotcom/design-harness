@@ -19,6 +19,9 @@ Skill
   docs/design/reference-library/
         ↓
 项目状态
+  docs/design/reference-library/assets/color-cards/
+    palette-index.yml
+    images/ palettes/ annotations/
   docs/design/WORK_ITEMS.md
   docs/design/work-items/<state-id-slug>/STATE.md
   docs/design/work-items/<state-id-slug>/REFERENCE_SELECTION.md
@@ -120,3 +123,10 @@ Steward 边界把实现和状态写入分开：
 ```
 
 项目模板位于 [templates/project](../templates/project/)。
+
+
+## Color Card Registry
+
+`docs/design/reference-library/assets/color-cards/` 是 Reference Library 下的配色参考注册表。`palette-index.yml` 是机器权威清单；`palette-index.md` 是人读索引。一张有效色卡必须同时拥有 index entry、image、palette 和 annotation。只有 `status: ready` 且 `gate_preview: true` 并通过完整性检查的色卡，才能进入 `visual-direction-approval`。
+
+色卡采用结果属于 Work Item 的 `REFERENCE_SELECTION.md`；`STATE.md` 只保留选中色卡 ID、摘要、风险和链接。`design_state_steward` 只记录状态，不负责选择、生成或修复色卡资料。

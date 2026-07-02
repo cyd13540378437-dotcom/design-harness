@@ -1,0 +1,971 @@
+schema_version: 1
+registry: color-card-registry
+source_of_truth: true
+rules:
+  identity: Color Card = index entry + image + palette + annotation
+  no_orphan_assets: true
+  centralized_image_browsing: true
+  per_card_directories_allowed: false
+  ready_gate_filter:
+    status: ready
+    gate_preview: true
+cards:
+- id: high-trust-finance-blue
+  title: 高信任金融蓝
+  status: ready
+  gate_preview: true
+  image: images/high-trust-finance-blue.png
+  palette: palettes/high-trust-finance-blue.yml
+  annotation: annotations/high-trust-finance-blue.md
+  surfaces:
+  - web-app
+  - responsive-web
+  - desktop-app
+  - tablet
+  mood_tags:
+  - 可信
+  - 稳定
+  - 专业
+  - 清晰
+  business_semantics:
+    best_for:
+    - 金融
+    - B2B
+    - 安全
+    - 账号体系
+    - 管理后台
+    avoid_for:
+    - 儿童
+    - 娱乐
+    - 强生活方式品牌
+  user_facing_summary: 适合需要第一眼建立可信度和秩序感的产品。
+  token_hint: 深蓝做主行动和导航，信息蓝做链接/图表，冰白蓝做页面底。
+  accessibility_risk_level: medium
+  source:
+    type: generated-canonical-card
+    based_on: color-card-sourcing-board-v1 candidate approved by user
+    candidate_no: '01'
+- id: calm-ocean-product-teal
+  title: 冷静海洋蓝绿
+  status: ready
+  gate_preview: true
+  image: images/calm-ocean-product-teal.png
+  palette: palettes/calm-ocean-product-teal.yml
+  annotation: annotations/calm-ocean-product-teal.md
+  surfaces:
+  - web-app
+  - responsive-web
+  - desktop-app
+  - tablet
+  mood_tags:
+  - 清透
+  - 冷静
+  - 可信
+  - 流动
+  business_semantics:
+    best_for:
+    - AI 助手
+    - 数据工具
+    - 效率工作台
+    - 健康科技
+    avoid_for:
+    - 强促销
+    - 强社群
+    - 热闹消费场景
+  user_facing_summary: 适合冷静可信但不想太传统的现代产品。
+  token_hint: 深海蓝绿做主行动，湖青做状态反馈，雾白水蓝做低噪背景。
+  accessibility_risk_level: medium
+  source:
+    type: generated-canonical-card
+    based_on: color-card-sourcing-board-v1 candidate approved by user
+    candidate_no: '02'
+- id: graphite-professional-gray
+  title: 石墨专业灰
+  status: ready
+  gate_preview: true
+  image: images/graphite-professional-gray.png
+  palette: palettes/graphite-professional-gray.yml
+  annotation: annotations/graphite-professional-gray.md
+  surfaces:
+  - web-app
+  - responsive-web
+  - desktop-app
+  - tablet
+  mood_tags:
+  - 克制
+  - 理性
+  - 专业
+  - 低噪
+  business_semantics:
+    best_for:
+    - 开发者工具
+    - 企业后台
+    - 复杂配置
+    - 文档系统
+    avoid_for:
+    - 需要强情绪记忆点的新消费品牌
+  user_facing_summary: 适合信息密度高、需要降低视觉噪音的工具。
+  token_hint: 石墨灰做文字和导航，中灰蓝做层级，冷白灰做工具型页面底。
+  accessibility_risk_level: medium
+  source:
+    type: generated-canonical-card
+    based_on: color-card-sourcing-board-v1 candidate approved by user
+    candidate_no: '03'
+- id: warm-sunset-coral
+  title: 温暖日落珊瑚
+  status: ready
+  gate_preview: true
+  image: images/warm-sunset-coral.png
+  palette: palettes/warm-sunset-coral.yml
+  annotation: annotations/warm-sunset-coral.md
+  surfaces:
+  - responsive-web
+  - mobile-app
+  - web-app
+  - tablet
+  mood_tags:
+  - 亲和
+  - 积极
+  - 温暖
+  - 有行动感
+  business_semantics:
+    best_for:
+    - 生活服务
+    - 社区
+    - 教育
+    - 轻消费
+    - 活动页
+    avoid_for:
+    - 严肃金融
+    - 深度 B2B 配置系统
+  user_facing_summary: 适合让产品显得有人情味，同时保留清晰行动引导。
+  token_hint: 珊瑚色做主行动，暖橙做积极提示，奶油白做生活感页面底。
+  accessibility_risk_level: medium
+  source:
+    type: generated-canonical-card
+    based_on: color-card-sourcing-board-v1 candidate approved by user
+    candidate_no: '05'
+- id: clay-terracotta-community
+  title: 陶土社群暖色
+  status: ready
+  gate_preview: true
+  image: images/clay-terracotta-community.png
+  palette: palettes/clay-terracotta-community.yml
+  annotation: annotations/clay-terracotta-community.md
+  surfaces:
+  - responsive-web
+  - mobile-app
+  - web-app
+  - tablet
+  mood_tags:
+  - 质朴
+  - 温暖
+  - 社群
+  - 手作感
+  business_semantics:
+    best_for:
+    - 社区
+    - 手工艺
+    - 餐饮
+    - 线下活动
+    - 创作者品牌
+    avoid_for:
+    - 高冷科技
+    - 高级金融
+    - 医疗严肃场景
+  user_facing_summary: 适合强调真实、手作和人际连接的产品。
+  token_hint: 陶土色做品牌锚点，砖橘做行动和标签，沙陶浅底承接社区内容。
+  accessibility_risk_level: medium
+  source:
+    type: generated-canonical-card
+    based_on: color-card-sourcing-board-v1 candidate approved by user
+    candidate_no: '07'
+- id: peach-soft-education
+  title: 柔桃教育亲和
+  status: ready
+  gate_preview: true
+  image: images/peach-soft-education.png
+  palette: palettes/peach-soft-education.yml
+  annotation: annotations/peach-soft-education.md
+  surfaces:
+  - responsive-web
+  - mobile-app
+  - web-app
+  - tablet
+  mood_tags:
+  - 友好
+  - 耐心
+  - 轻快
+  - 包容
+  business_semantics:
+    best_for:
+    - 儿童教育
+    - 轻学习
+    - 心理支持
+    - 新手引导
+    avoid_for:
+    - 高端奢侈
+    - 硬核数据平台
+  user_facing_summary: 适合让新用户感到安全、容易开始。
+  token_hint: 蜜桃色做引导与鼓励，杏粉做轻强调，暖白和浅桃承担学习页面底。
+  accessibility_risk_level: medium
+  source:
+    type: generated-canonical-card
+    based_on: color-card-sourcing-board-v1 candidate approved by user
+    candidate_no: 08
+- id: soft-sage-productivity
+  title: 柔和鼠尾草效率
+  status: ready
+  gate_preview: true
+  image: images/soft-sage-productivity.png
+  palette: palettes/soft-sage-productivity.yml
+  annotation: annotations/soft-sage-productivity.md
+  surfaces:
+  - mobile-app
+  - responsive-web
+  - web-app
+  - tablet
+  mood_tags:
+  - 自然
+  - 安静
+  - 稳定
+  - 轻效率
+  business_semantics:
+    best_for:
+    - 知识管理
+    - 日程
+    - 健康记录
+    - 低压力工具
+    avoid_for:
+    - 强娱乐
+    - 强交易
+    - 夜间沉浸产品
+  user_facing_summary: 适合长期使用的工具型产品，安静但不冷漠。
+  token_hint: 鼠尾草深绿做主行动，草本绿做完成状态，浅绿底降低长期使用压力。
+  accessibility_risk_level: low
+  source:
+    type: generated-canonical-card
+    based_on: color-card-sourcing-board-v1 candidate approved by user
+    candidate_no: 09
+- id: morning-mist-blue-gray
+  title: 晨雾蓝灰
+  status: ready
+  gate_preview: true
+  image: images/morning-mist-blue-gray.png
+  palette: palettes/morning-mist-blue-gray.yml
+  annotation: annotations/morning-mist-blue-gray.md
+  surfaces:
+  - mobile-app
+  - responsive-web
+  - web-app
+  - tablet
+  mood_tags:
+  - 清晨
+  - 安静
+  - 可信
+  - 轻盈
+  business_semantics:
+    best_for:
+    - 健康
+    - 天气
+    - 记录
+    - 阅读
+    - 轻量工作台
+    avoid_for:
+    - 需要强烈品牌记忆和冲动转化的页面
+  user_facing_summary: 适合做干净、可信、不打扰的产品界面。
+  token_hint: 蓝灰做文字和导航，晴空蓝做行动，薄雾蓝做卡片/阅读区底。
+  accessibility_risk_level: low
+  source:
+    type: generated-canonical-card
+    based_on: color-card-sourcing-board-v1 candidate approved by user
+    candidate_no: '10'
+- id: mint-clean-health
+  title: 薄荷洁净健康
+  status: ready
+  gate_preview: true
+  image: images/mint-clean-health.png
+  palette: palettes/mint-clean-health.yml
+  annotation: annotations/mint-clean-health.md
+  surfaces:
+  - mobile-app
+  - responsive-web
+  - web-app
+  - tablet
+  mood_tags:
+  - 洁净
+  - 清新
+  - 安全
+  - 恢复感
+  business_semantics:
+    best_for:
+    - 健康
+    - 护理
+    - 环保
+    - 食品安全
+    - 清洁服务
+    avoid_for:
+    - 高端黑金
+    - 严肃 DevOps
+    - 重交易后台
+  user_facing_summary: 适合表达“清洁、恢复、轻松完成”。
+  token_hint: 深薄荷做主行动，青绿做恢复/成功反馈，浅薄荷底表达洁净感。
+  accessibility_risk_level: medium
+  source:
+    type: generated-canonical-card
+    based_on: color-card-sourcing-board-v1 candidate approved by user
+    candidate_no: '11'
+- id: airy-sky-wellness
+  title: 空气天空疗愈
+  status: ready
+  gate_preview: true
+  image: images/airy-sky-wellness.png
+  palette: palettes/airy-sky-wellness.yml
+  annotation: annotations/airy-sky-wellness.md
+  surfaces:
+  - mobile-app
+  - responsive-web
+  - web-app
+  - tablet
+  mood_tags:
+  - 开阔
+  - 轻盈
+  - 疗愈
+  - 低压
+  business_semantics:
+    best_for:
+    - 冥想
+    - 睡眠
+    - 心理健康
+    - 轻运动
+    - 母婴
+    avoid_for:
+    - 复杂企业系统
+    - 强金融安全感
+  user_facing_summary: 适合需要放松、恢复和空间感的产品。
+  token_hint: 天空蓝做轻主行动，浅蓝做疗愈提示，空气白底保留呼吸感。
+  accessibility_risk_level: low
+  source:
+    type: generated-canonical-card
+    based_on: color-card-sourcing-board-v1 candidate approved by user
+    candidate_no: '12'
+- id: ivory-black-gold
+  title: 象牙黑金精品
+  status: ready
+  gate_preview: true
+  image: images/ivory-black-gold.png
+  palette: palettes/ivory-black-gold.yml
+  annotation: annotations/ivory-black-gold.md
+  surfaces:
+  - responsive-web
+  - web-app
+  - mobile-app
+  - tablet
+  mood_tags:
+  - 高级
+  - 克制
+  - 精品
+  - 仪式感
+  business_semantics:
+    best_for:
+    - 高端消费
+    - 会员
+    - 内容杂志
+    - 精品电商
+    avoid_for:
+    - 儿童
+    - 医疗
+    - 需要平价亲和的服务
+  user_facing_summary: 适合强调品质和稀缺感，但需要控制可读性。
+  token_hint: 黑色做标题与高端锚点，金色只做少量强调，象牙白承载大面积阅读。
+  accessibility_risk_level: medium
+  source:
+    type: generated-canonical-card
+    based_on: color-card-sourcing-board-v1 candidate approved by user
+    candidate_no: '13'
+- id: burgundy-cocoa-editorial
+  title: 酒红可可编辑感
+  status: ready
+  gate_preview: true
+  image: images/burgundy-cocoa-editorial.png
+  palette: palettes/burgundy-cocoa-editorial.yml
+  annotation: annotations/burgundy-cocoa-editorial.md
+  surfaces:
+  - responsive-web
+  - web-app
+  - mobile-app
+  - tablet
+  mood_tags:
+  - 成熟
+  - 内容感
+  - 温厚
+  - 复古
+  business_semantics:
+    best_for:
+    - 文化内容
+    - 时尚
+    - 餐饮
+    - 会员社区
+    - 精品品牌
+    avoid_for:
+    - 开发者工具
+    - 医疗健康
+    - 儿童教育
+  user_facing_summary: 适合有故事感和编辑气质的产品。
+  token_hint: 酒红做品牌锚点，可可红做行动，象牙底和玫瑰纸底承接内容。
+  accessibility_risk_level: medium
+  source:
+    type: generated-canonical-card
+    based_on: color-card-sourcing-board-v1 candidate approved by user
+    candidate_no: '14'
+- id: silver-stone-premium
+  title: 银石高级冷调
+  status: ready
+  gate_preview: true
+  image: images/silver-stone-premium.png
+  palette: palettes/silver-stone-premium.yml
+  annotation: annotations/silver-stone-premium.md
+  surfaces:
+  - responsive-web
+  - web-app
+  - mobile-app
+  - tablet
+  mood_tags:
+  - 冷静
+  - 高级
+  - 现代
+  - 留白
+  business_semantics:
+    best_for:
+    - 建筑
+    - 设计
+    - 硬件
+    - B2B 品牌站
+    - 高级 SaaS
+    avoid_for:
+    - 温暖生活服务
+    - 社区和活动页
+  user_facing_summary: 适合做“精密、干净、有质感”的产品视觉。
+  token_hint: 深银灰做文字，冷石灰做边界和模块，冷白底保留高级留白。
+  accessibility_risk_level: low
+  source:
+    type: generated-canonical-card
+    based_on: color-card-sourcing-board-v1 candidate approved by user
+    candidate_no: '15'
+- id: espresso-cream-luxury
+  title: 浓缩咖啡奶油
+  status: ready
+  gate_preview: true
+  image: images/espresso-cream-luxury.png
+  palette: palettes/espresso-cream-luxury.yml
+  annotation: annotations/espresso-cream-luxury.md
+  surfaces:
+  - responsive-web
+  - web-app
+  - mobile-app
+  - tablet
+  mood_tags:
+  - 温润
+  - 高级
+  - 成熟
+  - 舒适
+  business_semantics:
+    best_for:
+    - 精品零售
+    - 咖啡餐饮
+    - 生活方式
+    - 会员服务
+    avoid_for:
+    - 硬核科技
+    - 儿童教育
+    - 强警示系统
+  user_facing_summary: 适合兼顾高级感和温暖服务感的界面。
+  token_hint: 咖啡棕做主行动，焦糖做强调，奶油底承接会员和服务内容。
+  accessibility_risk_level: medium
+  source:
+    type: generated-canonical-card
+    based_on: color-card-sourcing-board-v1 candidate approved by user
+    candidate_no: '16'
+- id: candy-pink-orange
+  title: 糖果粉橙活力
+  status: ready
+  gate_preview: true
+  image: images/candy-pink-orange.png
+  palette: palettes/candy-pink-orange.yml
+  annotation: annotations/candy-pink-orange.md
+  surfaces:
+  - mobile-app
+  - responsive-web
+  - web-app
+  mood_tags:
+  - 年轻
+  - 活跃
+  - 社交
+  - 乐观
+  business_semantics:
+    best_for:
+    - 社交
+    - 活动
+    - 年轻消费
+    - 内容互动
+    - 轻游戏
+    avoid_for:
+    - 企业后台
+    - 医疗
+    - 金融安全场景
+  user_facing_summary: 适合高情绪参与和传播，但要控制视觉噪声。
+  token_hint: 深粉做品牌锚点，玫粉/甜橙做活动行动，浅粉白只做轻背景。
+  accessibility_risk_level: high
+  source:
+    type: generated-canonical-card
+    based_on: color-card-sourcing-board-v1 candidate approved by user
+    candidate_no: '18'
+- id: electric-cyan-dark
+  title: 电光青暗色科技
+  status: ready
+  gate_preview: true
+  image: images/electric-cyan-dark.png
+  palette: palettes/electric-cyan-dark.yml
+  annotation: annotations/electric-cyan-dark.md
+  surfaces:
+  - web-app
+  - desktop-app
+  - responsive-web
+  - tablet
+  mood_tags:
+  - 精准
+  - 实时
+  - 科技
+  - 冷光
+  business_semantics:
+    best_for:
+    - 监控面板
+    - 开发者工具
+    - AI 调试
+    - 数据中心
+    avoid_for:
+    - 亲子
+    - 家居
+    - 本地生活服务
+  user_facing_summary: 适合强调实时性和技术能力的深色界面。
+  token_hint: 深青黑做暗色底，电光青做主行动与实时状态，亮青只做少量高亮。
+  accessibility_risk_level: high
+  source:
+    type: generated-canonical-card
+    based_on: color-card-sourcing-board-v1 candidate approved by user
+    candidate_no: '22'
+- id: aurora-data-gradient
+  title: 极光数据渐变
+  status: ready
+  gate_preview: true
+  image: images/aurora-data-gradient.png
+  palette: palettes/aurora-data-gradient.yml
+  annotation: annotations/aurora-data-gradient.md
+  surfaces:
+  - web-app
+  - desktop-app
+  - responsive-web
+  - tablet
+  mood_tags:
+  - 流动
+  - 洞察
+  - 动态
+  - 现代
+  business_semantics:
+    best_for:
+    - 数据分析
+    - BI
+    - 报告生成
+    - 趋势预测
+    - 仪表盘
+    avoid_for:
+    - 极简写作工具
+    - 传统服务业
+  user_facing_summary: 适合让数据产品更有生命力和探索感。
+  token_hint: 深蓝黑做数据背景，蓝绿做洞察重点，浅绿做趋势/成功信号。
+  accessibility_risk_level: medium
+  source:
+    type: generated-canonical-card
+    based_on: color-card-sourcing-board-v1 candidate approved by user
+    candidate_no: '24'
+- id: forest-moss-green
+  title: 森林苔藓深绿
+  status: ready
+  gate_preview: true
+  image: images/forest-moss-green.png
+  palette: palettes/forest-moss-green.yml
+  annotation: annotations/forest-moss-green.md
+  surfaces:
+  - responsive-web
+  - mobile-app
+  - web-app
+  - tablet
+  mood_tags:
+  - 自然
+  - 可靠
+  - 沉稳
+  - 恢复
+  business_semantics:
+    best_for:
+    - 户外
+    - 农业
+    - 环保
+    - 健康食品
+    - 可持续品牌
+    avoid_for:
+    - 赛博科技
+    - 强奢侈黑金
+    - 青春社交
+  user_facing_summary: 适合自然可信和长期主义产品。
+  token_hint: 深绿做主行动，苔藓绿做品牌面，浅绿底用于自然内容分区。
+  accessibility_risk_level: medium
+  source:
+    type: generated-canonical-card
+    based_on: color-card-sourcing-board-v1 candidate approved by user
+    candidate_no: '25'
+- id: olive-earth-sustainable
+  title: 橄榄土地可持续
+  status: ready
+  gate_preview: true
+  image: images/olive-earth-sustainable.png
+  palette: palettes/olive-earth-sustainable.yml
+  annotation: annotations/olive-earth-sustainable.md
+  surfaces:
+  - responsive-web
+  - mobile-app
+  - web-app
+  - tablet
+  mood_tags:
+  - 朴素
+  - 真实
+  - 环保
+  - 耐看
+  business_semantics:
+    best_for:
+    - 可持续
+    - 农业
+    - 公益
+    - 食品溯源
+    - 手工品牌
+    avoid_for:
+    - 高科技 AI
+    - 游戏
+    - 强金融安全
+  user_facing_summary: 适合表达责任感和自然材料感。
+  token_hint: 土地橄榄做主色，干草绿做自然强调，亚麻底保持朴素真实。
+  accessibility_risk_level: medium
+  source:
+    type: generated-canonical-card
+    based_on: color-card-sourcing-board-v1 candidate approved by user
+    candidate_no: '26'
+- id: sand-dune-botanical
+  title: 沙丘植物暖绿
+  status: ready
+  gate_preview: true
+  image: images/sand-dune-botanical.png
+  palette: palettes/sand-dune-botanical.yml
+  annotation: annotations/sand-dune-botanical.md
+  surfaces:
+  - responsive-web
+  - mobile-app
+  - web-app
+  - tablet
+  mood_tags:
+  - 温和
+  - 自然
+  - 阳光
+  - 舒展
+  business_semantics:
+    best_for:
+    - 旅行
+    - 户外
+    - 健康生活
+    - 瑜伽
+    - 轻商业品牌
+    avoid_for:
+    - 夜间沉浸
+    - 复杂后台
+    - 重金融
+  user_facing_summary: 适合自然和轻松生活方式，但不失现代感。
+  token_hint: 暖绿做品牌锚点，草绿做积极反馈，沙色浅底表达阳光和户外。
+  accessibility_risk_level: low
+  source:
+    type: generated-canonical-card
+    based_on: color-card-sourcing-board-v1 candidate approved by user
+    candidate_no: '27'
+- id: deep-sea-algae
+  title: 深海藻绿
+  status: ready
+  gate_preview: true
+  image: images/deep-sea-algae.png
+  palette: palettes/deep-sea-algae.yml
+  annotation: annotations/deep-sea-algae.md
+  surfaces:
+  - responsive-web
+  - mobile-app
+  - web-app
+  - tablet
+  mood_tags:
+  - 深邃
+  - 生态
+  - 探索
+  - 可信
+  business_semantics:
+    best_for:
+    - 海洋
+    - 科研
+    - 环境数据
+    - 户外科技
+    - 深色工作台
+    avoid_for:
+    - 儿童教育
+    - 温暖社区
+    - 轻消费
+  user_facing_summary: 适合自然与科技交界的产品。
+  token_hint: 藻绿黑做深色锚点，蓝绿做探索强调，冷雾底支持科研/环境数据阅读。
+  accessibility_risk_level: medium
+  source:
+    type: generated-canonical-card
+    based_on: color-card-sourcing-board-v1 candidate approved by user
+    candidate_no: '28'
+- id: paper-warm-white
+  title: 纸感暖白
+  status: ready
+  gate_preview: true
+  image: images/paper-warm-white.png
+  palette: palettes/paper-warm-white.yml
+  annotation: annotations/paper-warm-white.md
+  surfaces:
+  - web-app
+  - responsive-web
+  - desktop-app
+  - tablet
+  mood_tags:
+  - 安静
+  - 专注
+  - 亲近
+  - 留白
+  business_semantics:
+    best_for:
+    - 写作
+    - 阅读
+    - 知识库
+    - 个人生产力
+    - 轻文档
+    avoid_for:
+    - 游戏
+    - 强活动页
+    - 需要鲜明品牌冲击的页面
+  user_facing_summary: 适合需要长时间阅读和低负担表达的产品。
+  token_hint: 墨灰做文字，纸张棕灰做边界，暖白大面积承接长阅读。
+  accessibility_risk_level: low
+  source:
+    type: generated-canonical-card
+    based_on: color-card-sourcing-board-v1 candidate approved by user
+    candidate_no: '29'
+- id: low-noise-beige-gray
+  title: 低噪米灰
+  status: ready
+  gate_preview: true
+  image: images/low-noise-beige-gray.png
+  palette: palettes/low-noise-beige-gray.yml
+  annotation: annotations/low-noise-beige-gray.md
+  surfaces:
+  - web-app
+  - responsive-web
+  - desktop-app
+  - tablet
+  mood_tags:
+  - 克制
+  - 自然
+  - 稳定
+  - 柔和
+  business_semantics:
+    best_for:
+    - 管理后台
+    - 日程
+    - CRM
+    - 内部工具
+    - 运营工作台
+    avoid_for:
+    - 年轻社交
+    - 娱乐
+    - 强品牌营销
+  user_facing_summary: 适合大多数长期使用的产品基础视觉。
+  token_hint: 米灰深字做正文，沙米强调做轻行动，浅米底适合长期运营工作台。
+  accessibility_risk_level: low
+  source:
+    type: generated-canonical-card
+    based_on: color-card-sourcing-board-v1 candidate approved by user
+    candidate_no: '30'
+- id: cool-light-gray
+  title: 冷白浅灰秩序
+  status: ready
+  gate_preview: true
+  image: images/cool-light-gray.png
+  palette: palettes/cool-light-gray.yml
+  annotation: annotations/cool-light-gray.md
+  surfaces:
+  - web-app
+  - responsive-web
+  - desktop-app
+  - tablet
+  mood_tags:
+  - 清洁
+  - 理性
+  - 秩序
+  - 现代
+  business_semantics:
+    best_for:
+    - SaaS
+    - 数据表格
+    - 设置页
+    - B2B 工具
+    avoid_for:
+    - 需要温暖陪伴的服务和儿童产品
+  user_facing_summary: 适合功能优先、希望界面“隐身”的产品。
+  token_hint: 冷灰做文字和边界，浅蓝灰做功能提示，白底保持秩序和清洁。
+  accessibility_risk_level: low
+  source:
+    type: generated-canonical-card
+    based_on: color-card-sourcing-board-v1 candidate approved by user
+    candidate_no: '31'
+- id: ink-and-parchment
+  title: 墨色羊皮纸
+  status: ready
+  gate_preview: true
+  image: images/ink-and-parchment.png
+  palette: palettes/ink-and-parchment.yml
+  annotation: annotations/ink-and-parchment.md
+  surfaces:
+  - web-app
+  - responsive-web
+  - desktop-app
+  - tablet
+  mood_tags:
+  - 沉静
+  - 知识感
+  - 经典
+  - 可靠
+  business_semantics:
+    best_for:
+    - 法律
+    - 研究
+    - 教育
+    - 长文阅读
+    - 知识产品
+    avoid_for:
+    - 游戏
+    - 青春消费
+    - 强视觉营销
+  user_facing_summary: 适合严肃内容和深阅读，有轻微传统质感。
+  token_hint: 墨色做标题，茶棕做强调，羊皮纸底承接知识型长文。
+  accessibility_risk_level: medium
+  source:
+    type: generated-canonical-card
+    based_on: color-card-sourcing-board-v1 candidate approved by user
+    candidate_no: '32'
+- id: crimson-signal-action
+  title: 猩红信号行动
+  status: ready
+  gate_preview: true
+  image: images/crimson-signal-action.png
+  palette: palettes/crimson-signal-action.yml
+  annotation: annotations/crimson-signal-action.md
+  surfaces:
+  - web-app
+  - responsive-web
+  - desktop-app
+  - mobile-app
+  mood_tags:
+  - 紧迫
+  - 行动
+  - 冲击
+  - 警示
+  business_semantics:
+    best_for:
+    - 活动发布
+    - 运动
+    - 竞赛
+    - 紧急状态
+    - 强 CTA
+    avoid_for:
+    - 心理健康
+    - 长时间办公
+    - 低压力工具
+  user_facing_summary: 适合需要强行动刺激的场景，慎用于主产品长期底色。
+  token_hint: 猩红只做行动/警示，深红黑做标题，浅红底用于短时提示，不做长期大底色。
+  accessibility_risk_level: high
+  source:
+    type: generated-canonical-card
+    based_on: color-card-sourcing-board-v1 candidate approved by user
+    candidate_no: '34'
+- id: oceanic-deep-mode
+  title: 深海沉浸模式
+  status: ready
+  gate_preview: true
+  image: images/oceanic-deep-mode.png
+  palette: palettes/oceanic-deep-mode.yml
+  annotation: annotations/oceanic-deep-mode.md
+  surfaces:
+  - web-app
+  - responsive-web
+  - desktop-app
+  - mobile-app
+  mood_tags:
+  - 深邃
+  - 专注
+  - 安静
+  - 探索
+  business_semantics:
+    best_for:
+    - 夜间仪表盘
+    - 阅读
+    - 研究
+    - 开发者工具
+    - 数据探索
+    avoid_for:
+    - 儿童
+    - 强亲和服务
+    - 浅色品牌站
+  user_facing_summary: 适合暗色模式下的专注和高级感。
+  token_hint: 深海蓝做暗色背景，海洋青做主行动，浅水青只做局部高亮。
+  accessibility_risk_level: medium
+  source:
+    type: generated-canonical-card
+    based_on: color-card-sourcing-board-v1 candidate approved by user
+    candidate_no: '35'
+- id: high-contrast-monochrome
+  title: 高对比黑白单色
+  status: ready
+  gate_preview: true
+  image: images/high-contrast-monochrome.png
+  palette: palettes/high-contrast-monochrome.yml
+  annotation: annotations/high-contrast-monochrome.md
+  surfaces:
+  - web-app
+  - responsive-web
+  - desktop-app
+  - mobile-app
+  mood_tags:
+  - 极简
+  - 力量
+  - 直接
+  - 现代
+  business_semantics:
+    best_for:
+    - 艺术作品集
+    - 品牌发布页
+    - 开发者文档
+    - 命令式工具
+    avoid_for:
+    - 儿童
+    - 温暖服务
+    - 需要多状态区分的复杂系统
+  user_facing_summary: 适合极简强表达，但需要谨慎处理层级和状态色。
+  token_hint: 黑白建立主层级，中性灰做边界和次级信息，状态色需另行补充。
+  accessibility_risk_level: medium
+  source:
+    type: generated-canonical-card
+    based_on: color-card-sourcing-board-v1 candidate approved by user
+    candidate_no: '36'

@@ -1,0 +1,35 @@
+schema_version: 1
+id: forest-moss-green
+title: 森林苔藓深绿
+source_image: ../images/forest-moss-green.png
+colors:
+- role: primary
+  name: 森林深绿
+  hex: '#1F3B2D'
+  usage: 主按钮、关键导航、重要标题或深色信息锚点
+- role: secondary
+  name: 苔藓主绿
+  hex: '#3F6B4B'
+  usage: 次级行动、链接、图表主系列或模块重点
+- role: accent
+  name: 叶片强调绿
+  hex: '#7A9B68'
+  usage: 状态反馈、局部强调、插画点缀或关键数字高亮
+- role: soft_background
+  name: 浅苔藓底
+  hex: '#D4E0C7'
+  usage: 卡片浅底、空状态、标签底色或轻量分区
+- role: page_background
+  name: 自然暖白底
+  hex: '#FAFBF4'
+  usage: 页面底色、低噪音背景或大面积留白区域
+token_suggestions:
+  color.primary: primary
+  color.secondary: secondary
+  color.accent: accent
+  color.surface.tint: soft_background
+  color.background: page_background
+token_hint: 深绿做主行动，苔藓绿做品牌面，浅绿底用于自然内容分区。
+accessibility_notes:
+- 中等风险：浅色底上的彩色小字、细线和禁用态需要单独验证对比度。
+- 主 CTA 建议优先使用最深色阶或高饱和强调色，避免只用浅色承担关键行动。

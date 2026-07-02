@@ -49,6 +49,7 @@ completed_at: ""
 ## 参考资源摘要
 
 - Reference Selection: `REFERENCE_SELECTION.md` 链接；若未使用参考库，说明原因。
+- Color Card：若采用色卡，只记录已批准色卡 ID、标题、采用摘要和风险摘要；完整候选、palette、annotation 保存在 `REFERENCE_SELECTION.md` 与 reference-library 中。
 - 采用的参考原则：只写本任务真正采用的 2-4 条设计原则摘要。
 - 明确不采用：记录被排除的参考、跨终端风险或不适合本任务的模式。
 - 版权边界：仅用于内部设计分析和模式抽象，不复制第三方品牌资产、图标、插画、文案或完整页面布局。
@@ -75,8 +76,8 @@ completed_at: ""
 
 ### 已确认配色
 
-- 候选调色盘对比：至少 3 套候选，使用同一组 UI 样张；记录可读性/对比摘要。
-- 用户原始颜色输入：用户选择候选、混合候选或直接给出的颜色偏好。
+- 候选调色盘对比：至少 3 套候选，使用同一组 UI 样张；记录可读性/对比摘要。若使用 Color Card Registry，记录大图色卡候选摘要，完整内容保存在 `REFERENCE_SELECTION.md`。
+- 用户原始颜色输入：用户选择候选、混合候选、色卡方向或直接给出的颜色偏好。
 - 最终配色来源：candidate | modified-candidate | custom。
 - 用户选择：
 - 选择理由：
@@ -84,6 +85,7 @@ completed_at: ""
 - 次色：
 - 末级强调色：
 - 背景、文字、边框和语义色摘要：
+- 选中色卡：`<color-card-id>`；若未使用色卡，说明原因。
 
 ### 已确认设计禁区
 

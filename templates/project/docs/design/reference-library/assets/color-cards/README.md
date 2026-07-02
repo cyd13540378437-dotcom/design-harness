@@ -1,46 +1,36 @@
-# Color Cards
+# Color Card Registry — Selected Batch 01
 
-这是为后续“色卡图片 + 配色解释”预留的资料区。
+This folder contains the first selected batch for the generic product visual library.
 
-当前先创建结构，不预填具体色卡。后续新聊天可以直接往这里追加图片和解释，不需要重新讨论目录设计。
+## Scope
 
-## 推荐结构
+- Source board: `color-card-sourcing-board-v1`
+- User rejected: 04, 06, 17, 19, 20, 21, 23, 33
+- Produced ready cards: 28
+- Status: all produced cards are `ready`
+- Gate preview: all produced cards use `gate_preview: true`
+
+## Registry contract
+
+A valid color card equals:
+
+```text
+palette-index.yml entry + image + palette + annotation
+```
+
+`palette-index.yml` is the machine-readable source of truth. `palette-index.md` is a human-readable browsing index.
+
+## Asset layout
 
 ```text
 color-cards/
 ├── README.md
+├── palette-index.yml
 ├── palette-index.md
 ├── color-card.schema.yml
 ├── images/
-│   └── .gitkeep
 ├── palettes/
-│   └── .gitkeep
 └── annotations/
-    └── .gitkeep
 ```
 
-## 使用方式
-
-1. 把色卡图片放入 `images/`。
-2. 每张色卡创建一份 `palettes/<palette-id>.md`。
-3. 如果需要对图片局部做说明，把详细解释放入 `annotations/`。
-4. 在 `palette-index.md` 中维护索引。
-
-## 命名建议
-
-```text
-images/CLR-001-warm-neutral-workspace.png
-palettes/CLR-001-warm-neutral-workspace.md
-annotations/CLR-001-warm-neutral-workspace.annotation.md
-```
-
-## 解释重点
-
-每张色卡至少说明：
-
-- 主色、辅助色、背景色、文字色、边框色；
-- 情绪关键词；
-- 适合的产品类型和终端；
-- 不适合的场景；
-- 可转化成哪些 design tokens；
-- 无障碍和对比度风险。
+The centralized `images/` browsing experience is intentionally preserved. Do not convert this batch into `cards/<id>/` directories.

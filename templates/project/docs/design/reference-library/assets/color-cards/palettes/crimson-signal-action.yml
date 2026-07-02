@@ -1,0 +1,35 @@
+schema_version: 1
+id: crimson-signal-action
+title: 猩红信号行动
+source_image: ../images/crimson-signal-action.png
+colors:
+- role: primary
+  name: 深红黑
+  hex: '#280B0B'
+  usage: 主按钮、关键导航、重要标题或深色信息锚点
+- role: secondary
+  name: 警示暗红
+  hex: '#8F1D1D'
+  usage: 次级行动、链接、图表主系列或模块重点
+- role: accent
+  name: 猩红行动色
+  hex: '#E63946'
+  usage: 状态反馈、局部强调、插画点缀或关键数字高亮
+- role: soft_background
+  name: 浅红提示底
+  hex: '#FFB3B8'
+  usage: 卡片浅底、空状态、标签底色或轻量分区
+- role: page_background
+  name: 冷粉白页面底
+  hex: '#FFF5F5'
+  usage: 页面底色、低噪音背景或大面积留白区域
+token_suggestions:
+  color.primary: primary
+  color.secondary: secondary
+  color.accent: accent
+  color.surface.tint: soft_background
+  color.background: page_background
+token_hint: 猩红只做行动/警示，深红黑做标题，浅红底用于短时提示，不做长期大底色。
+accessibility_notes:
+- 高风险：强饱和或强对比颜色容易造成疲劳，应限制在行动、警示或短时高亮。
+- 暗色底、霓虹色、红色或粉橙色上的小字号文本必须做对比度和眩光检查。

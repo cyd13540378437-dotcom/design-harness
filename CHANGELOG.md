@@ -1,5 +1,14 @@
 # 变更日志
 
+## v0.1.2-alpha / color-card-registry increment
+
+- 将 `reference-library/assets/color-cards/` 从预留目录升级为 Color Card Registry。
+- 新增 `palette-index.yml` 作为色卡机器权威清单，保留 `palette-index.md` 作为人读索引。
+- 明确 `Color Card = index entry + image + palette + annotation`，并固定 no-orphan 完整性合同。
+- 明确只有 `status: ready` 且 `gate_preview: true` 的色卡可进入 `visual-direction-approval`。
+- 增加 Skill、AGENTS 和 Work Item 模板中的色卡消费与记录规则。
+- 新增色卡完整性、ready-only gate 展示和业务语义配色确认评测。
+
 ## v0.1.1-alpha / reference-library increment
 
 - 在 v0.1.0-alpha visual-workflow revision 基础上新增 Product Visual Reference Library。

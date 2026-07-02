@@ -1,0 +1,35 @@
+schema_version: 1
+id: electric-cyan-dark
+title: 电光青暗色科技
+source_image: ../images/electric-cyan-dark.png
+colors:
+- role: primary
+  name: 夜色深青黑
+  hex: '#071821'
+  usage: 主按钮、关键导航、重要标题或深色信息锚点
+- role: secondary
+  name: 深海电路青
+  hex: '#113C4A'
+  usage: 次级行动、链接、图表主系列或模块重点
+- role: accent
+  name: 电光青
+  hex: '#00BCD4'
+  usage: 状态反馈、局部强调、插画点缀或关键数字高亮
+- role: soft_background
+  name: 冷光高亮青
+  hex: '#72F2FF'
+  usage: 卡片浅底、空状态、标签底色或轻量分区
+- role: page_background
+  name: 冷雾亮底
+  hex: '#E8FDFF'
+  usage: 页面底色、低噪音背景或大面积留白区域
+token_suggestions:
+  color.primary: primary
+  color.secondary: secondary
+  color.accent: accent
+  color.surface.tint: soft_background
+  color.background: page_background
+token_hint: 深青黑做暗色底，电光青做主行动与实时状态，亮青只做少量高亮。
+accessibility_notes:
+- 高风险：强饱和或强对比颜色容易造成疲劳，应限制在行动、警示或短时高亮。
+- 暗色底、霓虹色、红色或粉橙色上的小字号文本必须做对比度和眩光检查。

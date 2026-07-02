@@ -1,0 +1,35 @@
+schema_version: 1
+id: olive-earth-sustainable
+title: 橄榄土地可持续
+source_image: ../images/olive-earth-sustainable.png
+colors:
+- role: primary
+  name: 橄榄深棕绿
+  hex: '#3E432E'
+  usage: 主按钮、关键导航、重要标题或深色信息锚点
+- role: secondary
+  name: 土地橄榄
+  hex: '#6C7543'
+  usage: 次级行动、链接、图表主系列或模块重点
+- role: accent
+  name: 干草绿
+  hex: '#A0A16C'
+  usage: 状态反馈、局部强调、插画点缀或关键数字高亮
+- role: soft_background
+  name: 浅亚麻底
+  hex: '#D7D1A8'
+  usage: 卡片浅底、空状态、标签底色或轻量分区
+- role: page_background
+  name: 米白自然底
+  hex: '#FAF7E8'
+  usage: 页面底色、低噪音背景或大面积留白区域
+token_suggestions:
+  color.primary: primary
+  color.secondary: secondary
+  color.accent: accent
+  color.surface.tint: soft_background
+  color.background: page_background
+token_hint: 土地橄榄做主色，干草绿做自然强调，亚麻底保持朴素真实。
+accessibility_notes:
+- 中等风险：浅色底上的彩色小字、细线和禁用态需要单独验证对比度。
+- 主 CTA 建议优先使用最深色阶或高饱和强调色，避免只用浅色承担关键行动。
