@@ -17,12 +17,12 @@ CREATE / RESUME / SUCCESSOR / NO_STATE / AMBIGUOUS
 - 不要恢复或修改 `completed + sealed` Work Item。
 - 封存后的相关工作必须创建 Successor。
 - 每个 Gate 前，由 Steward 写入等待用户的检查点。
-- 配色确认和设计禁区确认使用 `visual-direction-approval`，正文分别写 `palette-selection` 与 `design-exclusions`。
+- 配色确认、字体字号确认和设计禁区确认使用 `visual-direction-approval`，正文分别写 `palette-selection`、`typography-selection` 与 `design-exclusions`。
 - 每次 Gate 回复后，先更新状态再继续实现。
 - 完成封存需要用户在 `completion-approval` 明确批准。
 - Steward 只管理状态；实现留给父级 Agent。
 - 不要求用户填写产品人格、品牌气质矩阵或用户感受目标表单。
-- 不新增 `palette-approval`、`design-exclusion-approval` 或 `anti-homogeneity` Gate。
+- 不新增 `palette-approval`、`typography-approval`、`design-exclusion-approval` 或 `anti-homogeneity` Gate。
 
 ## Design Reference Library
 

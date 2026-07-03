@@ -34,7 +34,7 @@ interaction-decision
 completion-approval
 ```
 
-不得新增 `palette-approval`、`design-exclusion-approval` 或 `anti-homogeneity`。`palette-selection` 和 `design-exclusions` 只能作为 `STATE.md` 正文中的视觉子步骤。
+不得新增 `palette-approval`、`typography-approval`、`design-exclusion-approval` 或 `anti-homogeneity`。`palette-selection`、`typography-selection` 和 `design-exclusions` 只能作为 `STATE.md` 正文中的视觉子步骤。
 
 ## 生命周期
 

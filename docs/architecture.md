@@ -34,7 +34,7 @@ Skill
 
 `AGENTS.md` 给出项目级不变量：术语、枚举、sealed 状态规则、视觉子检查点和范围限制。
 
-`design-engineering` 是流程编排器。它判断适用的设计模式，要求父级 Codex 会话调用 Steward，在 Human Gate 停止，并且只有在状态更新后才继续实现。它负责 Visual Seed、Surface Resolution、参考库检索、参考图解析、配色样张、设计禁区、视觉原型、实现和验证。
+`design-engineering` 是流程编排器。它判断适用的设计模式，要求父级 Codex 会话调用 Steward，在 Human Gate 停止，并且只有在状态更新后才继续实现。它负责 Visual Seed、Surface Resolution、参考库检索、参考图解析、配色样张、字体字号与排版系统样张、设计禁区、视觉原型、实现和验证。
 
 `design_state_steward` 是状态管理员。它解析 Work Item 绑定，创建或更新 `STATE.md`，更新 `WORK_ITEMS.md`，准备 Gate 和视觉子检查点，记录用户批准，检查关闭准备情况，并且只在用户明确批准后封存。它可以记录目标终端、Reference Selection 链接和摘要，但不负责挑选参考或设计页面。
 
@@ -65,7 +65,7 @@ active
 
 ## 视觉子检查点
 
-配色确认和设计禁区确认都属于：
+配色确认、字体字号确认和设计禁区确认都属于：
 
 ```yaml
 phase: visual-direction
@@ -77,6 +77,7 @@ awaiting_user: true
 
 ```text
 palette-selection
+typography-selection
 design-exclusions
 ```
 

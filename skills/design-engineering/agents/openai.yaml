@@ -1,7 +1,7 @@
 interface:
   display_name: "Design Engineering"
-  short_description: "交互式 UX 探索、Surface Resolution、参考库消费、色卡注册表消费、配色确认、任务状态恢复、原型确认、实现与视觉验收"
-  default_prompt: "使用 $design-engineering 推进当前产品设计任务。先解析或恢复 Work Item，再明确目标终端并检索参考库，按适用的 Human Gate 完成参考解析、配色确认、设计禁区确认、原型、实现、验证和关闭确认。"
+  short_description: "交互式 UX 探索、Surface Resolution、参考库消费、色卡注册表消费、配色与字体字号确认、任务状态恢复、原型确认、实现与视觉验收"
+  default_prompt: "使用 $design-engineering 推进当前产品设计任务。先解析或恢复 Work Item，再明确目标终端并检索参考库，按适用的 Human Gate 完成参考解析、配色确认、字体字号确认、设计禁区确认、原型、实现、验证和关闭确认。"
 
 policy:
   allow_implicit_invocation: true

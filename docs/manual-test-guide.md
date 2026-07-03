@@ -47,6 +47,7 @@ evals/scenarios/13-reference-selection-belongs-to-work-item.md
 evals/scenarios/14-color-card-registry-integrity.md
 evals/scenarios/15-color-card-ready-only-visual-gate.md
 evals/scenarios/16-color-card-business-language-confirmation.md
+evals/scenarios/17-typography-selection-baseline.md
 docs/PRD.md
 docs/PRD.reference-library-v0.1.1.md
 docs/PRD.v0.1-to-v0.1.1-delta.md
@@ -101,17 +102,17 @@ Prompt：
 检查：
 
 - `DE-001` 包含 `status: "completed"` 和 `sealed: true`。
-- `DE-001` 展示 Visual Seed、参考解析、已确认配色、已确认设计禁区和视觉原型摘要，且没有为适配新模板而改写 sealed 历史。
+- `DE-001` 展示 Visual Seed、参考解析、已确认配色、已确认设计禁区和视觉原型摘要，且没有为适配新模板而改写 sealed 历史。新字体字号能力由新增评测场景覆盖，不要求改写 sealed 示例历史。
 - `DE-002` 的 Work Item 目录中包含 `REFERENCE_SELECTION.md`，并且 `STATE.md` 只记录其链接和摘要。
 - `DE-001` 封存后没有被恢复。
-- `VISUAL_DESIGN.md` 包含已确认配色、设计禁区、组件语言和示例入口。
+- `VISUAL_DESIGN.md` 包含已确认配色、设计禁区、组件语言和示例入口；新项目模板应额外包含可填写的字体字号规范字段。
 - `DE-002` 包含 `predecessors: ["DE-001"]`。
 - `DE-002` 已读取并遵守 `VISUAL_DESIGN.md`。
 - `DE-002` 正等待 `completion-approval`。
 
 ## 4. 评测场景
 
-阅读 [evals/scenarios](../evals/scenarios/) 下的全部文件。应共有 16 个场景，每个场景都使用“前提 / 当 / 则”的结构，并与 Skill 和 Steward 使用相同的状态决定：
+阅读 [evals/scenarios](../evals/scenarios/) 下的全部文件。应共有 17 个场景，每个场景都使用“前提 / 当 / 则”的结构，并与 Skill 和 Steward 使用相同的状态决定：
 
 ```text
 CREATE / RESUME / SUCCESSOR / NO_STATE / AMBIGUOUS
@@ -122,6 +123,7 @@ CREATE / RESUME / SUCCESSOR / NO_STATE / AMBIGUOUS
 - Visual Seed、参考图解析和配色确认。
 - 配色确认必须至少有 3 套候选调色盘、同构 UI 样张和可读性/对比说明。
 - 用户可以选择候选，也可以直接输入自定义颜色偏好；两种情况都必须记录到 `STATE.md`。
+- 字体字号确认必须记录 `typography-selection`，包含字体族、fallback、字号阶梯、行高、字重、用途映射、响应式调整和可读性/授权风险。
 - 不要求产品人格表单。
 - `VISUAL_DESIGN.md` 创建或更新。
 
@@ -150,6 +152,7 @@ Color Card Registry 场景应覆盖：
 品牌气质
 用户感受目标
 palette-approval
+typography-approval
 anti-homogeneity
 reference-library/reference-packs
 color-cards/cards/<id>
@@ -165,8 +168,9 @@ color-cards/cards/<id>
 - Surface Target 使用 `web-app / mobile-app / responsive-web / desktop-app / tablet / multi-surface`，不新增 Gate。
 - `STATE.md` 只记录 Reference Selection 摘要和链接，完整分析在 `REFERENCE_SELECTION.md`。
 - 色卡目录已升级为 Color Card Registry：包含 `palette-index.yml`，但未预填具体 ready 色卡。
-- 配色和设计禁区是视觉子步骤，不是新增 Gate。
+- 配色、字体字号和设计禁区是视觉子步骤，不是新增 Gate。
 - 不允许只给 1 套配色让用户确认。
 - 不允许用户输入自定义颜色后只口头接受而不写入状态。
+- 不允许只写 `font-family` 而不记录字号阶梯、行高、fallback、用途映射和可读性风险。
 - 示例和评测都与 `DE-001`、`DE-002` 的关系一致。
 - 没有安装器、Plugin 包、Hook、CLI、`statectl`、云服务、自动 OCR、自动截图下载或外部运行时依赖。

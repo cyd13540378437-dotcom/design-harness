@@ -17,12 +17,12 @@ CREATE / RESUME / SUCCESSOR / NO_STATE / AMBIGUOUS
 - 后续 Work Item 必须读取已有 `VISUAL_DESIGN.md`。
 - 不要修改或恢复 `completed + sealed` 状态。
 - 每个 Human Gate 前由 Steward 写入等待用户的检查点。
-- 配色确认和设计禁区确认使用 `visual-direction-approval`，正文分别写 `palette-selection` 与 `design-exclusions`。
+- 配色确认、字体字号确认和设计禁区确认使用 `visual-direction-approval`，正文分别写 `palette-selection`、`typography-selection` 与 `design-exclusions`。
 - 用户回复 Gate 后，先更新状态再继续。
 - 完成封存必须经过 `completion-approval`，不得在没有用户明确批准时 seal。
 - Steward 只管理状态，不实现产品代码，也不替用户批准。
 - 不要求用户填写产品人格、品牌气质矩阵或用户感受目标表单。
-- 不新增 `palette-approval`、`design-exclusion-approval` 或 `anti-homogeneity` Gate。
+- 不新增 `palette-approval`、`typography-approval`、`design-exclusion-approval` 或 `anti-homogeneity` Gate。
 
 ## Design Reference Library
 

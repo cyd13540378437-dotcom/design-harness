@@ -1,5 +1,14 @@
 # 变更日志
 
+## Unreleased / agent compatibility
+
+- 新增 `scripts/install-agent-compat.sh`，支持为 Codex、Claude Code 和 Cursor 安装完整 Design Harness 文件集。
+- 新增 Claude Code adapter：`CLAUDE.fragment.md` 与 `design-state-steward` subagent。
+- 新增 Cursor adapter：`.cursor/rules/design-engineering.mdc` 与主 Agent 可执行的 state steward 规则。
+- 更新 Skill 与 README，明确 `design_state_steward` 在 Codex、Claude Code 和 Cursor 下的等价入口。
+- 新增 `docs/agent-compatibility.md`，解释轻量规则包与完整仓库的区别，避免安装后缺少 references、assets、templates 和 color-card registry。
+- 新增 `typography-selection` 视觉子检查点，将字体、字号、行高、字重、fallback、响应式调整、用途映射和可读性风险纳入 `STATE.md` 与 `VISUAL_DESIGN.md`。
+
 ## v0.1.2-alpha / color-card-registry increment
 
 - 将 `reference-library/assets/color-cards/` 从预留目录升级为 Color Card Registry。

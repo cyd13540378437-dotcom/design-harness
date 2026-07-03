@@ -2,7 +2,7 @@
 
 Codex Design Harness is a human-in-the-loop design engineering protocol for Codex. It turns important UI/UX work into recoverable, auditable Work Items with explicit user approval gates, and it preserves approved visual decisions in a project-level `VISUAL_DESIGN.md`.
 
-v0.1.2-alpha is an incremental update on top of the v0.1.1-alpha Reference Library revision. It stays deliberately manual and document-based, and upgrades `assets/color-cards/` into a Color Card Registry so Codex can use complete visual color-card objects during palette confirmation. It does not include an installer, CLI, hook, plugin package, cloud service, or runtime dependency.
+v0.1.2-alpha is an incremental update on top of the v0.1.1-alpha Reference Library revision. It stays deliberately document-based, and upgrades `assets/color-cards/` into a Color Card Registry so agents can use complete visual color-card objects during palette confirmation. It includes a small file-copy compatibility helper for Codex, Claude Code, and Cursor; it does not include a CLI product, hook, plugin package, cloud service, or runtime dependency.
 
 ## Core Model
 
@@ -36,6 +36,20 @@ VISUAL_DESIGN.md
 - `completed + sealed` is read-only history; related follow-up work must create a Successor.
 
 See [README.zh-CN.md](README.zh-CN.md) for the full Chinese guide and [docs/architecture.md](docs/architecture.md) for system structure.
+
+## Agent Compatibility
+
+Use the full `design-harness` repository for installation. The lightweight `designharness` rules folder is only a routing-rule package and does not contain the full skill, reference library, color-card registry, or templates.
+
+Compatibility helper:
+
+```bash
+./scripts/install-agent-compat.sh codex /path/to/project
+./scripts/install-agent-compat.sh claude /path/to/project
+./scripts/install-agent-compat.sh cursor /path/to/project
+```
+
+The helper copies the complete skill directory, installs the correct project entry point for the selected agent, and verifies that the nested `docs/design/` template files are present. See [docs/agent-compatibility.md](docs/agent-compatibility.md).
 
 ## State Resolution
 
@@ -77,12 +91,14 @@ Visual Seed
 → Reference Analysis
 → Palette Proposal
 → Palette Confirmation
+→ Typography Proposal
+→ Typography Confirmation
 → Design Exclusions
 → Exclusions Confirmation
 → Visual Prototype
 ```
 
-Palette confirmation and design-exclusion confirmation are sub-checkpoints under `visual-direction-approval`; they are not new Gate enum values. `palette-selection` must present at least three candidate palette boards with comparable mini UI samples and contrast/readability notes. The user may choose a candidate or provide a custom color direction; either way, the state records the original user input, final palette, source, and reason. The state body records `palette-selection` and `design-exclusions` as visual substeps.
+Palette confirmation, typography confirmation, and design-exclusion confirmation are sub-checkpoints under `visual-direction-approval`; they are not new Gate enum values. `palette-selection` must present at least three candidate palette boards with comparable mini UI samples and contrast/readability notes. `typography-selection` records font family, fallback stack, type scale, line height, weight, responsive behavior, usage mapping, licensing/loading notes, and readability risks through comparable UI samples. The user may choose a candidate or provide a custom direction; either way, the state records the original user input, final system, source, and reason. The state body records `palette-selection`, `typography-selection`, and `design-exclusions` as visual substeps.
 
 Before reference retrieval, Codex records the target surface: `web-app`, `mobile-app`, `responsive-web`, `desktop-app`, `tablet`, or `multi-surface`. If `docs/design/reference-library/` exists, Codex filters it by surface, page type, task type, density, complexity, user maturity, industry, and visual tags. The task-level result goes into `docs/design/work-items/<ID-slug>/REFERENCE_SELECTION.md`; `STATE.md` keeps only a summary and link.
 
@@ -94,7 +110,7 @@ Users may provide images in `docs/design/reference-images/`. When they have no r
 
 Full Mode uses:
 
-1. `visual-direction-approval`, including palette and design-exclusion substeps
+1. `visual-direction-approval`, including palette, typography, and design-exclusion substeps
 2. `prototype-approval`
 3. `interaction-decision`, only for high-impact UX ambiguity
 4. `completion-approval`
@@ -102,6 +118,8 @@ Full Mode uses:
 Lightweight Mode may skip the full visual flow for local changes, but it still reads `VISUAL_DESIGN.md`. Delegated Mode lets Codex handle ordinary details, while final sealing still requires explicit user approval.
 
 ## Manual Install
+
+For the safer cross-agent path, prefer [Agent Compatibility](#agent-compatibility). Manual install remains available for Codex-only use.
 
 1. Copy [skills/design-engineering](skills/design-engineering/) to:
 
@@ -134,16 +152,16 @@ Lightweight Mode may skip the full visual flow for local changes, but it still r
 [examples/idea-storm-lab](examples/idea-storm-lab/) demonstrates the three PRD requests:
 
 - “检查项目上下文” returns `NO_STATE`.
-- “优化前端样式” creates and seals `DE-001` after visual seed, reference analysis, palette confirmation, design-exclusion confirmation, visual prototype, implementation, QA, and `VISUAL_DESIGN.md` update.
+- “优化前端样式” creates and seals `DE-001` after visual seed, reference analysis, palette confirmation, typography confirmation, design-exclusion confirmation, visual prototype, implementation, QA, and `VISUAL_DESIGN.md` update.
 - “统一内容模块问题长度换行” creates successor `DE-002`, references sealed `DE-001`, reads `VISUAL_DESIGN.md`, records task-level reference use in `REFERENCE_SELECTION.md`, and waits at `completion-approval`.
 
 ## Evaluation
 
-Manual Given / When / Then scenarios live in [evals/scenarios](evals/scenarios/). They cover context checks, create, resume, successor, parallel Work Items, ambiguous binding, close-and-seal, the visual workflow, avoiding product-personality taxonomy, `VISUAL_DESIGN.md` creation, and Reference Library surface selection, and Color Card Registry integrity / ready-only / business-language confirmation.
+Manual Given / When / Then scenarios live in [evals/scenarios](evals/scenarios/). They cover context checks, create, resume, successor, parallel Work Items, ambiguous binding, close-and-seal, the visual workflow, avoiding product-personality taxonomy, `VISUAL_DESIGN.md` creation, Reference Library surface selection, Color Card Registry integrity / ready-only / business-language confirmation, and typography-selection recording.
 
 ## Limits
 
-- No installer, plugin package, marketplace metadata, hook, CLI, `statectl`, cloud service, or external runtime dependency.
+- No plugin package, marketplace metadata, hook, CLI product, `statectl`, cloud service, or external runtime dependency.
 - No deterministic schema validator or automatic index generator.
 - No multi-user write lock.
 - No automatic web scraping or bundled third-party product screenshots.

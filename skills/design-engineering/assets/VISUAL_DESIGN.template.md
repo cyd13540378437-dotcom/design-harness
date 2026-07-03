@@ -49,6 +49,38 @@ Short, actionable constraints confirmed by the user.
 
 ## Typography
 
+- Font family:
+- Fallback stack:
+- Source and license:
+- Loading strategy:
+
+### Type Scale
+
+| Token | Size | Line height | Weight | Usage |
+|---|---:|---:|---:|---|
+| display |  |  |  |  |
+| title |  |  |  |  |
+| heading |  |  |  |  |
+| body |  |  |  |  |
+| label |  |  |  |  |
+| caption |  |  |  |  |
+| code-data |  |  |  |  |
+
+### Responsive Typography
+
+- Desktop:
+- Tablet:
+- Mobile:
+
+### Readability Rules
+
+- Letter spacing:
+- Long text:
+- Dense data:
+- Buttons and labels:
+- Mixed-language copy:
+- Fallback or loading risks:
+
 ## Spacing and Density
 
 ## Component Language

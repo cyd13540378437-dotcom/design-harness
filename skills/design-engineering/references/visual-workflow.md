@@ -15,6 +15,8 @@ Visual Seed
 → Reference Analysis
 → Palette Proposal
 → Palette Confirmation
+→ Typography Proposal
+→ Typography Confirmation
 → Design Exclusions
 → Exclusions Confirmation
 → Visual Prototype
@@ -134,9 +136,40 @@ Stop until the user confirms, rejects, combines, asks for revision, or provides 
 
 If the user provides a custom color direction instead of choosing a candidate, treat it as a valid `palette-selection` decision. Record the user's original color input, the comparison summary, the final adjusted palette, whether it was derived from a candidate, and the reason for the choice.
 
+## Typography Confirmation
+
+Typography confirmation happens after palette confirmation and before design exclusions. If the project already has an approved typographic baseline in `docs/design/VISUAL_DESIGN.md` or a local design system, and the current task does not change it, inherit it and record that decision. Otherwise, use the `typography-selection` visual subcheckpoint.
+
+Show typography as a UI sample, not as font names alone. The comparison sample must cover headings, body text, navigation, buttons, form labels, helper text, captions, data/code or long-content cases, and at least one mobile or narrow-width implication.
+
+Each candidate or final typography system records:
+
+- Font family and fallback stack.
+- Type scale tokens: display, title, heading, body, label, caption, code/data.
+- Font size, line height, weight, and letter spacing. Letter spacing defaults to `0` unless an established brand system says otherwise.
+- Responsive adjustments by surface or breakpoint.
+- Usage mapping for long text, dense data, forms, buttons, navigation, and status copy.
+- Readability risks: too small, too narrow, weak line height, mixed Chinese/English instability, web-font loading failure, unclear licensing, or poor mobile readability.
+
+State checkpoint:
+
+```yaml
+phase: visual-direction
+gate: visual-direction-approval
+awaiting_user: true
+```
+
+State body:
+
+```text
+视觉子步骤：typography-selection
+```
+
+Stop until the user confirms, rejects, combines, asks for revision, or provides a custom font or size direction. Record the user's original typography input, candidate comparison summary, final typography system, source, and reason.
+
 ## Design Exclusions
 
-Design exclusions are short, actionable "do not go there" constraints generated after palette confirmation.
+Design exclusions are short, actionable "do not go there" constraints generated after palette and typography confirmation.
 
 Inputs:
 
@@ -144,6 +177,7 @@ Inputs:
 - Visual Seed
 - Reference analysis
 - Approved palette
+- Approved typography system
 - Existing `VISUAL_DESIGN.md`
 - Common template-like risks
 
@@ -174,6 +208,7 @@ A visual prototype must show:
 - Content density
 - Core components
 - Approved palette
+- Approved typography system
 - Approved design exclusions
 - Key responsive behavior
 - At least one empty, loading, or error state

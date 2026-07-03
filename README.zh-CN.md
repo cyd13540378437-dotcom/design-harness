@@ -2,7 +2,7 @@
 
 Codex Design Harness 是一套给 Codex 使用的 Human-in-the-loop 设计工程协议：它把重要 UI/UX 工作组织成可恢复、可审计、可由用户批准关闭的 Work Item，并把已确认的视觉结果沉淀为项目级 `VISUAL_DESIGN.md`。
 
-它不是组件库、CLI 或自动化平台。v0.1.2-alpha 是在 v0.1.1-alpha Reference Library 版基础上的增量：继续保持手动、文档型交付，并把 `assets/color-cards/` 升级为 Color Card Registry，让 Agent 能用完整的大图色卡、结构化 palette 和业务语义支持配色确认。
+它不是组件库、CLI 或自动化平台。v0.1.2-alpha 是在 v0.1.1-alpha Reference Library 版基础上的增量：继续保持文档型交付，并把 `assets/color-cards/` 升级为 Color Card Registry，让 Agent 能用完整的大图色卡、结构化 palette 和业务语义支持配色确认。本版本补充了一个文件复制型兼容安装脚本，面向 Codex、Claude Code 和 Cursor；它仍然不是插件市场包、Hook、云服务或外部运行时。
 
 ## 它解决的问题
 
@@ -47,6 +47,20 @@ docs/design/VISUAL_DESIGN.md
 
 更多结构说明见 [docs/architecture.md](docs/architecture.md)。
 
+## Agent 兼容安装
+
+请用完整的 `design-harness` 仓库安装。轻量的 `designharness` 规则目录只包含 Skill Routing Gate 规则，不包含完整 Skill、Reference Library、Color Card Registry 或项目模板。
+
+兼容安装脚本：
+
+```bash
+./scripts/install-agent-compat.sh codex /path/to/project
+./scripts/install-agent-compat.sh claude /path/to/project
+./scripts/install-agent-compat.sh cursor /path/to/project
+```
+
+脚本会复制完整 skill 目录，安装对应客户端能识别的项目入口，并检查嵌套的 `docs/design/` 模板文件是否齐全。更多说明见 [docs/agent-compatibility.md](docs/agent-compatibility.md)。
+
 ## 五种状态解析结果
 
 `design_state_steward` 在状态解析阶段只能返回：
@@ -68,14 +82,16 @@ Visual Seed
 → Reference Analysis
 → Palette Proposal
 → Palette Confirmation
+→ Typography Proposal
+→ Typography Confirmation
 → Design Exclusions
 → Exclusions Confirmation
 → Visual Prototype
 ```
 
-`Visual Seed` 只记录用户原始视觉输入，可以是一句话、一个词、参考产品名，甚至为空。Agent 先解析参考图中可观察的视觉特征，再输出至少 3 套候选调色盘、同构 UI 样张和对比/可读性说明。用户可以选择候选，也可以直接输入自己的颜色偏好；无论哪种都必须写入 `STATE.md`。用户确认配色后，Agent 生成 4-8 条设计禁区，用户确认后才进入视觉原型。
+`Visual Seed` 只记录用户原始视觉输入，可以是一句话、一个词、参考产品名，甚至为空。Agent 先解析参考图中可观察的视觉特征，再输出至少 3 套候选调色盘、同构 UI 样张和对比/可读性说明。用户可以选择候选，也可以直接输入自己的颜色偏好；无论哪种都必须写入 `STATE.md`。用户确认配色后，Agent 还必须确认字体字号与排版系统，记录字体族、fallback、字号阶梯、行高、字重、用途映射、响应式调整、授权/加载说明和可读性风险。之后 Agent 生成 4-8 条设计禁区，用户确认后才进入视觉原型。
 
-配色确认和设计禁区确认不新增 Gate 枚举。它们都是：
+配色确认、字体字号确认和设计禁区确认不新增 Gate 枚举。它们都是：
 
 ```yaml
 phase: visual-direction
@@ -87,6 +103,7 @@ awaiting_user: true
 
 ```text
 palette-selection
+typography-selection
 design-exclusions
 ```
 
@@ -159,7 +176,7 @@ skills/design-engineering/assets/visual-reference-packs/
 
 `STATE.md` 记录单个 Work Item 的状态、Gate、批准决定、验收标准和验证证据。
 
-`VISUAL_DESIGN.md` 记录项目长期复用的视觉基线：Visual Seed、参考图解析、已确认配色、设计禁区、组件语言、布局原则和示例。它只记录已确认结果，不记录未批准实验方案。
+`VISUAL_DESIGN.md` 记录项目长期复用的视觉基线：Visual Seed、参考图解析、已确认配色、已确认字体字号与排版系统、设计禁区、组件语言、布局原则和示例。它只记录已确认结果，不记录未批准实验方案。
 
 后续 Work Item 必须先读取 `VISUAL_DESIGN.md`。如果新任务改变视觉基线，必须在对应 `STATE.md` 说明原因，并更新 `VISUAL_DESIGN.md`。
 
@@ -175,21 +192,23 @@ skills/design-engineering/assets/visual-reference-packs/
 6. 若存在 Color Card Registry，读取 `palette-index.yml`，跳过不完整、draft 或 deprecated 色卡，并将可用候选写入 `REFERENCE_SELECTION.md`。
 7. 在 `visual-direction-approval` 下写入 `palette-selection` 等待状态。
 8. 用户确认配色或输入自定义颜色后，写入用户原始颜色输入、最终配色和选择理由。
-9. 在同一 Gate 下写入 `design-exclusions` 等待状态。
-10. 用户确认设计禁区后，再输出视觉原型。
-11. 在 `prototype-approval` Gate 前写入检查点并等待。
-12. 处理高影响 UX 交互问题，必要时进入 `interaction-decision` Gate。
-13. 按已批准方向生产实现。
-14. 按目标终端完成浏览器或可替代证据 QA。
-15. 创建或更新 `VISUAL_DESIGN.md`。
-16. 在 `completion-approval` Gate 展示证据，等待用户明确关闭。
-17. 用户批准后，Steward 才能写入 `status: completed` 与 `sealed: true`。
+9. 在同一 Gate 下写入 `typography-selection` 等待状态。
+10. 用户确认字体字号或输入自定义排版方向后，写入用户原始输入、最终排版系统和选择理由。
+11. 在同一 Gate 下写入 `design-exclusions` 等待状态。
+12. 用户确认设计禁区后，再输出视觉原型。
+13. 在 `prototype-approval` Gate 前写入检查点并等待。
+14. 处理高影响 UX 交互问题，必要时进入 `interaction-decision` Gate。
+15. 按已批准方向生产实现。
+16. 按目标终端完成浏览器或可替代证据 QA。
+17. 创建或更新 `VISUAL_DESIGN.md`。
+18. 在 `completion-approval` Gate 展示证据，等待用户明确关闭。
+19. 用户批准后，Steward 才能写入 `status: completed` 与 `sealed: true`。
 
 Lightweight Mode 可跳过完整视觉流程，但仍必须读取已有 `VISUAL_DESIGN.md`。Delegated Mode 可让 Codex 自动处理普通设计细节，但任务封存仍必须由用户明确批准。
 
 ## 手动安装
 
-v0.1 只提供手动方式，不包含安装器。
+跨 Codex / Claude / Cursor 的场景建议优先使用上面的兼容安装脚本。下面保留 Codex-only 手动安装方式。
 
 1. 将 [skills/design-engineering](skills/design-engineering/) 复制到用户级 Skill 目录：
 
@@ -257,7 +276,7 @@ product-repository/
 [examples/idea-storm-lab](examples/idea-storm-lab/) 展示三个连续请求：
 
 1. “检查项目上下文”返回 `NO_STATE`。
-2. “优化前端样式”创建 `DE-001`，完成 Visual Seed、参考解析、配色确认、设计禁区确认、视觉原型、实现、QA、`VISUAL_DESIGN.md` 更新和用户关闭批准，最终 `completed + sealed`。
+2. “优化前端样式”创建 `DE-001`，完成 Visual Seed、参考解析、配色确认、字体字号确认、设计禁区确认、视觉原型、实现、QA、`VISUAL_DESIGN.md` 更新和用户关闭批准，最终 `completed + sealed`。
 3. “统一内容模块问题长度换行”与 `DE-001` 相关，但因为前任已封存，所以创建 `DE-002` successor，读取并遵守 `VISUAL_DESIGN.md`，用 `REFERENCE_SELECTION.md` 记录本任务参考选择，停在 `completion-approval`。
 
 ## 跨 Thread 恢复
@@ -281,7 +300,7 @@ sealed: true
 
 ## 当前限制
 
-- 没有自动安装器、CLI、Hook、Codex Plugin 或 Marketplace 分发。
+- 没有 CLI 产品、Hook、Codex Plugin 或 Marketplace 分发。
 - 没有 `statectl`、Schema 校验脚本或自动索引生成器。
 - 不自动生成 ready 色卡；只有用户提供图片或明确视觉描述后，才能生产完整色卡知识。
 - 没有并发写锁；写入前需要重新读取索引和状态。

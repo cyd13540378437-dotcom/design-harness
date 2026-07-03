@@ -40,6 +40,41 @@ risk_level: medium
 | Reference | Reason |
 |---|---|
 
+## Typography Selection
+
+### Typography Query
+
+- Existing visual baseline:
+- Brand font constraints:
+- Locale and writing system:
+- Surface and density:
+- Long-form reading needs:
+- Data/code display needs:
+- Performance or licensing constraints:
+
+### Candidate Typography Systems
+
+| Candidate | Font family | Fallback stack | Scale character | Fit reason | Trade-off | Sample coverage |
+|---|---|---|---|---|---|---|
+
+### Rejected Typography Systems
+
+| Candidate | Reason |
+|---|---|
+
+### Approved Typography System
+
+- Approved by:
+- Approved at:
+- Source: existing-baseline | candidate | modified-candidate | custom
+- User notes:
+- Font family:
+- Fallback stack:
+- License / loading notes:
+- Type scale:
+- Responsive adjustments:
+- Readability risks:
+
 ## Design Principles for This Work Item
 
 1.

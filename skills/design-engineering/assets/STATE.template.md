@@ -61,7 +61,7 @@ completed_at: ""
 ## 当前检查点
 
 - 当前阶段、当前 Gate、是否等待用户，以及下一步负责人。
-- 若处于视觉子检查点，写明：`palette-selection` 或 `design-exclusions`。
+- 若处于视觉子检查点，写明：`palette-selection`、`typography-selection` 或 `design-exclusions`。
 
 ## 视觉设计上下文
 
@@ -86,6 +86,20 @@ completed_at: ""
 - 末级强调色：
 - 背景、文字、边框和语义色摘要：
 - 选中色卡：`<color-card-id>`；若未使用色卡，说明原因。
+
+### 已确认字体字号与排版系统
+
+- 候选字体字号样张对比：使用同一组 UI 样张；记录标题、正文、导航、按钮、表单、辅助文案、数据/代码或长内容的可读性摘要。
+- 用户原始字体/字号输入：用户选择候选、混合候选、指定品牌字体、要求系统字体或直接给出的字号偏好。
+- 最终排版来源：existing-baseline | candidate | modified-candidate | custom。
+- 用户选择：
+- 选择理由：
+- 字体族与 fallback stack：
+- 字号阶梯/token：display / title / heading / body / label / caption / code-data。
+- 行高、字重、字距：
+- 响应式调整：
+- 用途映射：长文本、密集数据、表单、按钮、导航、状态文案。
+- 可读性与授权风险：
 
 ### 已确认设计禁区
 

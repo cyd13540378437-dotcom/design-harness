@@ -1,0 +1,41 @@
+---
+description: Apply Design Engineering Harness routing and state workflow for UI/UX work.
+alwaysApply: true
+---
+
+# Design Engineering Harness
+
+Use this rule for user-visible UI/UX work: pages, components, layout, style, forms, navigation, typography, icons, color, responsive behavior, loading, empty, error, hover, focus, disabled, animation, and transitions.
+
+Routing:
+
+- Treat `design-engineering` as a candidate for new product interfaces, important feature pages, cross-page flows, and significant UI/UX redesigns.
+- For small UI fixes, recommend lightweight `design-engineering` or visual regression only.
+- For backend, infrastructure, database, or non-visual refactors, do not recommend `design-engineering`.
+- Candidate does not mean authorized. If the workflow would add design-direction confirmation, prototype confirmation, review gates, or extra acceptance steps, ask the user which route they want before entering the workflow.
+- If the user explicitly asks for automatic mode, direct implementation, or says you should decide and execute, use the smallest suitable mode unless permissions, privacy, cost, deletion, publishing, migration, or irreversible actions are involved.
+
+When `design-engineering` is authorized:
+
+1. Read `.cursor/design-harness/skills/design-engineering/SKILL.md`.
+2. Read referenced files under `.cursor/design-harness/skills/design-engineering/references/` only when the task needs them.
+3. Use `.cursor/design-harness/agents/design-state-steward.md` as the state-steward rulebook. Cursor may not provide a separate subagent, so the main agent must apply those state-only rules directly.
+4. Keep Work Item state in `docs/design/work-items/<ID-slug>/STATE.md`.
+5. Keep the project visual baseline in `docs/design/VISUAL_DESIGN.md`.
+6. Keep task-level reference consumption in `docs/design/work-items/<ID-slug>/REFERENCE_SELECTION.md`.
+
+State rules:
+
+- A chat session is not a Work Item.
+- `docs/design/WORK_ITEMS.md` is an index; `STATE.md` is authoritative.
+- Resolve state as exactly one of `CREATE`, `RESUME`, `SUCCESSOR`, `NO_STATE`, or `AMBIGUOUS`.
+- Do not reopen or modify `completed + sealed` Work Items.
+- Related follow-up work after sealing creates a Successor.
+- Palette confirmation, typography confirmation, and design-exclusion confirmation are visual substeps under `visual-direction-approval`; do not invent new Gate names.
+- Completion requires explicit user approval at `completion-approval` before sealing.
+
+If any required compatibility file is missing, tell the user the Design Harness Cursor install is incomplete and ask them to run:
+
+```bash
+./scripts/install-agent-compat.sh cursor /path/to/project
+```
