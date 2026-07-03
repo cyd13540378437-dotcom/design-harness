@@ -51,6 +51,12 @@ Compatibility helper:
 
 The helper copies the complete skill directory, installs the correct project entry point for the selected agent, and verifies that the nested `docs/design/` template files are present. See [docs/agent-compatibility.md](docs/agent-compatibility.md).
 
+To inspect an existing install and see exactly which files are missing, run:
+
+```bash
+./scripts/install-agent-compat.sh doctor /path/to/project
+```
+
 ## State Resolution
 
 `design_state_steward` can return only five binding decisions:

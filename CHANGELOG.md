@@ -8,6 +8,7 @@
 - 更新 Skill 与 README，明确 `design_state_steward` 在 Codex、Claude Code 和 Cursor 下的等价入口。
 - 新增 `docs/agent-compatibility.md`，解释轻量规则包与完整仓库的区别，避免安装后缺少 references、assets、templates 和 color-card registry。
 - 新增 `typography-selection` 视觉子检查点，将字体、字号、行高、字重、fallback、响应式调整、用途映射和可读性风险纳入 `STATE.md` 与 `VISUAL_DESIGN.md`。
+- 增强兼容安装器：新增 `doctor` 检查、安装完成摘要和 Cursor adapter README，明确 `.cursor/design-harness` 与根目录 `docs/design` 的职责分离。
 
 ## v0.1.2-alpha / color-card-registry increment
 

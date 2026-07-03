@@ -27,6 +27,12 @@ skills/design-engineering/references/visual-workflow.md
 skills/design-engineering/references/reference-library-consumption.md
 skills/design-engineering/references/color-card-consumption.md
 agents/design-state-steward.toml
+adapters/claude/CLAUDE.fragment.md
+adapters/claude/agents/design-state-steward.md
+adapters/cursor/README.md
+adapters/cursor/agents/design-state-steward.md
+adapters/cursor/rules/design-engineering.mdc
+scripts/install-agent-compat.sh
 templates/project/docs/design/WORK_ITEMS.md
 templates/project/docs/design/VISUAL_DESIGN.md
 templates/project/docs/design/reference-images/.gitkeep
@@ -63,6 +69,19 @@ docs/manual-test-guide.md
 确认 `templates/project/docs/design/reference-library/` 包含产品索引、模式索引、单产品条目、单模式条目、截图素材目录、schema 和 `assets/color-cards/` 注册表结构。`color-cards/` 必须包含 `palette-index.yml`、`palette-index.md`、`color-card.schema.yml`、集中式 `images/`、`palettes/`、`annotations/`。不得存在 `templates/project/docs/design/reference-library/reference-packs/` 或 `color-cards/cards/`。
 
 ## 2. 手动安装冒烟测试
+
+优先使用兼容安装脚本测试：
+
+```text
+scripts/install-agent-compat.sh cursor /path/to/test-project
+scripts/install-agent-compat.sh doctor /path/to/test-project
+```
+
+预期：
+
+- `.cursor/design-harness/` 包含 Cursor adapter 和 vendored skill。
+- `docs/design/` 包含 Work Items、`VISUAL_DESIGN.md`、Reference Library 和 Color Card Registry。
+- doctor 输出不报告缺失文件。
 
 在一次性业务仓库中：
 
@@ -172,5 +191,6 @@ color-cards/cards/<id>
 - 不允许只给 1 套配色让用户确认。
 - 不允许用户输入自定义颜色后只口头接受而不写入状态。
 - 不允许只写 `font-family` 而不记录字号阶梯、行高、fallback、用途映射和可读性风险。
+- Cursor 安装后必须能通过 `scripts/install-agent-compat.sh doctor <project>` 看见 `.cursor/design-harness` 和 `docs/design` 两套位置的状态。
 - 示例和评测都与 `DE-001`、`DE-002` 的关系一致。
 - 没有安装器、Plugin 包、Hook、CLI、`statectl`、云服务、自动 OCR、自动截图下载或外部运行时依赖。

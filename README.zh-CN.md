@@ -61,6 +61,12 @@ docs/design/VISUAL_DESIGN.md
 
 脚本会复制完整 skill 目录，安装对应客户端能识别的项目入口，并检查嵌套的 `docs/design/` 模板文件是否齐全。更多说明见 [docs/agent-compatibility.md](docs/agent-compatibility.md)。
 
+如果要检查某个项目到底缺哪些文件，运行：
+
+```bash
+./scripts/install-agent-compat.sh doctor /path/to/project
+```
+
 ## 五种状态解析结果
 
 `design_state_steward` 在状态解析阶段只能返回：

@@ -15,9 +15,12 @@ Use the full repository root, then run the compatibility installer:
 ./scripts/install-agent-compat.sh claude /path/to/project
 ./scripts/install-agent-compat.sh cursor /path/to/project
 ./scripts/install-agent-compat.sh codex /path/to/project
+./scripts/install-agent-compat.sh doctor /path/to/project
 ```
 
 The installer never uses `--delete`. It adds missing project template files and updates the agent-specific skill copy.
+
+If a Cursor install looks small, check both places: `.cursor/design-harness/` contains only the Cursor adapter and vendored skill; the durable project files are expected under `docs/design/`.
 
 ## Codex Layout
 
@@ -61,12 +64,15 @@ Cursor installs:
 
 ```text
 target-project/.cursor/rules/design-engineering.mdc
+target-project/.cursor/design-harness/README.md
 target-project/.cursor/design-harness/skills/design-engineering/
 target-project/.cursor/design-harness/agents/design-state-steward.md
 target-project/docs/design/
 ```
 
 Cursor does not get a Codex-style user skill or Codex custom agent from this repository. The `.cursor/rules/design-engineering.mdc` rule tells Cursor to read the vendored skill files and apply the steward rules directly.
+
+The large Reference Library, Color Card Registry, Work Item templates, and `VISUAL_DESIGN.md` do not live under `.cursor/design-harness/`; they live under `docs/design/` at the project root.
 
 Invoke with a normal prompt, for example:
 
