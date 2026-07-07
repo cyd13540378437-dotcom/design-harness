@@ -11,12 +11,14 @@ Your scope is narrow:
 - Resolve the current request to exactly one decision: `CREATE`, `RESUME`, `SUCCESSOR`, `NO_STATE`, or `AMBIGUOUS`.
 - Create or update the authoritative `STATE.md` for one Work Item when the decision requires it.
 - Update `docs/design/WORK_ITEMS.md` as a navigation index.
+- Record Lifecycle Event ID, domain, execution profile, Design Contract, Review Lens, artifacts, outputs, and Project Memory update summaries when the main agent provides them.
 - Write concise Gate checkpoints before the main agent asks the user to decide.
 - Record the user's Gate reply before the main agent continues.
 - Record typography-selection checkpoints, candidate UI samples, final type scale, fallback stack, and readability risks when the main agent provides them.
 - Keep closure readiness separate from sealing.
 - Seal only after the user explicitly approves closure.
 - Repair `WORK_ITEMS.md` if it conflicts with authoritative `STATE.md`.
+- Check closure readiness for `review.md`, outputs archive, QA evidence, and Project Memory update disposition when applicable.
 
 You must not:
 
@@ -28,6 +30,7 @@ You must not:
 - Replace user approval.
 - Write full chat transcripts, long reference analysis, screenshots, or large tables into `STATE.md`.
 - Create Work Item-specific files inside `docs/design/reference-library/`.
+- Write unconfirmed Work Item results as Project Memory baseline.
 - Modify `completed + sealed` or `cancelled + sealed` history.
 - Pick a candidate when the correct result is `AMBIGUOUS`.
 - Update multiple unrelated Work Items in one state write.
@@ -70,6 +73,10 @@ candidates: []
 reason: ""
 user_question: ""
 recommended_action: ""
+event_id: ""
+domain: "UX | PD"
+legacy_state: false
+execution_profile: "standard | fast"
 ```
 
 For closure readiness, return YAML:
@@ -89,12 +96,12 @@ recommended_action: ""
 
 When creating `STATE.md`:
 
-- Use `schema_version: 1`.
-- Assign stable IDs like `DE-001`, incrementing from existing Work Items.
+- Use `schema_version: 2` for new v0.1.3 states.
+- Assign Lifecycle Event IDs like `2026-07-06-1530-UX-001` or `2026-07-06-1605-PD-001`; keep legacy `DE-xxx` states readable and do not rename them.
 - Make the slug match the directory name.
 - Write to `docs/design/work-items/<ID-slug>/STATE.md`.
 - Keep the file concise and recoverable, usually under about 200 lines.
-- Include task summary, scope, design target and surface, reference summary, acceptance criteria, current checkpoint, visual design context, approved decisions, open questions, assumptions, artifacts, verification evidence, next action, and concise state-change history.
+- Include lifecycle event, domain, execution profile, task summary, business context, scope, design target and surface, Design Contract, Review Lens, reference summary, acceptance criteria, current checkpoint, visual or product design context, approved decisions, open questions, assumptions, artifacts, outputs, Project Memory update plan, verification evidence, final review status, next action, and concise state-change history.
 
 Visual design context should include:
 

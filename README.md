@@ -2,7 +2,7 @@
 
 Codex Design Harness is a human-in-the-loop design engineering protocol for Codex. It turns important UI/UX work into recoverable, auditable Work Items with explicit user approval gates, and it preserves approved visual decisions in a project-level `VISUAL_DESIGN.md`.
 
-v0.1.2-alpha is an incremental update on top of the v0.1.1-alpha Reference Library revision. It stays deliberately document-based, and upgrades `assets/color-cards/` into a Color Card Registry so agents can use complete visual color-card objects during palette confirmation. It includes a small file-copy compatibility helper for Codex, Claude Code, and Cursor; it does not include a CLI product, hook, plugin package, cloud service, or runtime dependency.
+v0.1.3-alpha is an incremental update on top of the v0.1.2-alpha Color Card Registry revision. It stays deliberately document-based, and adds Project Lifecycle Memory & Artifacts: Lifecycle Event IDs, `project-memory/`, `outputs/`, Context-bound Final Review, Fast Profile, and `PD` product-design events. It includes a small file-copy compatibility helper for Codex, Claude Code, and Cursor; it does not include a CLI product, hook, plugin package, cloud service, or runtime dependency.
 
 ## Core Model
 
@@ -19,6 +19,8 @@ Work Item STATE.md
         ↓
 Work Item REFERENCE_SELECTION.md
         ↓
+Project Memory + Outputs
+        ↓
 Human Gates, visual workflow, implementation, QA, seal
         ↓
 VISUAL_DESIGN.md
@@ -31,7 +33,10 @@ VISUAL_DESIGN.md
 - `VISUAL_DESIGN.md` is the long-lived project visual baseline.
 - `reference-library/` is the long-lived product visual reference layer.
 - `REFERENCE_SELECTION.md` records how one Work Item consumed the reference library and color-card registry.
+- `project-memory/` stores durable cross-Work Item business, product, UX, visual, engineering, and decision context.
+- `outputs/` tracks current confirmed deliverables and archived Lifecycle Event snapshots.
 - Color Card Registry is the checked color-reference layer under `reference-library/assets/color-cards/`.
+- New Work Items prefer Lifecycle Event IDs such as `2026-07-06-1530-UX-001`; legacy `DE-xxx` remains valid.
 - Gates are points where Codex must wait for user approval.
 - `completed + sealed` is read-only history; related follow-up work must create a Successor.
 
@@ -121,7 +126,11 @@ Full Mode uses:
 3. `interaction-decision`, only for high-impact UX ambiguity
 4. `completion-approval`
 
-Lightweight Mode may skip the full visual flow for local changes, but it still reads `VISUAL_DESIGN.md`. Delegated Mode lets Codex handle ordinary details, while final sealing still requires explicit user approval.
+Lightweight Mode may skip the full visual flow for local changes, but it still reads `VISUAL_DESIGN.md`. Fast Profile is the accelerated lightweight form, recorded as `mode: "lightweight"` and `execution_profile: "fast"`; it still requires Design Contract, Review Lens, evidence, and `completion-approval`. Delegated Mode lets Codex handle ordinary details, while final sealing still requires explicit user approval.
+
+Before `completion-review`, v0.1.3 requires Context-bound Final Review. The review is based on the current `STATE.md`, Design Contract, Review Lens, approved decisions, reference/color summaries, Project Memory, and real QA evidence; it is not a generic aesthetic audit.
+
+`domain: PD` supports product-design events such as membership systems, pricing models, permissions, feature boundaries, PRDs, and decision maps. Later `domain: UX` events can list sealed PD events in `predecessors` and inherit product constraints read-only.
 
 ## Manual Install
 
@@ -143,7 +152,7 @@ For the safer cross-agent path, prefer [Agent Compatibility](#agent-compatibilit
 
 4. Copy [templates/project/docs/design](templates/project/docs/design/) into the target project.
 
-   This includes `reference-library/`, Color Card Registry placeholders, and the Work Item `REFERENCE_SELECTION.template.md`.
+   This includes `reference-library/`, Color Card Registry placeholders, `project-memory/`, `outputs/`, and the Work Item `REFERENCE_SELECTION.template.md`.
 
 5. Start a new Codex session and run:
 
@@ -161,17 +170,22 @@ For the safer cross-agent path, prefer [Agent Compatibility](#agent-compatibilit
 - “优化前端样式” creates and seals `DE-001` after visual seed, reference analysis, palette confirmation, typography confirmation, design-exclusion confirmation, visual prototype, implementation, QA, and `VISUAL_DESIGN.md` update.
 - “统一内容模块问题长度换行” creates successor `DE-002`, references sealed `DE-001`, reads `VISUAL_DESIGN.md`, records task-level reference use in `REFERENCE_SELECTION.md`, and waits at `completion-approval`.
 
+[examples/lifecycle-memory-lab](examples/lifecycle-memory-lab/) demonstrates v0.1.3 Lifecycle Event IDs, Project Memory updates, outputs archive/current, Context-bound Final Review, a `domain: PD` membership-system event, and a later UX event inheriting the sealed PD predecessor.
+
 ## Evaluation
 
-Manual Given / When / Then scenarios live in [evals/scenarios](evals/scenarios/). They cover context checks, create, resume, successor, parallel Work Items, ambiguous binding, close-and-seal, the visual workflow, avoiding product-personality taxonomy, `VISUAL_DESIGN.md` creation, Reference Library surface selection, Color Card Registry integrity / ready-only / business-language confirmation, and typography-selection recording.
+Manual Given / When / Then scenarios live in [evals/scenarios](evals/scenarios/). They cover context checks, create, resume, successor, parallel Work Items, ambiguous binding, close-and-seal, the visual workflow, avoiding product-personality taxonomy, `VISUAL_DESIGN.md` creation, Reference Library surface selection, Color Card Registry integrity / ready-only / business-language confirmation, typography-selection recording, Lifecycle Event IDs, Fast Profile, Context-bound Final Review, PD events, PD-to-UX inheritance, outputs indexing, and sealed-state immutability.
 
 ## Limits
 
 - No plugin package, marketplace metadata, hook, CLI product, `statectl`, cloud service, or external runtime dependency.
 - No deterministic schema validator or automatic index generator.
+- No Project Adoption / Adoption Baseline flow for taking over long-lived existing projects; v0.1.3 assumes project memory starts when the harness is installed.
 - No multi-user write lock.
 - No automatic web scraping or bundled third-party product screenshots.
 - No Work Item-specific `reference-library/reference-packs/`; task-level reference choices belong in `REFERENCE_SELECTION.md`.
+- No `docs/design/product-work-items/`; UX and PD events both live under `docs/design/work-items/`.
+- No root-level `outputs/` directory by default; design deliverables live under `docs/design/outputs/`.
 - No automatic ready color-card generation; complete color-card knowledge requires user-provided images or explicit visual descriptions.
 - Browser QA is recommended, but v0.1 does not require a specific browser tool.
 

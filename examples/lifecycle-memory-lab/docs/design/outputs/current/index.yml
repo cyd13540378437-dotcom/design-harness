@@ -1,0 +1,11 @@
+schema_version: 1
+current_outputs:
+  - path: "latest-product-prd.md"
+    source_event: "2026-07-06-1605-PD-001"
+    status: "confirmed"
+    baseline: true
+  - path: "latest-upgrade-flow.md"
+    source_event: "2026-07-06-1710-UX-002"
+    status: "confirmed"
+    baseline: true
+

@@ -1,0 +1,27 @@
+schema_version: 1
+current:
+  product_prd: "current/latest-product-prd.md"
+  ux_upgrade_flow: "current/latest-upgrade-flow.md"
+archive:
+  - event_id: "2026-07-06-1530-UX-001"
+    title: "Settings empty state optimization"
+    domain: "UX"
+    status: "confirmed"
+    archive_path: "archive/2026-07-06-1530-UX-001/"
+    source_state: "../work-items/2026-07-06-1530-UX-001-settings-empty-state/STATE.md"
+    baseline_candidate: true
+  - event_id: "2026-07-06-1605-PD-001"
+    title: "Membership system"
+    domain: "PD"
+    status: "confirmed"
+    archive_path: "archive/2026-07-06-1605-PD-001/"
+    source_state: "../work-items/2026-07-06-1605-PD-001-membership-system/STATE.md"
+    baseline_candidate: true
+  - event_id: "2026-07-06-1710-UX-002"
+    title: "Upgrade modal and pricing page"
+    domain: "UX"
+    status: "confirmed"
+    archive_path: "archive/2026-07-06-1710-UX-002/"
+    source_state: "../work-items/2026-07-06-1710-UX-002-upgrade-modal-and-pricing-page/STATE.md"
+    baseline_candidate: true
+

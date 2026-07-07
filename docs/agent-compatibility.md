@@ -20,7 +20,7 @@ Use the full repository root, then run the compatibility installer:
 
 The installer never uses `--delete`. It adds missing project template files and updates the agent-specific skill copy.
 
-If a Cursor install looks small, check both places: `.cursor/design-harness/` contains only the Cursor adapter and vendored skill; the durable project files are expected under `docs/design/`.
+If a Cursor install looks small, check both places: `.cursor/design-harness/` contains only the Cursor adapter and vendored skill; the durable Work Items, Project Memory, Outputs, Reference Library, Color Card Registry, and visual baseline are expected under `docs/design/`.
 
 ## Codex Layout
 
@@ -72,7 +72,7 @@ target-project/docs/design/
 
 Cursor does not get a Codex-style user skill or Codex custom agent from this repository. The `.cursor/rules/design-engineering.mdc` rule tells Cursor to read the vendored skill files and apply the steward rules directly.
 
-The large Reference Library, Color Card Registry, Work Item templates, and `VISUAL_DESIGN.md` do not live under `.cursor/design-harness/`; they live under `docs/design/` at the project root.
+The large Reference Library, Color Card Registry, Work Item templates, Project Memory, Outputs, and `VISUAL_DESIGN.md` do not live under `.cursor/design-harness/`; they live under `docs/design/` at the project root.
 
 Invoke with a normal prompt, for example:
 
@@ -87,6 +87,11 @@ After install, these files should exist:
 ```text
 docs/design/WORK_ITEMS.md
 docs/design/VISUAL_DESIGN.md
+docs/design/project-memory/README.md
+docs/design/project-memory/PRODUCT_DESIGN.md
+docs/design/project-memory/DECISIONS.md
+docs/design/outputs/index.yml
+docs/design/outputs/current/index.yml
 docs/design/reference-library/product-index.yml
 docs/design/reference-library/pattern-index.yml
 docs/design/reference-library/assets/color-cards/palette-index.yml
@@ -100,5 +105,9 @@ SKILL.md
 references/visual-workflow.md
 references/reference-library-consumption.md
 references/color-card-consumption.md
+references/lifecycle-event-id.md
+references/project-memory-and-artifacts.md
+references/context-bound-final-review.md
+references/product-design-events.md
 assets/visual-reference-packs/reference-index.md
 ```

@@ -1,0 +1,8 @@
+schema_version: 1
+event_id: "2026-07-06-1530-UX-001"
+source_state: "../../../work-items/2026-07-06-1530-UX-001-settings-empty-state/STATE.md"
+artifacts:
+  - path: "summary.md"
+    type: "summary"
+    status: "confirmed"
+    can_be_baseline: true

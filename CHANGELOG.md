@@ -10,6 +10,27 @@
 - 新增 `typography-selection` 视觉子检查点，将字体、字号、行高、字重、fallback、响应式调整、用途映射和可读性风险纳入 `STATE.md` 与 `VISUAL_DESIGN.md`。
 - 增强兼容安装器：新增 `doctor` 检查、安装完成摘要和 Cursor adapter README，明确 `.cursor/design-harness` 与根目录 `docs/design` 的职责分离。
 
+## v0.1.3-alpha / lifecycle-memory increment
+
+- 新增 `docs/PRD.lifecycle-memory-v0.1.3.md` 与 `docs/product-summary.lifecycle-memory-version.md`。
+- 新增 Lifecycle Event ID 规则：新 Work Item 优先使用 `yyyy-mm-dd-hhmm-UX-001` / `PD-001`，legacy `DE-xxx` 继续兼容且不自动重命名。
+- 新增 `templates/project/docs/design/project-memory/`，包含 Business、Product、UX、Visual、Engineering 和 Decisions 记忆文件。
+- 新增 `templates/project/docs/design/outputs/`，区分 `current/` 当前入口与 `archive/<event_id>/` 历史归档。
+- 升级 `STATE.template.md` 为 schema version 2，记录 `event_id`、`domain`、`execution_profile`、Design Contract、Review Lens、outputs 和 Project Memory 更新计划。
+- 升级 Skill、Steward、AGENTS fragment、Claude/Cursor adapter 规则，加入 Fast Profile、Context-bound Final Review、Project Memory、Outputs 和 PD 产品设计事件。
+- 新增 lifecycle-event-id、project-memory-and-artifacts、context-bound-final-review、product-design-events reference 文档。
+- 新增 `examples/lifecycle-memory-lab/`，覆盖 UX event、PD event、PD -> UX predecessor、review.md、outputs archive/current 和 Project Memory。
+- 新增评测 `18-25`，覆盖 Lifecycle Event ID、legacy resume、Fast Profile、Final Review、PD、PD -> UX、Outputs 和 sealed 状态不可变更。
+- 保持 v0.1 状态解析枚举、Gate、sealed 规则、v0.1.1 Reference Library 和 v0.1.2 Color Card Registry 完整兼容。
+
+### Field validation notes
+
+- 使用新建 `testNewPD` 项目完成一次端到端实战验证：安装兼容包、创建首个 UX Lifecycle Event、产出核心页面 demo、用户确认后封存、创建 successor、以 Fast Profile 升级首页视觉、再次封存并提升为 `outputs/current`。
+- 验证 Project Memory 能沉淀压缩后的产品、UX、视觉和决策经验；后续 successor 可从 `project-memory/`、`VISUAL_DESIGN.md` 与 `outputs/index.yml` 恢复当前基线，而不需要读取完整历史聊天。
+- 验证 `outputs/archive/<event_id>/` 与 `outputs/current/` 的边界成立：Work Item `artifacts/` 是工作现场，只有用户确认后的结果才进入 current 与 archive。
+- 暴露一个尚未实现的功能架构缺口：老项目接手时需要 Project Adoption / Adoption Baseline 流程，用于盘点既有页面、组件、设计文档、历史决策和当前 confirmed outputs，并把事实按 `confirmed / observed / inferred` 分层写入 Project Memory。v0.1.3 尚未内置该接手基线层。
+- 暴露一个工程化后续项：封存操作仍需人工同步 `STATE.md`、`WORK_ITEMS.md`、outputs、Project Memory 和 `VISUAL_DESIGN.md`；后续版本应提供确定性 state/closure 工具以降低路径和索引错误。
+
 ## v0.1.2-alpha / color-card-registry increment
 
 - 将 `reference-library/assets/color-cards/` 从预留目录升级为 Color Card Registry。

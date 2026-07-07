@@ -19,8 +19,13 @@
 - `reference-library/` 是长期视觉参考资料层，不保存 Work Item 专属选择。
 - `REFERENCE_SELECTION.md` 是 Work Item 级参考消费结果。
 - `STATE.md` 只记录 Reference Selection 链接和摘要，不吞完整参考分析。
+- `project-memory/` 是跨 Work Item 的长期项目记忆，不保存完整聊天记录、完整参考分析或完整色卡知识。
+- `outputs/` 是设计交付物系统，区分当前确认入口和历史事件归档。
+- 新 Work Item 优先使用 Lifecycle Event ID；legacy `DE-xxx` 不得自动重命名。
 - `completed + sealed` 状态只读，不得恢复，也不得用于新的实现修改。
 - 不创建 `reference-library/reference-packs/`。
+- 不创建 `docs/design/product-work-items/`。
+- 不默认创建项目根目录 `outputs/`。
 
 ## 必须保持的枚举
 
@@ -58,6 +63,10 @@ none / work-item-binding / visual-direction-approval / prototype-approval / inte
 - [skills/design-engineering/assets/STATE.template.md](skills/design-engineering/assets/STATE.template.md)
 - [skills/design-engineering/assets/WORK_ITEMS.template.md](skills/design-engineering/assets/WORK_ITEMS.template.md)
 - [skills/design-engineering/assets/REFERENCE_SELECTION.template.md](skills/design-engineering/assets/REFERENCE_SELECTION.template.md)
+- [skills/design-engineering/references/lifecycle-event-id.md](skills/design-engineering/references/lifecycle-event-id.md)
+- [skills/design-engineering/references/project-memory-and-artifacts.md](skills/design-engineering/references/project-memory-and-artifacts.md)
+- [skills/design-engineering/references/context-bound-final-review.md](skills/design-engineering/references/context-bound-final-review.md)
+- [skills/design-engineering/references/product-design-events.md](skills/design-engineering/references/product-design-events.md)
 - [skills/design-engineering/references/reference-library-consumption.md](skills/design-engineering/references/reference-library-consumption.md)
 - [templates/project/docs/design/reference-library](templates/project/docs/design/reference-library/)
 - [examples/idea-storm-lab/docs/design/WORK_ITEMS.md](examples/idea-storm-lab/docs/design/WORK_ITEMS.md)

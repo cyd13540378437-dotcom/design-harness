@@ -23,6 +23,8 @@ When `design-engineering` is authorized:
 4. Keep Work Item state in `docs/design/work-items/<ID-slug>/STATE.md`.
 5. Keep the project visual baseline in `docs/design/VISUAL_DESIGN.md`.
 6. Keep task-level reference consumption in `docs/design/work-items/<ID-slug>/REFERENCE_SELECTION.md`.
+7. Keep durable project memory in `docs/design/project-memory/`.
+8. Keep confirmed deliverables and archives in `docs/design/outputs/`.
 
 State rules:
 
@@ -31,7 +33,11 @@ State rules:
 - Resolve state as exactly one of `CREATE`, `RESUME`, `SUCCESSOR`, `NO_STATE`, or `AMBIGUOUS`.
 - Do not reopen or modify `completed + sealed` Work Items.
 - Related follow-up work after sealing creates a Successor.
+- New v0.1.3 Work Items should use Lifecycle Event IDs like `2026-07-06-1530-UX-001` or `2026-07-06-1605-PD-001`; legacy `DE-xxx` remains valid and must not be renamed automatically.
 - Palette confirmation, typography confirmation, and design-exclusion confirmation are visual substeps under `visual-direction-approval`; do not invent new Gate names.
+- Fast Profile is recorded as `mode: lightweight` plus `execution_profile: fast`; it cannot skip Design Contract, Review Lens, evidence, or completion approval.
+- Before `completion-review`, produce a Context-bound Final Review based on current state, Design Contract, Review Lens, approved decisions, reference/color summaries, Project Memory, and actual QA evidence.
+- Use `domain: PD` for product design events such as membership systems, pricing, feature boundaries, permissions, PRDs, and decision maps. Later UX events may read sealed PD predecessors but must not modify them.
 - Completion requires explicit user approval at `completion-approval` before sealing.
 
 If any required compatibility file is missing, tell the user the Design Harness Cursor install is incomplete and ask them to run:

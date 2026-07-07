@@ -115,7 +115,7 @@ print_summary() {
   esac
   echo
   echo "Note: .cursor/design-harness is only the Cursor adapter and vendored skill."
-  echo "The project reference library, Work Items, color cards, and visual baseline live under docs/design."
+  echo "The project Work Items, Project Memory, Outputs, reference library, color cards, and visual baseline live under docs/design."
   echo "To inspect later, run: scripts/install-agent-compat.sh doctor \"$target\""
 }
 
@@ -167,6 +167,11 @@ install_project_docs() {
 verify_project_docs() {
   require_file "$target/docs/design/WORK_ITEMS.md"
   require_file "$target/docs/design/VISUAL_DESIGN.md"
+  require_file "$target/docs/design/project-memory/README.md"
+  require_file "$target/docs/design/project-memory/PRODUCT_DESIGN.md"
+  require_file "$target/docs/design/project-memory/DECISIONS.md"
+  require_file "$target/docs/design/outputs/index.yml"
+  require_file "$target/docs/design/outputs/current/index.yml"
   require_file "$target/docs/design/reference-library/product-index.yml"
   require_file "$target/docs/design/reference-library/pattern-index.yml"
   require_file "$target/docs/design/reference-library/assets/color-cards/palette-index.yml"
@@ -186,6 +191,10 @@ verify_skill_copy() {
   require_file "$dest/references/visual-workflow.md"
   require_file "$dest/references/reference-library-consumption.md"
   require_file "$dest/references/color-card-consumption.md"
+  require_file "$dest/references/lifecycle-event-id.md"
+  require_file "$dest/references/project-memory-and-artifacts.md"
+  require_file "$dest/references/context-bound-final-review.md"
+  require_file "$dest/references/product-design-events.md"
   require_file "$dest/assets/visual-reference-packs/reference-index.md"
 
   local missing
@@ -238,6 +247,8 @@ doctor() {
   report_tree "project docs/design template" "$root/templates/project/docs/design" "$target/docs/design" || failures=$((failures + 1))
   report_file "project WORK_ITEMS.md" "$target/docs/design/WORK_ITEMS.md" || failures=$((failures + 1))
   report_file "project VISUAL_DESIGN.md" "$target/docs/design/VISUAL_DESIGN.md" || failures=$((failures + 1))
+  report_file "project Project Memory" "$target/docs/design/project-memory/README.md" || failures=$((failures + 1))
+  report_file "project outputs index" "$target/docs/design/outputs/index.yml" || failures=$((failures + 1))
   report_file "project color-card registry" "$target/docs/design/reference-library/assets/color-cards/palette-index.yml" || failures=$((failures + 1))
   report_file "project reference-selection template" "$target/docs/design/work-items/REFERENCE_SELECTION.template.md" || failures=$((failures + 1))
 
@@ -268,7 +279,7 @@ doctor() {
   echo
   echo "Expected split:"
   echo "- .cursor/design-harness: Cursor adapter + vendored skill only"
-  echo "- docs/design: Work Items, VISUAL_DESIGN.md, Reference Library, Color Card Registry"
+  echo "- docs/design: Work Items, Project Memory, Outputs, VISUAL_DESIGN.md, Reference Library, Color Card Registry"
 
   if [[ "$failures" != "0" ]]; then
     echo

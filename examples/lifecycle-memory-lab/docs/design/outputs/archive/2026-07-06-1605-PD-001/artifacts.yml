@@ -1,0 +1,16 @@
+schema_version: 1
+event_id: "2026-07-06-1605-PD-001"
+source_state: "../../../work-items/2026-07-06-1605-PD-001-membership-system/STATE.md"
+artifacts:
+  - path: "membership-prd.md"
+    type: "product-prd"
+    status: "confirmed"
+    can_be_baseline: true
+  - path: "pricing-model.md"
+    type: "pricing-model"
+    status: "confirmed"
+    can_be_baseline: true
+  - path: "decision-map.md"
+    type: "decision-map"
+    status: "confirmed"
+    can_be_baseline: true

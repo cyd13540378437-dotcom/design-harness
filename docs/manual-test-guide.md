@@ -1,6 +1,6 @@
 # 手动测试指南
 
-使用本指南验证 v0.1.2-alpha / color-card-registry increment 仓库，不需要安装任何运行时依赖。
+使用本指南验证 v0.1.3-alpha / lifecycle-memory increment 仓库，不需要安装任何运行时依赖。
 
 ## 1. 文件结构
 
@@ -18,6 +18,11 @@ skills/design-engineering/SKILL.md
 skills/design-engineering/agents/openai.yaml
 skills/design-engineering/assets/STATE.template.md
 skills/design-engineering/assets/WORK_ITEMS.template.md
+skills/design-engineering/assets/PROJECT_MEMORY_README.template.md
+skills/design-engineering/assets/PROJECT_MEMORY.template.md
+skills/design-engineering/assets/OUTPUTS_README.template.md
+skills/design-engineering/assets/OUTPUTS_INDEX.template.yml
+skills/design-engineering/assets/ARTIFACTS_MANIFEST.template.yml
 skills/design-engineering/assets/VISUAL_DESIGN.template.md
 skills/design-engineering/assets/REFERENCE_SELECTION.template.md
 skills/design-engineering/assets/REFERENCE_SELECTION.color-card-section.template.md
@@ -26,6 +31,10 @@ skills/design-engineering/assets/visual-reference-packs/reference-index.md
 skills/design-engineering/references/visual-workflow.md
 skills/design-engineering/references/reference-library-consumption.md
 skills/design-engineering/references/color-card-consumption.md
+skills/design-engineering/references/lifecycle-event-id.md
+skills/design-engineering/references/project-memory-and-artifacts.md
+skills/design-engineering/references/context-bound-final-review.md
+skills/design-engineering/references/product-design-events.md
 agents/design-state-steward.toml
 adapters/claude/CLAUDE.fragment.md
 adapters/claude/agents/design-state-steward.md
@@ -35,6 +44,18 @@ adapters/cursor/rules/design-engineering.mdc
 scripts/install-agent-compat.sh
 templates/project/docs/design/WORK_ITEMS.md
 templates/project/docs/design/VISUAL_DESIGN.md
+templates/project/docs/design/project-memory/README.md
+templates/project/docs/design/project-memory/BUSINESS_CONTEXT.md
+templates/project/docs/design/project-memory/PRODUCT_DESIGN.md
+templates/project/docs/design/project-memory/UX_DESIGN.md
+templates/project/docs/design/project-memory/VISUAL_DESIGN.md
+templates/project/docs/design/project-memory/ENGINEERING_CONTEXT.md
+templates/project/docs/design/project-memory/DECISIONS.md
+templates/project/docs/design/outputs/README.md
+templates/project/docs/design/outputs/index.yml
+templates/project/docs/design/outputs/current/index.yml
+templates/project/docs/design/outputs/current/.gitkeep
+templates/project/docs/design/outputs/archive/.gitkeep
 templates/project/docs/design/reference-images/.gitkeep
 templates/project/docs/design/reference-library/README.md
 templates/project/docs/design/reference-library/product-index.md
@@ -54,19 +75,30 @@ evals/scenarios/14-color-card-registry-integrity.md
 evals/scenarios/15-color-card-ready-only-visual-gate.md
 evals/scenarios/16-color-card-business-language-confirmation.md
 evals/scenarios/17-typography-selection-baseline.md
+evals/scenarios/18-lifecycle-event-id-create.md
+evals/scenarios/19-legacy-de-id-resume.md
+evals/scenarios/20-fast-profile-local-ux.md
+evals/scenarios/21-context-bound-final-review.md
+evals/scenarios/22-pd-event-project-memory.md
+evals/scenarios/23-pd-to-ux-predecessor.md
+evals/scenarios/24-outputs-archive-current-index.md
+evals/scenarios/25-no-sealed-state-mutation-for-memory.md
+examples/lifecycle-memory-lab/docs/design/WORK_ITEMS.md
 docs/PRD.md
 docs/PRD.reference-library-v0.1.1.md
 docs/PRD.v0.1-to-v0.1.1-delta.md
 docs/PRD.color-card-registry-v0.1.2.md
 docs/PRD.v0.1.1-to-v0.1.2-color-card-registry-delta.md
+docs/PRD.lifecycle-memory-v0.1.3.md
 docs/product-summary.color-card-registry-version.md
+docs/product-summary.lifecycle-memory-version.md
 docs/architecture.md
 docs/manual-test-guide.md
 ```
 
 确认 `skills/design-engineering/assets/visual-reference-packs/` 下有 5 个参考包，每个包至少包含 2 张自制 SVG 和 `notes.md`。
 
-确认 `templates/project/docs/design/reference-library/` 包含产品索引、模式索引、单产品条目、单模式条目、截图素材目录、schema 和 `assets/color-cards/` 注册表结构。`color-cards/` 必须包含 `palette-index.yml`、`palette-index.md`、`color-card.schema.yml`、集中式 `images/`、`palettes/`、`annotations/`。不得存在 `templates/project/docs/design/reference-library/reference-packs/` 或 `color-cards/cards/`。
+确认 `templates/project/docs/design/reference-library/` 包含产品索引、模式索引、单产品条目、单模式条目、截图素材目录、schema 和 `assets/color-cards/` 注册表结构。`color-cards/` 必须包含 `palette-index.yml`、`palette-index.md`、`color-card.schema.yml`、集中式 `images/`、`palettes/`、`annotations/`。确认 `templates/project/docs/design/project-memory/` 与 `templates/project/docs/design/outputs/` 存在。不得存在 `templates/project/docs/design/reference-library/reference-packs/`、`color-cards/cards/`、`docs/design/product-work-items/` 或项目根目录 `outputs/` 模板。
 
 ## 2. 手动安装冒烟测试
 
@@ -80,7 +112,7 @@ scripts/install-agent-compat.sh doctor /path/to/test-project
 预期：
 
 - `.cursor/design-harness/` 包含 Cursor adapter 和 vendored skill。
-- `docs/design/` 包含 Work Items、`VISUAL_DESIGN.md`、Reference Library 和 Color Card Registry。
+- `docs/design/` 包含 Work Items、`VISUAL_DESIGN.md`、Project Memory、Outputs、Reference Library 和 Color Card Registry。
 - doctor 输出不报告缺失文件。
 
 在一次性业务仓库中：
@@ -131,7 +163,7 @@ Prompt：
 
 ## 4. 评测场景
 
-阅读 [evals/scenarios](../evals/scenarios/) 下的全部文件。应共有 17 个场景，每个场景都使用“前提 / 当 / 则”的结构，并与 Skill 和 Steward 使用相同的状态决定：
+阅读 [evals/scenarios](../evals/scenarios/) 下的全部文件。应共有 25 个场景，每个场景都使用“前提 / 当 / 则”的结构，并与 Skill 和 Steward 使用相同的状态决定：
 
 ```text
 CREATE / RESUME / SUCCESSOR / NO_STATE / AMBIGUOUS
@@ -162,6 +194,17 @@ Color Card Registry 场景应覆盖：
 - 配色确认必须展示大图色卡和业务语义，不得只展示 HEX/RGB 或小 icon。
 - Work Item 级色卡采用结果写入 `REFERENCE_SELECTION.md`，`STATE.md` 只写摘要和链接。
 
+Lifecycle Memory 场景应覆盖：
+
+- 新 Work Item 使用 Lifecycle Event ID，legacy `DE-xxx` 不重命名。
+- Fast Profile 使用 `mode: lightweight` + `execution_profile: fast`。
+- `STATE.md` 记录 Design Contract、Review Lens、outputs 和 Project Memory 更新计划。
+- `review.md` 是基于上下文的 final review，不是通用审美 checklist。
+- `domain: PD` 产品设计事件可产出 PRD、pricing model、decision map。
+- 后续 UX 事件通过 `predecessors` 只读继承 sealed PD 事件。
+- `outputs/archive/<event_id>/` 与 `outputs/current/` 边界清楚。
+- 不为补 Project Memory 或 `event_id` 修改 sealed 状态。
+
 ## 5. 禁止项检查
 
 允许这些词出现在“禁止事项”语境中，但不得作为正向用户流程要求或 Gate enum：
@@ -175,6 +218,8 @@ typography-approval
 anti-homogeneity
 reference-library/reference-packs
 color-cards/cards/<id>
+docs/design/product-work-items
+root outputs/
 ```
 
 ## 6. 完成定义自检
@@ -193,4 +238,6 @@ color-cards/cards/<id>
 - 不允许只写 `font-family` 而不记录字号阶梯、行高、fallback、用途映射和可读性风险。
 - Cursor 安装后必须能通过 `scripts/install-agent-compat.sh doctor <project>` 看见 `.cursor/design-harness` 和 `docs/design` 两套位置的状态。
 - 示例和评测都与 `DE-001`、`DE-002` 的关系一致。
+- Lifecycle Memory 示例包含 UX event、PD event、PD -> UX predecessor、outputs archive/current、Project Memory 和 `review.md`。
+- 新增评测 18-25 覆盖 lifecycle id、legacy resume、fast profile、final review、PD、PD to UX、outputs 和 sealed 不可变更。
 - 没有安装器、Plugin 包、Hook、CLI、`statectl`、云服务、自动 OCR、自动截图下载或外部运行时依赖。

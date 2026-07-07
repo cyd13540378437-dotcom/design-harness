@@ -1,0 +1,8 @@
+schema_version: 1
+event_id: "2026-07-06-1710-UX-002"
+source_state: "../../../work-items/2026-07-06-1710-UX-002-upgrade-modal-and-pricing-page/STATE.md"
+artifacts:
+  - path: "upgrade-flow.md"
+    type: "ux-flow"
+    status: "confirmed"
+    can_be_baseline: true

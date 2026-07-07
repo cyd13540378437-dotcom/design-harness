@@ -2,6 +2,8 @@
 
 Codex Design Harness 是一层面向 Codex 设计工作的轻量协议。它刻意由文本文件组成，让用户可以手动安装、检查和调整。
 
+v0.1.3 后，它也是项目生命周期记忆系统：Lifecycle Event ID 串联 Work Item、`STATE.md`、Reference Selection、Color Direction、Artifacts、Outputs、Project Memory 和 Review。
+
 ```text
 仓库规则
   AGENTS.md
@@ -26,6 +28,10 @@ Skill
   docs/design/work-items/<state-id-slug>/STATE.md
   docs/design/work-items/<state-id-slug>/REFERENCE_SELECTION.md
         ↓
+项目生命周期记忆与交付物
+  docs/design/project-memory/
+  docs/design/outputs/
+        ↓
 项目视觉基线
   docs/design/VISUAL_DESIGN.md
 ```
@@ -34,15 +40,19 @@ Skill
 
 `AGENTS.md` 给出项目级不变量：术语、枚举、sealed 状态规则、视觉子检查点和范围限制。
 
-`design-engineering` 是流程编排器。它判断适用的设计模式，要求父级 Codex 会话调用 Steward，在 Human Gate 停止，并且只有在状态更新后才继续实现。它负责 Visual Seed、Surface Resolution、参考库检索、参考图解析、配色样张、字体字号与排版系统样张、设计禁区、视觉原型、实现和验证。
+`design-engineering` 是流程编排器。它判断适用的设计模式，要求父级 Codex 会话调用 Steward，在 Human Gate 停止，并且只有在状态更新后才继续实现。它负责 Project Memory 读取、Lifecycle Event ID 使用、Visual Seed、Surface Resolution、参考库检索、参考图解析、配色样张、字体字号与排版系统样张、设计禁区、视觉原型、实现、验证、Context-bound Final Review、outputs 归档建议和 Project Memory 更新建议。
 
-`design_state_steward` 是状态管理员。它解析 Work Item 绑定，创建或更新 `STATE.md`，更新 `WORK_ITEMS.md`，准备 Gate 和视觉子检查点，记录用户批准，检查关闭准备情况，并且只在用户明确批准后封存。它可以记录目标终端、Reference Selection 链接和摘要，但不负责挑选参考或设计页面。
+`design_state_steward` 是状态管理员。它解析 Work Item 绑定，创建或更新 `STATE.md`，更新 `WORK_ITEMS.md`，准备 Gate 和视觉子检查点，记录用户批准，检查关闭准备情况，并且只在用户明确批准后封存。它可以记录目标终端、Reference Selection 链接和摘要、Lifecycle Event ID、domain、execution profile、Design Contract、Review Lens、artifact/output/project-memory 摘要，但不负责挑选参考、设计页面、产品策略判断或实现代码。
 
 `STATE.md` 是权威 Work Item 快照。它是有损压缩，只保留当前事实、已批准决定、视觉上下文、待确认问题、证据和下一步行动，不保存完整对话。
 
 `reference-library/` 是项目级长期视觉参考资料层。它保存产品参考、设计模式、截图目录、色卡预留区和 schema，不保存某个 Work Item 的专属选择。
 
 `REFERENCE_SELECTION.md` 是 Work Item 级消费结果。它记录本任务如何筛选、采用和排除参考；`STATE.md` 只链接它并保留摘要。
+
+`project-memory/` 是跨 Work Item 的长期项目记忆。它保存业务、产品、UX、视觉、工程和决策基线，不保存完整聊天记录、完整参考分析或完整色卡知识。
+
+`outputs/` 是交付物系统。`outputs/archive/<event_id>/` 保存 sealed 事件快照；`outputs/current/` 只保存用户确认或项目采纳的当前入口；`outputs/index.yml` 串联当前入口、历史归档和 source `STATE.md`。
 
 `WORK_ITEMS.md` 是导航索引。它便于浏览项目状态，但不是权威来源。
 
@@ -62,6 +72,8 @@ active
 ```
 
 已完成并 sealed 的状态对后续实现不可变。新的相关工作应创建 successor。
+
+新建 v0.1.3 Work Item 优先使用 Lifecycle Event ID，例如 `2026-07-06-1530-UX-001` 或 `2026-07-06-1605-PD-001`。Legacy `DE-xxx` 状态继续可读、可恢复、可作为 predecessor，不得自动重命名。
 
 ## 视觉子检查点
 
@@ -98,6 +110,24 @@ open_questions: []
 若项目存在 `docs/design/reference-library/`，父级 Agent 按同终端、同页面类型、同任务类型、相近密度和复杂度等条件筛选参考，并把本任务选择写入 `docs/design/work-items/<state-id-slug>/REFERENCE_SELECTION.md`。
 
 用户看到的方向应是业务语义和取舍，例如“效率工作台”“引导式助手”“内容探索”，而不是必须理解具体产品名。跨终端参考只能用于抽象模式，不能直接复制布局、导航、手势、密度或视觉比例。
+
+## Lifecycle Memory 流
+
+```text
+Lifecycle Event ID
+  -> Work Item + STATE.md
+  -> Reference Selection / Color Direction / Artifacts
+  -> Context-bound Final Review
+  -> outputs/archive + outputs/current
+  -> project-memory updates
+  -> Successor or PD -> UX inheritance
+```
+
+Fast Profile 是 `lightweight` 的加速形态，记录为 `mode: lightweight` + `execution_profile: fast`。它可以跳过不适用的视觉或原型 Gate，但不能跳过 Design Contract、Review Lens、证据和 `completion-approval`。
+
+Context-bound Final Review 在 QA 后、`completion-review` 前生成 `review.md`。它基于本次 `STATE.md`、Design Contract、Review Lens、已批准决定、Reference Selection、Approved Color Direction、Project Memory 和实际 QA 证据，不新增 Gate。
+
+`domain: PD` 表示产品设计事件，例如会员体系、定价模型、功能边界、权限与套餐、PRD 或 decision map。后续 `domain: UX` Work Item 可以通过 `predecessors` 只读继承 sealed PD 事件的产品约束。
 
 ## 为什么需要独立 Steward Agent
 

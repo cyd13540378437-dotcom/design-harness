@@ -2,24 +2,32 @@
 
 > This file is a navigation index. Each Work Item's STATE.md is authoritative.
 
-`palette-selection` and `design-exclusions` are visual substeps under `visual-direction-approval`; they are not Gate enum values.
+`palette-selection`、`typography-selection` and `design-exclusions` are visual substeps under `visual-direction-approval`; they are not Gate enum values.
+
+New v0.1.3 Work Items should prefer Lifecycle Event IDs such as `2026-07-06-1530-UX-001`. Legacy `DE-xxx` IDs remain valid and must not be renamed automatically.
 
 ## Active
 
-| ID | Title | Release | Phase | Gate | State |
-|---|---|---|---|---|---|
+| ID | Domain | Title | Release | Phase | Gate | Profile | State |
+|---|---|---|---|---|---|---|---|
 
 ## Paused
 
-| ID | Title | Release | Phase | Reason | State |
-|---|---|---|---|---|---|
+| ID | Domain | Title | Release | Phase | Reason | State |
+|---|---|---|---|---|---|---|
 
 ## Completed
 
-| ID | Title | Release | Completed | Successors | State |
-|---|---|---|---|---|---|
+| ID | Domain | Title | Release | Completed | Successors | Archive | State |
+|---|---|---|---|---|---|---|---|
 
 ## Cancelled
 
-| ID | Title | Cancelled | State |
+| ID | Domain | Title | Cancelled | State |
+|---|---|---|---|---|
+
+## Legacy IDs
+
+| Legacy ID | Current Event ID | Title | State |
 |---|---|---|---|
+
