@@ -1,0 +1,168 @@
+schema_version: 1
+capability_id: product-business-modeling
+display_name: 业务模型能力集群
+version: v0.2.2-runtime-aware
+status: implementation-ready
+agent_neutral: true
+primary_language: zh-CN
+stable_identifiers_language: en
+architecture:
+  layers:
+  - DesignHarnessAgent Core
+  - Shared Agent Skill Facade
+  - Runtime-specific Adapters
+  - Project Knowledge Assets
+  shared_facade_root: adapters/shared/agent-skill-facade/product-business-modeling
+  runtime_overlays_root: templates/project/runtime-overlays
+  project_assets_root: docs/product
+  business_modeling_root: docs/product/business-modeling
+entry_modes:
+- id: direct_modeling
+  label: 用户主动建模
+- id: passive_trigger
+  label: 被动触发
+- id: project_extraction
+  label: 当前项目解析
+- id: greenfield_modeling
+  label: 从零建模
+- id: consistency_validation
+  label: 一致性校验
+- id: downstream_compilation
+  label: 下游视图编译
+knowledge_statuses:
+- draft
+- provisional
+- confirmed
+- superseded
+- deprecated
+- sealed
+decision_impact_levels:
+  D0: 机械同步，可自动执行
+  D1: 可逆局部语义，可自动 provisional
+  D2: 核心产品语义，确认或覆盖 confirmed 前必须由人决定
+  D3: 治理与终态，必须明确人类决定
+subcapabilities:
+- id: modeling-orchestrator
+  label: 业务模型总协调器
+  category: orchestration
+- id: model-update-router
+  label: 模型更新分发器
+  category: orchestration
+- id: model-trigger-handler
+  label: 模型触发处理器
+  category: orchestration
+- id: business-dictionary-builder
+  label: 业务字典构建器
+  category: core-production
+- id: schema-view-structurer
+  label: 业务结构视图生成器
+  category: core-production
+- id: domain-object-profiler
+  label: 业务对象画像构建器
+  category: core-production
+- id: relationship-modeler
+  label: 对象关系建模器
+  category: core-production
+- id: action-command-modeler
+  label: 业务动作建模器
+  category: core-production
+- id: state-lifecycle-modeler
+  label: 状态生命周期建模器
+  category: core-production
+- id: rule-policy-modeler
+  label: 规则权限建模器
+  category: core-production
+- id: roadmap-risk-modeler
+  label: 路线图与风险分析器
+  category: evolution-risk-handoff
+- id: downstream-view-compiler
+  label: 下游视图编译器
+  category: evolution-risk-handoff
+- id: project-model-extractor
+  label: 项目业务模型解析器
+  category: extraction-validation
+- id: model-consistency-validator
+  label: 模型一致性检查器
+  category: extraction-validation
+passive_trigger:
+  directory: docs/product/model-triggers
+  file_pattern: MT-xxx.md
+  trigger_types:
+  - upstream_change
+  - downstream_gap
+  - cross_cluster_conflict
+  - internal_discovery
+  lifecycle:
+  - open
+  - triaged
+  - in_progress
+  - awaiting_human
+  - resolved
+  - dismissed
+  - superseded
+project_assets:
+  long_lived:
+  - docs/product/business-modeling/BUSINESS_MODEL_INDEX.md
+  - docs/product/business-modeling/BUSINESS_MODEL_INDEX.yml
+  - docs/product/business-modeling/business-dictionary.md
+  - docs/product/business-modeling/business-dictionary.yml
+  - docs/product/business-modeling/schema-view.json
+  - docs/product/business-modeling/schema-view.md
+  - docs/product/business-modeling/domain-objects/
+  - docs/product/business-modeling/relationships/
+  - docs/product/business-modeling/actions/
+  - docs/product/business-modeling/states/
+  - docs/product/business-modeling/rules/
+  - docs/product/business-modeling/roadmap/
+  - docs/product/business-modeling/risks/
+  - docs/product/business-modeling/downstream-views/
+  task_level:
+  - docs/product/work-items/BM-xxx/STATE.md
+  - docs/product/work-items/BM-xxx/MODELING_CONSUMPTION.md
+  - docs/product/work-items/BM-xxx/MODELING_OUTPUT.md
+  - docs/product/work-items/BM-xxx/DECISION_NOTES.md
+  - docs/product/work-items/BM-xxx/artifacts/MODEL_EXTRACTION_REPORT.md
+  - docs/product/work-items/BM-xxx/artifacts/MODEL_CONSISTENCY_REPORT.md
+  - docs/product/work-items/BM-xxx/artifacts/MODEL_IMPACT_REPORT.md
+  - docs/product/work-items/BM-xxx/artifacts/SOURCE_EVIDENCE.md
+non_goals:
+- CLI
+- Hook
+- Plugin
+- Marketplace
+- 自动安装器
+- 外部运行时依赖
+- 自动数据库迁移
+- 自动 API 生成
+- 图形化控制台
+- 云端同步
+- 多用户并发锁
+compatibility_protocols:
+- core/product-design/business-modeling/protocols/ux-design-engineering-compatibility.md
+- core/product-design/business-modeling/assets/ux-design-engineering-view.template.md
+- core/product-design/business-modeling/protocols/ux-business-model-context-pack.md
+- core/product-design/business-modeling/assets/ux-business-model-context.template.md
+- core/product-design/business-modeling/assets/ux-business-model-context.template.yml
+- core/product-design/business-modeling/protocols/agent-runtime-adapter-resolution.md
+downstream_views:
+- product-expression-view.md
+- requirements-view.md
+- database-view.md
+- backend-view.md
+- frontend-view.md
+- qa-view.md
+- ux-design-engineering-view.md
+- ux-business-model-context.md
+- ux-business-model-context.yml
+runtime_adapter_resolution:
+  protocol: core/product-design/business-modeling/protocols/agent-runtime-adapter-resolution.md
+  shared_facade: adapters/shared/agent-skill-facade/product-business-modeling/SKILL.md
+  adapter_registry: adapters/adapter-registry.yml
+  profiles:
+  - codex
+  - claude-code
+  - cursor
+  - generic-agent
+  - multi-runtime
+  hard_rule: Every Agent-neutral Core must ship with a callable runtime adapter and
+    a runtime adapter resolution protocol.

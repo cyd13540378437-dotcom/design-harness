@@ -1,0 +1,92 @@
+schema_version: 1
+capability_id: product-business-modeling
+runtime_adapter_resolution:
+  protocol: core/product-design/business-modeling/protocols/agent-runtime-adapter-resolution.md
+  shared_facade: adapters/shared/agent-skill-facade/product-business-modeling/SKILL.md
+  default_when_ambiguous: ask_user
+  non_goals:
+    - automatic_installer
+    - cli
+    - hook
+    - plugin
+    - external_runtime_dependency
+profiles:
+  codex:
+    status: ready
+    detect:
+      explicit_terms: ["Codex", "OpenAI Codex", "$product-business-modeling"]
+      file_markers:
+        - .agents/skills/
+        - .codex/agents/
+        - AGENTS.md
+    install:
+      common_project_assets: true
+      files:
+        - from: adapters/codex/skills/product-business-modeling/
+          to: .agents/skills/product-business-modeling/
+          action: copy_or_update
+        - from: adapters/codex/agents/product-model-state-steward.toml
+          to: .codex/agents/product-model-state-steward.toml
+          action: copy_or_update
+        - from: adapters/codex/AGENTS.fragment.md
+          to: AGENTS.md
+          action: merge_marked_section
+  claude-code:
+    status: ready
+    detect:
+      explicit_terms: ["Claude Code", "Claude", "/product-business-modeling"]
+      file_markers:
+        - CLAUDE.md
+        - .claude/skills/
+        - .claude/agents/
+    install:
+      common_project_assets: true
+      files:
+        - from: adapters/claude-code/skills/product-business-modeling/
+          to: .claude/skills/product-business-modeling/
+          action: copy_or_update
+        - from: adapters/claude-code/agents/product-model-state-steward.md
+          to: .claude/agents/product-model-state-steward.md
+          action: copy_or_update
+        - from: adapters/claude-code/CLAUDE.fragment.md
+          to: CLAUDE.md
+          action: merge_marked_section
+  cursor:
+    status: ready_with_rules_fallback
+    detect:
+      explicit_terms: ["Cursor", "Cursor Agent", "Cursor Rules"]
+      file_markers:
+        - .cursor/
+        - .cursor/rules/
+        - AGENTS.md
+    install:
+      common_project_assets: true
+      files:
+        - from: adapters/cursor/rules/product-business-modeling.mdc
+          to: .cursor/rules/product-business-modeling.mdc
+          action: copy_or_update
+        - from: adapters/cursor/skills/product-business-modeling/
+          to: .cursor/skills/product-business-modeling/
+          action: copy_or_update_if_supported
+        - from: adapters/cursor/AGENTS.fragment.md
+          to: AGENTS.md
+          action: merge_marked_section
+  generic-agent:
+    status: supported_manual
+    detect:
+      explicit_terms: ["generic agent", "other agent"]
+      file_markers:
+        - AGENTS.md
+    install:
+      common_project_assets: true
+      files:
+        - from: adapters/shared/AGENTS.fragment.md
+          to: AGENTS.md
+          action: merge_marked_section
+  multi-runtime:
+    status: supported
+    detect:
+      explicit_terms: ["multi-runtime", "Codex and Claude", "Codex and Cursor", "Claude and Cursor"]
+    install:
+      common_project_assets: true
+      files: selected_profiles_union

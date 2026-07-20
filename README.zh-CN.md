@@ -4,6 +4,8 @@ Codex Design Harness 是一套给 Codex 使用的 Human-in-the-loop 设计工程
 
 它不是组件库、CLI 或自动化平台。v0.1.3-alpha 是在 v0.1.2-alpha Color Card Registry 版基础上的增量：继续保持文档型交付，并新增 Project Lifecycle Memory & Artifacts，让 Work Item、`STATE.md`、Project Memory、Outputs、Review 和后续 Successor 可以串起来。本版本补充了 Lifecycle Event ID、`project-memory/`、`outputs/`、Fast Profile、Context-bound Final Review 和 `PD` 产品设计事件；它仍然不是插件市场包、Hook、云服务或外部运行时。
 
+v0.2.2 新增 runtime-aware 的 Product Business Modeling Core：业务语义层仍在 `core/product-design/business-modeling/` 下保持 Agent-neutral，同时补齐 shared Agent Skill Facade、Codex / Claude Code / Cursor / generic / multi-runtime adapter resolution，并继续把项目知识资产限定在 `docs/product/**`。它仍然是文档型能力，不是 CLI、Hook、插件包、安装器、迁移工具、API 生成器或外部运行时依赖。
+
 ## 它解决的问题
 
 普通 Codex 对话容易把 Thread 误当作任务。换一个 Thread 后，设计方向、批准决定和验收证据可能丢失；任务完成后，后续需求也可能静默改写历史。Design Harness 把状态绑定到 Work Item，而不是绑定到 Thread。
@@ -51,6 +53,19 @@ docs/design/VISUAL_DESIGN.md
 ```
 
 更多结构说明见 [docs/architecture.md](docs/architecture.md)。
+
+
+## Product Business Modeling Core
+
+`product-business-modeling` v0.2.2 把产品业务语义从 UI/UX 执行中拆出来。Core 位于 [core/product-design/business-modeling](core/product-design/business-modeling/)，shared facade 位于 [adapters/shared/agent-skill-facade/product-business-modeling](adapters/shared/agent-skill-facade/product-business-modeling/)，仓库级可调用 Skill 位于 [skills/product-business-modeling](skills/product-business-modeling/)。入口文档是 [AGENT_START_HERE.md](AGENT_START_HERE.md)、[CODEX_START_HERE.md](CODEX_START_HERE.md) 和 [docs/PRD.product-business-modeling-runtime-adapter-resolution-v0.2.2.md](docs/PRD.product-business-modeling-runtime-adapter-resolution-v0.2.2.md)。
+
+准备目标项目之前，必须先执行 Runtime Adapter Resolution：读取 `core/product-design/business-modeling/protocols/agent-runtime-adapter-resolution.md` 和 `adapters/adapter-registry.yml`。默认只选择一个 profile：`codex`、`claude-code`、`cursor` 或 `generic-agent`；只有用户明确要求多个工具时才使用 `multi-runtime`。如果 runtime 信号冲突，必须停下询问用户。
+
+默认项目模板只包含可移植的 `docs/product/**` 和 runtime-selection metadata。Runtime-specific 文件必须留在 `templates/project/runtime-overlays/<runtime>/`，直到 resolver 选中某个 profile；默认 `templates/project/` 根层不得包含 `.agents/`、`.codex/`、`.claude/` 或 `.cursor/`。
+
+业务模型 source of truth 是 `docs/product/business-modeling/`。被动触发使用 `docs/product/model-triggers/MT-xxx.md`，任务状态位于 `docs/product/work-items/BM-xxx/`。核心模型只写业务属性，不写数据库字段；`schema-view.json` 只保留业务对象、业务领域、对象分类、业务属性和属性示例内容。
+
+业务模型可以通过派生下游视图影响 UX：`ux-design-engineering-view.md` 和 `ux-business-model-context.md/yml`。既有 `docs/design/`、Reference Library、Color Card Registry、`REFERENCE_SELECTION.md` 和 sealed UX `STATE.md` 仍由 Design Engineering 管理，Business Modeling 不直接修改。
 
 ## Agent 兼容安装
 
@@ -326,6 +341,8 @@ product-repository/
 
 [examples/lifecycle-memory-lab](examples/lifecycle-memory-lab/) 展示 v0.1.3 的 Lifecycle Event ID、Project Memory、outputs archive/current、Context-bound Final Review、`domain: PD` 会员体系事件，以及后续 UX 事件如何只读继承 sealed PD predecessor。
 
+[examples/product-business-modeling](examples/product-business-modeling/) 展示 v0.2.2 Business Modeling 的 Seat-based pricing 被动触发、BM Work Item、影响分析和人类决策等待。业务模型评测场景位于 [evals/product-business-modeling](evals/product-business-modeling/)。
+
 ## 跨 Thread 恢复
 
 新 Thread 不等于新任务。Codex 应读取 `docs/design/WORK_ITEMS.md`、语义相关的 `STATE.md` 和已有 `VISUAL_DESIGN.md`，再显式调用 `design_state_steward`。如果用户说“继续上次前端样式任务，我批准原型”，且 `DE-001` 未封存，Steward 应返回 `RESUME` 并记录 Gate 批准。
@@ -357,6 +374,7 @@ sealed: true
 - 不创建 `docs/design/product-work-items/`；UX 与 PD 都在 `docs/design/work-items/` 下通过 `domain` 区分。
 - 不默认创建项目根目录 `outputs/`；设计交付物放在 `docs/design/outputs/`。
 - 浏览器验证是推荐流程，不绑定特定工具。
+- Product Business Modeling v0.2.2 是 runtime-aware 但仍为文档型能力，不提供 CLI、Hook、插件包、安装器、外部运行时依赖、自动数据库迁移或 API 生成。
 
 ## v0.1 路线图
 

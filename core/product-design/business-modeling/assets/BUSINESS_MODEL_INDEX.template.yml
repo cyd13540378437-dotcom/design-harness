@@ -1,0 +1,12 @@
+schema_version: 1
+business_model_version: v0.1
+status: draft
+business_domains: []
+business_objects: []
+relationships: []
+actions: []
+states: []
+rules: []
+permissions: []
+downstream_views: []
+open_triggers: []

@@ -1,0 +1,7 @@
+interface:
+  display_name: "Product Business Modeling"
+  short_description: "业务模型建模、模型触发、影响分析、一致性校验与下游视图编译"
+  default_prompt: "使用 $product-business-modeling 处理当前业务模型任务。先绑定或创建 BM Work Item，再按入口模式读取业务模型资产、生成任务输出、请求必要的人类决策，并更新正确的 source of truth。"
+
+policy:
+  allow_implicit_invocation: true

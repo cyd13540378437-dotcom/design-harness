@@ -1,0 +1,36 @@
+schema_version: 1
+view_type: ux_business_model_context
+model_context_id: ux-business-model-context
+source_model_status: draft
+generated_at: "YYYY-MM-DDTHH:mm:ssZ"
+generated_by: downstream-view-compiler
+is_source_of_truth: false
+source_assets:
+  - docs/product/business-modeling/BUSINESS_MODEL_INDEX.yml
+  - docs/product/business-modeling/business-dictionary.yml
+  - docs/product/business-modeling/schema-view.json
+consumption_policy:
+  default_read_at_ux_start: true
+  blocks_ux_start_if_absent: false
+  blocks_visual_direction_if_absent: false
+  blocks_completion_if_unresolved_high_impact_gap: true
+  business_model_authority: docs/product/business-modeling/
+  design_assets_authority: docs/design/
+ux_trigger_guidance:
+  create_trigger_when:
+    - UX needs a business object/action/state/rule/permission/responsibility/audit concept not present in this context.
+    - UX proposes behavior that contradicts confirmed business model semantics.
+    - The gap or conflict affects core flow, production implementation, acceptance, or sealed UX behavior.
+  do_not_create_trigger_when:
+    - The difference is visual layout, spacing, color, density, reference selection, or local UI mechanics only.
+    - The UX wording is a harmless user-facing label and does not change the business effect.
+    - The action is a local UI control that does not change business state, responsibility, permission, or audit trail.
+confirmed_business_objects: []
+provisional_business_objects: []
+ux_relevant_actions: []
+ux_relevant_states: []
+ux_relevant_rules_permissions: []
+open_model_triggers: []
+known_model_gaps: []
+known_model_conflicts: []
+notes_for_design_engineering: []

@@ -1,5 +1,28 @@
 # 变更日志
 
+
+## Unreleased / product business modeling v0.2.2 runtime-aware hotfix
+
+- 新增 shared Agent Skill Facade：`adapters/shared/agent-skill-facade/product-business-modeling/`。
+- 新增仓库级可发现 Skill：`skills/product-business-modeling/`，并保留 Core 语义由 `core/product-design/business-modeling/` 管理。
+- 新增 Runtime Adapter Resolution：`core/product-design/business-modeling/protocols/agent-runtime-adapter-resolution.md` 与 `adapters/adapter-registry.yml`。
+- 新增 Codex / Claude Code / Cursor runtime install profiles、Skill adapters、state steward / Cursor rules fallback。
+- 新增 neutral project runtime metadata 与 `templates/project/runtime-overlays/<runtime>/`，默认模板不再承载根层 `.agents/.codex/.claude/.cursor`。
+- 新增 v0.2.2 runtime-aware PRD、Build Brief、Readiness Audit、Package Manifest 和 runtime adapter evals。
+- 明确默认不得安装所有 runtime overlay；runtime 信号冲突时必须停止并询问用户。
+- 保持 `docs/product/**` 为唯一业务模型 source of truth，且不新增 CLI / Hook / Plugin / Installer / 外部依赖。
+
+
+## Unreleased / product business modeling core v0.2.1
+
+- 新增 `product-business-modeling` v0.2.1 Complete 文档型 Core，位于 `core/product-design/business-modeling/`。
+- 新增业务模型目标项目模板：`templates/project/docs/product/`，覆盖 `business-modeling/`、`model-triggers/`、BM Work Items 和 downstream views。
+- 新增 Codex / Claude Code / Cursor 业务建模 Adapter 片段。
+- 新增 `CODEX_START_HERE.md`、v0.2.1 PRD、完整 Codex 开工单、package manifest、readiness audit 和产品总结。
+- 新增 Seat-based pricing 被动触发示例：`examples/product-business-modeling/`。
+- 新增 20 个业务模型人工评测场景，覆盖业务属性与数据字段边界、`schema-view.json` 五项边界、Human Decision Control Plane、Passive Trigger、UX Context Pack 和 sealed UX 保护。
+- 保持既有 `docs/design/`、Reference Library、Color Card Registry、`REFERENCE_SELECTION.md` 与 sealed UX `STATE.md` 由 Design Engineering 管理；Business Modeling 只通过派生视图和 Follow-up Trigger 表达 UX 影响。
+
 ## Unreleased / agent compatibility
 
 - 新增 `scripts/install-agent-compat.sh`，支持为 Codex、Claude Code 和 Cursor 安装完整 Design Harness 文件集。

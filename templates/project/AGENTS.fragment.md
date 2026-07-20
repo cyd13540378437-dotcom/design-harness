@@ -166,3 +166,46 @@ execution_profile: "fast"
 会员体系、定价模型、功能边界、权限与套餐、产品策略、对象模型、PRD 或 decision map 使用 `domain: PD`。PD 事件仍然使用 Work Item、`STATE.md`、artifacts、outputs archive、Project Memory 更新建议和 `completion-approval`。
 
 后续 UX 事件可以通过 `predecessors` 只读继承 sealed PD 事件的套餐名称、功能边界、目标转化、合规文案约束和核心升级路径，但不能修改 sealed PD 状态。
+
+---
+
+# Product Business Modeling
+
+Use DesignHarnessAgent `product-business-modeling` for product business semantics.
+
+## Runtime Adapter Resolution
+
+Before materializing runtime-specific files, resolve the current agent runtime. Select `codex`, `claude-code`, `cursor`, `generic-agent`, or explicit `multi-runtime`. If runtime signals conflict, stop and ask the user.
+
+Default project templates must stay runtime-neutral. Runtime-specific files belong under `runtime-overlays/<runtime>/` until that profile is selected; do not install all overlays by default.
+
+## Source of truth
+
+- Business model source of truth lives in `docs/product/business-modeling/`.
+- Work Item state lives in `docs/product/work-items/BM-xxx/STATE.md`.
+- Passive triggers live in `docs/product/model-triggers/MT-xxx.md`.
+- `PRODUCT_WORK_ITEMS.md` is a navigation index, not the authoritative state source.
+
+## Required behavior
+
+- Resolve the entry mode before modeling: `direct_modeling`, `passive_trigger`, `project_extraction`, `greenfield_modeling`, `consistency_validation`, or `downstream_compilation`.
+- Keep business attributes separate from data fields.
+- Keep `schema-view.json` limited to business objects, business domains, object categories, business attributes and example content.
+- Treat project extraction output as draft/provisional until confirmed.
+- Route D2/D3 decisions through human confirmation before writing or overriding confirmed semantics.
+- Use `model-triggers/` for upstream changes, downstream gaps, cross-cluster conflicts and internal discoveries.
+- Downstream views under `business-modeling/downstream-views/` are derived views and must not overwrite core model assets.
+- Do not mark a business modeling Work Item or decision as sealed without explicit user approval.
+
+## UX Business Model Context
+
+Business Modeling Core exposes a lightweight UX context pack at:
+
+```text
+docs/product/business-modeling/downstream-views/ux-business-model-context.md
+docs/product/business-modeling/downstream-views/ux-business-model-context.yml
+```
+
+If Design Engineering / UX work is running in the same repository, UX may read this pack at Work Item startup. Missing context must not block UX startup. UX must not confirm new business objects, actions, states, rules, permissions, responsibility, or audit semantics by itself.
+
+When UX finds a missing business model concept, create or recommend a `downstream_gap` Model Trigger. When UX contradicts confirmed business model semantics, create or recommend a `cross_cluster_conflict` Model Trigger. Pure layout, visual style, reference selection, color cards, and local UI controls do not trigger Business Modeling.

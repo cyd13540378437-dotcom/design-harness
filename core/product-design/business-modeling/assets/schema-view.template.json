@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "view_type": "business_attribute_structure",
+  "objects": [
+    {
+      "object_id": "example_object",
+      "object_name": "ExampleObject",
+      "object_label": "示例对象",
+      "business_domain": {
+        "id": "example_domain",
+        "label": "示例领域"
+      },
+      "object_category": {
+        "id": "core_business_object",
+        "label": "核心业务对象类"
+      },
+      "business_attributes": [
+        {
+          "attribute_id": "example_attribute",
+          "attribute_label": "示例业务属性",
+          "example_content": [
+            "示例内容"
+          ]
+        }
+      ]
+    }
+  ]
+}

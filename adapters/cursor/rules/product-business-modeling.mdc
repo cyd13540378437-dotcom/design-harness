@@ -1,0 +1,28 @@
+---
+description: Product Business Modeling workflow. Apply when editing docs/product/business-modeling/**, docs/product/model-triggers/**, docs/product/work-items/**, or when the user asks for business objects, business attributes, relationships, actions, states, rules, permissions, model triggers, impact reports, extraction, consistency validation, or downstream business-model views.
+globs: docs/product/**/*
+alwaysApply: false
+---
+
+# Product Business Modeling Rule
+
+Business Modeling is an Agent-neutral Core. Cursor rules are runtime guidance only.
+
+Use these project asset roots:
+
+```text
+docs/product/business-modeling/
+docs/product/model-triggers/
+docs/product/work-items/
+```
+
+Follow the Core contract:
+
+- business attributes are not database fields;
+- `schema-view.json` only contains business objects, business domains, object categories, business attributes, and example content;
+- high-impact semantics require human confirmation before `confirmed`;
+- passive trigger response writes `MODEL_IMPACT_REPORT.md`;
+- downstream views are derived views, not source of truth;
+- do not directly edit `docs/design/**`, Reference Library, or Color Card Registry from Business Modeling.
+
+When a user asks for business modeling work, follow the Product Business Modeling workflow and create or resume a BM Work Item when the task has persistent modeling value.

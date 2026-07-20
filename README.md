@@ -4,6 +4,8 @@ Codex Design Harness is a human-in-the-loop design engineering protocol for Code
 
 v0.1.3-alpha is an incremental update on top of the v0.1.2-alpha Color Card Registry revision. It stays deliberately document-based, and adds Project Lifecycle Memory & Artifacts: Lifecycle Event IDs, `project-memory/`, `outputs/`, Context-bound Final Review, Fast Profile, and `PD` product-design events. It includes a small file-copy compatibility helper for Codex, Claude Code, and Cursor; it does not include a CLI product, hook, plugin package, cloud service, or runtime dependency.
 
+v0.2.2 adds the runtime-aware Product Business Modeling Core. It keeps the business semantics layer agent-neutral under `core/product-design/business-modeling/`, adds a shared Agent Skill Facade, Codex / Claude Code / Cursor / generic / multi-runtime adapter resolution, and keeps project knowledge assets under `docs/product/**`. It remains document-based: no CLI, hook, plugin package, installer, migration tool, API generator, or external runtime dependency.
+
 ## Core Model
 
 ```text
@@ -41,6 +43,19 @@ VISUAL_DESIGN.md
 - `completed + sealed` is read-only history; related follow-up work must create a Successor.
 
 See [README.zh-CN.md](README.zh-CN.md) for the full Chinese guide and [docs/architecture.md](docs/architecture.md) for system structure.
+
+
+## Product Business Modeling Core
+
+`product-business-modeling` v0.2.2 models product business semantics separately from UI/UX execution. Its Core lives under `core/product-design/business-modeling/`; the shared facade lives under `adapters/shared/agent-skill-facade/product-business-modeling/`; the repo-level callable Skill lives under `skills/product-business-modeling/`. Start with [AGENT_START_HERE.md](AGENT_START_HERE.md), [CODEX_START_HERE.md](CODEX_START_HERE.md), and [docs/PRD.product-business-modeling-runtime-adapter-resolution-v0.2.2.md](docs/PRD.product-business-modeling-runtime-adapter-resolution-v0.2.2.md).
+
+Before preparing a target project, apply Runtime Adapter Resolution with `core/product-design/business-modeling/protocols/agent-runtime-adapter-resolution.md` and `adapters/adapter-registry.yml`. Select exactly one runtime profile by default: `codex`, `claude-code`, `cursor`, or `generic-agent`. Use `multi-runtime` only when the user explicitly asks for multiple tools. If runtime signals conflict, stop and ask.
+
+The neutral project template contains only portable project assets and runtime-selection metadata. Runtime-specific files stay in `templates/project/runtime-overlays/<runtime>/` until a profile is selected; the default template must not include root `.agents/`, `.codex/`, `.claude/`, or `.cursor/` directories.
+
+The business model source of truth is `docs/product/business-modeling/`. Passive triggers use `docs/product/model-triggers/MT-xxx.md`; task state lives in `docs/product/work-items/BM-xxx/`. Core model files use business attributes, not database fields. `schema-view.json` is intentionally limited to objects, domains, categories, business attributes, and example content.
+
+Business Modeling can inform UX through derived downstream views only: `ux-design-engineering-view.md` and `ux-business-model-context.md/yml`. Existing `docs/design/`, Reference Library, Color Card Registry, `REFERENCE_SELECTION.md`, and sealed UX `STATE.md` files remain owned by Design Engineering.
 
 ## Agent Compatibility
 
@@ -174,7 +189,7 @@ For the safer cross-agent path, prefer [Agent Compatibility](#agent-compatibilit
 
 ## Evaluation
 
-Manual Given / When / Then scenarios live in [evals/scenarios](evals/scenarios/). They cover context checks, create, resume, successor, parallel Work Items, ambiguous binding, close-and-seal, the visual workflow, avoiding product-personality taxonomy, `VISUAL_DESIGN.md` creation, Reference Library surface selection, Color Card Registry integrity / ready-only / business-language confirmation, typography-selection recording, Lifecycle Event IDs, Fast Profile, Context-bound Final Review, PD events, PD-to-UX inheritance, outputs indexing, and sealed-state immutability.
+Manual Given / When / Then scenarios live in [evals/scenarios](evals/scenarios/) for Design Engineering and [evals/product-business-modeling](evals/product-business-modeling/) for Business Modeling. They cover context checks, create, resume, successor, parallel Work Items, ambiguous binding, close-and-seal, the visual workflow, Reference Library and Color Card Registry behavior, lifecycle memory, business modeling source-of-truth boundaries, passive triggers, Human Decision Control Plane, schema-view limits, UX Context Pack consumption, and sealed-state immutability.
 
 ## Limits
 
@@ -188,6 +203,7 @@ Manual Given / When / Then scenarios live in [evals/scenarios](evals/scenarios/)
 - No root-level `outputs/` directory by default; design deliverables live under `docs/design/outputs/`.
 - No automatic ready color-card generation; complete color-card knowledge requires user-provided images or explicit visual descriptions.
 - Browser QA is recommended, but v0.1 does not require a specific browser tool.
+- Product Business Modeling v0.2.2 is runtime-aware but document-based: no CLI, hook, plugin package, installer, external runtime dependency, automatic database migration, or API generation.
 
 ## License
 
