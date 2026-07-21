@@ -1,0 +1,77 @@
+schema_version: 1
+model_id: irr-analysis
+title: 内部收益率分析
+category: finance-economics
+status: ready
+purpose:
+- 比较有明确现金流项目的回报率。
+- 辅助判断投资项目相对吸引力。
+use_when:
+- 有明确初始投入和未来现金流。
+- 需要比较多个投资项目回报率。
+- 用户明确关心收益率而非仅净现值。
+avoid_when:
+- 现金流不明确。
+- 现金流多次正负变化导致 IRR 不稳定。
+- 早期方向探索或局部规则问题。
+decision_questions:
+- 项目收益率是否超过资金成本？
+- 多个投资项目哪个财务回报率更高？
+- IRR 对现金流假设是否敏感？
+required_inputs:
+- 初始投入
+- 期间现金流
+- 时间周期
+- 资金成本或最低回报要求
+minimum_viable_inputs:
+- 初始投入和至少两个期间现金流估计
+outputs:
+- IRR 估计
+- 与最低回报要求比较
+- 敏感变量
+- 不稳定性提示
+case_fields_updated:
+- 6. 重要假设
+- 8. 专业分析工作区
+- 10. 主要权衡
+- 12. 当前结论
+- 13. 验证方式
+interaction_prompts:
+- 你关心的是总价值 NPV，还是收益率 IRR？
+- 现金流大概每期是多少，来自数据还是估计？
+usage_prompts:
+  routing_prompt: '只有在现金流足够明确时使用。若现金流多次变号或输入不足，应谨慎或不用。
+
+    '
+  user_input_prompt: '先确认是否有初始投入和未来现金流。若没有，不要计算 IRR，建议先做 scenario-sensitivity。
+
+    '
+  execution_prompt: '基于用户现金流估算 IRR，说明输入来源和限制，不得补造现金流。IRR 只能是财务视角。
+
+    '
+  analysis_run_prompt: '写入 Analysis Workspace：initial_investment、cash_flows、irr_result、required_return、sensitivity、limitations。
+
+    '
+  conclusion_prompt: '输出推进/缩小投入/补现金流/暂不做财务判断的选择题。
+
+    '
+  misuse_guard_prompt: '检查是否没有现金流仍计算、是否忽略多重 IRR 风险、是否把 IRR 高直接等同应该做。
+
+    '
+common_misuses:
+- 无现金流强算
+- 忽略 NPV
+- 忽略多重 IRR
+- 把收益率当全部决策
+quality_checks:
+- 是否有现金流
+- 是否说明假设来源
+- 是否与最低回报比较
+- 是否说明限制
+combines_well_with:
+- npv-analysis
+- scenario-sensitivity
+- risk-matrix
+- option-assessment
+example_analysis_run:
+- 两个投资项目都有现金流预测 → IRR 比较，但同时提醒 NPV 和战略价值差异。

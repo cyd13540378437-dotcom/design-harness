@@ -1,0 +1,71 @@
+schema_version: 1
+model_id: raci
+title: RACI 责任分工分析
+category: process-operations
+status: ready
+purpose:
+- 明确流程或决策中谁负责、谁批准、谁咨询、谁知会。
+- 处理责任不清、审批冲突和跨角色协作问题。
+use_when:
+- 流程、审批、交付、客户成功、内外部协作问题。
+- 用户问“谁应该负责/审批”。
+avoid_when:
+- 市场/财务/战略方向判断。
+- 没有多个角色参与。
+decision_questions:
+- 谁 Responsible？谁 Accountable？谁 Consulted？谁 Informed？
+- 当前冲突是否来自责任不清？
+required_inputs:
+- 流程或任务
+- 参与角色
+- 决策或交付节点
+minimum_viable_inputs:
+- 一个流程节点和至少两个角色
+outputs:
+- RACI 表
+- 责任冲突
+- 审批风险
+- 改进选项
+case_fields_updated:
+- 3. 决策范围
+- 8. 专业分析工作区
+- 9. 可选方案
+- 10. 主要权衡
+interaction_prompts:
+- 这个动作最终谁负责完成？谁有权批准？谁必须被咨询？
+- 现在最常出现的责任冲突是什么？
+usage_prompts:
+  routing_prompt: '用于责任和审批问题。不要把 RACI 用于市场或财务判断。
+
+    '
+  user_input_prompt: '让用户讲一个具体流程节点，先识别参与角色，再问谁负责/批准。
+
+    '
+  execution_prompt: '生成 RACI，发现多人负责、无人负责、审批权不清、知会过多等问题。
+
+    '
+  analysis_run_prompt: '写入 Analysis Workspace，并更新范围、选项、权衡。
+
+    '
+  conclusion_prompt: '输出 A明确单一负责人、B增加审批、C减少审批、D先试运行责任规则。
+
+    '
+  misuse_guard_prompt: '检查是否每格都填满导致形式主义、是否把负责和批准混淆。
+
+    '
+common_misuses:
+- 形式主义填表
+- Responsible/Accountable 混淆
+- 角色过多
+- 不连接流程结果
+quality_checks:
+- 是否明确角色
+- 是否识别责任冲突
+- 是否有改进选项
+- 是否避免过度审批
+combines_well_with:
+- sipoc-bottleneck
+- risk-matrix
+- option-assessment
+example_analysis_run:
+- 退款流程二级审批 → RACI 明确客服负责、财务/主管批准、法务咨询。

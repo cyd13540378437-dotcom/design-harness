@@ -1,0 +1,74 @@
+schema_version: 1
+model_id: willingness-to-pay
+title: 支付意愿分析
+category: pricing-revenue
+status: ready
+purpose:
+- 判断客户是否愿意为某价值付费，以及支付意愿的证据强度。
+- 区分喜欢、试用、改变行为、付费、续费。
+use_when:
+- 定价、付费转化、企业版、功能收费、套餐边界问题。
+avoid_when:
+- 问题不涉及收入或客户付费。
+- 只有内部流程成本问题。
+decision_questions:
+- 客户愿意为哪部分价值付费？
+- 口头兴趣是否能转化为付费行为？
+- 价格单位是否匹配价值单位？
+required_inputs:
+- 目标客户
+- 价值主张
+- 价格或计费单位
+- 客户反馈或报价记录
+minimum_viable_inputs:
+- 一个客户群和一个价值/价格假设
+outputs:
+- 支付证据强度
+- 价格阻力
+- 价值单位匹配
+- 验证计划
+case_fields_updated:
+- 6. 重要假设
+- 7. 相关证据
+- 8. 专业分析工作区
+- 10. 主要权衡
+- 13. 验证方式
+interaction_prompts:
+- 客户是说喜欢，还是已经愿意付费/签试点？
+- 客户最愿意为什么结果付费？
+usage_prompts:
+  routing_prompt: '当决策依赖客户付费意愿时使用。口头喜欢不能等同支付意愿。
+
+    '
+  user_input_prompt: '让用户区分：喜欢、试用、改变流程、付费、续费。询问是否有报价或成交证据。
+
+    '
+  execution_prompt: '评估支付意愿证据层级、价格阻力、价值单位和计费单位匹配。
+
+    '
+  analysis_run_prompt: '写入 Analysis Workspace，并更新证据、假设、权衡和验证方式。
+
+    '
+  conclusion_prompt: '输出 A按当前价格推进、B调整计费单位、C做报价测试、D先不商业化。
+
+    '
+  misuse_guard_prompt: '检查是否把口头兴趣当付费、是否忽略购买者/使用者差异、是否没有报价测试。
+
+    '
+common_misuses:
+- 喜欢等于愿付费
+- 忽略购买者
+- 忽略预算可预测性
+- 没有真实价格测试
+quality_checks:
+- 是否区分证据层级
+- 是否有价值单位
+- 是否有验证动作
+- 是否说明限制
+combines_well_with:
+- customer-segmentation
+- jobs-to-be-done
+- unit-economics
+- scenario-sensitivity
+example_analysis_run:
+- 企业客户问审计日志 → 不能直接说明付费意愿，需报价测试。

@@ -1,0 +1,76 @@
+schema_version: 1
+model_id: jobs-to-be-done
+title: Jobs-to-be-Done 分析
+category: customer-market
+status: ready
+purpose:
+- 理解客户真正想完成的任务和进步。
+- 避免只围绕功能或用户画像讨论需求。
+use_when:
+- 用户问题涉及客户为什么采用、购买、流失或替代方案。
+- 需要理解真实使用动机。
+avoid_when:
+- 明确财务投资计算。
+- 纯内部流程责任问题。
+decision_questions:
+- 客户到底想完成什么任务？
+- 当前替代方案是什么？
+- 客户为什么会改变行为或付费？
+required_inputs:
+- 客户场景
+- 当前解决方式
+- 触发事件
+- 期望结果
+- 替代方案
+minimum_viable_inputs:
+- 一个具体客户案例
+outputs:
+- 客户任务
+- 痛点
+- 替代方案
+- 价值主张含义
+- 验证问题
+case_fields_updated:
+- 4. 关键线索
+- 6. 重要假设
+- 8. 专业分析工作区
+- 9. 可选方案
+- 13. 验证方式
+interaction_prompts:
+- 能不能讲一个具体客户，他原本想完成什么？
+- 如果不用你的产品，他现在怎么解决？
+usage_prompts:
+  routing_prompt: '当需要理解客户动机和价值主张时使用。不要把 JTBD 直接转成财务结论。
+
+    '
+  user_input_prompt: '让用户讲具体案例：触发情境、客户任务、当前替代、期望结果、阻碍。
+
+    '
+  execution_prompt: '提取 job、current alternative、desired progress、struggle、value hypothesis、switching trigger。
+
+    '
+  analysis_run_prompt: '写入 Analysis Workspace，并更新线索、假设、选项和验证方式。
+
+    '
+  conclusion_prompt: '输出 A围绕核心 job 优化、B改变目标客户、C验证支付意愿、D暂不做。
+
+    '
+  misuse_guard_prompt: '检查是否把功能当 job、是否忽略替代方案、是否没有具体场景。
+
+    '
+common_misuses:
+- 把功能当任务
+- 没有替代方案
+- 过度抽象
+- 不连接验证
+quality_checks:
+- 是否有具体场景
+- 是否有当前替代
+- 是否有 desired progress
+- 是否生成验证问题
+combines_well_with:
+- customer-segmentation
+- willingness-to-pay
+- validation-planning
+example_analysis_run:
+- 企业客户要审计日志 → job 可能是通过采购/合规审查，而不只是查看日志功能。

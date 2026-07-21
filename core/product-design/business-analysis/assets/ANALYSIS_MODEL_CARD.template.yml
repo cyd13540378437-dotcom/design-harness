@@ -1,0 +1,31 @@
+schema_version: 1
+model_id: ""
+title: ""
+category: ""
+status: draft
+purpose: []
+use_when: []
+avoid_when: []
+decision_questions: []
+required_inputs: []
+minimum_viable_inputs: []
+outputs: []
+case_fields_updated: []
+interaction_prompts: []
+usage_prompts:
+  routing_prompt: |
+
+  user_input_prompt: |
+
+  execution_prompt: |
+
+  analysis_run_prompt: |
+
+  conclusion_prompt: |
+
+  misuse_guard_prompt: |
+
+common_misuses: []
+quality_checks: []
+combines_well_with: []
+example_analysis_run: []

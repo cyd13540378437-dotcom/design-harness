@@ -1,0 +1,9 @@
+schema_version: 1
+evidence:
+  - id: BA-EV-001
+    source: user concern
+    date: 2026-07-21
+    type: qualitative
+    strength: medium
+    used_by: [BA-DC-001]
+    limitations: 尚无客户样本和运营数据

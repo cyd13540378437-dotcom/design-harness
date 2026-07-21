@@ -1,0 +1,78 @@
+schema_version: 1
+model_id: risk-matrix
+title: 风险矩阵
+category: risk-management
+status: ready
+purpose:
+- 按概率和影响识别、排序和处理风险。
+- 帮助用户理解做与不做的风险，不把风险写成泛泛列表。
+use_when:
+- 方案存在明显执行、合规、财务、客户、运营或声誉风险。
+- 需要比较不同选项的风险。
+avoid_when:
+- 风险极低且可逆的局部问题可轻量使用。
+- 没有任何具体方案或风险事件。
+decision_questions:
+- 风险事件是什么？
+- 发生概率和影响如何？
+- 有哪些早期信号？
+- 如何预防或应对？
+required_inputs:
+- 候选方案
+- 至少一个具体风险事件
+- 影响对象或后果
+minimum_viable_inputs:
+- 一个方案和一个风险事件
+outputs:
+- 风险清单
+- 概率/影响等级
+- 早期信号
+- 预防措施
+- 应对措施
+- 剩余风险
+case_fields_updated:
+- 8. 专业分析工作区
+- 10. 主要权衡
+- 11. 反方观点 / 不做会怎样
+- 13. 验证方式
+- 14. 复审条件
+interaction_prompts:
+- 如果这个方案失败，最可能是哪类失败？A 客户不买；B 成本过高；C 执行拖延；D 合规风险；E 其他。
+- 哪个风险一旦发生最难挽回？
+usage_prompts:
+  routing_prompt: '当 Case 存在明确风险事件时使用。不要把风险写成抽象词，必须写成可观察事件。
+
+    '
+  user_input_prompt: '用失败事件收集风险，而不是问“有哪些风险”。
+
+    '
+  execution_prompt: '列出风险事件、原因、概率、影响、早期信号、预防、应对、剩余风险。概率可以粗分，但必须说明主观性。
+
+    '
+  analysis_run_prompt: '写入 Analysis Workspace，并更新权衡、反方、验证和复审条件。
+
+    '
+  conclusion_prompt: '输出选择：A接受风险推进、B降低风险后推进、C缩小范围、D暂缓或放弃。
+
+    '
+  misuse_guard_prompt: '检查是否风险过于抽象、是否没有早期信号、是否没有应对措施、是否概率伪精确。
+
+    '
+common_misuses:
+- 风险写成标签
+- 没有风险事件
+- 概率伪精确
+- 没有缓解措施
+- 忽略剩余风险
+quality_checks:
+- 是否有具体事件
+- 是否有概率/影响
+- 是否有早期信号
+- 是否有应对措施
+combines_well_with:
+- counterfactual-opposition
+- option-assessment
+- premortem
+- validation-planning
+example_analysis_run:
+- 做企业版风险：服务成本失控、销售周期过长、合规承诺无法履行。

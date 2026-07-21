@@ -1,5 +1,15 @@
 # 变更日志
 
+## Unreleased / product business analysis core v0.1.1
+
+- 新增完全独立的 `product-business-analysis` v0.1.1 文档型 Core，位于 `core/product-design/business-analysis/`。
+- 新增商业分析项目模板：`templates/project/docs/product/business-analysis/`，包含 Decision Cases、Decision Network、Evidence Ledger、Reviews 和 BA Work Items。
+- 新增 Codex / Claude Code / Cursor namespaced adapter 片段。
+- 新增 v0.1.1 PRD、架构决策、完整 Codex 开工单、package manifest、readiness audit、迁移说明和产品总结。
+- 新增 Seat invitation policy 示例：`examples/product-business-analysis/`。
+- 新增 20 个商业分析人工评测场景，覆盖原始输入保留、理解前置、Case 路由、模型卡 usage prompts、NPV 误用阻断、反方分析、Decision Assurance、人类决定边界、单一权威和无兄弟能力修改。
+- 保持 Business Analysis 与 Business Modeling、Design Engineering 以及所有兄弟能力完全独立；不新增跨模块 Trigger、downstream views、共享 Work Item 目录、CLI、Hook、Plugin、installer 或外部依赖。
+
 
 ## Unreleased / product business modeling v0.2.2 runtime-aware hotfix
 

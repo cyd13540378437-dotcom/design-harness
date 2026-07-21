@@ -1,0 +1,76 @@
+schema_version: 1
+model_id: option-assessment
+title: 方案评估
+category: core-decision
+status: ready
+purpose:
+- 比较多个现实选择的价值、成本、风险、复杂度和可逆性。
+- 将分析结果转成选择题式结论。
+use_when:
+- 已经有两个以上可选方案。
+- 用户问“选 A 还是 B”。
+- 系统需要输出阶段性建议。
+avoid_when:
+- 问题还没界定清楚。
+- 原因诊断阶段尚未形成可选方案。
+decision_questions:
+- 有哪些真实选择？
+- 每个选择适合什么情况？
+- 代价和风险是什么？
+- 是否存在更小选择？
+required_inputs:
+- 当前问题
+- 候选方案
+- 目标或判断标准
+- 基本事实和假设
+minimum_viable_inputs:
+- 当前问题和至少两个候选方案
+outputs:
+- 选项表
+- 主要权衡
+- 系统推荐
+- 需要验证的前提
+case_fields_updated:
+- 9. 可选方案
+- 10. 主要权衡
+- 12. 当前结论
+- 13. 验证方式
+interaction_prompts:
+- 除了这个方案，还有没有“不做、先验证、缩小范围”的选项？
+- 你最在意的是收入、成本、速度、风险，还是客户体验？
+usage_prompts:
+  routing_prompt: '当 Case 已有候选方案或需要生成方案时使用。必须包含维持现状、不做或先验证选项，除非明确不适用。
+
+    '
+  user_input_prompt: '请让用户选择最关心的权衡维度，而不是让用户填写完整评估表。
+
+    '
+  execution_prompt: '为每个选项比较 value、cost、risk、reversibility、fit conditions。不要只比较用户偏好的方案。
+
+    '
+  analysis_run_prompt: '写入 Analysis Workspace 和 Decision Case 的可选方案、主要权衡、当前结论。
+
+    '
+  conclusion_prompt: '输出 A/B/C/D 选择题，说明适合条件、代价和系统推荐，但不替用户决定。
+
+    '
+  misuse_guard_prompt: '检查是否遗漏维持现状、是否假二选一、是否没有代价、是否结论超出证据。
+
+    '
+common_misuses:
+- 假二选一
+- 只证明用户喜欢的方案
+- 忽略不做/先验证
+- 不说明可逆性
+quality_checks:
+- 是否至少两个真实方案
+- 是否有 no-action/validation option
+- 是否说明代价和可逆性
+- 是否区分推荐和决定
+combines_well_with:
+- counterfactual-opposition
+- assumption-mapping
+- validation-planning
+- risk-matrix
+example_analysis_run:
+- Seat 计费问题 → A按 Seat、B按 Workspace、C按使用量、D先做报价测试。

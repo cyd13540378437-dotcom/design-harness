@@ -1,0 +1,32 @@
+schema_version: 1
+required_top_level:
+  - schema_version
+  - model_id
+  - title
+  - category
+  - status
+  - purpose
+  - use_when
+  - avoid_when
+  - decision_questions
+  - required_inputs
+  - minimum_viable_inputs
+  - outputs
+  - case_fields_updated
+  - interaction_prompts
+  - usage_prompts
+  - common_misuses
+  - quality_checks
+  - combines_well_with
+required_usage_prompts:
+  - routing_prompt
+  - user_input_prompt
+  - execution_prompt
+  - analysis_run_prompt
+  - conclusion_prompt
+  - misuse_guard_prompt
+ready_contract:
+  all_required_fields_non_empty: true
+  every_usage_prompt_non_empty: true
+  model_id_matches_index: true
+  path_exists: true

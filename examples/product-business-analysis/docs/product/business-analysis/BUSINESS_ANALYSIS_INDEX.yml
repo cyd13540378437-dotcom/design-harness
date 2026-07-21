@@ -1,0 +1,7 @@
+schema_version: 1
+cases:
+  - id: BA-DC-001
+    title: 未激活邀请是否占用付费 Seat
+    status: confirmed
+    file: decision-cases/BA-DC-001-seat-invitation-counts.md
+    primary_work_item: BA-001

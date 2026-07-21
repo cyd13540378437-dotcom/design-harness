@@ -1,0 +1,74 @@
+schema_version: 1
+model_id: validation-planning
+title: 验证计划
+category: core-decision
+status: ready
+purpose:
+- 在证据不足时设计最低成本验证方式。
+- 把“现在不能决定”转化为明确下一步选择。
+use_when:
+- 当前不适合最终决策。
+- 关键假设可被低成本验证。
+- 用户需要知道下一步做什么。
+avoid_when:
+- 已经有充分证据且用户只需记录决定。
+decision_questions:
+- 什么需要验证？
+- 用什么最低成本方式验证？
+- 成功/失败阈值是什么？
+- 验证后做什么选择？
+required_inputs:
+- 关键假设
+- 候选方案
+- 可观察指标
+- 时间或样本限制
+minimum_viable_inputs:
+- 一个关键假设和一个可观察信号
+outputs:
+- 验证动作
+- 成功阈值
+- 失败阈值
+- 复审时间
+- 下一次决策点
+case_fields_updated:
+- 13. 验证方式
+- 14. 复审条件
+- 12. 当前结论
+interaction_prompts:
+- 当前最便宜的验证方式是什么？
+- 如果两周后只能看一个指标，你会看什么？
+usage_prompts:
+  routing_prompt: '当 Decision Assurance 为 warn/block 且可通过验证降低不确定性时使用。
+
+    '
+  user_input_prompt: '不要问用户完整研究方案。给出 A访谈、B报价测试、C小试点、D数据回看 等选择。
+
+    '
+  execution_prompt: '围绕关键假设设计验证对象、动作、指标、阈值、时间范围、下一次决策点。
+
+    '
+  analysis_run_prompt: '写入验证方式、复审条件和当前结论。
+
+    '
+  conclusion_prompt: '输出下一步选择题，而非最终方案选择。说明系统推荐验证方式。
+
+    '
+  misuse_guard_prompt: '检查是否验证了非关键假设、是否没有阈值、是否无法产生下一次决策。
+
+    '
+common_misuses:
+- 设计大而全研究
+- 没有成功/失败阈值
+- 验证不影响决策
+- 把验证计划当最终决定
+quality_checks:
+- 是否最低成本
+- 是否有阈值
+- 是否连接关键假设
+- 是否有下一决策点
+combines_well_with:
+- assumption-mapping
+- decision-assurance
+- scenario-sensitivity
+example_analysis_run:
+- 是否做企业版证据不足 → 先对 5–10 个企业客户做报价测试，观察付费意愿和服务成本。

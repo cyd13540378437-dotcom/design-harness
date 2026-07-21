@@ -1,0 +1,75 @@
+schema_version: 1
+model_id: scenario-sensitivity
+title: 情景与敏感性分析
+category: finance-risk
+status: ready
+purpose:
+- 在不确定性高时比较保守、基准、乐观情景。
+- 识别最影响结论的关键变量。
+use_when:
+- 变量多且不确定。
+- 需要判断结果对价格、成本、转化率、留存、使用量等变量的敏感性。
+avoid_when:
+- 没有任何可变因素或指标线索。
+- 问题只是输入理解阶段。
+decision_questions:
+- 在保守/基准/乐观情况下结论是否变化？
+- 哪个变量最能改变选择？
+- 应优先验证哪个变量？
+required_inputs:
+- 候选方案
+- 关键变量
+- 变量范围或至少方向性假设
+- 目标结果
+minimum_viable_inputs:
+- 一个候选方案和 2–3 个关键变量
+outputs:
+- 情景表
+- 敏感变量
+- 结论边界
+- 验证优先级
+case_fields_updated:
+- 6. 重要假设
+- 8. 专业分析工作区
+- 10. 主要权衡
+- 13. 验证方式
+- 14. 复审条件
+interaction_prompts:
+- 如果转化率只有预期一半，这个方案还成立吗？
+- 哪个变量最可能让你改变决定？
+usage_prompts:
+  routing_prompt: '当结论依赖多个不确定变量时使用。尤其适合数据不足但需要条件性建议的情况。
+
+    '
+  user_input_prompt: '让用户给范围而非精确数字：低/中/高，保守/基准/乐观。
+
+    '
+  execution_prompt: '构建至少两种情景，识别结论是否稳健，指出关键敏感变量。不要制造伪精确。
+
+    '
+  analysis_run_prompt: '写入 Analysis Workspace，并更新重要假设、验证方式、复审条件。
+
+    '
+  conclusion_prompt: '输出选择：A当前方案稳健、B仅在乐观情景成立、C先验证敏感变量、D缩小试点。
+
+    '
+  misuse_guard_prompt: '检查是否把情景当预测、是否范围无来源、是否没有敏感变量。
+
+    '
+common_misuses:
+- 过度精确
+- 把情景当预测
+- 没有变量范围
+- 没有验证优先级
+quality_checks:
+- 是否有多情景
+- 是否识别敏感变量
+- 是否说明限制
+- 是否连接验证
+combines_well_with:
+- unit-economics
+- npv-analysis
+- assumption-mapping
+- validation-planning
+example_analysis_run:
+- 企业版投资在乐观转化率下成立、保守情景不成立 → 先验证支付意愿。

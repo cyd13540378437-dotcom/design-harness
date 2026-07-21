@@ -1,0 +1,78 @@
+schema_version: 1
+model_id: unit-economics
+title: 单位经济分析
+category: finance-economics
+status: ready
+purpose:
+- 判断单用户、单客户、单交易或单业务单位是否能贡献正向经济价值。
+- 帮助分析收入、变动成本、服务成本和规模化风险。
+use_when:
+- 涉及定价、客户分层、服务成本、毛利、扩张是否可持续。
+- 用户问某类客户是否值得服务。
+avoid_when:
+- 没有任何收入或成本线索。
+- 问题主要是战略定位或流程责任，尚未进入经济性判断。
+decision_questions:
+- 每个单位创造多少收入？
+- 每个单位产生多少成本？
+- 规模扩大后成本是否可控？
+required_inputs:
+- 计费单位或业务单位
+- 单位收入
+- 单位变动成本
+- 服务/支持成本
+- 获客或交付成本线索
+minimum_viable_inputs:
+- 一个明确单位和粗略收入/成本范围
+outputs:
+- 单位收入
+- 单位成本
+- 贡献毛利
+- 敏感成本项
+- 需要验证的经济假设
+case_fields_updated:
+- 6. 重要假设
+- 8. 专业分析工作区
+- 10. 主要权衡
+- 12. 当前结论
+- 13. 验证方式
+interaction_prompts:
+- 这个客户/交易/Seat 大致带来多少收入？
+- 最主要随使用增长的成本是什么？
+- 是否存在人工服务成本？
+usage_prompts:
+  routing_prompt: '当问题涉及某类客户、计费单位或服务模式是否可持续时使用。若没有最小收入/成本线索，只能输出待补证据。
+
+    '
+  user_input_prompt: '先问单位是什么：用户、客户、Seat、Workspace、交易还是服务单。再问收入和主要变动成本范围。
+
+    '
+  execution_prompt: '估算单位收入、单位成本、贡献毛利和敏感变量。明确哪些数字来自用户，哪些只是待验证假设。
+
+    '
+  analysis_run_prompt: '写入 Analysis Workspace，并更新假设、权衡、验证方式。
+
+    '
+  conclusion_prompt: '输出选择：A继续该模式、B提高价格/限制范围、C降低服务成本、D先验证成本。
+
+    '
+  misuse_guard_prompt: '检查是否伪造成本、是否忽略人工服务、是否把粗算当精确财务结论。
+
+    '
+common_misuses:
+- 只算收入不算成本
+- 忽略人工服务成本
+- 把粗略假设写成事实
+- 不说明敏感变量
+quality_checks:
+- 是否明确单位
+- 是否列出收入/成本来源
+- 是否有敏感变量
+- 是否标注假设
+combines_well_with:
+- scenario-sensitivity
+- npv-analysis
+- option-assessment
+- validation-planning
+example_analysis_run:
+- 企业版客户 ARPA 高但实施成本也高 → 单位经济判断是否值得试点。

@@ -6,6 +6,8 @@ Codex Design Harness 是一套给 Codex 使用的 Human-in-the-loop 设计工程
 
 v0.2.2 新增 runtime-aware 的 Product Business Modeling Core：业务语义层仍在 `core/product-design/business-modeling/` 下保持 Agent-neutral，同时补齐 shared Agent Skill Facade、Codex / Claude Code / Cursor / generic / multi-runtime adapter resolution，并继续把项目知识资产限定在 `docs/product/**`。它仍然是文档型能力，不是 CLI、Hook、插件包、安装器、迁移工具、API 生成器或外部运行时依赖。
 
+v0.1.1 新增独立 Product Business Analysis Core：把模糊业务情境推进成可选择、可审查、可验证、可复审的 Decision Case。它保留原始输入，使用 Analysis Model Cards，执行反方分析、Decision Assurance、选择题式结论、人类决定记录和 Decision Network 记忆。它不依赖业务建模或任何兄弟能力，不创建跨模块 Trigger、downstream views 或共享 Work Item 目录。
+
 ## 它解决的问题
 
 普通 Codex 对话容易把 Thread 误当作任务。换一个 Thread 后，设计方向、批准决定和验收证据可能丢失；任务完成后，后续需求也可能静默改写历史。Design Harness 把状态绑定到 Work Item，而不是绑定到 Thread。
@@ -66,6 +68,14 @@ docs/design/VISUAL_DESIGN.md
 业务模型 source of truth 是 `docs/product/business-modeling/`。被动触发使用 `docs/product/model-triggers/MT-xxx.md`，任务状态位于 `docs/product/work-items/BM-xxx/`。核心模型只写业务属性，不写数据库字段；`schema-view.json` 只保留业务对象、业务领域、对象分类、业务属性和属性示例内容。
 
 业务模型可以通过派生下游视图影响 UX：`ux-design-engineering-view.md` 和 `ux-business-model-context.md/yml`。既有 `docs/design/`、Reference Library、Color Card Registry、`REFERENCE_SELECTION.md` 和 sealed UX `STATE.md` 仍由 Design Engineering 管理，Business Modeling 不直接修改。
+
+## Product Business Analysis Core
+
+`product-business-analysis` v0.1.1 是独立商业决策支持能力。Core 位于 [core/product-design/business-analysis](core/product-design/business-analysis/)，运行时 adapter 片段位于 `adapters/codex/product-business-analysis/`、`adapters/claude-code/product-business-analysis/` 和 `adapters/cursor/product-business-analysis/`，项目模板位于 [templates/project/docs/product/business-analysis](templates/project/docs/product/business-analysis/)。入口文档是 [docs/CODEX_BUILD_BRIEF.product-business-analysis-core-v0.1.1-complete.md](docs/CODEX_BUILD_BRIEF.product-business-analysis-core-v0.1.1-complete.md) 和 [docs/PRD.product-business-analysis-v0.1.1.md](docs/PRD.product-business-analysis-v0.1.1.md)。
+
+商业分析的项目资产根目录是 `docs/product/business-analysis/`。Decision Case 的唯一权威文件位于 `decision-cases/BA-DC-xxx.md`；BA Work Item 位于 `work-items/BA-xxx/`，只链接 Case，不复制 `DECISION_CASE.md`。Decision Network 和 Evidence Ledger 的 YML 是机器权威源，Markdown 是人读视图。
+
+商业分析采用五个运行域，不继承业务建模的 Passive Trigger。跨模块触发、跨模块影响传播、downstream view、共享 `docs/product/work-items/`、CLI、Hook、Plugin、安装器、外部依赖和自动替用户确认 D2/D3 决定均不属于当前版本。
 
 ## Agent 兼容安装
 

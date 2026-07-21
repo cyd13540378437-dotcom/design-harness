@@ -57,6 +57,45 @@
 - [examples/product-business-modeling](examples/product-business-modeling/)
 - [evals/product-business-modeling/scenarios](evals/product-business-modeling/scenarios/)
 
+## Product Business Analysis Core
+
+本仓库同时包含 `product-business-analysis` v0.1.1 独立文档型 Core。修改商业分析能力时必须保持 Core、Adapter、Project Assets、示例、评测和 docs 一致。
+
+商业分析能力的核心边界：
+
+- Business Analysis 是 Agent-neutral、standalone 的商业决策支持能力，不是业务建模、设计工程或任一兄弟能力的上游、下游、Gate、回填器或触发器。
+- Core 位于 `core/product-design/business-analysis/`。
+- Runtime adapter 片段必须使用 namespaced 路径：`adapters/codex/product-business-analysis/`、`adapters/claude-code/product-business-analysis/`、`adapters/cursor/product-business-analysis/`。
+- 项目模板必须只使用 `templates/project/docs/product/business-analysis/` 下的模块自有结构。
+- 目标项目里的商业分析 source of truth 必须是 `docs/product/business-analysis/`。
+- Decision Case 的唯一权威文件位于 `decision-cases/BA-DC-xxx.md`。
+- BA Work Item 位于 `work-items/BA-xxx/`，只链接 Case，不得包含 `DECISION_CASE.md`。
+- Decision Network 与 Evidence Ledger 的 YML 是机器权威源，Markdown 是人读视图。
+- 第一次用户输入必须原文保留；Routing 必须发生在 Input Understanding 之后。
+- 24 张 ready Analysis Model Cards 必须保持 `schema_version: 1`，且每张卡具备六个非空 usage prompts。
+- 数值模型输入不足时必须阻止伪精确，不得伪造 NPV、IRR 或其他财务结论。
+- D2 / D3 人类决定必须明确记录，系统建议不得冒充用户决定。
+- 不得创建跨模块 Trigger、downstream views、共享 `docs/product/work-items/`、CLI、Hook、Plugin、installer 或外部依赖。
+- 不得修改任何兄弟能力的 Core、Adapter、template、example、eval 或 project asset。
+
+修改下列商业分析文件之一时，完成前必须检查对应文件是否仍一致：
+
+- [README.md](README.md) / [README.zh-CN.md](README.zh-CN.md) / [CHANGELOG.md](CHANGELOG.md)
+- [CODEX_START_HERE.md](CODEX_START_HERE.md) / [AGENT_START_HERE.md](AGENT_START_HERE.md)
+- [docs/PRD.product-business-analysis-v0.1.1.md](docs/PRD.product-business-analysis-v0.1.1.md)
+- [docs/ARCHITECTURE_DECISION.standalone-business-analysis-v0.1.1.md](docs/ARCHITECTURE_DECISION.standalone-business-analysis-v0.1.1.md)
+- [docs/CODEX_BUILD_BRIEF.product-business-analysis-core-v0.1.1-complete.md](docs/CODEX_BUILD_BRIEF.product-business-analysis-core-v0.1.1-complete.md)
+- [docs/CODEX_READINESS_AUDIT.product-business-analysis-core-v0.1.1-complete.md](docs/CODEX_READINESS_AUDIT.product-business-analysis-core-v0.1.1-complete.md)
+- [docs/PACKAGE_MANIFEST.product-business-analysis-v0.1.1.md](docs/PACKAGE_MANIFEST.product-business-analysis-v0.1.1.md)
+- [core/product-design/business-analysis](core/product-design/business-analysis/)
+- [adapters/codex/product-business-analysis](adapters/codex/product-business-analysis/)
+- [adapters/claude-code/product-business-analysis](adapters/claude-code/product-business-analysis/)
+- [adapters/cursor/product-business-analysis](adapters/cursor/product-business-analysis/)
+- [templates/project/docs/product/business-analysis](templates/project/docs/product/business-analysis/)
+- [templates/project/fragments/product-business-analysis.AGENTS.fragment.md](templates/project/fragments/product-business-analysis.AGENTS.fragment.md)
+- [examples/product-business-analysis](examples/product-business-analysis/)
+- [evals/product-business-analysis/scenarios](evals/product-business-analysis/scenarios/)
+
 ## 核心概念
 
 - Thread 是临时 Codex 对话，不是 Work Item。

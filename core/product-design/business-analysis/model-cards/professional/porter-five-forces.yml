@@ -1,0 +1,73 @@
+schema_version: 1
+model_id: porter-five-forces
+title: 波特五力分析
+category: strategy-competition
+status: ready
+purpose:
+- 分析行业结构、竞争压力和利润空间。
+- 帮助判断进入某市场或行业是否有吸引力。
+use_when:
+- 新市场进入、行业竞争、平台/供应商/客户议价问题。
+avoid_when:
+- 局部产品规则或内部流程问题。
+- 没有明确行业/市场边界。
+decision_questions:
+- 行业利润空间受哪些力量压缩？
+- 客户/供应商议价强吗？
+- 替代方案威胁是什么？
+required_inputs:
+- 市场边界
+- 主要竞争者
+- 客户/供应商/替代方案线索
+minimum_viable_inputs:
+- 明确市场和至少两类竞争力量线索
+outputs:
+- 五力强弱
+- 结构性机会/威胁
+- 进入风险
+- 策略含义
+case_fields_updated:
+- 3. 决策范围
+- 4. 关键线索
+- 8. 专业分析工作区
+- 10. 主要权衡
+- 11. 反方观点 / 不做会怎样
+interaction_prompts:
+- 这个市场真正的替代方案是什么？
+- 客户是否有很多选择，议价强不强？
+usage_prompts:
+  routing_prompt: '用于市场/行业结构判断。若市场边界不清，先用 problem-framing。
+
+    '
+  user_input_prompt: '先确认市场边界，再逐步问竞争、替代、买方、供应方、新进入者。
+
+    '
+  execution_prompt: '评估五力强弱和对利润/进入策略的含义，标注证据不足处。
+
+    '
+  analysis_run_prompt: '写入 Analysis Workspace，并更新范围、权衡、反方。
+
+    '
+  conclusion_prompt: '输出 A进入、B细分切入、C合作/差异化、D暂不进入。
+
+    '
+  misuse_guard_prompt: '检查是否把竞品功能对比当五力、是否没有替代方案、是否市场边界模糊。
+
+    '
+common_misuses:
+- 功能竞品表冒充五力
+- 忽略替代方案
+- 市场边界不清
+- 忽略客户议价
+quality_checks:
+- 是否有市场边界
+- 是否覆盖五力
+- 是否说明利润影响
+- 是否连接选择
+combines_well_with:
+- pestel
+- swot-tows
+- customer-segmentation
+- risk-matrix
+example_analysis_run:
+- 进入企业协作市场 → 买方议价强、替代方案多、竞争强，建议细分切入。

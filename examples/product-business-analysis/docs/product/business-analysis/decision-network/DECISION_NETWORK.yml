@@ -1,0 +1,7 @@
+schema_version: 1
+relations:
+  - source_case: BA-DC-001
+    relation: affects
+    target_topic: invitation-policy
+    status: confirmed
+    reason: Seat 计费规则决定待接受邀请的业务政策

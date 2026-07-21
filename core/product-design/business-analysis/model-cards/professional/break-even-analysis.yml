@@ -1,0 +1,73 @@
+schema_version: 1
+model_id: break-even-analysis
+title: 盈亏平衡分析
+category: finance-economics
+status: ready
+purpose:
+- 判断需要多少销量、客户数、交易量或收入才能覆盖成本。
+- 帮助用户理解规模门槛和成本压力。
+use_when:
+- 有固定成本、单位收入和单位变动成本线索。
+- 用户问“要做到多大才值得”。
+avoid_when:
+- 成本结构完全不清楚。
+- 问题不是经济门槛而是客户需求或流程责任。
+decision_questions:
+- 需要多少客户/交易才能打平？
+- 价格或成本变化如何影响打平点？
+- 是否现实可达？
+required_inputs:
+- 固定成本
+- 单位收入
+- 单位变动成本
+- 目标周期
+minimum_viable_inputs:
+- 粗略固定成本和单位毛利范围
+outputs:
+- 盈亏平衡点
+- 关键敏感变量
+- 是否现实可达
+- 需要验证的成本或价格假设
+case_fields_updated:
+- 6. 重要假设
+- 8. 专业分析工作区
+- 10. 主要权衡
+- 13. 验证方式
+interaction_prompts:
+- 这个项目每月固定成本大概是多少？
+- 单个客户/交易大概能贡献多少毛利？
+usage_prompts:
+  routing_prompt: '适用于理解规模门槛。若单位毛利或固定成本未知，不要算精确打平点。
+
+    '
+  user_input_prompt: '用范围提问：固定成本大概是低/中/高？单位毛利来自历史还是估计？
+
+    '
+  execution_prompt: '计算或粗估打平点，说明公式和假设，指出敏感变量。
+
+    '
+  analysis_run_prompt: '写入 Analysis Workspace：fixed_cost、unit_revenue、unit_variable_cost、contribution_margin、break_even_units、limitations。
+
+    '
+  conclusion_prompt: '输出 A当前可追求、B需提高价格/降成本、C先验证单位毛利、D暂缓投入。
+
+    '
+  misuse_guard_prompt: '检查是否忽略获客/交付成本、是否把一次性成本和持续成本混淆、是否伪精确。
+
+    '
+common_misuses:
+- 只看销售额不看毛利
+- 忽略固定成本
+- 忽略获客成本
+- 过度精确
+quality_checks:
+- 是否有公式
+- 是否有成本/毛利来源
+- 是否说明敏感变量
+- 是否判断现实可达性
+combines_well_with:
+- unit-economics
+- scenario-sensitivity
+- validation-planning
+example_analysis_run:
+- 新服务每月固定成本 5 万、每客户毛利 1000 → 约 50 客户打平，需验证获客可达。

@@ -1,0 +1,78 @@
+schema_version: 1
+model_id: counterfactual-opposition
+title: 反方分析 / 不做损失分析
+category: core-decision
+status: ready
+purpose:
+- 防止系统只顺着用户当前想法寻找理由。
+- 明确不做、做错、维持现状和更小选择的后果。
+use_when:
+- 几乎所有 Decision Case。
+- 用户已经倾向某个方案。
+- 用户问“要不要做 X”。
+avoid_when:
+- 纯粹保存原始输入且尚未形成任何候选选择时可暂缓。
+decision_questions:
+- 如果不做，会损失什么？
+- 如果做了，会引入什么成本和风险？
+- 当前建议为什么可能错？
+- 有没有更小、更可逆的选择？
+required_inputs:
+- 当前问题
+- 至少一个候选方案
+- 当前目标或担忧
+minimum_viable_inputs:
+- 用户提出的一个想法或选择题
+outputs:
+- 不做的损失
+- 做了的代价
+- 反方观点
+- 更小替代选择
+- 验证假设
+case_fields_updated:
+- 8. 专业分析工作区
+- 9. 可选方案
+- 10. 主要权衡
+- 11. 反方观点 / 不做会怎样
+- 12. 当前结论
+- 13. 验证方式
+interaction_prompts:
+- 如果我们完全不做，最坏会损失什么？
+- 如果做了但判断错了，最可能造成什么浪费？
+- 有没有一个更小、更容易撤回的版本？
+usage_prompts:
+  routing_prompt: '默认结论应为需要。除非当前只是纯粹记录用户原始输入且未形成任何候选选择。
+
+    '
+  user_input_prompt: '使用选择题询问用户最担心的不做损失：A 收入机会；B 客户流失；C 竞争落后；D 继续低效；E 不确定，可讲案例。
+
+    '
+  execution_prompt: '只使用当前 Case 中已有输入。输出维持现状、不做损失、做了代价、当前建议可能错误处、更小可逆选择。不得虚构数据。
+
+    '
+  analysis_run_prompt: '写入 Analysis Workspace，并同步写入 Decision Case 第 11 字段。
+
+    '
+  conclusion_prompt: '至少输出 A继续当前方案、B维持现状、C更小试点、D先补证据。说明适合条件和代价。
+
+    '
+  misuse_guard_prompt: '检查是否只分析不做损失而未分析做了代价；是否遗漏维持现状；是否没有更小选择；是否虚构数据。
+
+    '
+common_misuses:
+- 只写形式化反对意见
+- 只分析不做的损失
+- 忽略做了的代价
+- 把反方观点当最终结论
+quality_checks:
+- 是否包含维持现状
+- 是否包含做与不做两侧代价
+- 是否提供更小选择
+- 是否没有伪造证据
+combines_well_with:
+- option-assessment
+- assumption-mapping
+- risk-matrix
+- validation-planning
+example_analysis_run:
+- 要不要做企业版 → 不做损失是错过高客单价，做了代价是销售/服务/合规成本上升，更小选择是企业能力试点。

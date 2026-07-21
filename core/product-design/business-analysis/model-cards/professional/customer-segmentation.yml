@@ -1,0 +1,73 @@
+schema_version: 1
+model_id: customer-segmentation
+title: 客户细分分析
+category: customer-market
+status: ready
+purpose:
+- 区分不同客户群的需求、价值、支付意愿、成本和优先级。
+- 防止把所有用户混为一个平均用户。
+use_when:
+- 用户提到客户差异、转化差异、服务成本差异、目标客户选择。
+avoid_when:
+- 只有单一明确客户群且无需分层。
+- 问题是内部流程规则且不涉及客户差异。
+decision_questions:
+- 哪些客户值得优先服务？
+- 不同客户的问题、价值和成本是否不同？
+- 当前平均指标是否掩盖分层差异？
+required_inputs:
+- 客户类型线索
+- 使用/购买/付费/服务成本差异
+- 至少一个分层维度
+minimum_viable_inputs:
+- 两个可区分客户群和一个差异线索
+outputs:
+- 客户分层
+- 每层价值与成本
+- 优先级
+- 需验证假设
+case_fields_updated:
+- 3. 决策范围
+- 4. 关键线索
+- 6. 重要假设
+- 8. 专业分析工作区
+- 9. 可选方案
+interaction_prompts:
+- 这个问题主要发生在哪类客户身上？
+- 有没有一类客户付费好但服务成本高？
+usage_prompts:
+  routing_prompt: '当平均客户分析不足以支持判断时使用。不要只按人口属性浅分。
+
+    '
+  user_input_prompt: '优先用行为、需求、支付意愿和服务成本分层，而非仅公司规模/年龄/地区。
+
+    '
+  execution_prompt: '识别分层维度，描述每层问题、价值、收入、成本、风险和优先级。
+
+    '
+  analysis_run_prompt: '写入 Analysis Workspace 和决策范围/线索/假设/选项。
+
+    '
+  conclusion_prompt: '输出 A优先服务某层、B分层策略、C先验证差异、D不分层保持统一。
+
+    '
+  misuse_guard_prompt: '检查是否按无关属性分层、是否忽略付费者/使用者差异、是否过度切碎客户。
+
+    '
+common_misuses:
+- 人口属性浅分
+- 过度分层
+- 忽略支付者
+- 平均指标误导
+quality_checks:
+- 是否有业务相关分层维度
+- 是否比较价值/成本
+- 是否有优先级
+- 是否有验证方式
+combines_well_with:
+- jobs-to-be-done
+- willingness-to-pay
+- unit-economics
+- option-assessment
+example_analysis_run:
+- 免费用户很多但转化低 → 分层发现小客户使用多但付费弱，中型团队付费更强。

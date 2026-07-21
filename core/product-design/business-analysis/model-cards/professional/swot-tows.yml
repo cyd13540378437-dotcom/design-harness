@@ -1,0 +1,80 @@
+schema_version: 1
+model_id: swot-tows
+title: SWOT / TOWS 分析
+category: strategy
+status: ready
+purpose:
+- 初步整理内部优势、劣势、外部机会和威胁。
+- 从条件扫描生成策略选项。
+use_when:
+- 用户提出早期商业想法。
+- 信息较散，需要快速组织。
+- 目标是生成策略选项，不是直接财务结论。
+avoid_when:
+- 明确投资回报计算。
+- 局部流程规则问题。
+- 没有任何事实或线索。
+- 期待 SWOT 直接给最终答案。
+decision_questions:
+- 当前想法依赖哪些内部能力？
+- 外部机会是否真实？
+- 哪些弱点会阻碍执行？
+- 哪些威胁会改变选择？
+required_inputs:
+- 当前问题
+- 至少一条内部条件线索
+- 至少一条外部环境线索
+minimum_viable_inputs:
+- 用户提出的业务想法和初步客户、市场或组织能力线索
+outputs:
+- Strengths
+- Weaknesses
+- Opportunities
+- Threats
+- TOWS strategy options
+- 需要验证的假设
+case_fields_updated:
+- 4. 关键线索
+- 6. 重要假设
+- 8. 专业分析工作区
+- 9. 可选方案
+- 10. 主要权衡
+interaction_prompts:
+- 你考虑这个方向，主要是因为我们有优势、外部机会、现有瓶颈还是竞争压力？
+- 你能讲一个让你觉得机会存在的客户或市场信号吗？
+usage_prompts:
+  routing_prompt: '适合方向探索和策略选项生成。不适合直接给最终答案。若当前问题是财务投资或微观流程，优先考虑其他模型。
+
+    '
+  user_input_prompt: '不要让用户填写四象限。用选择题收集：内部优势/外部机会/现有瓶颈/竞争压力/不确定。
+
+    '
+  execution_prompt: '区分内部因素和外部因素；每一项标注事实/假设/线索；SWOT 后必须生成 TOWS 选项。
+
+    '
+  analysis_run_prompt: '写入 Analysis Workspace：strengths、weaknesses、opportunities、threats、tows_options、limitations。
+
+    '
+  conclusion_prompt: '将 TOWS 选项转成 A利用优势抓机会、B补弱点后进入、C防守威胁暂缓、D先验证。
+
+    '
+  misuse_guard_prompt: '检查是否空泛、是否内外部混淆、是否没有 TOWS 选项、是否用 SWOT 替代证据。
+
+    '
+common_misuses:
+- 空泛四象限
+- 观点当事实
+- SWOT 后不生成策略
+- 替代客户证据或财务分析
+quality_checks:
+- 每项是否有来源/假设说明
+- 是否区分内外部
+- 是否生成 TOWS
+- 是否说明不能单独最终决策
+combines_well_with:
+- option-assessment
+- assumption-mapping
+- validation-planning
+- risk-matrix
+example_analysis_run:
+- 企业版早期想法 → SWOT/TOWS 生成“轻量试点、补齐弱点、暂缓”等策略选项。

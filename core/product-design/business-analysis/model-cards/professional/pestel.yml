@@ -1,0 +1,73 @@
+schema_version: 1
+model_id: pestel
+title: PESTEL 宏观环境分析
+category: strategy-environment
+status: ready
+purpose:
+- 扫描政治、经济、社会、技术、环境、法律等外部因素。
+- 判断外部环境是否改变商业机会或风险。
+use_when:
+- 进入新市场、受政策/技术/社会趋势影响较大的问题。
+- 用户问“为什么是现在”或外部变化。
+avoid_when:
+- 局部业务规则。
+- 内部流程问题。
+- 没有外部环境相关性。
+decision_questions:
+- 哪些宏观因素支持或威胁该方向？
+- 外部变化是否足以改变时机或风险？
+required_inputs:
+- 目标市场或行业
+- 地理范围
+- 外部变化线索
+minimum_viable_inputs:
+- 一个市场/行业和至少一个外部变化线索
+outputs:
+- PESTEL 因素清单
+- 机会/威胁
+- 需验证外部假设
+case_fields_updated:
+- 2. 为什么现在需要处理
+- 4. 关键线索
+- 6. 重要假设
+- 8. 专业分析工作区
+- 11. 反方观点 / 不做会怎样
+interaction_prompts:
+- 这个机会主要来自政策、技术、客户行为还是竞争变化？
+- 是否有某个外部变化让这件事变得紧迫？
+usage_prompts:
+  routing_prompt: '用于外部环境扫描，不用于解决内部执行细节。
+
+    '
+  user_input_prompt: '只问与当前 Case 相关的外部因素，不要求用户完整填写六类。
+
+    '
+  execution_prompt: '按 P/E/S/T/E/L 扫描，但只保留与决策相关因素；标注事实/假设/未知。
+
+    '
+  analysis_run_prompt: '写入 Analysis Workspace，并更新 why now、线索、假设、反方。
+
+    '
+  conclusion_prompt: '输出 A外部时机支持推进、B风险较高先观察、C先验证关键外部假设。
+
+    '
+  misuse_guard_prompt: '检查是否过宽、是否写成宏观百科、是否没有连接当前选择。
+
+    '
+common_misuses:
+- 宏观罗列
+- 不连接决策
+- 忽略范围
+- 把趋势当确定性
+quality_checks:
+- 是否与当前选择相关
+- 是否标注不确定性
+- 是否有 why now 影响
+- 是否有验证点
+combines_well_with:
+- swot-tows
+- porter-five-forces
+- risk-matrix
+- validation-planning
+example_analysis_run:
+- 进入教育行业 → 政策采购、预算周期、AI 接受度、数据隐私都可能影响时机。

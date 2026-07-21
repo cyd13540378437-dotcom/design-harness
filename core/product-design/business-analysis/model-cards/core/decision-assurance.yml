@@ -1,0 +1,71 @@
+schema_version: 1
+model_id: decision-assurance
+title: 决策质量保障
+category: core-decision
+status: ready
+purpose:
+- 在输出阶段性结论前检查逻辑、证据、模型适配、反方、验证和复审条件。
+- 防止低质量结论被包装成专业建议。
+use_when:
+- 每次准备输出阶段性结论前。
+- 高影响决策确认前。
+- 模型分析完成后。
+avoid_when:
+- 没有形成任何结论，只做原始输入保存时。
+decision_questions:
+- 当前结论是否可输出？
+- 是 pass、warn 还是 block？
+- 哪些内容必须补齐？
+required_inputs:
+- Decision Case 当前版本
+- Analysis Runs
+- 反方分析
+- 模型选择记录
+minimum_viable_inputs:
+- Decision Case 当前版本
+outputs:
+- Decision Assurance Check
+- pass/warn/block
+- 阻塞项或限制说明
+case_fields_updated:
+- 12. 当前结论
+- 13. 验证方式
+- 14. 复审条件
+interaction_prompts:
+- 当前我只能给临时建议，还是已经可以做选择？
+- 这项结论是否需要你明确确认？
+usage_prompts:
+  routing_prompt: '任何阶段性结论前必须使用。若高影响且用户未确认，不得 pass 为最终决定。
+
+    '
+  user_input_prompt: '如果需要用户补充，输出最少 1–2 个关键问题，不要抛出完整检查清单。
+
+    '
+  execution_prompt: '按 checklist 检查问题、原始输入、事实假设、真实选项、反方、模型适配、证据强度、结论边界、验证、复审、人类确认。
+
+    '
+  analysis_run_prompt: '写入 DECISION_ASSURANCE_CHECK，并将结果摘要写入 Decision Process Package。
+
+    '
+  conclusion_prompt: '如果 pass，输出选择题式建议；如果 warn，输出临时建议+限制；如果 block，只输出下一步选择。
+
+    '
+  misuse_guard_prompt: '检查是否把 warn 当 pass、是否在 block 时给最终建议、是否遗漏用户确认。
+
+    '
+common_misuses:
+- 形式化打勾
+- block 后仍给最终建议
+- 不检查原始输入
+- 不检查模型误用
+quality_checks:
+- 是否有 pass/warn/block
+- 是否有理由
+- 是否有 allowed output
+- 是否识别人类确认
+combines_well_with:
+- counterfactual-opposition
+- validation-planning
+- decision-routing
+example_analysis_run:
+- 缺少现金流却要 NPV 结论 → block，允许输出“先补现金流/改用情景分析”的选择。

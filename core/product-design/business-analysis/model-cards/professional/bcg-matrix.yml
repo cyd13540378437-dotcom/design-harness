@@ -1,0 +1,76 @@
+schema_version: 1
+model_id: bcg-matrix
+title: 波士顿矩阵
+category: portfolio-strategy
+status: ready
+purpose:
+- 在多个业务线、产品线或投资方向之间做资源分配。
+- 用相对市场份额和市场增长率组织组合判断。
+use_when:
+- 用户有多个产品/业务方向需要排序。
+- 需要决定继续投入、收缩、收割或放弃哪个方向。
+avoid_when:
+- 单一早期想法。
+- 没有多个可比较业务单元。
+- 没有市场增长或相对地位线索。
+- 局部流程或定价规则问题。
+decision_questions:
+- 哪些业务应该继续投资？
+- 哪些业务应收割或退出？
+- 资源是否集中在高增长高优势方向？
+required_inputs:
+- 业务/产品组合清单
+- 每项的市场增长线索
+- 每项的相对市场地位或竞争优势
+- 资源约束
+minimum_viable_inputs:
+- 至少两个可比较业务方向和粗略增长/地位判断
+outputs:
+- 组合象限
+- 资源分配建议
+- 需要验证的数据缺口
+- 不适用说明
+case_fields_updated:
+- 8. 专业分析工作区
+- 9. 可选方案
+- 10. 主要权衡
+- 12. 当前结论
+interaction_prompts:
+- 你现在是在多个业务方向里分配资源，还是只判断一个想法？
+- 这些方向中哪个市场增长最快，哪个你们相对最有优势？
+usage_prompts:
+  routing_prompt: '只有在存在多个可比较业务/产品方向时使用。单点想法不要强行套 BCG。
+
+    '
+  user_input_prompt: '先确认是否是组合资源分配问题。如果不是，建议改用 SWOT、option-assessment 或 validation-planning。
+
+    '
+  execution_prompt: '将每个业务方向按增长和相对地位粗分象限，输出资源含义。所有增长/份额判断必须标注证据或假设。
+
+    '
+  analysis_run_prompt: '写入 Analysis Workspace：portfolio_items、growth_assumption、relative_position、quadrant、resource_implication、limitations。
+
+    '
+  conclusion_prompt: '输出选择：A集中投资明星方向、B验证问题方向、C收割现金牛、D停止或降低投入。
+
+    '
+  misuse_guard_prompt: '检查是否单点误用、是否把主观偏好当份额、是否忽略数据不足、是否直接把象限当最终决定。
+
+    '
+common_misuses:
+- 单一产品也套 BCG
+- 没有相对市场份额就下结论
+- 忽略战略协同
+- 把低份额高增长直接判死
+quality_checks:
+- 是否多个方向
+- 是否有增长/地位依据
+- 是否说明粗略性
+- 是否输出资源选择
+combines_well_with:
+- swot-tows
+- scenario-sensitivity
+- option-assessment
+- risk-matrix
+example_analysis_run:
+- 三个产品线资源分配 → BCG 粗分后发现一个高增长弱地位方向应先验证而非大投。

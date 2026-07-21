@@ -1,0 +1,72 @@
+schema_version: 1
+model_id: decision-routing
+title: 决策路由
+category: core-decision
+status: ready
+purpose:
+- 在输入理解后判断该输入应如何进入商业分析系统。
+- 记录新 Case、旧 Case 更新、复审、冲突、影响或无需 Case 的内部决策。
+use_when:
+- 用户理解已确认或系统有明确继续假设。
+- 需要判断是否关联已有决策。
+- 补充材料可能改变旧结论。
+avoid_when:
+- 尚未完成输入理解。
+- 用户只是闲聊或非业务问题。
+decision_questions:
+- 这是新 Case 还是旧 Case 的新证据？
+- 是否触发旧决策复审？
+- 是否与旧决策冲突？
+required_inputs:
+- Input Understanding Snapshot
+- 可用的 Decision Case / Decision Network 索引
+- 用户确认或继续假设
+minimum_viable_inputs:
+- Input Understanding Snapshot
+- 至少一个可检查的已有 Case 索引，若没有则说明为空
+outputs:
+- Analysis Routing Record
+- 路由结果
+- 候选 Case
+- 排除项
+case_fields_updated:
+- 15. 关联决策
+- 12. 当前结论
+interaction_prompts:
+- 这个输入更像是新问题，还是对之前某个决定的新证据？
+- 如果它影响旧决定，你希望先复审旧决定，还是先把影响记录下来？
+usage_prompts:
+  routing_prompt: '只有在输入理解完成后使用。禁止第一步就路由。检查是否存在相关旧 Case 或决策网关系。
+
+    '
+  user_input_prompt: '如果路由不确定，向用户展示候选：A 新建 Case；B 并入旧 Case；C 触发旧决策复审。
+
+    '
+  execution_prompt: '基于当前输入和已有 Decision Network，判断路由结果。必须记录候选、选择理由和排除理由。
+
+    '
+  analysis_run_prompt: '写入 Analysis Routing Record，包含 routing_decision、target_case、reason、alternatives_considered、confidence、next_step。
+
+    '
+  conclusion_prompt: '若路由影响用户理解，输出选择题让用户确认。否则以明确假设继续。
+
+    '
+  misuse_guard_prompt: '检查是否跳过理解确认、是否静默并入旧 Case、是否静默覆盖旧决策。
+
+    '
+common_misuses:
+- 未理解就路由
+- 把新证据当新 Case
+- 把冲突静默合并
+- 不记录排除理由
+quality_checks:
+- 是否有 routing_decision
+- 是否有候选和排除理由
+- 是否区分影响、冲突、复审
+- 是否需要用户确认
+combines_well_with:
+- problem-framing
+- decision-assurance
+- validation-planning
+example_analysis_run:
+- 客户抱怨 Seat 收费不公平 → add_evidence_to_case 或 reopen_existing_decision，而非默认新建 Case。

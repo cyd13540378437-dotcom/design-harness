@@ -1,0 +1,150 @@
+schema_version: 1
+capability_id: product-business-analysis
+display_name: 商业分析能力集群
+version: v0.1.1-alpha
+status: implementation-ready
+agent_neutral: true
+standalone: true
+primary_language: zh-CN
+stable_identifiers_language: en
+architecture:
+  layers:
+  - DesignHarnessAgent Core
+  - Agent Runtime Adapters
+  - Project Knowledge Assets
+  operational_domains:
+  - orchestration_and_routing
+  - core_decision_analysis
+  - review_risk_and_decision_memory
+  - intake_extraction_and_assurance
+  - human_decision_control_plane
+  passive_trigger_interface: not_implemented
+  project_assets_root: docs/product/business-analysis
+entry_modes:
+- direct_decision_support
+- case_continuation
+- evidence_intake
+- decision_review
+- project_decision_extraction
+- assurance_validation
+routing_results:
+- create_new_case
+- continue_existing_case
+- add_evidence_to_case
+- reopen_existing_decision
+- conflict_with_existing_decision
+- impact_existing_decision
+- no_case_needed
+decision_case_fields:
+- original_input
+- current_problem
+- why_now
+- decision_scope
+- key_clues
+- known_facts
+- key_assumptions
+- related_evidence
+- analysis_workspace
+- options
+- tradeoffs
+- counterfactual_opposition
+- current_conclusion
+- validation_plan
+- review_triggers
+- related_decisions
+decision_network_relations:
+- depends_on
+- affects
+- conflicts_with
+- supersedes
+- reopens
+knowledge_statuses:
+- draft
+- provisional
+- confirmed
+- needs_review
+- stale
+- superseded
+- deprecated
+- sealed
+assurance_results:
+- pass
+- warn
+- block
+project_assets:
+  long_lived:
+  - docs/product/business-analysis/BUSINESS_ANALYSIS_INDEX.md
+  - docs/product/business-analysis/BUSINESS_ANALYSIS_INDEX.yml
+  - docs/product/business-analysis/BUSINESS_ANALYSIS_WORK_ITEMS.md
+  - docs/product/business-analysis/decision-cases/
+  - docs/product/business-analysis/decision-network/DECISION_NETWORK.md
+  - docs/product/business-analysis/decision-network/DECISION_NETWORK.yml
+  - docs/product/business-analysis/evidence/EVIDENCE_LEDGER.md
+  - docs/product/business-analysis/evidence/EVIDENCE_LEDGER.yml
+  - docs/product/business-analysis/reviews/
+  work_item:
+  - docs/product/business-analysis/work-items/BA-xxx/STATE.md
+  - docs/product/business-analysis/work-items/BA-xxx/ANALYSIS_CONSUMPTION.md
+  - docs/product/business-analysis/work-items/BA-xxx/ANALYSIS_OUTPUT.md
+  - docs/product/business-analysis/work-items/BA-xxx/DECISION_NOTES.md
+  - docs/product/business-analysis/work-items/BA-xxx/DECISION_PROCESS_PACKAGE.md
+  - docs/product/business-analysis/work-items/BA-xxx/artifacts/
+independence_contract:
+  depends_on_other_capabilities: false
+  modifies_other_capabilities: false
+  emits_cross_capability_triggers: false
+  generates_downstream_views: false
+  uses_shared_work_item_directory: false
+non_goals:
+- cross-capability-trigger
+- cross-capability-impact-propagation
+- downstream-view-compilation
+- shared-product-work-item-index
+- CLI
+- Hook
+- Plugin
+- Marketplace
+- installer
+- external-runtime-dependency
+- graphical-decision-network
+output_contract:
+  user_visible:
+  - input_understanding_feedback
+  - next_best_question
+  - choice_style_conclusion
+  - human_decision_request
+  - validation_review_options
+  process:
+  - input_understanding_snapshot
+  - analysis_routing_record
+  - evidence_intake_record
+  - model_selection_record
+  - analysis_runs
+  - decision_assurance_check
+  - decision_network_update
+  long_lived:
+  - decision_case
+  - decision_network
+  - evidence_ledger
+  - decision_review
+  work_item:
+  - state
+  - analysis_consumption
+  - analysis_output
+  - decision_notes
+  - decision_process_package
+model_card_registry:
+  index: core/product-design/business-analysis/model-cards/index.yml
+  schema: core/product-design/business-analysis/model-cards/analysis-model-card.schema.yml
+  ready_card_count: 24
+  required_usage_prompts:
+  - routing_prompt
+  - user_input_prompt
+  - execution_prompt
+  - analysis_run_prompt
+  - conclusion_prompt
+  - misuse_guard_prompt
+adapter_paths:
+  codex: adapters/codex/product-business-analysis/
+  claude_code: adapters/claude-code/product-business-analysis/
+  cursor: adapters/cursor/product-business-analysis/

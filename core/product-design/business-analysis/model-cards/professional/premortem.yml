@@ -1,0 +1,73 @@
+schema_version: 1
+model_id: premortem
+title: 预演失败分析
+category: risk-management
+status: ready
+purpose:
+- 假设方案已经失败，反推最可能失败原因。
+- 提前暴露盲区和不可逆风险。
+use_when:
+- 用户对某方案很有信心但风险未知。
+- 准备推进高影响方案前。
+avoid_when:
+- 纯输入理解阶段。
+- 没有任何候选方案。
+decision_questions:
+- 如果一年后失败了，最可能因为什么？
+- 哪些早期信号能发现失败？
+- 怎样降低失败概率？
+required_inputs:
+- 候选方案
+- 目标结果
+- 主要执行路径
+minimum_viable_inputs:
+- 一个候选方案和目标
+outputs:
+- 失败原因清单
+- 早期信号
+- 预防措施
+- 应对措施
+- 需要验证的假设
+case_fields_updated:
+- 8. 专业分析工作区
+- 11. 反方观点 / 不做会怎样
+- 13. 验证方式
+- 14. 复审条件
+interaction_prompts:
+- 假设这个方案三个月后失败了，最可能是因为什么？
+- 哪个失败原因现在最容易被低估？
+usage_prompts:
+  routing_prompt: '当方案看起来顺利但潜在失败点不清楚时使用。
+
+    '
+  user_input_prompt: '用场景化问题引导用户，而不是让用户列风险表。
+
+    '
+  execution_prompt: '假设方案失败，反推 5–7 个失败原因，标注早期信号和预防动作。
+
+    '
+  analysis_run_prompt: '写入 Analysis Workspace、反方分析、验证方式和复审条件。
+
+    '
+  conclusion_prompt: '输出 A继续但加防护、B缩小试点、C先验证失败点、D暂缓。
+
+    '
+  misuse_guard_prompt: '检查是否变成泛泛风险清单、是否没有早期信号、是否没有行动。
+
+    '
+common_misuses:
+- 泛泛悲观
+- 没有早期信号
+- 没有预防动作
+- 替代风险矩阵但不排序
+quality_checks:
+- 是否有具体失败场景
+- 是否有早期信号
+- 是否有防护动作
+- 是否连接复审条件
+combines_well_with:
+- risk-matrix
+- counterfactual-opposition
+- validation-planning
+example_analysis_run:
+- 做企业版预演失败：销售周期过长、交付成本失控、安全承诺无法兑现。

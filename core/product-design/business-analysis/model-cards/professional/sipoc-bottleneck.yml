@@ -1,0 +1,76 @@
+schema_version: 1
+model_id: sipoc-bottleneck
+title: SIPOC / 瓶颈分析
+category: process-operations
+status: ready
+purpose:
+- 界定流程边界、输入输出、参与方和主要瓶颈。
+- 处理业务流程、责任、交付效率和运营卡点问题。
+use_when:
+- 用户提出流程困境、审批规则、交付卡点、退款/支持/实施流程问题。
+avoid_when:
+- 问题主要是宏观市场或财务投资判断。
+- 没有任何流程事件或参与者线索。
+decision_questions:
+- 这个流程从哪里开始到哪里结束？
+- 谁提供输入，谁接收输出？
+- 瓶颈发生在哪一步？
+- 是否是责任不清还是能力不足？
+required_inputs:
+- 流程目标
+- 参与者
+- 至少一个实际流程事件或卡点
+minimum_viable_inputs:
+- 一个具体流程和一个卡点
+outputs:
+- SIPOC 表
+- 瓶颈位置
+- 可能原因
+- 改进选项
+- 流程风险
+case_fields_updated:
+- 3. 决策范围
+- 4. 关键线索
+- 8. 专业分析工作区
+- 9. 可选方案
+- 10. 主要权衡
+interaction_prompts:
+- 这个流程从哪个动作开始，到哪个结果结束？
+- 最常卡在哪一步？
+- 谁在等谁？
+usage_prompts:
+  routing_prompt: '当用户问题涉及流程、审批、交付、责任或运营卡点时使用。
+
+    '
+  user_input_prompt: '让用户讲一个具体案例，再从案例中还原 Supplier/Input/Process/Output/Customer。
+
+    '
+  execution_prompt: '建立流程边界和主要步骤，定位瓶颈，区分瓶颈是能力、责任、规则、信息还是资源问题。
+
+    '
+  analysis_run_prompt: '写入 Analysis Workspace，并更新范围、线索、方案和权衡。
+
+    '
+  conclusion_prompt: '输出选择：A调整规则、B补责任人、C简化流程、D先收集更多流程证据。
+
+    '
+  misuse_guard_prompt: '检查是否流程边界过大、是否跳到解决方案、是否没有责任主体。
+
+    '
+common_misuses:
+- 把流程图画大而空
+- 直接给方案不诊断瓶颈
+- 忽略责任主体
+- 忽略异常场景
+quality_checks:
+- 是否有流程起止
+- 是否有参与方
+- 是否定位瓶颈
+- 是否区分瓶颈类型
+combines_well_with:
+- raci
+- risk-matrix
+- option-assessment
+- validation-planning
+example_analysis_run:
+- 退款是否二级审批 → SIPOC 找到责任、输入、输出和审批瓶颈，再做方案评估。

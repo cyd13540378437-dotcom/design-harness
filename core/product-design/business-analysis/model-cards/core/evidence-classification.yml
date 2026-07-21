@@ -1,0 +1,71 @@
+schema_version: 1
+model_id: evidence-classification
+title: 证据分类
+category: core-decision
+status: ready
+purpose:
+- 把用户输入和补充材料拆成线索、事实、假设、证据、解释、偏好和约束。
+- 防止把假设写成事实，把偏好写成结论。
+use_when:
+- 用户补充文字、数据、附件、案例或客户反馈。
+- 当前结论需要证据强度说明。
+avoid_when:
+- 没有任何新输入或材料。
+decision_questions:
+- 哪些是真实事实？
+- 哪些只是解释或假设？
+- 哪些证据支持或反驳某判断？
+required_inputs:
+- 用户输入或补充材料
+- 当前 Case 范围
+minimum_viable_inputs:
+- 一段用户文字或一个材料摘要
+outputs:
+- Evidence Intake Record
+- 已知事实
+- 关键假设
+- 相关证据
+- 证据强度和限制
+case_fields_updated:
+- 4. 关键线索
+- 5. 已知事实
+- 6. 重要假设
+- 7. 相关证据
+interaction_prompts:
+- 你这条信息更像是一个具体事实，还是你对原因的判断？
+- 有没有一个具体数据或客户案例能支持这个判断？
+usage_prompts:
+  routing_prompt: '当任何新材料进入 Case 时使用。若材料和当前 Case 相关性低，必须触发边界提醒。
+
+    '
+  user_input_prompt: '请不要要求用户分类。先由系统分类，再让用户纠正：“我把这条当作事实/假设/线索处理，对吗？”
+
+    '
+  execution_prompt: '将材料拆成 clue、fact、assumption、evidence、interpretation、preference、constraint，并说明来源和可信度。
+
+    '
+  analysis_run_prompt: '写入 Evidence Intake Record，并更新 Decision Case 对应字段。相关性低时记录 discard/weak signal/new case。
+
+    '
+  conclusion_prompt: '若证据不足，输出下一步证据选择题，而不是伪造结论。
+
+    '
+  misuse_guard_prompt: '检查是否把用户感觉写成事实、是否把单个案例过度泛化、是否忽略证据限制。
+
+    '
+common_misuses:
+- 把线索当事实
+- 把解释当证据
+- 忽略来源和日期
+- 相关性低仍强行采用
+quality_checks:
+- 是否分类清楚
+- 是否记录来源
+- 是否说明限制
+- 是否处理低相关材料
+combines_well_with:
+- problem-framing
+- assumption-mapping
+- decision-assurance
+example_analysis_run:
+- “客户说贵” → 线索；“12 个客户在销售中提出预算异议” → 事实/证据；“客户不愿付费” → 假设。

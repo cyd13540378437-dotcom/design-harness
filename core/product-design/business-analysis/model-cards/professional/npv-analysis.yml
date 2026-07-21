@@ -1,0 +1,83 @@
+schema_version: 1
+model_id: npv-analysis
+title: 净现值分析
+category: finance-economics
+status: ready
+purpose:
+- 判断有明确投资额和未来现金流的项目，在考虑时间价值后是否创造正向经济价值。
+- 比较多个投资方案的财务吸引力。
+use_when:
+- 有明确初始投入、时间周期、未来现金流估计和折现率。
+- 决策确实涉及投资回报判断。
+avoid_when:
+- 没有现金流估计。
+- 早期方向探索。
+- 问题主要是客户需求、流程责任或战略定位。
+- 输入数字明显拍脑袋且无法说明来源。
+decision_questions:
+- 这个项目在财务上是否值得投入？
+- 哪个方案考虑时间价值后更优？
+- 结果对现金流假设有多敏感？
+required_inputs:
+- 初始投资额
+- 时间周期
+- 每期预期现金流
+- 折现率
+- 关键假设来源
+minimum_viable_inputs:
+- 初始投资范围
+- 至少 3 个期间现金流估计
+- 一个明确折现率假设
+- 至少一种情景
+outputs:
+- NPV 结果
+- 关键敏感变量
+- 情景比较
+- 是否适合形成财务建议
+- 是否需要先补证据
+case_fields_updated:
+- 6. 重要假设
+- 7. 相关证据
+- 8. 专业分析工作区
+- 10. 主要权衡
+- 12. 当前结论
+- 13. 验证方式
+interaction_prompts:
+- 这个判断是否已经有大致现金流假设？A 有投入和收入/成本预测；B 只有粗略投入；C 早期想法；D 不确定。
+- 收入和成本预测来自数据、历史经验还是粗略估计？
+usage_prompts:
+  routing_prompt: '只有同时满足初始投入、时间周期、现金流、折现率和投资回报问题时才使用。否则改用 scenario-sensitivity、unit-economics 或 validation-planning。
+
+    '
+  user_input_prompt: '先问用户是否有现金流假设。若选择 B/C/D，不要强行计算 NPV。
+
+    '
+  execution_prompt: '基于用户提供的现金流执行 NPV。列出所有输入假设，不得补造现金流。结果只能作为财务视角。指出敏感变量。
+
+    '
+  analysis_run_prompt: '写入 Analysis Workspace：initial_investment、time_horizon、cash_flows、discount_rate、npv_result、sensitivity、limitations。
+
+    '
+  conclusion_prompt: '数据充分时输出推进/缩小投入/先验证/暂不投入；数据不足时输出补现金流/单位经济/小试点/暂停财务判断。
+
+    '
+  misuse_guard_prompt: '检查是否没有现金流却计算、是否把系统假设伪装成用户数据、是否过度精确、是否把 NPV 正数等同必须做。
+
+    '
+common_misuses:
+- 没有现金流也强行计算
+- 过度精确
+- 忽略战略价值和执行风险
+- NPV 正数直接等于应该做
+quality_checks:
+- 是否有必要输入
+- 是否说明假设来源
+- 是否有敏感变量
+- 是否区分财务结论和商业决定
+combines_well_with:
+- scenario-sensitivity
+- unit-economics
+- risk-matrix
+- option-assessment
+example_analysis_run:
+- 若企业版投入 50 万且有三年现金流预测，可做 NPV；若没有现金流，只能建议先做情景分析。
