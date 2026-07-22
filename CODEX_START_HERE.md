@@ -35,29 +35,41 @@ Do not remove the Core / Adapter / Project Assets separation.
 
 This package now includes runtime adapter resolution. If you are applying it from Codex, use the Codex profile. If the target project is meant for Claude Code or Cursor, do not install only Codex files; apply `core/product-design/business-modeling/protocols/agent-runtime-adapter-resolution.md` and the matching install profile.
 
-## Product Business Analysis v0.1.1
+## Product Business Analysis v0.1.2
 
 `product-business-analysis` is a fully standalone sibling capability for business decision support.
 
 Read in this order:
 
-1. `docs/CODEX_BUILD_BRIEF.product-business-analysis-core-v0.1.1-complete.md`
-2. `docs/PRD.product-business-analysis-v0.1.1.md`
-3. `docs/ARCHITECTURE_DECISION.standalone-business-analysis-v0.1.1.md`
-4. `core/product-design/business-analysis/CAPABILITY.md`
-5. `core/product-design/business-analysis/SKILL.md`
-6. `core/product-design/business-analysis/capability.manifest.yml`
-7. `core/product-design/business-analysis/protocols/standalone-architecture.md`
-8. `core/product-design/business-analysis/protocols/source-of-truth.md`
-9. `core/product-design/business-analysis/protocols/output-contract.md`
-10. `core/product-design/business-analysis/protocols/human-decision-control-plane.md`
-11. `core/product-design/business-analysis/references/subcapability-work-logic-v0.1.md`
-12. `docs/PACKAGE_MANIFEST.product-business-analysis-v0.1.1.md`
+1. `README.zh-CN.md`
+2. `docs/PRD.product-business-analysis-v0.1.2.md`
+3. `docs/ARCHITECTURE_DECISION.standalone-business-analysis-v0.1.2.md`
+4. `docs/ARCHITECTURE_DECISION.business-problem-continuity-v0.1.2.md`
+5. `core/product-design/business-analysis/CAPABILITY.md`
+6. `core/product-design/business-analysis/SKILL.md`
+7. `core/product-design/business-analysis/capability.manifest.yml`
+8. `core/product-design/business-analysis/protocols/follow-up-turn-continuity.md`
+9. `core/product-design/business-analysis/protocols/business-problem-continuity.md`
+10. `core/product-design/business-analysis/protocols/solution-premise-challenge.md`
+11. `core/product-design/business-analysis/protocols/analysis-depth-control.md`
+12. `core/product-design/business-analysis/protocols/decision-synthesis.md`
+13. `core/product-design/business-analysis/protocols/final-conclusion-contract.md`
+14. `core/product-design/business-analysis/protocols/output-language-contract.md`
+15. `core/product-design/business-analysis/protocols/business-analysis-vs-solution-design-boundary.md`
+16. `docs/CODEX_BUILD_BRIEF.product-business-analysis-core-v0.1.2-complete.md`
+17. `docs/PACKAGE_MANIFEST.product-business-analysis-v0.1.2.md`
 
-Hard rule:
+Hard rules:
 
 ```text
 Business Analysis owns docs/product/business-analysis/ only.
 It does not depend on, trigger, or modify Business Modeling, Design Engineering, or any sibling capability.
 Decision Cases live only in decision-cases/; BA Work Items never copy DECISION_CASE.md.
+Follow-up turns must recover the active BA Work Item and linked Decision Case before answering.
+Decision Anchor and Decision Delta decide what can enter Central Decision Synthesis.
+Process files live under work-items/BA-xxx/artifacts/ only; do not create intake/.
+User-visible and human-readable project Markdown defaults to Simplified Chinese.
+Acknowledgement is not a D2 / D3 confirmed decision.
 ```
+
+Do not implement future integration features in this module: no passive triggers, downstream views, cross-capability propagation, shared work-items, CLI, hook, plugin package, installer, external runtime dependency, or automatic D2 / D3 decision.

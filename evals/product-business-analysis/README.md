@@ -1,3 +1,3 @@
-# Product Business Analysis Evals
+# 商业分析人工评测 v0.1.2
 
-Each scenario uses Given / When / Then and validates standalone decision support behavior. No eval assumes or invokes another capability.
+本目录包含 34 个 Given / When / Then 场景，验证独立决策支持、多轮状态续接、商业问题连续性、解法前提挑战、Decision Delta、统一结论、中文输出、路径纪律和 ARCOS 回归行为。

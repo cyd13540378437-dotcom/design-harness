@@ -1,10 +1,8 @@
-# Decision Notes
+# 人类决定记录
 
-- Decision ID: BAD-001
-- Impact Level: D2
-- Decision Question: 未激活邀请是否占用付费 Seat？
-- System Recommendation: Option C
-- User Decision: Option C confirmed
-- Accepted Tradeoff: 增加待接受邀请上限规则
-- Review Conditions: 预购容量、滥用增加、客户要求容量锁定
-- Status: confirmed
+- 决定 ID：BA-D-001
+- 影响等级：D2
+- 用户明确选择：未激活邀请不占用付费 Seat；设置待接受邀请数量上限
+- 状态：confirmed
+- 接受的代价：增加一条邀请上限规则
+- 复审条件：滥用显著增加、改为预购容量或客户要求容量锁定

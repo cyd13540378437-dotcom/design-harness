@@ -1,8 +1,25 @@
-# Decision Case Contract v0.2
+# Decision Case Contract v0.1.2
 
-Decision Case 是商业分析的核心容器。它不是报告，也不是问卷，而是围绕一个业务情境中的选择题，记录原始输入、理解、事实、假设、证据、专业分析、选项、权衡、反方、结论、验证、复审和关联决策的结构化决策资产。
+Decision Case 是一个业务选择的长期权威容器，不是聊天记录，也不是一次 Work Item 的复制品。
 
-## 1. 必须使用 16 字段
+## 1. 顶部 Decision Anchor
+
+每个 Case 顶部维护：
+
+```text
+原始商业问题
+已确认商业问题
+决策人
+受影响参与者
+期望业务结果
+当前业务选项
+关键未知
+证据边界
+Assurance 状态
+用户决定状态
+```
+
+## 2. 固定 16 个字段
 
 ```text
 0. 原始输入
@@ -23,90 +40,29 @@ Decision Case 是商业分析的核心容器。它不是报告，也不是问卷
 15. 关联决策
 ```
 
-## 2. 字段状态
+字段固定，填充深度动态。
 
-每个字段可使用状态：
+## 3. 原始输入
 
-```text
-unknown
-not_applicable
-provisional
-confirmed
-needs_review
-stale
-superseded
-```
+第一次输入必须 verbatim 保存。系统理解后的“当前问题”不得替代原文。
 
-状态用于防止把未知、假设或临时判断写成已确认事实。
+## 4. 专业分析工作区
 
-## 3. 原始输入不可省略
+每个 Analysis Run 必须包含 Decision Delta。模型名称不能替代分析内容。
 
-`0. 原始输入` 必须完整记录用户第一次输入原文。它不是摘要，也不是系统解释。
+## 5. 当前结论
 
-作用：
+必须区分：
 
 ```text
-保留原始语气
-保留最初线索
-支持路由审计
-支持后续纠错
-支持决策复盘
+系统推荐
+结论状态
+Assurance
+用户决定
+用户决定状态
+证据边界
 ```
 
-## 4. 当前问题是解释后的选择题
+## 6. 历史保护
 
-`1. 当前问题` 是系统和用户确认后的决策问题。它可以和原始输入不同，但不能覆盖原始输入。
-
-## 5. 专业分析工作区
-
-`8. 专业分析工作区` 用于保存 Analysis Runs。
-
-所有 SWOT、BCG、NPV、IRR、SIPOC、风险矩阵、单位经济等专业分析结果都必须写在这里，而不是只在对话中临时出现。
-
-## 6. 当前结论必须区分系统建议与用户决定
-
-合法：
-
-```text
-System recommendation: 先做轻量试点。
-User decision: 尚未确认。
-```
-
-非法：
-
-```text
-Decision: 先做轻量试点。
-```
-
-除非用户明确确认。
-
-## 7. 最小合格 Decision Case
-
-无论问题大小，至少应包含：
-
-```text
-原始输入
-当前问题
-为什么现在处理
-决策范围
-关键线索
-重要假设
-可选方案或下一步选择
-反方分析
-当前结论
-验证方式或复审条件
-关联决策检查
-```
-
-事实、证据、权衡和专业分析可随着输入逐步增强。
-
-
-## 8. 唯一权威位置
-
-Decision Case 只允许位于：
-
-```text
-docs/product/business-analysis/decision-cases/BA-DC-xxx.md
-```
-
-Work Item 只能链接，不得复制。
+confirmed 或 sealed 内容不能静默改写。新证据通过 Review、needs_review、superseded 或新 Work Item 表达。

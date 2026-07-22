@@ -1,7 +1,13 @@
 schema_version: 1
+language: zh-CN
 relations:
   - source_case: BA-DC-001
     relation: affects
     target_topic: invitation-policy
     status: confirmed
-    reason: Seat 计费规则决定待接受邀请的业务政策
+    reason: Seat 计费规则决定邀请政策
+  - source_case: BA-DC-002
+    relation: reopens
+    target_case: BA-DC-002
+    status: provisional
+    reason: 获得真实历史数据后复审合成场景证据边界

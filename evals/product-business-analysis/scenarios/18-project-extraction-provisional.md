@@ -1,13 +1,13 @@
-# Project extraction is provisional
+# 项目提取默认 provisional
 
-## Given
+## Given / 已知
 
-existing documents imply past decisions.
+从已有材料恢复决策。
 
-## When
+## When / 当
 
-project_decision_extraction runs.
+系统生成候选 Case。
 
-## Then
+## Then / 则
 
-candidate Cases are provisional until the user confirms them.
+候选内容标记 provisional，并保留证据链。

@@ -1,18 +1,26 @@
-# Model Selection Record
+---
+schema_version: 1
+language: zh-CN
+---
 
-## Current Case
+# 分析模型选择记录
 
-## Candidate Models
+## 当前 Decision Anchor
 
-| Model ID | Why considered | Selected? | Reason |
+## 候选模型
+
+| 模型 | 适配原因 | 最低输入是否满足 | 预期 Decision Delta |
 |---|---|---|---|
 
-## Selected Models
+## 最终选择
 
-## Input Sufficiency
+## 被考虑但未使用
 
-## Models Considered but Not Used
+| 模型 | 未使用原因 |
+|---|---|
 
-## Misuse Risks
+## 用户补充输入需求
 
-## Next Analysis Runs
+仅记录会改变选项排序或风险判断的必要问题。
+
+## 误用风险

@@ -1,13 +1,13 @@
-# Model prompt contract
+# 模型 Prompt 合同
 
-## Given
+## Given / 已知
 
-a card is ready.
+模型卡状态为 ready。
 
-## When
+## When / 当
 
-the registry is validated.
+执行模型卡校验。
 
-## Then
+## Then / 则
 
-all six usage prompts are non-empty.
+七个 usage prompts 全部存在且非空。

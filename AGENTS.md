@@ -59,7 +59,7 @@
 
 ## Product Business Analysis Core
 
-本仓库同时包含 `product-business-analysis` v0.1.1 独立文档型 Core。修改商业分析能力时必须保持 Core、Adapter、Project Assets、示例、评测和 docs 一致。
+本仓库同时包含 `product-business-analysis` v0.1.2 独立文档型 Core。修改商业分析能力时必须保持 Core、Adapter、Project Assets、示例、评测和 docs 一致。
 
 商业分析能力的核心边界：
 
@@ -70,9 +70,16 @@
 - 目标项目里的商业分析 source of truth 必须是 `docs/product/business-analysis/`。
 - Decision Case 的唯一权威文件位于 `decision-cases/BA-DC-xxx.md`。
 - BA Work Item 位于 `work-items/BA-xxx/`，只链接 Case，不得包含 `DECISION_CASE.md`。
+- BA Work Item 的过程文件必须位于 `work-items/BA-xxx/artifacts/`；不得创建 `intake/`，也不得把过程文件放在 Work Item 根目录。
 - Decision Network 与 Evidence Ledger 的 YML 是机器权威源，Markdown 是人读视图。
 - 第一次用户输入必须原文保留；Routing 必须发生在 Input Understanding 之后。
-- 24 张 ready Analysis Model Cards 必须保持 `schema_version: 1`，且每张卡具备六个非空 usage prompts。
+- 后续对话必须先执行 Follow-up Turn Continuity，读取最小恢复集，恢复当前 BA Work Item、Decision Case、最近分析输出、决策记录、过程包和 Assurance 后再回答；不得无状态续答。
+- Decision Anchor 必须在 `STATE.md` 和 Decision Case 顶部保持可见，至少覆盖业务问题、当前选项、关键不确定性、证据边界、Assurance 和用户决定状态。
+- 25 张 ready Analysis Model Cards 必须保持 `schema_version: 1`，且每张卡具备七个非空 usage prompts：`decision_relevance_prompt`、`routing_prompt`、`user_input_prompt`、`execution_prompt`、`analysis_run_prompt`、`conclusion_prompt`、`misuse_guard_prompt`。
+- 每次 Analysis Run 必须通过 Decision-relevant Question / Decision Delta Test；`low_relevance` 或 `discarded` 运行不得进入结论。
+- 用户可见结论必须来自 Central Decision Synthesis 和 `DECISION_SUMMARY.md`，不得把单个 model card 的 `conclusion_prompt` 直接当最终建议。
+- 用户可见和人类可读项目 Markdown 默认使用简体中文；模型 ID、字段名、路径和枚举保持英文。
+- 用户表示“理解”“知道了”“OK”只能记录为 acknowledged，不得当成 D2 / D3 confirmed decision。
 - 数值模型输入不足时必须阻止伪精确，不得伪造 NPV、IRR 或其他财务结论。
 - D2 / D3 人类决定必须明确记录，系统建议不得冒充用户决定。
 - 不得创建跨模块 Trigger、downstream views、共享 `docs/product/work-items/`、CLI、Hook、Plugin、installer 或外部依赖。
@@ -82,11 +89,13 @@
 
 - [README.md](README.md) / [README.zh-CN.md](README.zh-CN.md) / [CHANGELOG.md](CHANGELOG.md)
 - [CODEX_START_HERE.md](CODEX_START_HERE.md) / [AGENT_START_HERE.md](AGENT_START_HERE.md)
-- [docs/PRD.product-business-analysis-v0.1.1.md](docs/PRD.product-business-analysis-v0.1.1.md)
-- [docs/ARCHITECTURE_DECISION.standalone-business-analysis-v0.1.1.md](docs/ARCHITECTURE_DECISION.standalone-business-analysis-v0.1.1.md)
-- [docs/CODEX_BUILD_BRIEF.product-business-analysis-core-v0.1.1-complete.md](docs/CODEX_BUILD_BRIEF.product-business-analysis-core-v0.1.1-complete.md)
-- [docs/CODEX_READINESS_AUDIT.product-business-analysis-core-v0.1.1-complete.md](docs/CODEX_READINESS_AUDIT.product-business-analysis-core-v0.1.1-complete.md)
-- [docs/PACKAGE_MANIFEST.product-business-analysis-v0.1.1.md](docs/PACKAGE_MANIFEST.product-business-analysis-v0.1.1.md)
+- [docs/PRD.product-business-analysis-v0.1.2.md](docs/PRD.product-business-analysis-v0.1.2.md)
+- [docs/ARCHITECTURE_DECISION.standalone-business-analysis-v0.1.2.md](docs/ARCHITECTURE_DECISION.standalone-business-analysis-v0.1.2.md)
+- [docs/ARCHITECTURE_DECISION.business-problem-continuity-v0.1.2.md](docs/ARCHITECTURE_DECISION.business-problem-continuity-v0.1.2.md)
+- [docs/CODEX_BUILD_BRIEF.product-business-analysis-core-v0.1.2-complete.md](docs/CODEX_BUILD_BRIEF.product-business-analysis-core-v0.1.2-complete.md)
+- [docs/CODEX_READINESS_AUDIT.product-business-analysis-core-v0.1.2-complete.md](docs/CODEX_READINESS_AUDIT.product-business-analysis-core-v0.1.2-complete.md)
+- [docs/PACKAGE_MANIFEST.product-business-analysis-v0.1.2.md](docs/PACKAGE_MANIFEST.product-business-analysis-v0.1.2.md)
+- [docs/MIGRATION_NOTES.business-analysis-v0.1.1-to-v0.1.2.md](docs/MIGRATION_NOTES.business-analysis-v0.1.1-to-v0.1.2.md)
 - [core/product-design/business-analysis](core/product-design/business-analysis/)
 - [adapters/codex/product-business-analysis](adapters/codex/product-business-analysis/)
 - [adapters/claude-code/product-business-analysis](adapters/claude-code/product-business-analysis/)

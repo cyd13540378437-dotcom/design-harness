@@ -1,37 +1,60 @@
-# Human Decision Control Plane
+# 人类决策控制层（Human Decision Control Plane）v0.1.2
 
 ## 1. 影响等级
 
-| 等级 | 含义 | AI 行为 |
-|---|---|---|
-| D0 | 格式、索引、机械同步 | 可自动执行 |
-| D1 | 可逆、局部、低成本判断 | 可写 provisional，并说明假设 |
-| D2 | 核心业务选择、定价、流程政策、资源优先级 | 可分析和推荐；confirmed 前需用户确认 |
-| D3 | 战略转向、大额投资、合规责任、不可逆承诺、废弃或封存 | 必须明确用户决定 |
-
-无法判断时按更高一级处理。
-
-## 2. Human Decision Request
-
-必须包含：
-
 ```text
-当前理解
-为什么重要
-可选方案
-每个方案价值、代价和风险
-系统推荐
-需要用户选择什么
+D0 机械同步，不改变业务含义
+D1 可逆、局部、低代价判断
+D2 核心业务选择，影响客户、收入、成本、流程或责任
+D3 战略、重大财务、合规、不可逆或高代价选择
 ```
 
-## 3. 决定记录
+## 2. AI 权限
 
-D2 / D3 决定写入 Work Item 的 `DECISION_NOTES.md`，并同步更新 Decision Case 的 `User decision`。
+AI 可以：
 
-AI 不得把“建议”升级为“用户决定”。
+```text
+生成 draft / provisional 分析
+比较选项
+提出推荐
+记录 acknowledged
+设计验证和复审条件
+```
 
-## 4. 状态控制
+AI 不可以：
 
-AI 可生成 `draft / provisional / needs_review / stale`。
+```text
+把系统推荐写成用户决定
+把 acknowledged 写成 confirmed
+自动确认 D2 / D3
+自动 supersede / deprecate / seal 高影响决定
+```
 
-高影响 `confirmed / superseded / deprecated / sealed` 必须有人类依据。sealed 历史不得静默修改；后续工作创建新的 Work Item，并在 Case 或 Review 中保留历史关系。
+## 3. 用户决定状态
+
+```text
+not_requested  尚未请求决定
+pending        正等待用户选择
+acknowledged   用户表示理解，但未明确选择
+confirmed      用户明确选择并接受关键代价
+rejected       用户拒绝推荐或选项
+revised        用户修改了原选择
+```
+
+## 4. Human Decision Request
+
+必须用中文说明：
+
+```text
+当前商业问题
+为什么需要用户决定
+真实业务选项
+每项价值、代价和风险
+系统推荐
+证据边界
+需要用户确认的具体选择
+```
+
+## 5. 写入位置
+
+D2 / D3 confirmed、rejected、revised 进入 `DECISION_NOTES.md`，并更新 Decision Case、STATE 和必要的 Review 条件。

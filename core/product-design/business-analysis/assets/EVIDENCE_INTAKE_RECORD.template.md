@@ -1,23 +1,17 @@
-# Evidence Intake Record
+---
+schema_version: 1
+language: zh-CN
+---
 
-## Supplemental Input
+# 证据与材料接收记录
 
-## Source
+| 材料 | 来源 | 分类 | 与 Decision Anchor 的相关性 | 是否采用 | 原因 |
+|---|---|---|---|---|---|
 
-## Relation to Current Case
-
-## Classification
-
-```text
-clue | fact | assumption | evidence | interpretation | preference | constraint
-```
-
-## Adopted?
-
-## If Not Adopted, Why?
-
-## Suggested Action
+## 相关性过低时的处理
 
 ```text
-use_in_current_case | keep_as_weak_signal | create_new_case | discard_for_now
+弃用 | 弱相关保留 | 新建 Case
 ```
+
+## 对当前选项或不确定性的影响

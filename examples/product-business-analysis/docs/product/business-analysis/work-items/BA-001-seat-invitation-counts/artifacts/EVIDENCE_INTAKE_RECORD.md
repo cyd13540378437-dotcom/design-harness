@@ -1,6 +1,4 @@
-# Evidence Intake Record
+# 证据与材料接收记录
 
-| Input | Classification | Adopted | Notes |
-|---|---|---|---|
-| 客户公平性担忧 | clue / qualitative evidence | yes | 写入 BA-EV-001 |
-| 滥用担忧 | assumption / risk clue | yes | 需要未来数据验证 |
+- 用户公平性担忧：定性线索，采用
+- 滥用风险：provisional 假设，采用并保留复审条件

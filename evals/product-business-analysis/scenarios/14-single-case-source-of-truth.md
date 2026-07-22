@@ -1,13 +1,13 @@
-# Single Decision Case source
+# 单一 Case 权威源
 
-## Given
+## Given / 已知
 
-a BA Work Item updates a Case.
+一个 Case 被多个 Work Item 更新。
 
-## When
+## When / 当
 
-files are written.
+系统写入资产。
 
-## Then
+## Then / 则
 
-no Work Item-level DECISION_CASE.md exists; the long-lived Case is the only authority.
+只有 decision-cases 下存在权威 Case，Work Item 不复制。

@@ -1,13 +1,13 @@
-# Choice-style conclusion
+# 真实选择式结论
 
-## Given
+## Given / 已知
 
-analysis is sufficient.
+分析足够形成选项。
 
-## When
+## When / 当
 
-the user-facing conclusion is produced.
+中央综合器生成用户结论。
 
-## Then
+## Then / 则
 
-it provides options, conditions, tradeoffs, system recommendation, and confirmation status.
+选项来自当前业务 Case，并说明条件、代价、推荐和确认状态。

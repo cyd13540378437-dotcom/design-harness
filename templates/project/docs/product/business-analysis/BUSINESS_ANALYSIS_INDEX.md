@@ -1,23 +1,13 @@
-# Business Analysis Index
+# 商业分析知识索引
 
-> Decision Case 权威内容位于 `decision-cases/`。本文件是导航索引。
+> `Decision Case`、Decision Network YML 和 Evidence Ledger YML 分别是其知识类型的权威源；本文件仅用于人类导航。
 
-## Active / Provisional
+## Decision Cases
 
-| Case ID | Title | Status | Current Conclusion | Review By | File |
+| Case ID | 标题 | 状态 | Assurance | 用户决定状态 | 路径 |
 |---|---|---|---|---|---|
 
-## Confirmed
+## Decision Reviews
 
-| Case ID | Title | Confirmed Decision | Review Triggers | File |
-|---|---|---|---|---|
-
-## Needs Review
-
-| Case ID | Title | Reason | Review File | Case |
-|---|---|---|---|---|
-
-## Superseded / Deprecated / Sealed
-
-| Case ID | Title | Status | Successor / Replacement | File |
-|---|---|---|---|---|
+| Review ID | Case ID | 状态 | 路径 |
+|---|---|---|---|

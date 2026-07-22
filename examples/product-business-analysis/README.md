@@ -1,5 +1,8 @@
-# Product Business Analysis Example
+# Product Business Analysis 示例
 
-该示例展示局部业务问题“未激活邀请是否占用付费 Seat”的独立商业分析过程。
+本示例包含两个完全独立的 Decision Cases：
 
-示例只产生商业分析资产：Decision Case、Work Item、Analysis Runs、Decision Network 和 Evidence Ledger。它不会创建任何其他能力的任务、Trigger 或下游视图。
+1. `BA-DC-001`：未激活邀请是否占用付费 Seat；展示已确认的局部业务决定。
+2. `BA-DC-002`：无历史数据时如何验证智能调度策略；展示 v0.1.2 的多轮续接、解法前提挑战、Decision Delta、中文结论和商业 / 实施边界。
+
+所有人读输出均为简体中文；英文只用于稳定 ID、状态枚举和文件名。

@@ -1,5 +1,6 @@
-# Evidence Ledger
+# 证据台账
 
-| Evidence ID | Source | Date | Type | Strength | Used By | Limitations |
+| Evidence ID | 来源 | 日期 | 类型 | 强度 | 被哪些 Case 使用 | 局限 |
 |---|---|---|---|---|---|---|
-| BA-EV-001 | 用户对公平性的担忧 | 2026-07-21 | qualitative | medium | BA-DC-001 | 尚无客户样本和运营数据 |
+| BA-EV-001 | 用户对计费公平性的担忧 | 2026-07-21 | 定性 | medium | BA-DC-001 | 尚无客户样本 |
+| BA-EV-002 | 用户确认没有历史调度数据 | 2026-07-21 | 用户确认事实 | high | BA-DC-002 | 只能约束验证路径，不能证明策略效果 |

@@ -1,7 +1,15 @@
 schema_version: 1
+language: zh-CN
 cases:
   - id: BA-DC-001
     title: 未激活邀请是否占用付费 Seat
     status: confirmed
-    file: decision-cases/BA-DC-001-seat-invitation-counts.md
-    primary_work_item: BA-001
+    assurance_status: pass
+    user_decision_status: confirmed
+    path: decision-cases/BA-DC-001-seat-invitation-counts.md
+  - id: BA-DC-002
+    title: 无历史数据时如何验证智能调度策略
+    status: provisional
+    assurance_status: warn
+    user_decision_status: pending
+    path: decision-cases/BA-DC-002-smart-dispatch-strategy-validation.md

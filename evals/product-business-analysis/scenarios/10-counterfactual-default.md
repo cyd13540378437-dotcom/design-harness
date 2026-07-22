@@ -1,13 +1,13 @@
-# Counterfactual default
+# 默认反方分析
 
-## Given
+## Given / 已知
 
-a non-trivial option is analyzed.
+Case 已有候选解法。
 
-## When
+## When / 当
 
-before conclusion.
+系统准备综合。
 
-## Then
+## Then / 则
 
-do / not-do / current-state / smaller reversible option are evaluated.
+分析不做、做了的代价、可能错误和更小选择。

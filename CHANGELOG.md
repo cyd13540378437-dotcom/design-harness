@@ -1,5 +1,16 @@
 # 变更日志
 
+## Unreleased / product business analysis core v0.1.2
+
+- 升级 `product-business-analysis` 到 v0.1.2，重点修复多轮对话中商业分析从 Decision Case 漂移成普通咨询回答的问题。
+- 新增 Follow-up Turn Continuity、Business Problem Continuity、Final Conclusion Contract、Output Language Contract、Decision Synthesis、Analysis Depth Control、Solution Premise Challenge 等协议。
+- 新增 Decision Anchor 与 Decision-relevant Question / Decision Delta Test，要求模型运行证明自己推动了当前商业决策；低相关或 discarded 运行不得进入结论。
+- 新增 `solution-premise-challenge` model card，ready Analysis Model Cards 从 24 张增至 25 张；每张 ready 卡必须具备 7 个非空 usage prompts，包括 `decision_relevance_prompt`。
+- 新增 `TURN_CONTINUITY_CHECK`、`DECISION_SYNTHESIS`、`DECISION_SUMMARY` 模板；过程文件统一放在 `work-items/BA-xxx/artifacts/`，不再使用 `intake/`。
+- 明确用户可见输出和人读项目 Markdown 默认使用简体中文，字段名、模型 ID、路径和枚举保持英文。
+- 新增 ARCOS 智能派单模拟器回归示例和评测；商业分析人工评测场景从 20 个扩展到 34 个。
+- 继续保持 Business Analysis 与 Business Modeling、Design Engineering 以及所有兄弟能力完全独立；不新增跨模块 Trigger、downstream views、共享 Work Item 目录、CLI、Hook、Plugin、installer 或外部依赖。
+
 ## Unreleased / product business analysis core v0.1.1
 
 - 新增完全独立的 `product-business-analysis` v0.1.1 文档型 Core，位于 `core/product-design/business-analysis/`。

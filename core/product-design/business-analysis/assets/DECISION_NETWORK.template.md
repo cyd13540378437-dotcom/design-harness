@@ -1,6 +1,6 @@
-# Decision Network
+# 决策网
 
-> `DECISION_NETWORK.yml` is the machine-readable source of truth.
+> `DECISION_NETWORK.yml` 是机器可读权威源；本文件提供完整中文人读视图。
 
-| Source Case | Relation | Target Case | Status | Reason |
+| 来源 Case | 关系 | 目标 Case | 状态 | 原因 |
 |---|---|---|---|---|

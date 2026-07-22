@@ -1,25 +1,44 @@
-# Analysis Routing Record
+---
+schema_version: 1
+language: zh-CN
+---
 
-## Input Understanding Snapshot
+# 分析路由记录
 
-## Candidate Decision Cases
+## 输入理解与本轮续接引用
 
-| Case ID | Title | Relation | Confidence |
+## 候选 Decision Cases
+
+| Case ID | 标题 | 关系 | 置信度 |
 |---|---|---|---|
 
-## Routing Decision
+## 路由决定
 
 ```text
-create_new_case | continue_existing_case | add_evidence_to_case | reopen_existing_decision | conflict_with_existing_decision | impact_existing_decision | no_case_needed
+create_new_case
+continue_existing_case
+add_evidence_to_case
+record_human_decision
+summarize_existing_case
+reopen_existing_decision
+conflict_with_existing_decision
+impact_existing_decision
+no_case_needed
 ```
 
-## Reason
+## 选择理由
 
-## Alternatives Considered
+## 被排除的处理方式
 
-| Alternative | Why not selected |
+| 处理方式 | 未选择原因 |
 |---|---|
 
-## Next Step
+## 分析深度
 
-## Need User Confirmation?
+```text
+quick | standard | deep
+```
+
+## 下一步
+
+## 是否需要用户确认路由

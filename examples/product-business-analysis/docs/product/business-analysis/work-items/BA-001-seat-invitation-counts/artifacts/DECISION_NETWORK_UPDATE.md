@@ -1,6 +1,4 @@
-# Decision Network Update
+# 决策网更新
 
-- Source Case: BA-DC-001
-- Relation: affects
-- Target topic: invitation-policy
-- Cross-capability trigger emitted: no
+- BA-DC-001 affects invitation-policy
+- 本关系只属于商业分析内部，不产生跨模块 Trigger。

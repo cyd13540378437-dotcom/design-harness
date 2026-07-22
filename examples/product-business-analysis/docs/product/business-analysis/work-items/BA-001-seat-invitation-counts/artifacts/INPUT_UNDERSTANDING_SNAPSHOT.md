@@ -1,7 +1,5 @@
-# Input Understanding Snapshot
+# 输入理解快照
 
-- First user input: fully preserved in BA-DC-001
-- Surface question: 是否为未激活邀请计费
-- Underlying choice: 公平性与滥用控制如何平衡
-- User confirmation: yes
-- Routing intentionally deferred until confirmation: yes
+- 用户原始问题：未激活邀请要不要占用付费 Seat？
+- 已确认问题：计费公平与无限邀请风险如何平衡。
+- 用户倾向：不希望为未使用者付费。

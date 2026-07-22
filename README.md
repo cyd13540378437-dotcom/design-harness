@@ -6,7 +6,7 @@ v0.1.3-alpha is an incremental update on top of the v0.1.2-alpha Color Card Regi
 
 v0.2.2 adds the runtime-aware Product Business Modeling Core. It keeps the business semantics layer agent-neutral under `core/product-design/business-modeling/`, adds a shared Agent Skill Facade, Codex / Claude Code / Cursor / generic / multi-runtime adapter resolution, and keeps project knowledge assets under `docs/product/**`. It remains document-based: no CLI, hook, plugin package, installer, migration tool, API generator, or external runtime dependency.
 
-v0.1.1 adds the standalone Product Business Analysis Core. It turns ambiguous business situations into reviewable Decision Cases with preserved original input, Analysis Model Cards, counterfactual analysis, Decision Assurance, choice-style conclusions, human decision records, and Decision Network memory. It is independent from Business Modeling and every other sibling capability: no cross-capability triggers, no downstream views, no shared Work Item directory, and no external runtime dependency.
+v0.1.2 updates the standalone Product Business Analysis Core. It keeps ambiguous business situations anchored to reviewable Decision Cases across follow-up turns, adds Follow-up Turn Continuity, Decision Anchor fields, Solution Premise Challenge, Decision Delta checks, Central Decision Synthesis, Chinese user-visible outputs, and ARCOS smart-dispatch regression coverage. It remains independent from Business Modeling and every other sibling capability: no cross-capability triggers, no downstream views, no shared Work Item directory, and no external runtime dependency.
 
 ## Core Model
 
@@ -61,9 +61,11 @@ Business Modeling can inform UX through derived downstream views only: `ux-desig
 
 ## Product Business Analysis Core
 
-`product-business-analysis` v0.1.1 is a standalone decision-support capability. Its Core lives under `core/product-design/business-analysis/`, runtime adapter fragments live under `adapters/codex/product-business-analysis/`, `adapters/claude-code/product-business-analysis/`, and `adapters/cursor/product-business-analysis/`, and project templates live under `templates/project/docs/product/business-analysis/`. Start with [docs/CODEX_BUILD_BRIEF.product-business-analysis-core-v0.1.1-complete.md](docs/CODEX_BUILD_BRIEF.product-business-analysis-core-v0.1.1-complete.md) and [docs/PRD.product-business-analysis-v0.1.1.md](docs/PRD.product-business-analysis-v0.1.1.md).
+`product-business-analysis` v0.1.2 is a standalone decision-support capability. Its Core lives under `core/product-design/business-analysis/`, runtime adapter fragments live under `adapters/codex/product-business-analysis/`, `adapters/claude-code/product-business-analysis/`, and `adapters/cursor/product-business-analysis/`, and project templates live under `templates/project/docs/product/business-analysis/`. Start with [docs/CODEX_BUILD_BRIEF.product-business-analysis-core-v0.1.2-complete.md](docs/CODEX_BUILD_BRIEF.product-business-analysis-core-v0.1.2-complete.md) and [docs/PRD.product-business-analysis-v0.1.2.md](docs/PRD.product-business-analysis-v0.1.2.md).
 
 The Business Analysis source of truth is `docs/product/business-analysis/`. Decision Cases are authoritative only in `decision-cases/BA-DC-xxx.md`; BA Work Items live under `work-items/BA-xxx/` and link to Cases without copying `DECISION_CASE.md`. Decision Network and Evidence Ledger use YML as machine authority and Markdown as human-readable views.
+
+Business Analysis follow-up turns must recover the active BA Work Item and its linked Decision Case before answering; summary and conclusion requests must stay case-bound. Process files live under `work-items/BA-xxx/artifacts/`, not `intake/` or the Work Item root. Ready Analysis Model Cards must include seven usage prompts, including `decision_relevance_prompt`, and only decision-relevant runs can feed Central Decision Synthesis.
 
 Business Analysis intentionally uses five operational domains rather than the Business Modeling six-domain shape. Passive Trigger, cross-capability impact propagation, downstream view compilation, shared `docs/product/work-items/`, CLI, hooks, plugins, installers, and automatic D2/D3 human decisions are out of scope.
 
@@ -199,7 +201,7 @@ For the safer cross-agent path, prefer [Agent Compatibility](#agent-compatibilit
 
 ## Evaluation
 
-Manual Given / When / Then scenarios live in [evals/scenarios](evals/scenarios/) for Design Engineering, [evals/product-business-modeling](evals/product-business-modeling/) for Business Modeling, and [evals/product-business-analysis](evals/product-business-analysis/) for Business Analysis. They cover context checks, create, resume, successor, parallel Work Items, ambiguous binding, close-and-seal, the visual workflow, Reference Library and Color Card Registry behavior, lifecycle memory, business modeling source-of-truth boundaries, passive triggers, Human Decision Control Plane, schema-view limits, UX Context Pack consumption, Business Analysis Decision Case boundaries, Analysis Model Card usage, assurance checks, and sealed-state immutability.
+Manual Given / When / Then scenarios live in [evals/scenarios](evals/scenarios/) for Design Engineering, [evals/product-business-modeling](evals/product-business-modeling/) for Business Modeling, and [evals/product-business-analysis](evals/product-business-analysis/) for Business Analysis. They cover context checks, create, resume, successor, parallel Work Items, ambiguous binding, close-and-seal, the visual workflow, Reference Library and Color Card Registry behavior, lifecycle memory, business modeling source-of-truth boundaries, passive triggers, Human Decision Control Plane, schema-view limits, UX Context Pack consumption, Business Analysis Decision Case boundaries, Analysis Model Card usage, follow-up continuity, Decision Anchor / Decision Delta behavior, Solution Premise Challenge, Chinese output, ARCOS smart-dispatch regression, assurance checks, and sealed-state immutability.
 
 ## Limits
 
@@ -214,7 +216,7 @@ Manual Given / When / Then scenarios live in [evals/scenarios](evals/scenarios/)
 - No automatic ready color-card generation; complete color-card knowledge requires user-provided images or explicit visual descriptions.
 - Browser QA is recommended, but v0.1 does not require a specific browser tool.
 - Product Business Modeling v0.2.2 is runtime-aware but document-based: no CLI, hook, plugin package, installer, external runtime dependency, automatic database migration, or API generation.
-- Product Business Analysis v0.1.1 is standalone and document-based: no cross-capability triggers, downstream views, shared Work Item directory, CLI, hook, plugin package, installer, external runtime dependency, or automatic D2/D3 human decision.
+- Product Business Analysis v0.1.2 is standalone and document-based: no cross-capability triggers, downstream views, shared Work Item directory, CLI, hook, plugin package, installer, external runtime dependency, automatic D2/D3 human decision, or solution-design implementation workflow.
 
 ## License
 

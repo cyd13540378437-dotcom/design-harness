@@ -1,42 +1,48 @@
 ---
 schema_version: 1
+language: zh-CN
 package_id: BA-DPP-000
 work_item_id: BA-000
 primary_case_id: BA-DC-000
+analysis_depth: standard
 status: draft
 created_at: "YYYY-MM-DD"
 ---
 
-# Decision Process Package
+# 决策过程包
 
-## 1. Original Input Reference
+## 1. 原始输入引用
 
-> Link to Decision Case field 0; do not duplicate the full authoritative Case unless needed for portability.
+## 2. Follow-up Turn Continuity 摘要
 
-## 2. Input Understanding Snapshot
+## 3. Input Understanding 摘要
 
-## 3. Analysis Routing Record
+## 4. 分析路由与深度
 
-## 4. Consumption Summary
+## 5. Decision Anchor
 
-## 5. Evidence Intake Summary
+## 6. 消费与证据接收
 
-## 6. Model Selection Record
+## 7. 解法前提挑战
 
-## 7. Analysis Runs and Cross-model Synthesis
+## 8. 模型选择与 Analysis Runs
 
-## 8. Counterfactual & Opposition Analysis
+## 9. 各模型 Decision Delta
 
-## 9. Decision Assurance Check
+## 10. 反方分析
 
-## 10. Choice-style Conclusion
+## 11. Decision Assurance
 
-## 11. Human Decision / Correction
+## 12. 中央决策综合
 
-## 12. Long-lived Asset Updates
+## 13. 中文 Decision Summary
 
-## 13. Decision Network Update
+## 14. 用户决定或纠正
 
-## 14. Validation and Review Triggers
+## 15. 长期资产更新
 
-## 15. Remaining Limitations
+## 16. Decision Network 更新
+
+## 17. 验证与复审条件
+
+## 18. 剩余限制

@@ -1,8 +1,5 @@
-# Analysis Routing Record
+# 分析路由记录
 
-- Entry mode: direct_decision_support
-- Result: create_new_case
-- Target Case: BA-DC-001
-- Reason: 独立、可复审的业务政策选择
-- Existing Case candidates: none
-- Confidence: high
+- Routing：create_new_case → record_human_decision
+- Primary Case：BA-DC-001
+- Analysis depth：standard

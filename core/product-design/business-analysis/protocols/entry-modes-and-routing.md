@@ -1,55 +1,64 @@
-# Entry Modes and Routing
-
-入口模式和路由结果是两个不同维度。
+# Entry Modes and Routing / 入口模式与路由
 
 ## 1. 入口模式
 
 ```text
-direct_decision_support       用户提出新的业务问题或选择
-case_continuation             用户继续已有 Case
- evidence_intake               用户主要补充材料、数据或附件
- decision_review               用户复盘、挑战或重开旧决定
-project_decision_extraction   从现有项目材料恢复候选决策
-assurance_validation          对既有分析执行质量检查
+direct_decision_support       新业务问题或选择
+case_continuation             继续已有 Case
+evidence_intake               补充材料、数据或附件
+decision_review               复盘、挑战或重开旧决定
+project_decision_extraction   从项目材料恢复候选决策
+assurance_validation          对既有分析做质量检查
+case_summary                  基于当前 Case 生成中文阶段摘要
 ```
 
-入口模式决定本次工作的主要目标。
+## 2. Follow-up Turn Type
 
-## 2. 路由结果
+```text
+new_input
+clarification
+user_confirmation
+evidence_update
+human_decision
+summary_request
+review_signal
+scope_change
+new_case_candidate
+```
 
-输入理解确认后，路由只能为：
+## 3. 路由结果
 
 ```text
 create_new_case
 continue_existing_case
 add_evidence_to_case
+record_human_decision
+summarize_existing_case
 reopen_existing_decision
 conflict_with_existing_decision
 impact_existing_decision
 no_case_needed
 ```
 
-路由描述当前输入与已有 Decision Case 的关系。
+## 4. 顺序
 
-## 3. 顺序约束
+首次或范围变化：
 
 ```text
 保留原始输入
 → Input Understanding
 → 用户确认或明确 provisional 假设
-→ 读取本模块 Decision Case Index
-→ Routing
+→ 路由
 ```
 
-不得在输入理解阶段读取其他能力资产来路由。
+已有活动 Work Item：
 
-## 4. no_case_needed
+```text
+恢复 STATE / Case / Process Package
+→ Turn Type
+→ 路由
+```
 
-适用于：
+## 5. no_case_needed
 
-- 纯解释；
-- 一次性低风险脑暴且用户不需要持久记录；
-- 只读查看本模块资产；
-- 没有决策价值的零散信息。
-
-不得为了流程完整而强制创建 Case。
+只用于纯解释、一次性低风险脑暴、只读查看或没有决策价值的信息。已有活动 BA Work Item 时不得随意使用。

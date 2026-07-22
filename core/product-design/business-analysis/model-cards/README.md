@@ -1,27 +1,17 @@
 # Analysis Model Card Registry
 
-Analysis Model Card 不是方法名清单，而是：
+模型卡是长期可复用的专业分析知识对象。每张 ready 卡必须通过：
 
 ```text
-专业模型知识
-+ 适用 / 不适用条件
-+ 输入和输出合同
-+ 常见误用
-+ 质量检查
-+ 六类受控 Prompt
+适配条件
+最低输入
+Decision Relevance
+七类 usage prompts
+Decision Delta
+误用保护
+中文输出合同
 ```
 
-每次实际使用卡片，会在 Decision Case 的 Analysis Workspace 和 Work Item 的 `ANALYSIS_RUNS.md` 中生成一个 Analysis Run。
+## 运行边界
 
-## 六类 Prompt
-
-```text
-routing_prompt       判断是否应该使用
-user_input_prompt    以低负担方式获取最低必要输入
-execution_prompt     执行模型
-analysis_run_prompt  结构化记录结果
-conclusion_prompt    转成选择题式输出
-misuse_guard_prompt  检查误用和伪精确
-```
-
-只有满足 `analysis-model-card.schema.yml` 的卡可以标记为 ready。
+模型卡不得独立向用户输出最终结论。所有模型结果进入 Analysis Workspace，最后由中央决策综合器统一生成中文 `DECISION_SUMMARY.md`。

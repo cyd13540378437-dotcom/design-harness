@@ -1,23 +1,23 @@
-# Business Analysis Work Items
+# 商业分析 Work Items
 
-> Module-owned navigation index. Each Work Item `STATE.md` is authoritative for task state. Decision Case content remains authoritative in `decision-cases/`.
+> 本文件是模块自有导航索引。每个 Work Item 的 `STATE.md` 是当前状态权威源。
 
 ## Active
 
-| ID | Title | Phase | Gate | Primary Case | State |
+| ID | 标题 | Primary Case | 阶段 | Gate | 状态文件 |
 |---|---|---|---|---|---|
 
 ## Paused
 
-| ID | Title | Phase | Reason | Primary Case | State |
-|---|---|---|---|---|---|
+| ID | 标题 | Primary Case | 原因 | 状态文件 |
+|---|---|---|---|---|
 
 ## Completed
 
-| ID | Title | Completed | Primary Case | State |
+| ID | 标题 | Primary Case | 完成时间 | 状态文件 |
 |---|---|---|---|---|
 
 ## Cancelled
 
-| ID | Title | Cancelled | Primary Case | State |
+| ID | 标题 | Primary Case | 取消时间 | 状态文件 |
 |---|---|---|---|---|

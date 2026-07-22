@@ -1,9 +1,17 @@
 schema_version: 1
+language: zh-CN
 evidence:
   - id: BA-EV-001
-    source: user concern
+    source: 用户对计费公平性的担忧
     date: 2026-07-21
     type: qualitative
     strength: medium
     used_by: [BA-DC-001]
-    limitations: 尚无客户样本和运营数据
+    limitations: 尚无客户样本
+  - id: BA-EV-002
+    source: 用户确认没有历史调度数据
+    date: 2026-07-21
+    type: user_confirmed_fact
+    strength: high
+    used_by: [BA-DC-002]
+    limitations: 不能证明策略现实效果

@@ -1,13 +1,13 @@
-# Understanding precedes routing
+# 先理解后路由
 
-## Given
+## Given / 已知
 
-a new ambiguous business request.
+用户提出含义可能有多种解释的问题。
 
-## When
+## When / 当
 
-the capability starts.
+系统准备路由到 Case。
 
-## Then
+## Then / 则
 
-it produces Input Understanding before reading the Case index for routing.
+先反馈理解并确认；高歧义时不得提前推荐。

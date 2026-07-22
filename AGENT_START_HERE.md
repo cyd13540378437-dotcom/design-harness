@@ -26,24 +26,34 @@ Project knowledge assets remain in docs/product/** and never move into runtime a
 
 This package does not add a CLI, installer, hook, plugin, external dependency, or automation daemon. Runtime transformation means that the agent copies and merges the correct adapter files for the user’s current tool after identifying it.
 
-## Product Business Analysis v0.1.1
+## Product Business Analysis v0.1.2
 
 `product-business-analysis` is a standalone business decision-support Core.
 
 Read in this order:
 
-1. `docs/PRD.product-business-analysis-v0.1.1.md`
-2. `docs/ARCHITECTURE_DECISION.standalone-business-analysis-v0.1.1.md`
-3. `core/product-design/business-analysis/CAPABILITY.md`
-4. `core/product-design/business-analysis/SKILL.md`
-5. `core/product-design/business-analysis/capability.manifest.yml`
-6. `core/product-design/business-analysis/protocols/source-of-truth.md`
-7. `core/product-design/business-analysis/protocols/output-contract.md`
-8. `core/product-design/business-analysis/model-cards/index.yml`
+1. `docs/PRD.product-business-analysis-v0.1.2.md`
+2. `docs/ARCHITECTURE_DECISION.standalone-business-analysis-v0.1.2.md`
+3. `docs/ARCHITECTURE_DECISION.business-problem-continuity-v0.1.2.md`
+4. `core/product-design/business-analysis/CAPABILITY.md`
+5. `core/product-design/business-analysis/SKILL.md`
+6. `core/product-design/business-analysis/capability.manifest.yml`
+7. `core/product-design/business-analysis/protocols/follow-up-turn-continuity.md`
+8. `core/product-design/business-analysis/protocols/business-problem-continuity.md`
+9. `core/product-design/business-analysis/protocols/solution-premise-challenge.md`
+10. `core/product-design/business-analysis/protocols/analysis-depth-control.md`
+11. `core/product-design/business-analysis/protocols/decision-synthesis.md`
+12. `core/product-design/business-analysis/protocols/final-conclusion-contract.md`
+13. `core/product-design/business-analysis/protocols/output-language-contract.md`
+14. `core/product-design/business-analysis/model-cards/index.yml`
 
 Hard rule:
 
 ```text
 Business Analysis is not a cross-capability trigger layer.
 It owns docs/product/business-analysis/ and preserves Decision Case / Work Item source-of-truth separation.
+Follow-up turns must recover the linked Case before answering.
+Process files live under work-items/BA-xxx/artifacts/ only; do not create intake/.
+User-visible and human-readable project Markdown defaults to Simplified Chinese.
+Acknowledgement is not a confirmed D2 / D3 decision.
 ```

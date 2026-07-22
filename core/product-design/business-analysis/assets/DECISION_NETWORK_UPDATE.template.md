@@ -1,14 +1,17 @@
-# Decision Network Update
+---
+schema_version: 1
+language: zh-CN
+---
 
-## Source Decision
+# 决策网更新
 
-## Relation Updates
+## 新增或更新关系
 
-| Relation | Target Decision | Reason | Status |
+| 来源 Case | 关系 | 目标 Case / 决策主题 | 中文说明 |
 |---|---|---|---|
 
-## Reopen Notices
+## 是否触发旧 Case 复审
 
-## Conflicts
+## 边界
 
-## Recommended Follow-up
+本文件只维护商业分析内部 Decision Case 关系，不代表跨模块 Trigger。

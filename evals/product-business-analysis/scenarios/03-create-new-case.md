@@ -1,13 +1,13 @@
-# Create new Case
+# 创建新 Case
 
-## Given
+## Given / 已知
 
-understanding is confirmed and no related Case exists.
+不存在相关 Decision Case。
 
-## When
+## When / 当
 
-routing runs.
+用户提出独立业务选择。
 
-## Then
+## Then / 则
 
-it creates one Decision Case and one BA Work Item under the module root.
+创建唯一权威 Decision Case 和必要 BA Work Item。

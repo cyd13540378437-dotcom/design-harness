@@ -36,6 +36,11 @@ cards:
   category: core-decision
   path: core/problem-framing.yml
   status: ready
+- id: solution-premise-challenge
+  title: 解法前提挑战
+  category: core-decision
+  path: core/solution-premise-challenge.yml
+  status: ready
 - id: validation-planning
   title: 验证计划
   category: core-decision
@@ -121,3 +126,7 @@ cards:
   category: pricing-revenue
   path: professional/willingness-to-pay.yml
   status: ready
+registry_version: v0.1.2
+required_output_language: zh-CN
+required_usage_prompt_count: 7
+card_count: 25

@@ -5,6 +5,7 @@ required_top_level:
   - title
   - category
   - status
+  - output_language
   - purpose
   - use_when
   - avoid_when
@@ -19,6 +20,7 @@ required_top_level:
   - quality_checks
   - combines_well_with
 required_usage_prompts:
+  - decision_relevance_prompt
   - routing_prompt
   - user_input_prompt
   - execution_prompt
@@ -30,3 +32,5 @@ ready_contract:
   every_usage_prompt_non_empty: true
   model_id_matches_index: true
   path_exists: true
+  output_language_is_zh_CN: true
+  conclusion_prompt_is_central_synthesis_only: true

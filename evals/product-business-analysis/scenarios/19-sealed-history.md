@@ -1,13 +1,13 @@
-# Sealed history
+# 封存历史不可静默改写
 
-## Given
+## Given / 已知
 
-a Work Item is completed and sealed.
+Case 或决定已 sealed。
 
-## When
+## When / 当
 
-new related work appears.
+用户提出后续变化。
 
-## Then
+## Then / 则
 
-a new Work Item and Review are created; sealed state is not modified.
+创建复审或后继表达，不修改封存历史。

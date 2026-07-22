@@ -33,6 +33,8 @@ outputs:
 - Threats
 - TOWS strategy options
 - 需要验证的假设
+- Decision Delta
+- 对当前业务选择的 Decision Delta
 case_fields_updated:
 - 4. 关键线索
 - 6. 重要假设
@@ -43,24 +45,17 @@ interaction_prompts:
 - 你考虑这个方向，主要是因为我们有优势、外部机会、现有瓶颈还是竞争压力？
 - 你能讲一个让你觉得机会存在的客户或市场信号吗？
 usage_prompts:
-  routing_prompt: '适合方向探索和策略选项生成。不适合直接给最终答案。若当前问题是财务投资或微观流程，优先考虑其他模型。
+  decision_relevance_prompt: 在使用《SWOT / TOWS 分析》前，先恢复当前 Decision Anchor。明确本模型试图降低哪个关键不确定性，以及不同分析结果会让哪个业务选项更强、更弱、被排除或变成有条件成立。如果结果不会改变选项排序、风险、阈值、投入方式或是否继续，则停止使用本模型。分析结束后必须输出中文 Decision Delta。
+  routing_prompt: 仅作内部适配判断。适合方向探索和策略选项生成。不适合直接给最终答案。若当前问题是财务投资或微观流程，优先考虑其他模型。
+  user_input_prompt: '仅当缺少会改变当前业务选项排序或风险判断的关键输入时使用；一次最多用简体中文提出 1–2 个问题。只有当缺失信息会改变业务选项排序、风险判断、成功阈值或是否现在决策时，才向用户提问。不要为了填满模型字段而提问。
 
-    '
-  user_input_prompt: '不要让用户填写四象限。用选择题收集：内部优势/外部机会/现有瓶颈/竞争压力/不确定。
+    不要让用户填写四象限。用选择题收集：内部优势/外部机会/现有瓶颈/竞争压力/不确定。'
+  execution_prompt: 只使用当前 Case 已接纳的事实、假设和证据执行分析；不得扩大问题边界或进入无关实施设计。区分内部因素和外部因素；每一项标注事实/假设/线索；SWOT 后必须生成 TOWS 选项。
+  analysis_run_prompt: 用简体中文写入 Analysis Run，必须包含 decision_relevance、decision_delta、limitations 和 confidence。写入 Analysis Workspace：strengths、weaknesses、opportunities、threats、tows_options、limitations。
+  conclusion_prompt: '本 Prompt 只向中央决策综合器返回候选含义，不得直接向用户输出最终建议或结束对话。本提示只供统一决策综合器内部使用，不得直接向用户输出本模型自己的最终结论。先把模型结果转译为：对当前商业问题的新认识、受影响的业务选项、选项排序变化、证据边界和仍待验证的关键未知。
 
-    '
-  execution_prompt: '区分内部因素和外部因素；每一项标注事实/假设/线索；SWOT 后必须生成 TOWS 选项。
-
-    '
-  analysis_run_prompt: '写入 Analysis Workspace：strengths、weaknesses、opportunities、threats、tows_options、limitations。
-
-    '
-  conclusion_prompt: '将 TOWS 选项转成 A利用优势抓机会、B补弱点后进入、C防守威胁暂缓、D先验证。
-
-    '
-  misuse_guard_prompt: '检查是否空泛、是否内外部混淆、是否没有 TOWS 选项、是否用 SWOT 替代证据。
-
-    '
+    将 TOWS 选项转成 A利用优势抓机会、B补弱点后进入、C防守威胁暂缓、D先验证。'
+  misuse_guard_prompt: 检查问题漂移、解法前提未挑战、无 Decision Delta、伪精确和越界进入产品/技术设计。检查是否空泛、是否内外部混淆、是否没有 TOWS 选项、是否用 SWOT 替代证据。
 common_misuses:
 - 空泛四象限
 - 观点当事实
@@ -71,6 +66,12 @@ quality_checks:
 - 是否区分内外部
 - 是否生成 TOWS
 - 是否说明不能单独最终决策
+- 是否说明本模型对当前业务选择产生了什么 Decision Delta
+- 低相关结果是否被排除出用户可见结论
+- 是否保持当前 Decision Anchor
+- 是否产生可说明的 Decision Delta
+- 是否以中文写入 Analysis Run
+- 是否仅向中央综合器提供结论素材
 combines_well_with:
 - option-assessment
 - assumption-mapping
@@ -78,3 +79,4 @@ combines_well_with:
 - risk-matrix
 example_analysis_run:
 - 企业版早期想法 → SWOT/TOWS 生成“轻量试点、补齐弱点、暂缓”等策略选项。
+output_language: zh-CN

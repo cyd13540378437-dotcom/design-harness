@@ -1,16 +1,29 @@
-# Validation and Evals
+# 验证与评测（Validation and Evals）v0.1.2
 
-## 1. 静态检查
+评测必须覆盖：
 
-- YAML 可解析；
-- 所有 ready 模型卡有六个非空 usage prompts；
-- 模型卡 index 路径存在且 ID 唯一；
-- Decision Case 只存在一个权威位置；
-- 项目模板没有共享 `docs/product/work-items/`；
-- 项目模板没有 `model-triggers/` 或 downstream views；
-- 所有 BA Work Item 文件均位于模块根目录下；
-- 示例索引、Case、State、Network 和 Evidence 一致。
+```text
+原始输入保留
+理解先于路由
+新旧 Case 路由
+证据接收
+模型 Prompt 合同
+数值模型误用阻断
+反方分析
+Assurance
+Human Decision
+单一 Case 权威
+模块独立性
+多轮续接
+最终总结绑定 Case
+过程文件路径
+商业问题连续性
+用户解法前提挑战
+Decision Delta Test
+模型到决策可追踪
+统一结论出口
+商业分析 / 实施边界
+中文输出
+```
 
-## 2. 行为评测
-
-Given / When / Then 场景至少覆盖：原始输入、理解前置、路由、旧 Case 新证据、复审、证据越界、模型选择、模型误用、Analysis Run、反方分析、质量 block、选择题、人类决定、单一权威、独立目录和零跨模块改动。
+ARCOS 智能调度模拟器案例是 v0.1.2 的核心回归场景。

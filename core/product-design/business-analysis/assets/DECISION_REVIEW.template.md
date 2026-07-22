@@ -1,36 +1,37 @@
 ---
 schema_version: 1
+language: zh-CN
 review_id: BA-DR-000
 case_id: BA-DC-000
 status: draft
 created_at: "YYYY-MM-DD"
 ---
 
-# Decision Review
+# 决策复审
 
-## Original Decision
+## 原决定
 
-## Why Review Was Opened
+## 为什么开启复审
 
-## New Evidence or Changed Assumptions
+## 新证据或变化的假设
 
-## What Still Holds
+## 仍然成立的部分
 
-## What No Longer Holds
+## 不再成立的部分
 
-## Review Options
+## 复审选项
 
 ```text
-A. Keep the original decision
-B. Narrow or modify its scope
-C. Supersede it with a new decision
-D. Gather more evidence before deciding
+A. 保持原决定
+B. 缩小或修改适用范围
+C. 用新决定替代
+D. 补充证据后再决定
 ```
 
-## System Recommendation
+## 系统推荐
 
-## User Decision
+## 用户决定
 
-## Resulting Case / Network Updates
+## 产生的 Case / Network 更新
 
-## Next Review Conditions
+## 下一次复审条件

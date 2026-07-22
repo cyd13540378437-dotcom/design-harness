@@ -1,20 +1,31 @@
-# Input Understanding Snapshot
+---
+schema_version: 1
+language: zh-CN
+---
 
-## Original User Input
+# 输入理解快照
 
-> 
+## 用户第一次输入原文
 
-## Surface Problem
+> <完整原文>
 
-## Potential Choice Questions
+## 本轮输入原文
 
-| Choice Question | Confidence | Notes |
-|---|---|---|
+> <若为 Follow-up，完整保留本轮原文>
 
-## Key Ambiguities
+## 我理解到的业务问题
 
-## Not Judged Yet
+## 用户提出的解法或倾向
 
-## User Confirmation Needed
+## 潜在选择空间
 
-## Proceeding Assumption
+## 关键歧义
+
+## 当前暂不判断的内容
+
+## 是否必须等待用户确认
+
+## 禁止提前推荐检查
+
+- 本阶段是否已经给出具体解法推荐：否
+- 若是低风险 provisional 例外，理由：

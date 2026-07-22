@@ -1,13 +1,13 @@
-# Module-owned Work Items
+# 模块自有 Work Items
 
-## Given
+## Given / 已知
 
-the project template is initialized.
+商业分析独立运行。
 
-## When
+## When / 当
 
-BA state is created.
+创建 Work Item。
 
-## Then
+## Then / 则
 
-it lives under docs/product/business-analysis/work-items and no shared work-items folder is created.
+只写入 docs/product/business-analysis/work-items/。

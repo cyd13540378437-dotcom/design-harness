@@ -1,6 +1,5 @@
-# Evidence Ledger
+# 证据账本
 
-> `EVIDENCE_LEDGER.yml` is the machine-readable source of truth.
+> `EVIDENCE_LEDGER.yml` 是机器权威源。本文件提供中文人读视图。
 
-| Evidence ID | Source | Date | Type | Strength | Used By | Limitations |
-|---|---|---|---|---|---|---|
+## 证据

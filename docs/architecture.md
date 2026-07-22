@@ -6,7 +6,7 @@ v0.1.3 后，它也是项目生命周期记忆系统：Lifecycle Event ID 串联
 
 v0.2.2 新增 runtime-aware Product Business Modeling Core。它不是设计工程 Skill 的子流程，而是并行的 Agent-neutral 产品业务语义层：Core 位于 `core/product-design/business-modeling/`，shared Agent Skill Facade 位于 `adapters/shared/agent-skill-facade/product-business-modeling/`，运行时 adapter 位于 `adapters/<runtime>/`，目标项目资产位于 `docs/product/`。Business Modeling 通过 downstream views 向 Design Engineering 提供业务语义输入，但不直接修改 `docs/design/`。
 
-v0.1.1 新增 standalone Product Business Analysis Core。它同样不是设计工程 Skill 的子流程，也不是业务建模的触发层；它是独立商业决策支持能力：Core 位于 `core/product-design/business-analysis/`，运行时 adapter 片段位于 `adapters/<runtime>/product-business-analysis/`，目标项目资产位于 `docs/product/business-analysis/`。Business Analysis 不生成跨模块 Trigger、downstream views 或共享 Work Item。
+v0.1.2 更新 standalone Product Business Analysis Core。它同样不是设计工程 Skill 的子流程，也不是业务建模的触发层；它是独立商业决策支持能力：Core 位于 `core/product-design/business-analysis/`，运行时 adapter 片段位于 `adapters/<runtime>/product-business-analysis/`，目标项目资产位于 `docs/product/business-analysis/`。v0.1.2 增加 Follow-up Turn Continuity、Decision Anchor、Decision Delta、Solution Premise Challenge、Central Decision Synthesis 和中文输出契约。Business Analysis 不生成跨模块 Trigger、downstream views 或共享 Work Item。
 
 ```text
 仓库规则
@@ -105,9 +105,26 @@ Project assets
     evidence/EVIDENCE_LEDGER.md/yml
     reviews/BA-DR-xxx.md
     work-items/BA-xxx/
+      STATE.md
+      ANALYSIS_OUTPUT.md
+      DECISION_NOTES.md
+      DECISION_PROCESS_PACKAGE.md
+      DECISION_SUMMARY.md
+      artifacts/
+        INPUT_UNDERSTANDING_SNAPSHOT.md
+        TURN_CONTINUITY_CHECK.md
+        ANALYSIS_ROUTING_RECORD.md
+        EVIDENCE_INTAKE_RECORD.md
+        MODEL_SELECTION_RECORD.md
+        ANALYSIS_RUNS.md
+        DECISION_ASSURANCE_CHECK.md
+        DECISION_SYNTHESIS.md
+        DECISION_NETWORK_UPDATE.md
 ```
 
-Business Analysis 的 source of truth 是 `docs/product/business-analysis/`。Decision Case 只在 `decision-cases/BA-DC-xxx.md` 中拥有权威文件；Work Item 只记录 `STATE.md`、`ANALYSIS_CONSUMPTION.md`、`ANALYSIS_OUTPUT.md`、`DECISION_NOTES.md`、`DECISION_PROCESS_PACKAGE.md` 和 artifacts，不复制完整 Decision Case。
+Business Analysis 的 source of truth 是 `docs/product/business-analysis/`。Decision Case 只在 `decision-cases/BA-DC-xxx.md` 中拥有权威文件；Work Item 只记录 `STATE.md`、`ANALYSIS_CONSUMPTION.md`、`ANALYSIS_OUTPUT.md`、`DECISION_NOTES.md`、`DECISION_PROCESS_PACKAGE.md`、`DECISION_SUMMARY.md` 和 `artifacts/` 下的过程文件，不复制完整 Decision Case，不创建 `intake/`。
+
+每个后续对话轮次必须先恢复当前 BA Work Item 和所链接的 Decision Case，再按用户新输入分类继续；普通总结请求也必须绑定 Case。Decision Anchor 在 `STATE.md` 与 Decision Case 顶部维持当前业务问题、选项、不确定性、证据边界、Assurance 和用户决定状态。Analysis Model Card 的输出先经过 Decision-relevant Question / Decision Delta Test，再进入 Central Decision Synthesis；单个模型卡不得直接生成用户可见最终结论。
 
 本层采用五个运行域：统筹与路由、核心决策分析、复审/风险/决策记忆、材料接收/项目提取/质量保障、Human Decision Control Plane。Passive Trigger 不属于当前版本；未来若需要跨模块影响传播，应作为独立 Integration Layer 设计。
 

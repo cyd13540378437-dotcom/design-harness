@@ -1,13 +1,13 @@
-# Assurance block
+# Assurance 阻断
 
-## Given
+## Given / 已知
 
-the problem remains ambiguous and evidence is insufficient.
+问题高度歧义或关键输入不足。
 
-## When
+## When / 当
 
-a final recommendation is attempted.
+系统准备最终建议。
 
-## Then
+## Then / 则
 
-Decision Assurance returns block and only next-step choices are shown.
+结果为 block，只能输出下一步而非最终推荐。

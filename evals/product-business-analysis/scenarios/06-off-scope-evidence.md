@@ -1,13 +1,13 @@
-# Off-scope evidence
+# 偏离范围的材料
 
-## Given
+## Given / 已知
 
-a Case scope is confirmed.
+当前 Case 范围已确认。
 
-## When
+## When / 当
 
-the user supplies low-relevance material.
+用户补充低相关材料。
 
-## Then
+## Then / 则
 
-the system offers discard / weak-link / new Case choices.
+提供弃用、弱相关保留或新建 Case 的选择。

@@ -26,6 +26,8 @@ outputs:
 - PESTEL 因素清单
 - 机会/威胁
 - 需验证外部假设
+- Decision Delta
+- 对当前业务选择的 Decision Delta
 case_fields_updated:
 - 2. 为什么现在需要处理
 - 4. 关键线索
@@ -36,24 +38,17 @@ interaction_prompts:
 - 这个机会主要来自政策、技术、客户行为还是竞争变化？
 - 是否有某个外部变化让这件事变得紧迫？
 usage_prompts:
-  routing_prompt: '用于外部环境扫描，不用于解决内部执行细节。
+  decision_relevance_prompt: 在使用《PESTEL 宏观环境分析》前，先恢复当前 Decision Anchor。明确本模型试图降低哪个关键不确定性，以及不同分析结果会让哪个业务选项更强、更弱、被排除或变成有条件成立。如果结果不会改变选项排序、风险、阈值、投入方式或是否继续，则停止使用本模型。分析结束后必须输出中文 Decision Delta。
+  routing_prompt: 仅作内部适配判断。用于外部环境扫描，不用于解决内部执行细节。
+  user_input_prompt: '仅当缺少会改变当前业务选项排序或风险判断的关键输入时使用；一次最多用简体中文提出 1–2 个问题。只有当缺失信息会改变业务选项排序、风险判断、成功阈值或是否现在决策时，才向用户提问。不要为了填满模型字段而提问。
 
-    '
-  user_input_prompt: '只问与当前 Case 相关的外部因素，不要求用户完整填写六类。
+    只问与当前 Case 相关的外部因素，不要求用户完整填写六类。'
+  execution_prompt: 只使用当前 Case 已接纳的事实、假设和证据执行分析；不得扩大问题边界或进入无关实施设计。按 P/E/S/T/E/L 扫描，但只保留与决策相关因素；标注事实/假设/未知。
+  analysis_run_prompt: 用简体中文写入 Analysis Run，必须包含 decision_relevance、decision_delta、limitations 和 confidence。写入 Analysis Workspace，并更新 why now、线索、假设、反方。
+  conclusion_prompt: '本 Prompt 只向中央决策综合器返回候选含义，不得直接向用户输出最终建议或结束对话。本提示只供统一决策综合器内部使用，不得直接向用户输出本模型自己的最终结论。先把模型结果转译为：对当前商业问题的新认识、受影响的业务选项、选项排序变化、证据边界和仍待验证的关键未知。
 
-    '
-  execution_prompt: '按 P/E/S/T/E/L 扫描，但只保留与决策相关因素；标注事实/假设/未知。
-
-    '
-  analysis_run_prompt: '写入 Analysis Workspace，并更新 why now、线索、假设、反方。
-
-    '
-  conclusion_prompt: '输出 A外部时机支持推进、B风险较高先观察、C先验证关键外部假设。
-
-    '
-  misuse_guard_prompt: '检查是否过宽、是否写成宏观百科、是否没有连接当前选择。
-
-    '
+    输出 A外部时机支持推进、B风险较高先观察、C先验证关键外部假设。'
+  misuse_guard_prompt: 检查问题漂移、解法前提未挑战、无 Decision Delta、伪精确和越界进入产品/技术设计。检查是否过宽、是否写成宏观百科、是否没有连接当前选择。
 common_misuses:
 - 宏观罗列
 - 不连接决策
@@ -64,6 +59,12 @@ quality_checks:
 - 是否标注不确定性
 - 是否有 why now 影响
 - 是否有验证点
+- 是否说明本模型对当前业务选择产生了什么 Decision Delta
+- 低相关结果是否被排除出用户可见结论
+- 是否保持当前 Decision Anchor
+- 是否产生可说明的 Decision Delta
+- 是否以中文写入 Analysis Run
+- 是否仅向中央综合器提供结论素材
 combines_well_with:
 - swot-tows
 - porter-five-forces
@@ -71,3 +72,4 @@ combines_well_with:
 - validation-planning
 example_analysis_run:
 - 进入教育行业 → 政策采购、预算周期、AI 接受度、数据隐私都可能影响时机。
+output_language: zh-CN

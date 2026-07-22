@@ -1,13 +1,13 @@
-# Add evidence to existing Case
+# 已有 Case 接收新证据
 
-## Given
+## Given / 已知
 
-a related Case exists.
+存在活动或长期 Decision Case。
 
-## When
+## When / 当
 
-the user supplies relevant new evidence.
+用户补充相关证据。
 
-## Then
+## Then / 则
 
-routing returns add_evidence_to_case and does not duplicate the Case.
+更新证据与 Case，不自动覆盖旧结论。

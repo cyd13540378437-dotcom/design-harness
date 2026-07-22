@@ -1,13 +1,13 @@
-# Original input preserved
+# 第一次输入完整保留
 
-## Given
+## Given / 已知
 
-a user submits a multi-sentence business question.
+用户第一次提出业务问题。
 
-## When
+## When / 当
 
-a Decision Case is created.
+系统创建或更新 Decision Case。
 
-## Then
+## Then / 则
 
-the full first input is preserved verbatim in field 0 and is not replaced by the interpreted question.
+原始输入逐字保留，不能用摘要替代。

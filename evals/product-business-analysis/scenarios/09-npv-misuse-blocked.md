@@ -1,13 +1,13 @@
-# NPV misuse blocked
+# 阻止 NPV 误用
 
-## Given
+## Given / 已知
 
-cash flows and discount rate are missing.
+没有可靠现金流、周期或折现率。
 
-## When
+## When / 当
 
-NPV is considered.
+用户要求 NPV 结论。
 
-## Then
+## Then / 则
 
-it is rejected and no fabricated NPV is produced.
+不得伪造计算，改为补证据、情景或单位经济选择。

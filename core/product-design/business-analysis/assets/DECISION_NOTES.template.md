@@ -1,31 +1,35 @@
-# Decision Notes
+---
+schema_version: 1
+language: zh-CN
+work_item_id: BA-000
+---
 
-## Decision ID
+# 人类决定记录
 
-## Impact Level
+## 决定 ID
 
-- D0 / D1 / D2 / D3
+## 影响等级
 
-## Decision Question
+```text
+D0 | D1 | D2 | D3
+```
 
-## Options Presented
+## 用户明确选择
 
-## System Recommendation
+## 用户原话或确认依据
 
-## User Decision
+## 被否决方案
 
-## User Rationale / Constraints
+## 接受的代价与风险
 
-## Rejected Options
+## 适用范围
 
-## Accepted Tradeoffs
+## 生效条件
 
-## Affected Decision Cases
+## 复审条件
 
-## Validation and Review Conditions
+## 状态
 
-## Confirmation Evidence
-
-## Status
-
-- provisional / confirmed / superseded / deprecated / sealed
+```text
+provisional | confirmed | superseded | deprecated | sealed
+```

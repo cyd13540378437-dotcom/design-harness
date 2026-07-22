@@ -1,13 +1,13 @@
-# Analysis Run written
+# 写入 Analysis Run
 
-## Given
+## Given / 已知
 
-a model card is selected.
+模型被实际采用。
 
-## When
+## When / 当
 
-the model executes.
+系统完成专业分析。
 
-## Then
+## Then / 则
 
-a structured Analysis Run appears in the authoritative Case workspace and Work Item artifact.
+Analysis Run 写入中文工作区，并包含 Decision Relevance 与 Decision Delta。

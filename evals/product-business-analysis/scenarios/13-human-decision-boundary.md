@@ -1,13 +1,13 @@
-# Human decision boundary
+# 人类决定边界
 
-## Given
+## Given / 已知
 
-a D3 investment decision is analyzed.
+决定属于 D2 或 D3。
 
-## When
+## When / 当
 
-the system recommends an option.
+系统有推荐。
 
-## Then
+## Then / 则
 
-it waits for explicit user confirmation and writes DECISION_NOTES only after confirmation.
+不得自动 confirmed，必须记录用户明确决定。

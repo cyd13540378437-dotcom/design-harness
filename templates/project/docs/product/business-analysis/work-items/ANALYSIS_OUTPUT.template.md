@@ -1,25 +1,26 @@
-# Analysis Output
+---
+schema_version: 1
+language: zh-CN
+work_item_id: BA-000
+---
 
-## Work Item
+# 本轮商业分析输出
 
-## Long-lived Assets Created
+## 新建
 
-## Long-lived Assets Updated
+## 更新
 
-## Assets Marked Needs Review / Stale / Superseded
+## 保持不变
 
-## Analysis Runs Produced
+## 标记复审、替代或过期
 
-## User-visible Choice Set
+## 用户可见中文结论
 
-## System Recommendation
+- `DECISION_SUMMARY.md`：
+- Case ID：
+- Assurance：
+- 用户决定状态：
 
-## User Decision
+## 明确不在本轮范围内
 
-## Validation / Review Plan
-
-## No-change Items
-
-## Explicitly Out of Scope
-
-> Cross-capability triggers, downstream views, and sibling module tasks are out of scope.
+## 下一步

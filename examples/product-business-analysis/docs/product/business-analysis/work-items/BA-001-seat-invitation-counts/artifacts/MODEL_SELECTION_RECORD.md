@@ -1,11 +1,4 @@
-# Model Selection Record
+# 分析模型选择记录
 
-## Selected
-
-- option-assessment: 有明确方案和权衡
-- counterfactual-opposition: 默认安全机制
-
-## Considered but not used
-
-- NPV: 无现金流且不适合局部政策
-- SWOT/TOWS: 非战略环境扫描
+- 采用：option-assessment、counterfactual-opposition
+- 未使用 NPV：没有现金流且问题不是投资项目

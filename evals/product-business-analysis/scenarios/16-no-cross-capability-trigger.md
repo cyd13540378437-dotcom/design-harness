@@ -1,13 +1,13 @@
-# No cross-capability trigger
+# 不生成跨模块 Trigger
 
-## Given
+## Given / 已知
 
-a confirmed BA decision might be relevant elsewhere.
+商业分析形成结论。
 
-## When
+## When / 当
 
-the BA analysis completes.
+系统完成本轮。
 
-## Then
+## Then / 则
 
-it records only Decision Case relationships and emits no cross-capability trigger.
+不创建任何兄弟能力 Trigger 或任务。

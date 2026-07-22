@@ -2,46 +2,48 @@
 schema_version: 1
 case_id: BA-DC-000
 title: ""
+language: zh-CN
 status: draft
+assurance_status: ""
+user_decision_status: not_requested
 created_at: "YYYY-MM-DD"
 updated_at: "YYYY-MM-DD"
 owner: ""
 ---
 
-# Decision Case: <title>
+# 决策案例：<标题>
 
 ## 0. 原始输入
 
-### First User Input
+### 用户第一次输入原文
 
-> <完整记录用户第一次输入，不能摘要化替代。>
+> <完整记录，不能用摘要替代。>
 
-### Input Metadata
+### 输入元数据
 
-- Created at:
-- Source:
-- Attachments:
-- User-stated urgency:
-- User-stated desired outcome:
+- 创建时间：
+- 来源：
+- 附件：
+- 用户说明的紧迫性：
+- 用户希望获得的结果：
 
----
+## 1. 当前问题与 Decision Anchor
 
-## 1. 当前问题
-
-- Status:
-- Interpreted decision question:
-- User confirmation:
-- Notes:
-
----
+- 当前状态：
+- 已确认的商业决策问题：
+- 用户确认记录：
+- 决策所有者：
+- 受影响业务参与者：
+- 期望业务结果：
+- 当前真实业务选项：
+- 当前阻塞不确定性：
+- 证据边界：
 
 ## 2. 为什么现在需要处理
 
-- Trigger:
-- Urgency:
-- If ignored:
-
----
+- 触发原因：
+- 紧迫性：
+- 不处理的后果：
 
 ## 3. 决策范围
 
@@ -49,78 +51,62 @@ owner: ""
 
 ### 不包含
 
-### 适用对象 / 场景 / 时间范围
+### 适用对象、场景和时间范围
 
----
+### 用户提出的解法与前提状态
+
+- 用户提出的解法：
+- 是否已被验证为合适路径：
+- 仍需比较的替代路径：
 
 ## 4. 关键线索
 
-| Clue | Source | Relevance | Status |
+| 线索 | 来源 | 与当前选择的关系 | 状态 |
 |---|---|---|---|
-
----
 
 ## 5. 已知事实
 
-| Fact | Source | Confidence | Date |
+| 事实 | 来源 | 置信度 | 日期 |
 |---|---|---|---|
-
----
 
 ## 6. 重要假设
 
-| Assumption | Why needed | If wrong | Status |
+| 假设 | 为什么需要 | 如果错误会怎样 | 状态 |
 |---|---|---|---|
-
----
 
 ## 7. 相关证据
 
-| Evidence | Supports / Refutes | Strength | Limitation |
+| 证据 | 支持 / 反对 | 强度 | 局限 |
 |---|---|---|---|
-
----
 
 ## 8. 专业分析工作区
 
-### 8.1 Analysis Runs
+### Analysis Runs
 
-#### AR-001: <分析模型名称>
+每个运行必须包含：模型、目的、Decision Relevance、输入、分析结果、Decision Delta、局限和置信度。
 
-- Model ID:
-- Purpose:
-- Why selected:
-- Inputs used:
-- Analysis output:
-- Implications:
-- Limitations:
-- Confidence:
-- Case fields updated:
+### 被考虑但未使用的模型
 
-### 8.2 Models Considered but Not Used
-
-| Model | Why considered | Why not used |
+| 模型 | 为什么考虑 | 为什么未使用 |
 |---|---|---|
 
-### 8.3 Cross-model Synthesis
+### 跨模型综合
 
----
+仅记录各模型对当前业务选择产生的共同或冲突影响。
 
 ## 9. 可选方案
 
-| Option | Description | Included? | Notes |
+| 选项 | 业务含义 | 适用条件 | 是否纳入 |
 |---|---|---|---|
-
----
 
 ## 10. 主要权衡
 
-| Option | Value | Cost | Risk | Reversibility |
+| 选项 | 价值 | 成本 | 风险 | 可逆性 |
 |---|---|---|---|---|
 
----
+## 11. 反方观点与不做分析
 
-## 11. 反方观点 / 不做会怎样
+### 维持现状会怎样
 
 ### 不做的损失
 
@@ -130,33 +116,29 @@ owner: ""
 
 ### 更小、更可逆的选择
 
----
-
 ## 12. 当前结论
 
-- Conclusion type:
-- System recommendation:
-- User decision:
-- Status:
-
----
+- 结论类型：
+- 系统推荐：
+- 用户决定：
+- 用户决定状态：
+- Assurance：
+- 能证明什么：
+- 不能证明什么：
 
 ## 13. 验证方式
 
-- What to test:
-- How to test:
-- Success threshold:
-- Failure threshold:
-- Review date:
-
----
+- 要验证什么：
+- 如何验证：
+- 成功阈值：
+- 失败阈值：
+- 下一次决策点：
+- 复审日期：
 
 ## 14. 复审条件
 
-| Trigger | Why it matters | Action if triggered |
+| 触发条件 | 为什么重要 | 触发后动作 |
 |---|---|---|
-
----
 
 ## 15. 关联决策
 

@@ -6,7 +6,7 @@ Codex Design Harness 是一套给 Codex 使用的 Human-in-the-loop 设计工程
 
 v0.2.2 新增 runtime-aware 的 Product Business Modeling Core：业务语义层仍在 `core/product-design/business-modeling/` 下保持 Agent-neutral，同时补齐 shared Agent Skill Facade、Codex / Claude Code / Cursor / generic / multi-runtime adapter resolution，并继续把项目知识资产限定在 `docs/product/**`。它仍然是文档型能力，不是 CLI、Hook、插件包、安装器、迁移工具、API 生成器或外部运行时依赖。
 
-v0.1.1 新增独立 Product Business Analysis Core：把模糊业务情境推进成可选择、可审查、可验证、可复审的 Decision Case。它保留原始输入，使用 Analysis Model Cards，执行反方分析、Decision Assurance、选择题式结论、人类决定记录和 Decision Network 记忆。它不依赖业务建模或任何兄弟能力，不创建跨模块 Trigger、downstream views 或共享 Work Item 目录。
+v0.1.2 更新独立 Product Business Analysis Core：把模糊业务情境在多轮对话中持续锚定到可选择、可审查、可验证、可复审的 Decision Case。它新增 Follow-up Turn Continuity、Decision Anchor、Solution Premise Challenge、Decision Delta、中央决策综合、中文用户可见输出，以及 ARCOS 智能派单回归覆盖。它不依赖业务建模或任何兄弟能力，不创建跨模块 Trigger、downstream views 或共享 Work Item 目录。
 
 ## 它解决的问题
 
@@ -71,9 +71,11 @@ docs/design/VISUAL_DESIGN.md
 
 ## Product Business Analysis Core
 
-`product-business-analysis` v0.1.1 是独立商业决策支持能力。Core 位于 [core/product-design/business-analysis](core/product-design/business-analysis/)，运行时 adapter 片段位于 `adapters/codex/product-business-analysis/`、`adapters/claude-code/product-business-analysis/` 和 `adapters/cursor/product-business-analysis/`，项目模板位于 [templates/project/docs/product/business-analysis](templates/project/docs/product/business-analysis/)。入口文档是 [docs/CODEX_BUILD_BRIEF.product-business-analysis-core-v0.1.1-complete.md](docs/CODEX_BUILD_BRIEF.product-business-analysis-core-v0.1.1-complete.md) 和 [docs/PRD.product-business-analysis-v0.1.1.md](docs/PRD.product-business-analysis-v0.1.1.md)。
+`product-business-analysis` v0.1.2 是独立商业决策支持能力。Core 位于 [core/product-design/business-analysis](core/product-design/business-analysis/)，运行时 adapter 片段位于 `adapters/codex/product-business-analysis/`、`adapters/claude-code/product-business-analysis/` 和 `adapters/cursor/product-business-analysis/`，项目模板位于 [templates/project/docs/product/business-analysis](templates/project/docs/product/business-analysis/)。入口文档是 [docs/CODEX_BUILD_BRIEF.product-business-analysis-core-v0.1.2-complete.md](docs/CODEX_BUILD_BRIEF.product-business-analysis-core-v0.1.2-complete.md) 和 [docs/PRD.product-business-analysis-v0.1.2.md](docs/PRD.product-business-analysis-v0.1.2.md)。
 
 商业分析的项目资产根目录是 `docs/product/business-analysis/`。Decision Case 的唯一权威文件位于 `decision-cases/BA-DC-xxx.md`；BA Work Item 位于 `work-items/BA-xxx/`，只链接 Case，不复制 `DECISION_CASE.md`。Decision Network 和 Evidence Ledger 的 YML 是机器权威源，Markdown 是人读视图。
+
+商业分析的后续对话必须先恢复当前 BA Work Item 和所链接的 Decision Case，再回答用户；总结和结论请求也必须绑定 Case。过程文件只能放在 `work-items/BA-xxx/artifacts/` 下，不创建 `intake/`，也不散落在 Work Item 根目录。ready Analysis Model Cards 必须包含七个 usage prompts，包括 `decision_relevance_prompt`，只有通过决策相关性检查的模型运行才进入中央决策综合。
 
 商业分析采用五个运行域，不继承业务建模的 Passive Trigger。跨模块触发、跨模块影响传播、downstream view、共享 `docs/product/work-items/`、CLI、Hook、Plugin、安装器、外部依赖和自动替用户确认 D2/D3 决定均不属于当前版本。
 
@@ -385,6 +387,7 @@ sealed: true
 - 不默认创建项目根目录 `outputs/`；设计交付物放在 `docs/design/outputs/`。
 - 浏览器验证是推荐流程，不绑定特定工具。
 - Product Business Modeling v0.2.2 是 runtime-aware 但仍为文档型能力，不提供 CLI、Hook、插件包、安装器、外部运行时依赖、自动数据库迁移或 API 生成。
+- Product Business Analysis v0.1.2 是 standalone 且文档型能力，不提供跨能力 Trigger、downstream views、共享 Work Item 目录、CLI、Hook、插件包、安装器、外部运行时依赖、自动 D2/D3 决定或方案设计实现流程。
 
 ## v0.1 路线图
 

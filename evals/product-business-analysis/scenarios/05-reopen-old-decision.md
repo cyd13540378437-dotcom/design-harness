@@ -1,13 +1,13 @@
-# Reopen old decision
+# 重开旧决定
 
-## Given
+## Given / 已知
 
-a confirmed Case has review triggers.
+旧 Case 已有 confirmed 结论。
 
-## When
+## When / 当
 
-new evidence invalidates a key assumption.
+新证据改变原前提。
 
-## Then
+## Then / 则
 
-a Decision Review is created and history is not silently overwritten.
+保留旧结论并创建正式复审状态。

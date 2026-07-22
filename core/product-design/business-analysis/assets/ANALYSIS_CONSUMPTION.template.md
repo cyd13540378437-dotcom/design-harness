@@ -1,26 +1,19 @@
-# Analysis Consumption
+---
+schema_version: 1
+language: zh-CN
+work_item_id: BA-000
+---
 
-## Work Item
+# 本轮商业分析消费记录
 
-## Primary Decision Case
+## 已读取的本模块资产
 
-## User Inputs
+## 用户输入与附件
 
-| Ref | Description | Status |
-|---|---|---|
+## 采用的事实、假设和证据
 
-## Existing Business Analysis Assets Read
+## 被拒绝或弱相关保留的材料
 
-| Asset | Why consumed | Status / freshness |
-|---|---|---|
+## 运行时未读取的兄弟能力资产
 
-## Attachments and Evidence
-
-| Source | Classification | Adopted? | Notes |
-|---|---|---|---|
-
-## Provisional Assumptions Used
-
-## Explicitly Not Consumed
-
-> Do not list sibling capability assets as authoritative inputs in v0.1.1.
+本能力保持独立，不把兄弟能力资产作为隐含权威输入。

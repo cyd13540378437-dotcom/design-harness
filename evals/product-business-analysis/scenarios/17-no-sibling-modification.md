@@ -1,13 +1,13 @@
-# No sibling modification
+# 不修改兄弟能力
 
-## Given
+## Given / 已知
 
-the target repository already contains sibling capability directories.
+仓库已有其他能力。
 
-## When
+## When / 当
 
-Codex implements this pack.
+安装或运行商业分析。
 
-## Then
+## Then / 则
 
-those directories remain byte-for-byte untouched except intentional root documentation links.
+兄弟能力文件保持不变。
