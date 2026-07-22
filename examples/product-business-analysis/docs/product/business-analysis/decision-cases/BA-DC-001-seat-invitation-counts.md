@@ -1,106 +1,78 @@
 ---
-schema_version: 1
+schema_version: 3
 language: zh-CN
 case_id: BA-DC-001
 title: 未激活邀请是否占用付费 Seat
 status: confirmed
-assurance_status: pass
+decision_scope_id: seat-invitation-billing-policy
+decision_scope_type: local_business_rule_choice
+decision_scope_status: locked
+choice_loop_status: closed
+overall_assurance: pass
+recommended_option_id: C
+recommendation_status: user_confirmed
 user_decision_status: confirmed
 created_at: "2026-07-21"
-updated_at: "2026-07-21"
+updated_at: "2026-07-22"
 owner: product-owner
 ---
 
 # 决策案例：未激活邀请是否占用付费 Seat
 
-## 决策锚点
+# A. Decision Core / 决策核心
 
-- 原始商业问题：未激活邀请要不要占用付费 Seat？
-- 已确认的当前商业问题：待接受邀请何时产生计费，以及如何控制无限邀请风险？
-- 决策人：产品负责人
-- 受影响参与者：Workspace 购买者、管理员、受邀成员、客服
-- 期望业务结果：计费公平、规则可解释、滥用可控
-- 当前业务选项：发出即计费 / 接受后计费且无限制 / 接受后计费并设上限 / 短期预留
-- 关键未知：真实滥用率与最佳上限
-- 证据边界：基于业务推理，缺少真实运营数据
-- Assurance：pass
-- 用户决定状态：confirmed
+## A0. Decision Scope Lock
 
-## 0. 原始输入
+- 本 Case 解决：未激活邀请何时产生付费 Seat，以及如何控制滥用。
+- 明确不包含：具体上限值、数据库字段、UI 和实现规则。
+- Scope status：`locked`
+
+## A1. 当前决策问题
+
+> 未激活邀请何时产生付费 Seat，以及如何控制无限邀请风险？
+
+## A2. Choice Set
+
+| ID | 选项 | 状态 | 主要价值 | 主要代价 / 风险 |
+|---|---|---|---|---|
+| A | 发出邀请即计费 | rejected | 规则保守 | 客户为未使用成员付费 |
+| B | 接受后计费且不设上限 | eliminated | 计费公平 | 可能大量待接受邀请 |
+| C | 接受后计费并设上限 | selected | 公平、可控、可逆 | 需后续校准上限 |
+| D | 发出后短期预留 | deferred | 折中容量与公平 | 解释更复杂 |
+
+## A3. 当前推荐
+
+- 推荐：C（user_confirmed）
+- 证据边界：暂无真实邀请行为数据。
+- 改变条件：预购容量、滥用显著增加或客户要求容量锁定。
+
+## A4. 用户决定与 Choice Loop
+
+- 用户决定：confirmed
+- Choice Loop：closed
+- 已确认：未激活邀请不占用付费 Seat，同时设置待接受邀请数量上限。
+
+## A5. Claim-level Assurance
+
+- 政策方向：supported
+- 精确上限值：blocked
+
+# B. Decision Basis / 决策依据
+
+## B0. 原始输入
 
 > 未激活邀请要不要占用付费 Seat？我不希望客户觉得为还没使用产品的人付费，但也担心无限邀请会造成滥用。
 
-## 1. 当前问题
+## B1–B9 摘要
 
-是否采用“接受邀请后才占用付费 Seat”，并通过待接受邀请上限控制风险？
+当前按 Seat 计费；未激活邀请尚未产生实际使用。C 在公平性、滥用控制和可逆性之间最平衡。
 
-## 2. 为什么现在需要处理
+# C. Decision Memory / 决策记忆
 
-即将确定邀请与账单政策；若不处理，产品、销售和客服会形成不一致解释。
+## C1. 复审
 
-## 3. 决策范围
+观察滥用、账单争议和超限事件；触发条件出现时正式重开。
 
-包含待接受邀请、付费容量和邀请上限；不包含数据库结构与 UI 实现。
+## C2. Choice Delta
 
-## 4. 关键线索
-
-- 客户不愿为未使用成员付费。
-- 完全不限制待接受邀请可能被滥用。
-
-## 5. 已知事实
-
-- 当前按 Seat 计费。
-- 未激活邀请尚未产生实际成员使用。
-
-## 6. 重要假设
-
-- 客户把 Seat 理解为实际可使用成员。
-- 数量上限足以控制大部分滥用。
-
-## 7. 相关证据
-
-当前只有用户对公平性与滥用的业务判断，尚无真实客户样本。
-
-## 8. 专业分析工作区
-
-### AR-001 方案评估
-
-- 实际 Decision Delta：完全不限制的方案被削弱；“接受后计费 + 上限”成为首选。
-- 相关性状态：high
-
-### AR-002 反方分析
-
-- 实际 Decision Delta：发出即计费的账单争议风险变得不可接受；短期预留保留为未来选项。
-- 相关性状态：high
-
-## 9. 可选方案
-
-A. 发出邀请即计费；B. 接受后计费且无限制；C. 接受后计费并设上限；D. 短期预留。
-
-## 10. 主要权衡
-
-C 在公平性、滥用控制和可逆性之间最平衡。
-
-## 11. 反方观点 / 不做会怎样
-
-如果 Seat 的价值本质是“预留容量”，C 可能低估了容量价值；若上限无效，需要复审 D。
-
-## 12. 当前结论
-
-- 系统推荐：C
-- Assurance：pass
-- 结论状态：confirmed
-- 用户决定：未激活邀请不占用付费 Seat，设置待接受邀请上限
-- 用户决定状态：confirmed
-
-## 13. 验证方式
-
-观察邀请滥用、账单争议和超限事件。
-
-## 14. 复审条件
-
-改为预购容量、滥用显著增加或客户要求容量锁定时重开。
-
-## 15. 关联决策
-
-当前只影响本模块内部的邀请计费政策主题。
+2026-07-21：C 被确认，Choice Loop 关闭。

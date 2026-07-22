@@ -1,7 +1,7 @@
 schema_version: 1
 capability_id: product-business-analysis
 display_name: 商业分析能力集群
-version: v0.1.2-alpha
+version: v0.1.4-alpha
 status: implementation-ready
 agent_neutral: true
 standalone: true
@@ -20,14 +20,8 @@ architecture:
   - DesignHarnessAgent Core
   - Agent Runtime Adapters
   - Project Knowledge Assets
-  operational_domains:
-  - orchestration_and_routing
-  - core_decision_analysis
-  - review_risk_and_decision_memory
-  - intake_extraction_and_assurance
-  - human_decision_control_plane
-  passive_trigger_interface: not_implemented
   project_assets_root: docs/product/business-analysis
+  passive_trigger_interface: not_implemented
 entry_modes:
 - direct_decision_support
 - case_continuation
@@ -36,66 +30,91 @@ entry_modes:
 - project_decision_extraction
 - assurance_validation
 - case_summary
-follow_up_turn_types:
-- new_input
-- clarification
-- user_confirmation
-- evidence_update
-- human_decision
-- summary_request
-- review_signal
-- scope_change
-- new_case_candidate
-routing_results:
-- create_new_case
-- continue_existing_case
-- add_evidence_to_case
-- record_human_decision
-- summarize_existing_case
-- reopen_existing_decision
-- conflict_with_existing_decision
-- impact_existing_decision
-- no_case_needed
 analysis_depths:
 - quick
 - standard
 - deep
-decision_case_fields:
-- original_input
-- current_problem_and_decision_anchor
-- why_now
-- decision_scope_and_solution_premise
-- key_clues
-- known_facts
-- key_assumptions
-- related_evidence
-- analysis_workspace
-- options
-- tradeoffs
-- counterfactual_opposition
-- current_conclusion
-- validation_plan
-- review_triggers
-- related_decisions
-decision_network_relations:
-- depends_on
-- affects
-- conflicts_with
-- supersedes
-- reopens
-knowledge_statuses:
-- draft
-- provisional
-- confirmed
-- needs_review
-- stale
+choice_lifecycle:
+- proposed
+- viable
+- conditionally_viable
+- eliminated
+- selected
+- rejected
+- deferred
 - superseded
-- deprecated
-- sealed
-assurance_results:
+choice_loop_statuses:
+- open
+- closed
+- reopened
+recommendation_statuses:
+- provisional
+- conditional
+- user_confirmed
+user_decision_statuses:
+- not_requested
+- pending
+- acknowledged
+- confirmed
+- rejected
+- revised
+- deferred
+mixed_turn_decision_signals:
+- none
+- acknowledged
+- confirmed
+- rejected
+- revised
+- deferred
+followup_request_types:
+- none
+- decision_clarification
+- evidence_clarification
+- implementation_detail
+- new_decision_candidate
+- summary_request
+decision_scope_statuses:
+- provisional
+- locked
+- reopened
+boundary_statuses:
+- within_scope
+- clarification_only
+- out_of_scope_candidate
+allowed_state_statuses:
+- active
+- paused
+- completed
+- cancelled
+allowed_phases:
+- input-understanding
+- case-routing
+- choice-set
+- analysis
+- recommendation
+- human-decision
+- post-decision-clarification
+- review
+- completion-review
+- complete
+allowed_gates:
+- none
+- decision-confirmation
+- completion-approval
+overall_assurance_results:
 - pass
 - warn
-- block
+- partial
+claim_assurance_statuses:
+- supported
+- provisional
+- conditional
+- blocked
+summary_modes:
+- choice_request
+- decision_confirmed
+- post_decision_clarification
+- review
 model_prompt_contract:
 - decision_relevance_prompt
 - routing_prompt
@@ -104,6 +123,30 @@ model_prompt_contract:
 - analysis_run_prompt
 - conclusion_prompt
 - misuse_guard_prompt
+model_runtime_roles:
+- internal_control
+- professional_analysis
+artifact_boundary:
+  allowed_core:
+  - STATE.md
+  - ANALYSIS_WORKSPACE.md
+  - DECISION_SUMMARY.md
+  - DECISION_NOTES.md
+  deep_audit_optional:
+  - ANALYSIS_CONSUMPTION.md
+  - ANALYSIS_OUTPUT.md
+  - DECISION_PROCESS_PACKAGE.md
+  - artifacts/
+  forbidden_categories:
+  - implementation_runbook
+  - manual_execution_guide
+  - data_schema
+  - sample_data
+  - script_or_code
+  - ui_spec
+  - technical_design
+  - execution_output
+  no_execution_offer: true
 project_assets:
   long_lived:
   - docs/product/business-analysis/BUSINESS_ANALYSIS_INDEX.md
@@ -115,23 +158,16 @@ project_assets:
   - docs/product/business-analysis/evidence/EVIDENCE_LEDGER.md
   - docs/product/business-analysis/evidence/EVIDENCE_LEDGER.yml
   - docs/product/business-analysis/reviews/
-  work_item_root:
+  standard_work_item_core:
   - STATE.md
+  - ANALYSIS_WORKSPACE.md
+  - DECISION_SUMMARY.md
+  - DECISION_NOTES.md
+  deep_audit_optional:
   - ANALYSIS_CONSUMPTION.md
   - ANALYSIS_OUTPUT.md
-  - DECISION_NOTES.md
-  - DECISION_SUMMARY.md
   - DECISION_PROCESS_PACKAGE.md
-  work_item_artifacts:
-  - INPUT_UNDERSTANDING_SNAPSHOT.md
-  - TURN_CONTINUITY_CHECK.md
-  - ANALYSIS_ROUTING_RECORD.md
-  - EVIDENCE_INTAKE_RECORD.md
-  - MODEL_SELECTION_RECORD.md
-  - ANALYSIS_RUNS.md
-  - DECISION_ASSURANCE_CHECK.md
-  - DECISION_SYNTHESIS.md
-  - DECISION_NETWORK_UPDATE.md
+  - artifacts/
 independence_contract:
   depends_on_other_capabilities: false
   modifies_other_capabilities: false
@@ -139,13 +175,17 @@ independence_contract:
   generates_downstream_views: false
   uses_shared_work_item_directory: false
 non_goals:
+- motivation-analysis-integration
 - cross-capability-trigger
 - cross-capability-impact-propagation
 - downstream-view-compilation
-- shared-product-work-item-index
-- CLI
-- Hook
-- Plugin
-- Marketplace
+- shared-product-work-item-orchestration
+- solution-implementation
+- sample-data-generation
+- script-execution
+- ui-or-technical-design
+- cli
+- hook
+- plugin
 - installer
 - external-runtime-dependency

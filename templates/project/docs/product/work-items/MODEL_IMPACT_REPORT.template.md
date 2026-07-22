@@ -36,7 +36,10 @@ updated_at: YYYY-MM-DD
 
 ## 10. Affected Rules and Permissions
 
-## 11. Affected Downstream Views
+## 11. Affected User Overview and Downstream Views
+
+- `docs/product/BUSINESS_MODEL_OVERVIEW.md`
+- Professional downstream views:
 
 ## 12. Safe Automatic Updates
 
@@ -51,6 +54,21 @@ updated_at: YYYY-MM-DD
 
 ## 16. Revalidation and Recompilation Plan
 
+```text
+Core updates
+→ MODEL_CONSISTENCY_REPORT.md
+→ BUSINESS_MODEL_OVERVIEW.md
+→ required downstream views
+```
+
 ## 17. Follow-up Triggers
 
 ## 18. Resolution Readiness
+
+- Impact analysis complete:
+- Human decisions resolved or explicitly pending:
+- Core response complete:
+- Consistency validation complete:
+- User overview current:
+- Required downstream views current:
+- Trigger may be resolved: `yes | no`

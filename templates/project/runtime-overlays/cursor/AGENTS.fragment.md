@@ -1,15 +1,7 @@
 <!-- BEGIN DesignHarnessAgent: product-business-modeling -->
-## DesignHarnessAgent — Product Business Modeling for Cursor
+## DesignHarnessAgent — Product Business Modeling v0.2.3 for Cursor
 
-Use the Cursor rule `.cursor/rules/product-business-modeling.mdc` for Product Business Modeling tasks. If the current Cursor environment supports project Agent Skills, also use `.cursor/skills/product-business-modeling/`.
+Use the Cursor rule and optional Skill facade for durable business-model work. Read and present `docs/product/BUSINESS_MODEL_OVERVIEW.md` as the default user file; detailed source of truth remains under `docs/product/business-modeling/`.
 
-Project source of truth remains:
-
-```text
-docs/product/business-modeling/
-docs/product/model-triggers/
-docs/product/work-items/
-```
-
-Runtime rules and skills are not source of truth. Do not directly modify `docs/design/**` from Business Modeling.
+Use canonical Work Items, the frozen State Schema, stable IDs and `BMD-xxx`. Persistent writes require consistency validation and overview recompilation. Do not edit `docs/design/**` or seal without human approval.
 <!-- END DesignHarnessAgent: product-business-modeling -->

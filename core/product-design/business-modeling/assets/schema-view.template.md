@@ -1,11 +1,7 @@
 # Business Schema View
 
-> Human-readable companion to `schema-view.json`. This view only shows objects, domains, categories, business attributes and example content.
+> Human-readable companion to `schema-view.json`. The project template starts empty and is populated only after a Business Modeling Work Item writes canonical model assets.
 
-## Business Domains
+## Business Objects
 
-## Objects by Domain
-
-## Objects by Category
-
-## Business Attribute Summary
+No business objects have been modeled yet.

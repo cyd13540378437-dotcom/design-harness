@@ -1,43 +1,51 @@
 ---
-schema_version: 1
+schema_version: 3
 state_id: BA-002
-title: 分析无历史数据条件下的调度策略验证路径
+title: 分析冷启动条件下的调度策略验证路径
 status: active
-phase: option-synthesis
-gate: decision-confirmation
-awaiting_user: true
+phase: completion-review
+gate: none
+awaiting_user: false
 sealed: false
 entry_mode: direct_decision_support
 analysis_depth: standard
 output_language: zh-CN
 primary_case_id: BA-DC-002
 primary_case_path: ../../decision-cases/BA-DC-002-smart-dispatch-strategy-validation.md
-last_turn_type: summary_request
+decision_scope_id: cold-start-validation-path
+decision_scope_type: validation_path_choice
+decision_scope_status: locked
+choice_loop_status: closed
+last_turn_type: clarification
+decision_signal: confirmed
+followup_request: implementation_detail
+boundary_status: clarification_only
 turn_continuity_status: passed
-decision_anchor_status: confirmed
-assurance_result: warn
-conclusion_status: provisional
-user_decision_status: pending
+overall_assurance: partial
+recommended_option_id: B+
+recommendation_status: user_confirmed
+user_decision_status: confirmed
+summary_mode: post_decision_clarification
 latest_decision_summary: DECISION_SUMMARY.md
 created_at: "2026-07-21T09:00:00Z"
-updated_at: "2026-07-21T10:00:00Z"
+updated_at: "2026-07-22T09:00:00Z"
 completed_at: ""
 ---
 
 # 商业分析 Work Item 状态
 
-## Decision Anchor
+## Decision Scope
 
-- 已确认问题：没有历史数据时，是否值得先建设一种轻量验证手段来判断策略是否值得继续开发？
-- 当前选项：等待真实数据 / 规则测试 / 合成场景实验台 / 高保真仿真
-- 当前阻塞未知：用户是否接受只验证相对稳健性而非真实业务效果
-- 证据边界：没有历史业务数据
+- 选择：冷启动条件下采用哪条调度策略验证路径。
+- 明确不包含：实验表格、字段、公式、样例、脚本和执行。
 
-## Decision Assurance
+## Choice Core
 
-- Result：warn
-- 原因：当前只能形成 provisional 验证路径建议
+- 已确认：B+ 冷启动假设模拟器，按 M0 → M1 → M2 推进。
+- Choice Loop：closed
+- 用户追问：M0 手工跑是什么意思。
+- 处理：只做概念级澄清，不进入实施设计。
 
-## 待确认问题
+## 当前阶段
 
-是否接受“轻量合成场景实验台 + 规则测试基础层”和它的证据边界。
+`completion-review`；无业务专属 phase / gate。

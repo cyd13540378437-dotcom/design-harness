@@ -1,8 +1,8 @@
-# Product Business Analysis 示例
+# Product Business Analysis 示例 v0.1.4
 
-本示例包含两个完全独立的 Decision Cases：
+本目录包含两个独立示例：
 
-1. `BA-DC-001`：未激活邀请是否占用付费 Seat；展示已确认的局部业务决定。
-2. `BA-DC-002`：无历史数据时如何验证智能调度策略；展示 v0.1.2 的多轮续接、解法前提挑战、Decision Delta、中文结论和商业 / 实施边界。
+1. Seat 邀请计费：用户确认 C 后 Choice Loop 关闭并封存。
+2. ARCOS 调度验证：用户确认 B+ 后询问 M0；系统只做概念澄清，不创建实施指南、公式、样例或执行提议，并进入 completion-review。
 
-所有人读输出均为简体中文；英文只用于稳定 ID、状态枚举和文件名。
+两个示例共同证明：商业分析既承担推荐责任，也拥有明确停止边界。

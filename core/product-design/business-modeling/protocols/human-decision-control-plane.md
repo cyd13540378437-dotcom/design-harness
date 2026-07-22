@@ -25,22 +25,39 @@ D3 = 治理与终态，必须明确人类决定
 - 升级为 confirmed；
 - 关闭、封存、废弃或覆盖重要资产。
 
-## 4. 决策请求模板
+## 4. 决策压缩要求
 
-```markdown
-## 需要你确认的产品判断
+在询问用户前，Agent 必须先完成决策压缩：
 
-### 当前理解
-
-### 为什么重要
-
-### 可选方案
-
-### 推荐
-
-### 需要确认
+```text
+当前理解
+→ 为什么重要
+→ 2–3 个可行方案
+→ 各自优点与代价
+→ Agent 推荐
+→ 用户可直接回复的选项
 ```
 
-## 5. 决策记录
+仅列出“问题清单”不合格。
 
-D2 / D3 决策必须写入 `DECISION_NOTES.md`，建议使用 `BMD-xxx` 稳定 ID。
+## 5. 决策 ID 与记录
+
+- 所有 D2 / D3 决策使用稳定 `BMD-xxx` ID；
+- 禁止用 `HD-xxx`、无 ID 标题或运行时私有 ID 作为业务模型决策主键；
+- 完整记录写入 `DECISION_NOTES.md`；
+- 足以让用户做决定的压缩版本必须同步编译进 `BUSINESS_MODEL_OVERVIEW.md`。
+
+## 6. 等待状态
+
+进入等待用户阶段时：
+
+```yaml
+phase: awaiting_decision
+awaiting_human: true
+```
+
+用户回复后，先更新 `DECISION_NOTES.md` 和 `STATE.md`，再继续模型写入。
+
+## 7. 用户可见体验
+
+用户通常只需阅读 `docs/product/BUSINESS_MODEL_OVERVIEW.md`。总览必须包含所有当前待确认判断的可决策信息；`DECISION_NOTES.md` 继续保留完整审计用途。

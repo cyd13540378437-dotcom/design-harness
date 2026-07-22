@@ -1,6 +1,6 @@
 ---
 name: product-business-modeling
-description: Use for product business modeling: business objects, business attributes, object relationships, actions, states, rules, permissions, model triggers, impact reports, project extraction, consistency validation, and downstream business-model views. Runtime-neutral facade; adapter-specific wrappers must map this workflow into Codex, Claude Code, Cursor, or another agent runtime.
+description: "Use for product business modeling: business objects, business attributes, relationships, actions, states, rules, permissions, model triggers, impact reports, project extraction, consistency validation, business-model overview compilation, and downstream views. Runtime-neutral facade for Codex, Claude Code, Cursor, or another agent runtime."
 ---
 
 # Product Business Modeling
@@ -9,48 +9,102 @@ You are invoking the runtime-neutral Product Business Modeling workflow.
 
 ## Load order
 
-1. Read the runtime adapter resolution protocol when installing or preparing a project:
-   `core/product-design/business-modeling/protocols/agent-runtime-adapter-resolution.md`.
-2. Read the Core contract:
-   `core/product-design/business-modeling/CAPABILITY.md`.
-3. Read the relevant protocols under:
-   `core/product-design/business-modeling/protocols/`.
-4. In a target project, use:
-   `docs/product/business-modeling/`, `docs/product/model-triggers/`, and `docs/product/work-items/` as the only business modeling project asset roots.
+1. Resolve the current runtime through `core/product-design/business-modeling/protocols/agent-runtime-adapter-resolution.md` when installing or preparing a project.
+2. Read `core/product-design/business-modeling/CAPABILITY.md`.
+3. Read these v0.2.3 hard contracts:
 
-## Hard boundaries
+   ```text
+   core/product-design/business-modeling/protocols/business-model-overview.md
+   core/product-design/business-modeling/protocols/work-item-file-contract.md
+   core/product-design/business-modeling/protocols/canonical-model-asset-contracts.md
+   core/product-design/business-modeling/protocols/validation-and-evals.md
+   ```
 
-- This Skill facade is not the source of truth.
-- Do not move business model knowledge into `.agents/`, `.claude/`, `.cursor/`, `.codex/`, `AGENTS.md`, or `CLAUDE.md`.
-- Business Modeling uses business attributes, not database fields.
-- `schema-view.json` only contains business objects, business domains, object categories, business attributes, and example content.
-- Do not directly edit `docs/design/**`, Reference Library, or Color Card Registry assets.
-- High-impact semantics require Human Decision Control Plane approval before becoming `confirmed`.
-- AI must not seal a task without explicit human closure approval.
+4. In a target project, read `docs/product/BUSINESS_MODEL_OVERVIEW.md` first when it exists, then load only the detailed source assets needed for the task.
+
+## Project asset roots
+
+```text
+docs/product/BUSINESS_MODEL_OVERVIEW.md
+docs/product/business-modeling/
+docs/product/model-triggers/
+docs/product/work-items/
+docs/product/PRODUCT_WORK_ITEMS.md
+```
+
+Runtime files are invocation adapters, not business-model source of truth.
 
 ## Entry modes
 
 Select one primary mode:
 
-1. Direct Modeling
-2. Passive Trigger
-3. Project Extraction
-4. Greenfield Modeling
-5. Consistency Validation
-6. Downstream Compilation
+```text
+direct_modeling
+passive_trigger
+project_extraction
+greenfield_modeling
+consistency_validation
+downstream_compilation
+```
 
-Modes may compose, but Work Item boundaries must stay clear.
+Modes may compose, but Work Item identity and primary mode must remain clear.
 
-## Required task flow
+## Canonical Work Item flow
 
-1. Bind or create a BM Work Item when the task has persistent modeling value.
-2. Record consumed inputs in `MODELING_CONSUMPTION.md`.
-3. Produce modeling output in `MODELING_OUTPUT.md` and task artifacts.
-4. Escalate D2/D3 decisions to `DECISION_NOTES.md` and ask the user.
-5. Update Core source-of-truth assets only within the owned file boundaries.
-6. Compile downstream views after model changes.
-7. If processing a `MT-xxx.md`, write `MODEL_IMPACT_REPORT.md` and update trigger resolution.
+For every stateful BM Work Item:
 
-## Runtime adapter behavior
+1. Resolve `CREATE / RESUME / SUCCESSOR / NO_STATE / AMBIGUOUS`.
+2. Create or maintain the exact root files:
 
-When this facade is installed into a runtime-specific location, follow that runtime's install profile. If no tool-specific profile is installed, use this facade as a manual workflow and do not claim automatic invocation support.
+   ```text
+   STATE.md
+   MODELING_CONSUMPTION.md
+   MODELING_OUTPUT.md
+   DECISION_NOTES.md
+   ```
+
+3. Use standard artifact names under `artifacts/`.
+4. Never replace standard files with `PROPOSED_MODEL.md`, `EVIDENCE_AND_ASSUMPTIONS.md`, or another alias.
+5. Use the frozen `STATE.md` frontmatter. Runtime metadata belongs under `extensions` or in the body.
+
+## Modeling boundaries
+
+- Business Modeling uses business attributes, not database fields.
+- `schema-view.json` must use the exact frozen shape and five-question boundary.
+- Dictionary, Index and Schema IDs must remain referentially aligned.
+- Actions require stable IDs, actors, targets, preconditions and effects.
+- State transitions reference existing Action IDs and belong to exactly one object lifecycle.
+- Context-dependent values belong to relationships, evaluation objects or derived views—not intrinsic object attributes.
+- Compound object identities such as `Asset / Facility` remain provisional or enter a D2 decision.
+- Do not directly edit `docs/design/**`, Reference Library, or Color Card Registry assets.
+
+## Human Decision Control Plane
+
+AI may create `draft` / `provisional`. D2 / D3 semantics require a `BMD-xxx` decision package before confirmation or replacement of confirmed truth.
+
+The user-facing decision compression must also appear in `docs/product/BUSINESS_MODEL_OVERVIEW.md`, so the user can decide without opening task files.
+
+## Mandatory post-write sequence
+
+After any persistent Core model write:
+
+```text
+model-consistency-validator
+→ artifacts/MODEL_CONSISTENCY_REPORT.md
+→ fix or expose blocking issues
+→ compile docs/product/BUSINESS_MODEL_OVERVIEW.md
+→ compile requested professional downstream views
+→ update MODELING_OUTPUT.md and STATE.md
+```
+
+Greenfield Modeling follows the same sequence.
+
+## Default user delivery
+
+At normal completion, present only:
+
+```text
+docs/product/BUSINESS_MODEL_OVERVIEW.md
+```
+
+Do not expose a long file list unless the user asks for audit, implementation handoff, evidence, or model-maintainer detail.

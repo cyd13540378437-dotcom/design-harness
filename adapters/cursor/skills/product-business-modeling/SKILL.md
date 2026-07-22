@@ -1,20 +1,15 @@
 ---
 name: product-business-modeling
-description: Product business modeling workflow for Cursor Agent Skills, covering business objects, attributes, relationships, actions, states, rules, permissions, model triggers, impact reports, extraction, validation, and downstream business-model views.
+description: Apply the Agent-neutral Product Business Modeling Core in Cursor for durable model assets, canonical Work Items, consistency validation, the default business-model overview, triggers, and downstream views.
 ---
 
-# Product Business Modeling for Cursor
+# Product Business Modeling — Cursor Adapter
 
-This is the Cursor runtime adapter for the Agent-neutral Product Business Modeling Core.
+- Read `docs/product/BUSINESS_MODEL_OVERVIEW.md` first when present.
+- Follow `core/product-design/business-modeling/CAPABILITY.md` and the v0.2.3 overview, Work Item, canonical asset, Human Decision and validation contracts.
+- Use exact canonical Work Item files and the frozen State Schema.
+- Keep all model references stable by ID.
+- Run consistency validation after every persistent Core write, refresh the overview, then compile requested professional views.
+- Show only the overview as the default user result.
 
-If the current Cursor environment does not support project Agent Skills, use `.cursor/rules/product-business-modeling.mdc` as the fallback runtime adapter.
-
-## Required behavior
-
-1. Keep business model source of truth under `docs/product/**`.
-2. Treat this Skill as a runtime facade, not the Core.
-3. Follow the shared Core references in `references/`.
-4. Do not directly modify `docs/design/**`.
-5. Escalate D2/D3 decisions to the user.
-6. Keep business attributes separate from database fields, API parameters, ORM fields, and implementation types.
-7. Keep `schema-view.json` limited to business objects, domains, categories, business attributes, and example content.
+Do not substitute custom task files, write technical fields into Core assets, mix object lifecycles, misplace derived values, edit `docs/design/**`, or seal without human approval.

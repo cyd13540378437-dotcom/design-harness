@@ -6,7 +6,7 @@
 
 ## When / 当
 
-执行 Decision Delta Test。
+执行 Choice Delta Test。
 
 ## Then / 则
 

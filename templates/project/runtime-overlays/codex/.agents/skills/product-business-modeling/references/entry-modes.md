@@ -1,62 +1,20 @@
-# Entry Mode Reference
+# Entry Modes v0.2.3
 
-## direct_modeling
+Select one primary mode:
 
-User explicitly asks to create, update, or explain business model assets.
+- `direct_modeling`
+- `passive_trigger`
+- `project_extraction`
+- `greenfield_modeling`
+- `consistency_validation`
+- `downstream_compilation`
 
-Minimum outputs:
+All modes that write Core assets must finish with:
 
-- `MODELING_CONSUMPTION.md`
-- `MODELING_OUTPUT.md`
-- affected source-of-truth assets when safe
-- `DECISION_NOTES.md` when human decisions are needed
+```text
+MODEL_CONSISTENCY_REPORT.md
+→ docs/product/BUSINESS_MODEL_OVERVIEW.md
+→ other required downstream views
+```
 
-## passive_trigger
-
-A `model-triggers/MT-xxx.md` file or equivalent request indicates an upstream change, downstream gap, or cross-cluster conflict.
-
-Minimum outputs:
-
-- bound BM Work Item
-- `MODEL_IMPACT_REPORT.md`
-- trigger resolution update when done
-- downstream view recompilation if model changes
-
-## project_extraction
-
-Extract candidate business model knowledge from existing project evidence. Results are provisional unless confirmed.
-
-Minimum outputs:
-
-- `MODEL_EXTRACTION_REPORT.md`
-- `SOURCE_EVIDENCE.md`
-- provisional model candidates
-
-## greenfield_modeling
-
-Build a provisional initial model from a vague idea or early product concept.
-
-Minimum outputs:
-
-- provisional business dictionary
-- provisional schema view
-- assumptions and questions
-- high-impact decision requests as needed
-
-## consistency_validation
-
-Check business model assets for internal consistency and boundary violations.
-
-Minimum outputs:
-
-- `MODEL_CONSISTENCY_REPORT.md`
-- list of gaps, conflicts, stale downstream views, and recommended fixes
-
-## downstream_compilation
-
-Compile the core model into downstream views for product expression, requirements, database, backend, frontend, QA, or UX.
-
-Minimum outputs:
-
-- updated `downstream-views/*`
-- report any core model gaps found during compilation
+Greenfield Modeling must use canonical Work Item files and produce a provisional overview even when high-impact decisions remain open.

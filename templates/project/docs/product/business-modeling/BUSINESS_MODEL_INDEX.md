@@ -1,6 +1,12 @@
 # Business Model Index
 
-> Human-readable navigation index. Source-of-truth lives in the referenced assets.
+> Maintainer navigation index. This is **not** the default user entry. After this template is copied into a project, product owners and business users should read `../BUSINESS_MODEL_OVERVIEW.md`.
+>
+> Source-of-truth lives in the referenced assets.
+
+## Default User View
+
+- `../BUSINESS_MODEL_OVERVIEW.md`
 
 ## Business Domains
 

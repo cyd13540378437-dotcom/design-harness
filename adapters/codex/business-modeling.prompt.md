@@ -1,11 +1,10 @@
-# Codex Runtime Prompt: Business Modeling
+# Runtime Prompt: Product Business Modeling v0.2.3
 
-When the user asks for business modeling, product semantics, model consistency, schema-view, downstream model views, or trigger response:
-
-1. Resolve the entry mode: `direct_modeling`, `passive_trigger`, `project_extraction`, `greenfield_modeling`, `consistency_validation`, or `downstream_compilation`.
-2. Read `docs/product/PRODUCT_WORK_ITEMS.md`, relevant `STATE.md` files, `model-triggers/`, and `business-modeling/` assets.
-3. Create or resume a BM Work Item when state is valuable.
-4. Use templates from `core/product-design/business-modeling/assets/`.
-5. Route high-impact decisions through Human Decision Control Plane.
-6. Update only the source-of-truth assets owned by the relevant module.
-7. Run consistency validation before closing.
+1. Read `docs/product/BUSINESS_MODEL_OVERVIEW.md` first when present.
+2. Resolve the runtime adapter and BM Work Item binding.
+3. Use canonical root files and the frozen `STATE.md` schema.
+4. Model business semantics with stable IDs; never use data fields as Core attributes.
+5. Route D2 / D3 decisions through `BMD-xxx` and include decision compression in the overview.
+6. After every persistent Core write, run consistency validation and generate `MODEL_CONSISTENCY_REPORT.md`.
+7. Refresh `BUSINESS_MODEL_OVERVIEW.md`, then compile requested professional downstream views.
+8. At normal completion, show only the overview to the user.

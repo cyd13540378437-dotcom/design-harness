@@ -1,0 +1,803 @@
+{
+  "schema_version": 1,
+  "view_type": "business_attribute_structure",
+  "objects": [
+    {
+      "object_id": "work_order",
+      "object_name": "WorkOrder",
+      "object_label": "工单",
+      "business_domain": {
+        "id": "service_demand",
+        "label": "服务需求"
+      },
+      "object_category": {
+        "id": "process_carrier",
+        "label": "流程承载类"
+      },
+      "business_attributes": [
+        {
+          "attribute_id": "work_order_identity",
+          "attribute_label": "工单业务身份",
+          "example_content": [
+            "WO-2026-0001"
+          ]
+        },
+        {
+          "attribute_id": "service_type",
+          "attribute_label": "服务类型",
+          "example_content": [
+            "空调故障维修"
+          ]
+        },
+        {
+          "attribute_id": "priority",
+          "attribute_label": "优先级",
+          "example_content": [
+            "紧急"
+          ]
+        },
+        {
+          "attribute_id": "service_commitment",
+          "attribute_label": "服务承诺",
+          "example_content": [
+            "2 小时内到场"
+          ]
+        },
+        {
+          "attribute_id": "desired_service_window",
+          "attribute_label": "期望服务窗口",
+          "example_content": [
+            "今日 14:00-17:00"
+          ]
+        },
+        {
+          "attribute_id": "estimated_effort",
+          "attribute_label": "预计工作量",
+          "example_content": [
+            "约 60 分钟"
+          ]
+        },
+        {
+          "attribute_id": "related_maintainable_asset",
+          "attribute_label": "关联可维护资产",
+          "example_content": [
+            "3 号楼中央空调主机"
+          ]
+        },
+        {
+          "attribute_id": "service_location",
+          "attribute_label": "服务位置",
+          "example_content": [
+            "A 园区 3 号楼 B1 机房"
+          ]
+        },
+        {
+          "attribute_id": "required_capabilities",
+          "attribute_label": "所需能力",
+          "example_content": [
+            "暖通维修、低压电工资质"
+          ]
+        },
+        {
+          "attribute_id": "work_order_status",
+          "attribute_label": "工单状态",
+          "example_content": [
+            "待调度"
+          ]
+        }
+      ]
+    },
+    {
+      "object_id": "maintainable_asset",
+      "object_name": "MaintainableAsset",
+      "object_label": "可维护资产",
+      "business_domain": {
+        "id": "facility_context",
+        "label": "设备设施上下文"
+      },
+      "object_category": {
+        "id": "core_business_object",
+        "label": "核心业务对象类"
+      },
+      "business_attributes": [
+        {
+          "attribute_id": "asset_identity",
+          "attribute_label": "资产业务身份",
+          "example_content": [
+            "FAC-HVAC-003"
+          ]
+        },
+        {
+          "attribute_id": "asset_name",
+          "attribute_label": "资产名称",
+          "example_content": [
+            "中央空调主机"
+          ]
+        },
+        {
+          "attribute_id": "facility_system",
+          "attribute_label": "所属专业系统",
+          "example_content": [
+            "暖通系统"
+          ]
+        },
+        {
+          "attribute_id": "criticality",
+          "attribute_label": "重要等级",
+          "example_content": [
+            "关键设备"
+          ]
+        },
+        {
+          "attribute_id": "installed_location",
+          "attribute_label": "所在位置",
+          "example_content": [
+            "A 园区 3 号楼 B1 机房"
+          ]
+        },
+        {
+          "attribute_id": "service_constraints",
+          "attribute_label": "服务限制",
+          "example_content": [
+            "需双人进入机房"
+          ]
+        },
+        {
+          "attribute_id": "operating_status",
+          "attribute_label": "运行状态",
+          "example_content": [
+            "故障停机"
+          ]
+        }
+      ]
+    },
+    {
+      "object_id": "service_location",
+      "object_name": "ServiceLocation",
+      "object_label": "服务位置",
+      "business_domain": {
+        "id": "facility_context",
+        "label": "设备设施上下文"
+      },
+      "object_category": {
+        "id": "context_object",
+        "label": "业务上下文类"
+      },
+      "business_attributes": [
+        {
+          "attribute_id": "location_name",
+          "attribute_label": "位置名称",
+          "example_content": [
+            "A 园区 3 号楼 B1 机房"
+          ]
+        },
+        {
+          "attribute_id": "location_hierarchy",
+          "attribute_label": "区域层级",
+          "example_content": [
+            "项目 / 楼栋 / 楼层 / 房间"
+          ]
+        },
+        {
+          "attribute_id": "responsibility_scope",
+          "attribute_label": "责任范围",
+          "example_content": [
+            "工程一组负责"
+          ]
+        },
+        {
+          "attribute_id": "access_restrictions",
+          "attribute_label": "通行限制",
+          "example_content": [
+            "需机房权限"
+          ]
+        }
+      ]
+    },
+    {
+      "object_id": "work_requirement",
+      "object_name": "WorkRequirement",
+      "object_label": "工单要求",
+      "business_domain": {
+        "id": "service_demand",
+        "label": "服务需求"
+      },
+      "object_category": {
+        "id": "requirement_object",
+        "label": "要求表达类"
+      },
+      "business_attributes": [
+        {
+          "attribute_id": "requirement_source",
+          "attribute_label": "要求来源",
+          "example_content": [
+            "工单描述与资产类型推导"
+          ]
+        },
+        {
+          "attribute_id": "capability_requirements",
+          "attribute_label": "能力要求",
+          "example_content": [
+            "暖通维修"
+          ]
+        },
+        {
+          "attribute_id": "qualification_requirements",
+          "attribute_label": "资质要求",
+          "example_content": [
+            "低压电工证"
+          ]
+        },
+        {
+          "attribute_id": "safety_requirements",
+          "attribute_label": "安全要求",
+          "example_content": [
+            "双人作业"
+          ]
+        },
+        {
+          "attribute_id": "tool_requirements",
+          "attribute_label": "工具要求",
+          "example_content": [
+            "压力表"
+          ]
+        },
+        {
+          "attribute_id": "time_requirements",
+          "attribute_label": "时间要求",
+          "example_content": [
+            "今日完成"
+          ]
+        },
+        {
+          "attribute_id": "requirement_status",
+          "attribute_label": "要求确认状态",
+          "example_content": [
+            "待班组长确认"
+          ]
+        }
+      ]
+    },
+    {
+      "object_id": "service_resource",
+      "object_name": "ServiceResource",
+      "object_label": "服务资源",
+      "business_domain": {
+        "id": "resource_capacity",
+        "label": "资源能力与容量"
+      },
+      "object_category": {
+        "id": "participant_resource",
+        "label": "参与资源类"
+      },
+      "business_attributes": [
+        {
+          "attribute_id": "resource_identity",
+          "attribute_label": "资源身份",
+          "example_content": [
+            "暖通技工张三"
+          ]
+        },
+        {
+          "attribute_id": "resource_type",
+          "attribute_label": "资源类型",
+          "example_content": [
+            "个人技工"
+          ]
+        },
+        {
+          "attribute_id": "organization",
+          "attribute_label": "所属组织",
+          "example_content": [
+            "工程一组"
+          ]
+        },
+        {
+          "attribute_id": "coverage_area",
+          "attribute_label": "覆盖区域",
+          "example_content": [
+            "A 园区"
+          ]
+        },
+        {
+          "attribute_id": "capability_set",
+          "attribute_label": "能力集合",
+          "example_content": [
+            "暖通维修、空调保养"
+          ]
+        },
+        {
+          "attribute_id": "current_load",
+          "attribute_label": "当前负载",
+          "example_content": [
+            "今日已承诺 4 小时"
+          ]
+        },
+        {
+          "attribute_id": "work_status",
+          "attribute_label": "工作状态",
+          "example_content": [
+            "可接单"
+          ]
+        }
+      ]
+    },
+    {
+      "object_id": "capability",
+      "object_name": "Capability",
+      "object_label": "能力",
+      "business_domain": {
+        "id": "resource_capacity",
+        "label": "资源能力与容量"
+      },
+      "object_category": {
+        "id": "capability_object",
+        "label": "能力类"
+      },
+      "business_attributes": [
+        {
+          "attribute_id": "capability_name",
+          "attribute_label": "能力名称",
+          "example_content": [
+            "暖通维修"
+          ]
+        },
+        {
+          "attribute_id": "capability_level",
+          "attribute_label": "能力等级",
+          "example_content": [
+            "熟练"
+          ]
+        },
+        {
+          "attribute_id": "applicable_service_types",
+          "attribute_label": "适用服务类型",
+          "example_content": [
+            "空调故障、风机盘管维修"
+          ]
+        },
+        {
+          "attribute_id": "qualification_constraints",
+          "attribute_label": "资质约束",
+          "example_content": [
+            "低压电工证"
+          ]
+        },
+        {
+          "attribute_id": "validity_status",
+          "attribute_label": "有效状态",
+          "example_content": [
+            "有效"
+          ]
+        }
+      ]
+    },
+    {
+      "object_id": "resource_availability",
+      "object_name": "ResourceAvailability",
+      "object_label": "资源可用性",
+      "business_domain": {
+        "id": "resource_capacity",
+        "label": "资源能力与容量"
+      },
+      "object_category": {
+        "id": "capacity_object",
+        "label": "容量类"
+      },
+      "business_attributes": [
+        {
+          "attribute_id": "resource_reference",
+          "attribute_label": "对应资源",
+          "example_content": [
+            "暖通技工张三"
+          ]
+        },
+        {
+          "attribute_id": "available_window",
+          "attribute_label": "可服务时段",
+          "example_content": [
+            "今日 09:00-18:00"
+          ]
+        },
+        {
+          "attribute_id": "committable_capacity",
+          "attribute_label": "可承诺容量",
+          "example_content": [
+            "剩余约 3 小时"
+          ]
+        },
+        {
+          "attribute_id": "existing_commitments",
+          "attribute_label": "已有占用",
+          "example_content": [
+            "15:00-16:00 已有保养任务"
+          ]
+        },
+        {
+          "attribute_id": "unavailable_reason",
+          "attribute_label": "不可用原因",
+          "example_content": [
+            "请假、培训、跨区支援"
+          ]
+        },
+        {
+          "attribute_id": "availability_status",
+          "attribute_label": "可承诺状态",
+          "example_content": [
+            "可部分承诺"
+          ]
+        }
+      ]
+    },
+    {
+      "object_id": "dispatch_policy",
+      "object_name": "DispatchPolicy",
+      "object_label": "调度策略",
+      "business_domain": {
+        "id": "dispatch_decisioning",
+        "label": "调度决策"
+      },
+      "object_category": {
+        "id": "policy_object",
+        "label": "策略规则类"
+      },
+      "business_attributes": [
+        {
+          "attribute_id": "policy_name",
+          "attribute_label": "策略名称",
+          "example_content": [
+            "SLA 护栏下的利用率优先策略"
+          ]
+        },
+        {
+          "attribute_id": "applicable_scenario",
+          "attribute_label": "适用场景",
+          "example_content": [
+            "非应急维修"
+          ]
+        },
+        {
+          "attribute_id": "hard_constraints",
+          "attribute_label": "硬性约束",
+          "example_content": [
+            "必须具备技能且在班"
+          ]
+        },
+        {
+          "attribute_id": "ranking_preferences",
+          "attribute_label": "排序偏好",
+          "example_content": [
+            "SLA 风险、预计到达成本、负载均衡"
+          ]
+        },
+        {
+          "attribute_id": "guardrail_metrics",
+          "attribute_label": "护栏指标",
+          "example_content": [
+            "不增加加班、不牺牲应急缓冲"
+          ]
+        },
+        {
+          "attribute_id": "policy_status",
+          "attribute_label": "生效状态",
+          "example_content": [
+            "试运行"
+          ]
+        }
+      ]
+    },
+    {
+      "object_id": "dispatch_candidate",
+      "object_name": "DispatchCandidate",
+      "object_label": "派工候选",
+      "business_domain": {
+        "id": "dispatch_decisioning",
+        "label": "调度决策"
+      },
+      "object_category": {
+        "id": "candidate_object",
+        "label": "候选方案类"
+      },
+      "business_attributes": [
+        {
+          "attribute_id": "candidate_work_order",
+          "attribute_label": "候选工单",
+          "example_content": [
+            "WO-2026-0001"
+          ]
+        },
+        {
+          "attribute_id": "candidate_resource",
+          "attribute_label": "候选资源",
+          "example_content": [
+            "暖通技工张三"
+          ]
+        },
+        {
+          "attribute_id": "candidate_start_window",
+          "attribute_label": "候选开始窗口",
+          "example_content": [
+            "今日 15:30-16:30"
+          ]
+        },
+        {
+          "attribute_id": "match_reasons",
+          "attribute_label": "匹配理由",
+          "example_content": [
+            "技能匹配且同园区"
+          ]
+        },
+        {
+          "attribute_id": "estimated_arrival_cost",
+          "attribute_label": "预计到达成本",
+          "example_content": [
+            "从当前任务地点预计 12 分钟"
+          ]
+        },
+        {
+          "attribute_id": "business_risks",
+          "attribute_label": "业务风险",
+          "example_content": [
+            "可能压缩应急缓冲"
+          ]
+        },
+        {
+          "attribute_id": "candidate_status",
+          "attribute_label": "候选状态",
+          "example_content": [
+            "可推荐"
+          ]
+        }
+      ]
+    },
+    {
+      "object_id": "dispatch_decision",
+      "object_name": "DispatchDecision",
+      "object_label": "派工决策",
+      "business_domain": {
+        "id": "dispatch_decisioning",
+        "label": "调度决策"
+      },
+      "object_category": {
+        "id": "decision_object",
+        "label": "业务决策类"
+      },
+      "business_attributes": [
+        {
+          "attribute_id": "decision_work_order",
+          "attribute_label": "决策对象",
+          "example_content": [
+            "WO-2026-0001"
+          ]
+        },
+        {
+          "attribute_id": "selected_resource",
+          "attribute_label": "被选资源",
+          "example_content": [
+            "暖通技工张三"
+          ]
+        },
+        {
+          "attribute_id": "planned_start_window",
+          "attribute_label": "计划开始窗口",
+          "example_content": [
+            "今日 15:30-16:30"
+          ]
+        },
+        {
+          "attribute_id": "decision_method",
+          "attribute_label": "决策方式",
+          "example_content": [
+            "系统建议、人工确认"
+          ]
+        },
+        {
+          "attribute_id": "decision_reason",
+          "attribute_label": "业务理由",
+          "example_content": [
+            "满足 SLA 且同区域空闲"
+          ]
+        },
+        {
+          "attribute_id": "override_reason",
+          "attribute_label": "覆盖原因",
+          "example_content": [
+            "更熟悉该设备"
+          ]
+        },
+        {
+          "attribute_id": "decision_status",
+          "attribute_label": "决策状态",
+          "example_content": [
+            "已确认"
+          ]
+        }
+      ]
+    },
+    {
+      "object_id": "assignment",
+      "object_name": "Assignment",
+      "object_label": "派工责任",
+      "business_domain": {
+        "id": "dispatch_decisioning",
+        "label": "调度决策"
+      },
+      "object_category": {
+        "id": "commitment_object",
+        "label": "责任承诺类"
+      },
+      "business_attributes": [
+        {
+          "attribute_id": "assigned_work_order",
+          "attribute_label": "责任工单",
+          "example_content": [
+            "WO-2026-0001"
+          ]
+        },
+        {
+          "attribute_id": "responsible_resource",
+          "attribute_label": "责任资源",
+          "example_content": [
+            "暖通技工张三"
+          ]
+        },
+        {
+          "attribute_id": "committed_start_window",
+          "attribute_label": "承诺开始窗口",
+          "example_content": [
+            "今日 15:30-16:30"
+          ]
+        },
+        {
+          "attribute_id": "acceptance_status",
+          "attribute_label": "接受状态",
+          "example_content": [
+            "已接单"
+          ]
+        },
+        {
+          "attribute_id": "assignment_status",
+          "attribute_label": "责任状态",
+          "example_content": [
+            "执行中"
+          ]
+        },
+        {
+          "attribute_id": "change_reason",
+          "attribute_label": "变更原因",
+          "example_content": [
+            "紧急工单插入导致重排"
+          ]
+        }
+      ]
+    },
+    {
+      "object_id": "execution_record",
+      "object_name": "ExecutionRecord",
+      "object_label": "执行记录",
+      "business_domain": {
+        "id": "execution_feedback",
+        "label": "执行反馈"
+      },
+      "object_category": {
+        "id": "event_record",
+        "label": "事件记录类"
+      },
+      "business_attributes": [
+        {
+          "attribute_id": "work_order_reference",
+          "attribute_label": "对应工单",
+          "example_content": [
+            "WO-2026-0001"
+          ]
+        },
+        {
+          "attribute_id": "actual_start",
+          "attribute_label": "实际开始",
+          "example_content": [
+            "今日 15:42"
+          ]
+        },
+        {
+          "attribute_id": "actual_completion",
+          "attribute_label": "实际完成",
+          "example_content": [
+            "今日 16:35"
+          ]
+        },
+        {
+          "attribute_id": "execution_result",
+          "attribute_label": "执行结果",
+          "example_content": [
+            "已修复"
+          ]
+        },
+        {
+          "attribute_id": "exception_reason",
+          "attribute_label": "异常原因",
+          "example_content": [
+            "缺少配件"
+          ]
+        },
+        {
+          "attribute_id": "quality_feedback",
+          "attribute_label": "质量反馈",
+          "example_content": [
+            "客户确认正常"
+          ]
+        },
+        {
+          "attribute_id": "reassignment_result",
+          "attribute_label": "重派情况",
+          "example_content": [
+            "未重派"
+          ]
+        }
+      ]
+    },
+    {
+      "object_id": "dispatch_evaluation_snapshot",
+      "object_name": "DispatchEvaluationSnapshot",
+      "object_label": "调度评估快照",
+      "business_domain": {
+        "id": "strategy_evaluation",
+        "label": "策略评估"
+      },
+      "object_category": {
+        "id": "evidence_object",
+        "label": "证据类"
+      },
+      "business_attributes": [
+        {
+          "attribute_id": "evaluated_decision",
+          "attribute_label": "评估对象",
+          "example_content": [
+            "WO-2026-0001 的调度决策"
+          ]
+        },
+        {
+          "attribute_id": "decision_context",
+          "attribute_label": "决策现场",
+          "example_content": [
+            "决策时点快照"
+          ]
+        },
+        {
+          "attribute_id": "candidate_set",
+          "attribute_label": "候选集合",
+          "example_content": [
+            "3 个可推荐资源"
+          ]
+        },
+        {
+          "attribute_id": "policy_ranking",
+          "attribute_label": "策略排序",
+          "example_content": [
+            "张三第一，李四第二"
+          ]
+        },
+        {
+          "attribute_id": "final_selection",
+          "attribute_label": "最终选择",
+          "example_content": [
+            "张三 15:30 开始"
+          ]
+        },
+        {
+          "attribute_id": "execution_feedback",
+          "attribute_label": "执行反馈",
+          "example_content": [
+            "未逾期，耗时 53 分钟"
+          ]
+        },
+        {
+          "attribute_id": "evidence_completeness",
+          "attribute_label": "证据完整性",
+          "example_content": [
+            "候选、理由、结果齐全"
+          ]
+        }
+      ]
+    }
+  ]
+}

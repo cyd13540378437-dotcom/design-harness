@@ -1,4 +1,4 @@
-# Analysis Run 必须有 Decision Delta
+# Analysis Run 必须有 Choice Delta
 
 ## Given / 已知
 

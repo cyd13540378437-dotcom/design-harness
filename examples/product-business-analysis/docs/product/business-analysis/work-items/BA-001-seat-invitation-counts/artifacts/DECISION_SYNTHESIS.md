@@ -20,7 +20,7 @@ created_at: "2026-07-21T10:00:00Z"
 
 ## 模型到决策的可追踪性
 
-所有纳入综合的 Analysis Runs 均产生了可说明的 Decision Delta；低相关或重复内容未进入用户结论。
+所有纳入综合的 Analysis Runs 均产生了可说明的 Choice Delta；低相关或重复内容未进入用户结论。
 
 ## 当前推荐、成立条件与主要代价
 

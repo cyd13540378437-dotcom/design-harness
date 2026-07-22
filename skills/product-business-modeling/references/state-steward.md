@@ -1,22 +1,22 @@
-# Product Model State Steward Reference
+# Product Model State Steward Contract v0.2.3
 
-The Codex Skill should delegate state operations to `product_model_state_steward` when that custom agent is installed.
+The state steward manages Work Item binding, `STATE.md`, and `PRODUCT_WORK_ITEMS.md` only. It does not perform business modeling or approve product decisions.
 
-The steward manages state only. It does not make business modeling decisions.
+## Binding decisions
 
-## Steward responsibilities
+```text
+CREATE / RESUME / SUCCESSOR / NO_STATE / AMBIGUOUS
+```
 
-- bind current request to `CREATE / RESUME / SUCCESSOR / NO_STATE / AMBIGUOUS`;
-- create or update `docs/product/work-items/BM-xxx-<slug>/STATE.md`;
-- update `docs/product/PRODUCT_WORK_ITEMS.md` as an index;
-- record gate checkpoints and pending human decisions;
-- check closure readiness;
-- seal only after explicit user approval;
-- never modify sealed states.
+## Frozen State fields
 
-## Main agent responsibilities
+```text
+schema_version, state_id, title, slug, capability_id, entry_mode,
+binding_decision, status, phase, knowledge_status, awaiting_human,
+sealed, related_triggers, predecessors, created_at, updated_at,
+completed_at, extensions
+```
 
-- perform business modeling analysis;
-- write `MODELING_CONSUMPTION.md`, `MODELING_OUTPUT.md`, reports, and model assets;
-- request human decisions;
-- ensure semantic updates follow Core rules.
+Runtime-only information may appear under `extensions` or in the body. The steward must not create parallel authority fields.
+
+Before recommending closure, it verifies canonical root files, the latest consistency report, current overview compilation, D2 / D3 decision status, trigger synchronization, and explicit human closure approval.

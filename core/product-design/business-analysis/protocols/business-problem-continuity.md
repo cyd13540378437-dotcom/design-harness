@@ -1,44 +1,22 @@
-# Business Problem Continuity Contract / 商业问题连续性合同
+# Business Problem Continuity Contract / 商业问题连续性合同 v0.1.4
 
-## 1. 核心原则
-
-商业问题必须始终是对话主语；Decision Case、模型、证据和过程文件只能服务它。
-
-## 2. Decision Anchor
+商业问题必须始终是对话主语；Choice Set、Recommendation、Decision Scope 和 Choice Loop 必须持续可见。
 
 每轮保留：
 
 ```text
 原始业务问题
-已确认的决策问题
-决策所有者
-受影响业务参与者
-期望业务结果
-当前真实业务选项
-当前阻塞不确定性
+已确认决策问题
+Decision Scope 与明确非范围
+Choice Set
+当前推荐或已确认决定
+接受的代价
 证据边界
+改变推荐 / 重开决定的条件
+用户决定状态
+Choice Loop 状态
 ```
 
-## 3. Decision Delta Test
+分析阶段的提问或模型必须产生 Choice Delta。
 
-提问、模型或分析开始前回答：
-
-```text
-不同结果会让哪个选项更强、更弱、被排除或变成有条件成立？
-会不会改变风险、阈值、投入方式或是否继续？
-```
-
-若不会产生变化，则该问题或模型不应进入当前回合。
-
-## 4. 输出连续性
-
-最终结论必须重新陈述当前商业选择，并说明：
-
-```text
-本轮改变了什么
-仍然不知道什么
-为什么当前推荐成立
-什么会使推荐失效
-```
-
-最后一段不得以 Case、Work Item、模型或流程管理作为主语结束。
+Choice Loop 关闭后，普通澄清不再要求 Choice Delta；系统只检查是否保持原决策范围、是否概念级回答、是否避免实施下沉。

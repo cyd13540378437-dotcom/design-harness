@@ -1,8 +1,6 @@
 # 决策质量保障检查
 
-- Result：pass
-- 商业问题连续性：pass
-- 解法前提挑战：pass
-- Decision Delta：pass
-- 中文主输出：pass
-- Warning：缺少真实滥用率
+- Overall：pass
+- 政策方向：supported
+- 具体上限值：blocked
+- 推荐已由用户确认。

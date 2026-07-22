@@ -185,16 +185,23 @@ Default project templates must stay runtime-neutral. Runtime-specific files belo
 - Work Item state lives in `docs/product/work-items/BM-xxx/STATE.md`.
 - Passive triggers live in `docs/product/model-triggers/MT-xxx.md`.
 - `PRODUCT_WORK_ITEMS.md` is a navigation index, not the authoritative state source.
+- `docs/product/BUSINESS_MODEL_OVERVIEW.md` is the single default user-facing overview. It is compiled, not source of truth.
 
 ## Required behavior
 
 - Resolve the entry mode before modeling: `direct_modeling`, `passive_trigger`, `project_extraction`, `greenfield_modeling`, `consistency_validation`, or `downstream_compilation`.
+- Use canonical Work Item root files: `STATE.md`, `MODELING_CONSUMPTION.md`, `MODELING_OUTPUT.md`, and `DECISION_NOTES.md`.
+- Use the frozen Core State Schema; runtime metadata belongs in `extensions`.
 - Keep business attributes separate from data fields.
 - Keep `schema-view.json` limited to business objects, business domains, object categories, business attributes and example content.
+- Keep Dictionary / Index / Schema IDs aligned.
+- Use stable Action / State / Rule / Permission references.
+- Keep one lifecycle per business object and keep context-dependent values out of intrinsic object attributes.
 - Treat project extraction output as draft/provisional until confirmed.
-- Route D2/D3 decisions through human confirmation before writing or overriding confirmed semantics.
+- Route D2/D3 decisions through `BMD-xxx` human confirmation before writing or overriding confirmed semantics.
 - Use `model-triggers/` for upstream changes, downstream gaps, cross-cluster conflicts and internal discoveries.
 - Downstream views under `business-modeling/downstream-views/` are derived views and must not overwrite core model assets.
+- After Core writes, run consistency validation, compile `BUSINESS_MODEL_OVERVIEW.md`, then compile applicable downstream views.
 - Do not mark a business modeling Work Item or decision as sealed without explicit user approval.
 
 ## UX Business Model Context

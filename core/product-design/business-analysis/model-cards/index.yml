@@ -6,127 +6,160 @@ cards:
   category: core-decision
   path: core/assumption-mapping.yml
   status: ready
+  runtime_role: internal_control
 - id: counterfactual-opposition
   title: 反方分析 / 不做损失分析
   category: core-decision
   path: core/counterfactual-opposition.yml
   status: ready
+  runtime_role: internal_control
 - id: decision-assurance
   title: 决策质量保障
   category: core-decision
   path: core/decision-assurance.yml
   status: ready
+  runtime_role: internal_control
 - id: decision-routing
   title: 决策路由
   category: core-decision
   path: core/decision-routing.yml
   status: ready
+  runtime_role: internal_control
 - id: evidence-classification
   title: 证据分类
   category: core-decision
   path: core/evidence-classification.yml
   status: ready
+  runtime_role: internal_control
+- id: choice-set-construction
+  title: 选择空间构建
+  category: core-decision
+  path: core/choice-set-construction.yml
+  status: ready
+  runtime_role: internal_control
 - id: option-assessment
   title: 方案评估
   category: core-decision
   path: core/option-assessment.yml
   status: ready
+  runtime_role: internal_control
 - id: problem-framing
   title: 问题界定
   category: core-decision
   path: core/problem-framing.yml
   status: ready
+  runtime_role: internal_control
 - id: solution-premise-challenge
   title: 解法前提挑战
   category: core-decision
   path: core/solution-premise-challenge.yml
   status: ready
+  runtime_role: internal_control
 - id: validation-planning
   title: 验证计划
   category: core-decision
   path: core/validation-planning.yml
   status: ready
+  runtime_role: internal_control
 - id: bcg-matrix
   title: 波士顿矩阵
   category: portfolio-strategy
   path: professional/bcg-matrix.yml
   status: ready
+  runtime_role: professional_analysis
 - id: break-even-analysis
   title: 盈亏平衡分析
   category: finance-economics
   path: professional/break-even-analysis.yml
   status: ready
+  runtime_role: professional_analysis
 - id: customer-segmentation
   title: 客户细分分析
   category: customer-market
   path: professional/customer-segmentation.yml
   status: ready
+  runtime_role: professional_analysis
 - id: irr-analysis
   title: 内部收益率分析
   category: finance-economics
   path: professional/irr-analysis.yml
   status: ready
+  runtime_role: professional_analysis
 - id: jobs-to-be-done
   title: Jobs-to-be-Done 分析
   category: customer-market
   path: professional/jobs-to-be-done.yml
   status: ready
+  runtime_role: professional_analysis
 - id: npv-analysis
   title: 净现值分析
   category: finance-economics
   path: professional/npv-analysis.yml
   status: ready
+  runtime_role: professional_analysis
 - id: pestel
   title: PESTEL 宏观环境分析
   category: strategy-environment
   path: professional/pestel.yml
   status: ready
+  runtime_role: professional_analysis
 - id: porter-five-forces
   title: 波特五力分析
   category: strategy-competition
   path: professional/porter-five-forces.yml
   status: ready
+  runtime_role: professional_analysis
 - id: premortem
   title: 预演失败分析
   category: risk-management
   path: professional/premortem.yml
   status: ready
+  runtime_role: professional_analysis
 - id: raci
   title: RACI 责任分工分析
   category: process-operations
   path: professional/raci.yml
   status: ready
+  runtime_role: professional_analysis
 - id: risk-matrix
   title: 风险矩阵
   category: risk-management
   path: professional/risk-matrix.yml
   status: ready
+  runtime_role: professional_analysis
 - id: scenario-sensitivity
   title: 情景与敏感性分析
   category: finance-risk
   path: professional/scenario-sensitivity.yml
   status: ready
+  runtime_role: professional_analysis
 - id: sipoc-bottleneck
   title: SIPOC / 瓶颈分析
   category: process-operations
   path: professional/sipoc-bottleneck.yml
   status: ready
+  runtime_role: professional_analysis
 - id: swot-tows
   title: SWOT / TOWS 分析
   category: strategy
   path: professional/swot-tows.yml
   status: ready
+  runtime_role: professional_analysis
 - id: unit-economics
   title: 单位经济分析
   category: finance-economics
   path: professional/unit-economics.yml
   status: ready
+  runtime_role: professional_analysis
 - id: willingness-to-pay
   title: 支付意愿分析
   category: pricing-revenue
   path: professional/willingness-to-pay.yml
   status: ready
-registry_version: v0.1.2
+  runtime_role: professional_analysis
+registry_version: v0.1.4
 required_output_language: zh-CN
 required_usage_prompt_count: 7
-card_count: 25
+card_count: 26
+core_card_count: 10
+professional_card_count: 16

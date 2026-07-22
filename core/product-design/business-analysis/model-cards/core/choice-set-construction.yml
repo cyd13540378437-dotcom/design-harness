@@ -1,0 +1,74 @@
+schema_version: 1
+model_id: choice-set-construction
+title: 选择空间构建
+category: core-decision
+runtime_role: internal_control
+status: ready
+output_language: zh-CN
+purpose:
+- 在问题确认后尽早形成 provisional Choice Set。
+- 防止用户方案被当成唯一方案或系统等待全部证据后才提出选项。
+use_when:
+- 新 Decision Case 已完成问题确认。
+- 新证据可能新增、排除或重开选项。
+- 当前回答只剩“信息不足”或“请补材料”。
+avoid_when:
+- 纯记录型输入，不涉及任何选择。
+decision_questions:
+- 当前真正有哪些现实选项？
+- 是否包含不做、更小路径、替代方案和更高投入方案？
+- 哪个选项当前最值得推荐？
+required_inputs:
+- 已确认的决策问题
+- 用户提出的候选方案（若有）
+- 当前已知约束
+minimum_viable_inputs:
+- 已确认的问题和至少一个候选路径
+outputs:
+- provisional Choice Set
+- 选项生命周期状态
+- 初始推荐候选
+- 改变推荐的条件
+case_fields_updated:
+- Decision Core / Choice Set
+- Decision Core / 当前推荐
+interaction_prompts:
+- 当前除了你提出的方案，还存在不做、更小路径或替代方案吗？
+usage_prompts:
+  decision_relevance_prompt: 若当前 Case 尚无清楚 Choice Set，或新输入可能改变选项空间，则使用本控制。输出必须直接改变 Choice Set 或推荐；否则停止。 若 choice_loop_status=closed，除正式
+    review_signal 外必须停止使用本模型；不得越过 Decision Scope Lock；不得生成实施步骤、正式 Schema、公式权重、样例数据、代码或执行提议。
+  routing_prompt: 这是内部控制，默认直接更新 Decision Case，不单独创建 Analysis Run。 若 choice_loop_status=closed，除正式 review_signal 外必须停止使用本模型；不得越过
+    Decision Scope Lock；不得生成实施步骤、正式 Schema、公式权重、样例数据、代码或执行提议。
+  user_input_prompt: '仅当一个答案会决定某个选项是否存在时，最多向用户提出一个中文确认问题。
+
+    '
+  execution_prompt: 从当前问题出发生成现实选项。按需包含用户方案、维持现状、更小路径、替代方案和更高投入方案。不得机械凑数。 若 choice_loop_status=closed，除正式 review_signal 外必须停止使用本模型；不得越过
+    Decision Scope Lock；不得生成实施步骤、正式 Schema、公式权重、样例数据、代码或执行提议。
+  analysis_run_prompt: quick/standard 默认直接更新 Choice Core；deep/audit 时才记录独立运行。必须写明新增、排除或条件化的 Choice Delta。 作为 internal_control，quick
+    / standard 默认直接更新 Decision Case 或中央综合，不强制创建独立 Analysis Run；仅 deep / audit 或确有独立审计价值时落盘。
+  conclusion_prompt: 只向中央综合器返回 Choice Set、初始推荐候选、接受代价和改变推荐的条件，不直接向用户收尾。 向中央综合器返回受影响选项、推荐候选、接受的代价、证据边界和改变推荐的条件。 若 choice_loop_status=closed，除正式
+    review_signal 外必须停止使用本模型；不得越过 Decision Scope Lock；不得生成实施步骤、正式 Schema、公式权重、样例数据、代码或执行提议。
+  misuse_guard_prompt: 检查假二选一、单一方案、通用元选项替代真实业务选项，以及未给出推荐候选。 检查是否用 Assurance 替代 Recommendation，或因证据不足只要求用户补材料而没有给出当前现实路径。 若
+    choice_loop_status=closed，除正式 review_signal 外必须停止使用本模型；不得越过 Decision Scope Lock；不得生成实施步骤、正式 Schema、公式权重、样例数据、代码或执行提议。
+common_misuses:
+- 机械生成 A/B/C/D
+- 把补证据当成唯一选项
+- 不包含用户原方案
+- 不给初始推荐
+quality_checks:
+- 选项是否真实可执行
+- 是否避免假二选一
+- 是否有当前推荐候选
+- 是否说明改变推荐的条件
+- 是否形成或更新了真实 Choice Set
+- 是否产生可说明的 Choice Delta
+- 是否向中央综合器提供推荐候选与改变推荐的条件
+- Choice Loop 关闭后是否停止运行模型
+- 是否遵守 Decision Scope Lock
+- 是否避免实施产物与执行提议
+combines_well_with:
+- option-assessment
+- solution-premise-challenge
+- counterfactual-opposition
+example_analysis_run:
+- ARCOS 缺少排班和策略规则时，形成先采数据、合成实验、规则测试和双轨冷启动四个选项，并推荐双轨冷启动。

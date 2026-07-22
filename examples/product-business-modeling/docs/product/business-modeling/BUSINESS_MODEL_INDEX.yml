@@ -1,0 +1,88 @@
+schema_version: 1
+business_model_version: v0.1-provisional
+status: provisional
+default_user_view:
+  id: business_model_overview
+  path: ../BUSINESS_MODEL_OVERVIEW.md
+  audience: product_owner
+  is_source_of_truth: false
+  status: current
+consistency:
+  status: passed
+  report: ../work-items/BM-001-seat-pricing-impact/artifacts/MODEL_CONSISTENCY_REPORT.md
+  checked_at: '2026-07-22T00:00:00Z'
+business_domains:
+- id: organization_membership
+  status: confirmed
+  source: business-dictionary.yml
+- id: billing_governance
+  status: confirmed
+  source: business-dictionary.yml
+business_objects:
+- id: workspace
+  status: confirmed
+  source: domain-objects/workspace.md
+- id: member
+  status: confirmed
+  source: domain-objects/member.md
+- id: invitation
+  status: confirmed
+  source: domain-objects/invitation.md
+- id: billing_account
+  status: confirmed
+  source: domain-objects/billing-account.md
+- id: seat
+  status: provisional
+  source: domain-objects/seat.md
+relationships:
+- id: rel_workspace_billing_account
+  status: confirmed
+  source: relationships/relationship-map.md
+- id: rel_workspace_seat
+  status: provisional
+  source: relationships/relationship-map.md
+- id: rel_member_seat
+  status: provisional
+  source: relationships/relationship-map.md
+actions:
+- id: act_adjust_seat_capacity
+  status: provisional
+  source: actions/action-command-catalog.md
+- id: act_accept_invitation
+  status: confirmed
+  source: actions/action-command-catalog.md
+- id: act_occupy_seat
+  status: provisional
+  source: actions/action-command-catalog.md
+- id: act_release_seat
+  status: provisional
+  source: actions/action-command-catalog.md
+states:
+- id: seat_available
+  status: provisional
+  source: states/state-lifecycle-model.md
+- id: seat_reserved
+  status: provisional
+  source: states/state-lifecycle-model.md
+- id: seat_occupied
+  status: provisional
+  source: states/state-lifecycle-model.md
+- id: seat_released
+  status: provisional
+  source: states/state-lifecycle-model.md
+rules:
+- id: rule_member_requires_available_seat
+  status: provisional
+  source: rules/business-rules.md
+- id: rule_history_survives_member_removal
+  status: confirmed
+  source: rules/business-rules.md
+permissions:
+- id: permission_adjust_seat_capacity
+  status: provisional
+  source: rules/permission-policy.md
+downstream_views: []
+open_triggers:
+- id: MT-001
+  status: awaiting_human
+  source: ../model-triggers/MT-001-seat-pricing-model.md

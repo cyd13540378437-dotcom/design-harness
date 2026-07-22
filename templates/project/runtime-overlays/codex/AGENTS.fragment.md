@@ -1,14 +1,11 @@
-# Product Business Modeling Core
+# Product Business Modeling Core v0.2.3
 
-Use the `product-business-modeling` Core for business model tasks.
+Use the installed `product-business-modeling` adapter for durable product business semantics.
 
-## Required behavior
-
-- Treat `docs/product/business-modeling/` as the business model source of truth.
-- Use `docs/product/model-triggers/` for passive triggers; do not create `model-requests/`.
-- For each substantial modeling task, create or resume a BM Work Item under `docs/product/work-items/`.
-- Preserve the distinction between business attributes and data fields.
-- Do not write database fields into core business model assets.
-- Do not confirm D2/D3 product semantics without explicit human decision.
-- Do not seal a task or decision without explicit user approval.
-- When compiling downstream views, write only to `downstream-views/*`.
+- Default user entry: `docs/product/BUSINESS_MODEL_OVERVIEW.md`.
+- Detailed source of truth remains under `docs/product/business-modeling/`.
+- Use canonical Work Item root files and the frozen State Schema.
+- Do not substitute custom summaries for `MODELING_OUTPUT.md` or the overview.
+- After every persistent Core write: consistency validation → overview compilation → applicable downstream views.
+- D2 / D3 decisions use `BMD-xxx`; AI does not auto-confirm or seal.
+- Business Modeling must not directly modify `docs/design/**`.

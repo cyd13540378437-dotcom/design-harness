@@ -1,0 +1,202 @@
+schema_version: 1
+business_model_version: v0.1-provisional
+status: provisional
+business_domains:
+- id: organization_membership
+  label: 组织与成员
+  description: 工作区中的成员身份、邀请和加入过程。
+  status: confirmed
+- id: billing_governance
+  label: 计费治理
+  description: 席位容量、占用资格和计费责任。
+  status: confirmed
+object_categories:
+- id: context_object
+  label: 业务上下文类
+  description: 承载其他对象共同存在的业务边界。
+  status: confirmed
+- id: participant_identity
+  label: 参与者身份类
+  description: 表达人在特定业务上下文中的身份。
+  status: confirmed
+- id: process_record
+  label: 流程记录类
+  description: 表达尚未完成的业务意图或过程。
+  status: confirmed
+- id: governance_account
+  label: 治理账户类
+  description: 承担容量和计费责任的治理对象。
+  status: confirmed
+- id: entitlement_object
+  label: 资格单位类
+  description: 表达可被分配、占用和释放的业务资格。
+  status: provisional
+business_objects:
+- id: workspace
+  name: Workspace
+  label: 工作区
+  definition: 成员协作与席位容量共同生效的业务边界。
+  business_domain_id: organization_membership
+  object_category_id: context_object
+  status: confirmed
+- id: member
+  name: Member
+  label: 成员
+  definition: 已加入某个工作区并拥有业务参与资格的人。
+  business_domain_id: organization_membership
+  object_category_id: participant_identity
+  status: confirmed
+- id: invitation
+  name: Invitation
+  label: 邀请
+  definition: 邀请某人加入工作区、但尚未完成成员建立的业务过程。
+  business_domain_id: organization_membership
+  object_category_id: process_record
+  status: confirmed
+- id: billing_account
+  name: BillingAccount
+  label: 计费账户
+  definition: 为工作区承担席位容量与计费责任的治理对象。
+  business_domain_id: billing_governance
+  object_category_id: governance_account
+  status: confirmed
+- id: seat
+  name: Seat
+  label: 席位
+  definition: 候选业务对象；表达可被预留、占用和释放的计费资格单位。
+  business_domain_id: billing_governance
+  object_category_id: entitlement_object
+  status: provisional
+business_attributes:
+- id: workspace_membership_boundary
+  object_id: workspace
+  label: 成员资格边界
+  meaning: 哪些成员和邀请属于该工作区。
+  attribute_kind: intrinsic
+  example_content:
+  - 设计团队工作区
+  status: confirmed
+- id: member_participation_status
+  object_id: member
+  label: 参与状态
+  meaning: 成员是否仍在工作区中有效参与。
+  attribute_kind: intrinsic
+  example_content:
+  - 有效
+  - 已移除
+  status: confirmed
+- id: invitation_progress
+  object_id: invitation
+  label: 邀请进展
+  meaning: 邀请当前处于等待、接受、失效或取消状态。
+  attribute_kind: intrinsic
+  example_content:
+  - 等待接受
+  - 已接受
+  - 已失效
+  status: confirmed
+- id: billing_basis
+  object_id: billing_account
+  label: 计费依据
+  meaning: 当前计费责任按席位容量计算。
+  attribute_kind: intrinsic
+  example_content:
+  - 按席位
+  status: confirmed
+- id: seat_occupancy_status
+  object_id: seat
+  label: 席位占用状态
+  meaning: 席位当前是否可用、预留、占用或释放。
+  attribute_kind: intrinsic
+  example_content:
+  - 可用
+  - 预留
+  - 已占用
+  - 已释放
+  status: provisional
+- id: seat_current_holder
+  object_id: seat
+  label: 当前占用者
+  meaning: 当前与席位形成占用关系的成员；这是关系型业务属性，不是单纯固有值。
+  attribute_kind: relational
+  example_content:
+  - 成员李明
+  status: provisional
+actions:
+- id: act_adjust_seat_capacity
+  label: 调整席位容量
+  actor_type: role
+  actor_ids:
+  - billing_admin
+  target_object_id: billing_account
+  meaning: 增加或减少工作区可用的席位资格单位。
+  status: provisional
+- id: act_accept_invitation
+  label: 接受邀请
+  actor_type: role
+  actor_ids:
+  - invited_person
+  target_object_id: invitation
+  meaning: 接受加入工作区的邀请。
+  status: confirmed
+- id: act_occupy_seat
+  label: 占用席位
+  actor_type: system
+  actor_ids:
+  - system
+  target_object_id: seat
+  meaning: 在成员加入成功时形成成员与席位的占用责任。
+  status: provisional
+- id: act_release_seat
+  label: 释放席位
+  actor_type: system
+  actor_ids:
+  - system
+  target_object_id: seat
+  meaning: 在成员不再占用资格时释放席位。
+  status: provisional
+states:
+- id: seat_available
+  object_id: seat
+  label: 可用
+  meaning: 席位可以被新的成员资格占用。
+  status: provisional
+- id: seat_reserved
+  object_id: seat
+  label: 预留
+  meaning: 席位暂时为某个加入过程保留；是否采用仍待确认。
+  status: provisional
+- id: seat_occupied
+  object_id: seat
+  label: 已占用
+  meaning: 席位已与有效成员形成占用关系。
+  status: provisional
+- id: seat_released
+  object_id: seat
+  label: 已释放
+  meaning: 历史占用已经结束，资格可重新进入可用状态。
+  status: provisional
+roles:
+- id: billing_admin
+  label: 计费管理员
+  meaning: 对席位容量和计费责任有治理权限的人。
+  status: confirmed
+- id: workspace_admin
+  label: 工作区管理员
+  meaning: 管理成员和邀请的人。
+  status: confirmed
+- id: invited_person
+  label: 受邀者
+  meaning: 可以接受或拒绝邀请的人。
+  status: confirmed
+- id: system
+  label: 系统参与者
+  meaning: 根据已确认业务规则执行资格占用和释放的系统角色。
+  status: confirmed
+terms_not_to_use:
+- term: 席位数字段
+  reason: 将业务资格对象误写成技术字段，丢失生命周期与责任语义。
+  preferred_term: 席位容量或席位对象
+- term: 成员就是席位
+  reason: 成员身份与计费资格不是同一个业务对象。
+  preferred_term: 成员占用席位

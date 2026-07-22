@@ -1,51 +1,64 @@
 ---
 capability_id: product-business-analysis
 display_name: 商业分析能力集群
-version: v0.1.2-alpha
+version: v0.1.4-alpha
 status: implementation-ready
 primary_language: zh-CN
 agent_neutral: true
 standalone: true
-created_at: 2026-07-21
+created_at: 2026-07-22
 ---
 
 # 商业分析能力集群（`product-business-analysis`）
 
 ## 1. 定位
 
-商业分析帮助用户在业务情境中形成、管理和复审选择。它以 Decision Case 为基本单位，通过证据分类、专业分析模型、反方分析、质量保障和人类确认，把模糊输入推进为可行动、可验证、可复审的业务决定。
+商业分析围绕业务情境中的选择，建立、维护和复审 Decision Case。它不是报告生成器，也不是下游生产线。
 
-> 决策最终表现为选择；高质量分析的职责，是先形成真实选择空间，再帮助用户理解每个选择的后果。
+> 选择是核心对象；Decision Case 是选择过程的容器；证据与专业模型用于改变选项、后果、推荐和置信度；用户保留最终决定权。
 
-## 2. v0.1.2 的核心能力
-
-```text
-多轮对话状态续接
-商业问题连续性与 Decision Anchor
-用户解法前提挑战
-分析深度控制
-下一最有决策价值的问题
-模型到决策的 Decision Delta
-单一中央决策综合
-中文优先输出
-```
-
-## 3. 独立性边界
-
-本能力可以独立安装、独立运行、独立维护资产、独立结束。
-
-当前版本不包含：
+## 2. v0.1.4 核心修正
 
 ```text
-跨模块 Trigger
-跨模块影响传播
-下游视图
-自动 Handoff
-自动启动其他能力
-共享 Work Item 状态目录
+Mixed-turn Interpretation
+Choice Loop Closure
+Decision Scope Lock
+Post-decision Clarification
+Artifact Boundary Gate
+No Execution Offer
+State Enum Enforcement
 ```
 
-## 4. 三层架构
+v0.1.3 解决“必须给出选择”的问题；v0.1.4 解决“选择已经完成后必须及时停止”的问题。
+
+## 3. 第一性输出
+
+一次有效商业分析结束时，用户至少知道：
+
+```text
+当前要选择什么；
+有哪些现实选项；
+每个选项的后果；
+系统当前推荐什么；
+推荐依赖什么；
+什么会改变推荐；
+用户已经接受、拒绝、修改或暂缓了什么。
+```
+
+当用户确认选择后，系统还必须知道：
+
+```text
+原 Choice Loop 已关闭；
+哪些内容可以继续做概念澄清；
+哪些请求已经进入实施或其他工作边界；
+什么新证据才允许正式重开。
+```
+
+## 4. 独立性
+
+本能力独立安装、独立运行、独立维护资产、独立结束。当前不依赖 `motivation-analysis` 或任何兄弟模块，也不产生跨模块 Trigger、Handoff 或 Downstream View。
+
+## 5. 三层架构
 
 ```text
 DesignHarnessAgent Core
@@ -55,50 +68,33 @@ Agent Runtime Adapters
 Project Knowledge Assets
 ```
 
-## 5. 五个运行域
-
-1. **统筹与路由**：输入理解、Follow-up 恢复、Case 路由、深度选择和下一决策问题。
-2. **核心决策分析**：Decision Case、模型选择、Analysis Runs、选项与权衡、反方分析。
-3. **复审、风险与决策记忆**：验证、复审、Decision Network 和历史追踪。
-4. **材料接收、项目提取与质量保障**：证据接收、项目提取、Decision Assurance、连续性检查。
-5. **Human Decision Control Plane**：D0–D3 分级、确认、替代、废弃和封存。
-
-`Passive Trigger Interface` 仍然不在本版本中。
-
 ## 6. 核心产物
 
-- `Decision Case`：长期权威决策对象，固定 16 个语义字段。
-- `Decision Summary`：面向用户的中文阶段性结论，必须绑定 Case、Assurance 和用户决定状态。
-- `Decision Process Package`：本次分析过程压缩包。
-- `Decision Network`：Decision Case 之间的关系。
-- `Decision Review`：新证据或新环境下的正式复审。
+- `Decision Case`：带 Decision Scope Lock 与 Choice Loop 状态的长期权威决策对象。
+- `Decision Summary`：根据 `choice_request / decision_confirmed / post_decision_clarification / review` 模式生成的中文结论。
+- `Analysis Workspace`：真正影响 Choice Set 的专业分析内容。
+- `Decision Notes`：用户明确决定、接受代价和选择闭环依据。
+- `Decision Network`：决策之间的依赖、影响、冲突、替代和重开关系。
+- `Decision Review`：基于新证据或新约束的正式复审。
 
-## 7. 中文输出合同
+## 7. 决策边界
 
-- 用户可见对话默认使用简体中文。
-- 所有项目 Markdown 输出必须提供简体中文内容。
-- 机器 YML / JSON 可使用英文键，但面向人的标题、摘要、结论必须有中文值。
-- 英文运行时说明可以存在，但不得替代中文项目资产或中文用户结论。
+商业分析可以输出：业务选项、专业推荐、后果、证据边界、验证路径的目的与层级、升级与复审条件。
+
+商业分析不得输出或主动执行：操作手册、字段 Schema、评分公式与权重、样例数据、脚本、UI、技术架构、实现任务拆分、代跑实验或模拟。
 
 ## 8. 核心硬规则
 
-1. 每个新 Case 完整保存第一次输入原文。
-2. 输入理解确认前不得做实质推荐，除非问题低歧义、低影响且明确标记 provisional。
-3. 活动 BA Work Item 存在时，后续每轮先恢复状态再回答。
-4. 每轮维护 Decision Anchor；模型与问题必须服务当前业务选择。
-5. 用户提出具体解法时，先挑战解法前提，不把解法当成问题本身。
-6. 每个模型运行必须说明 `decision_relevance` 和 `decision_delta`。
-7. 模型卡不得各自直接向用户生成最终结论；只有中央决策综合器可以收尾。
-8. 按 `quick / standard / deep` 选择分析深度。
-9. 最终摘要必须绑定 Decision Case ID、Assurance、结论状态和用户决定状态。
-10. 商业分析不得无提示滑入产品范围、数据结构、UI 或技术实现设计。
-11. 过程文件必须进入 `artifacts/`；不得创建临时 `intake/` 目录。
-12. 不得跨模块读写、触发或编译资产。
-
-## 9. 模型卡注册表
-
-当前包含 25 张 ready 模型卡（9 张 Core、16 张 Professional），每张卡有 7 个 usage prompts。
-
-## 10. 多轮续接落盘原则
-
-状态恢复是每轮强制运行时行为，但文件生成按深度控制：`quick` 可只更新 `STATE.md`；`standard / deep`、总结、决定、复审、范围变化或连续性风险时，更新同一个滚动的 `TURN_CONTINUITY_CHECK.md`。
+1. 完整保存第一次输入。
+2. 问题确认后尽早形成 provisional Choice Set。
+3. 阶段性结论必须给出当前推荐。
+4. 证据和模型必须产生 Choice Delta。
+5. 缺少信息时仍提供现实路径，不得草草收场。
+6. 同一轮可同时包含决定信号和澄清请求，必须分别解释。
+7. 用户明确确认后关闭原 Choice Loop。
+8. 决定后的澄清不得静默下沉为实施设计。
+9. 不得主动提出生成样例、写脚本、跑模拟或实现产品。
+10. 所有 State 必须使用固定 phase / gate 枚举。
+11. `acknowledged ≠ confirmed`，但明确的指代性接受可以构成确认。
+12. 所有人读输出必须有完整中文版本。
+13. 商业分析不得跨模块读写或触发。

@@ -38,6 +38,7 @@ resolved_at: ""
 - Status:
 - Resolved by BM Work Item:
 - Impact Report:
+- User Overview: `docs/product/BUSINESS_MODEL_OVERVIEW.md`
 - Human Decision Required:
 - Summary:
 - Dismissed or Superseded Reason:

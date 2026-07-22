@@ -1,91 +1,48 @@
 ---
 name: product-business-modeling
-description: Build, update, validate, or compile DesignHarnessAgent business models. Use for business objects, business attributes, business dictionary, schema-view, relationships, actions, states, rules, permissions, model triggers, model impact reports, project extraction, consistency validation, downstream views, or UX/business-model alignment. Do not use for pure UI styling, database implementation, API coding, or generic PRD writing.
+description: Build, update, validate, or compile DesignHarnessAgent business models. Use for business objects, business attributes, dictionary/schema views, relationships, actions, states, rules, permissions, model triggers, impact reports, project extraction, consistency validation, the default business-model overview, downstream views, or UX/business-model alignment. Do not use for pure UI styling, database implementation, API coding, or generic PRD writing.
 ---
 
 # Product Business Modeling Skill
 
-This is the **Codex runtime adapter** for the DesignHarnessAgent `product-business-modeling` Core capability.
+This is the **Codex runtime adapter** for the Agent-neutral DesignHarnessAgent `product-business-modeling` Core.
 
-It is a thin facade. It must not redefine the Core semantics. It makes the Core callable inside Codex by providing:
+## Core authority
 
-- a selectable / implicitly invokable Codex Skill;
-- a deterministic loading order for business-modeling protocols;
-- Work Item state handling rules;
-- a safe path from user request to project knowledge assets.
-
-## Core boundary
-
-Business Modeling is Agent-neutral Core. Codex is only a runtime adapter.
-
-The authoritative business-modeling knowledge in a target project lives in:
+Read and follow:
 
 ```text
-docs/product/business-modeling/
-docs/product/model-triggers/
-docs/product/work-items/
-docs/product/PRODUCT_WORK_ITEMS.md
+core/product-design/business-modeling/CAPABILITY.md
+core/product-design/business-modeling/protocols/business-model-overview.md
+core/product-design/business-modeling/protocols/work-item-file-contract.md
+core/product-design/business-modeling/protocols/canonical-model-asset-contracts.md
+core/product-design/business-modeling/protocols/human-decision-control-plane.md
+core/product-design/business-modeling/protocols/validation-and-evals.md
 ```
 
-Do not treat `.codex/`, `.agents/`, this Skill directory, or any prompt file as business-model source of truth.
+Codex is a runtime facade. Project business-model knowledge remains under `docs/product/**`.
 
-## When to use this Skill
+## Default user-facing file
 
-Use this Skill when the user asks to:
+```text
+docs/product/BUSINESS_MODEL_OVERVIEW.md
+```
 
-- create, update, or validate a business model;
-- define business objects, business attributes, domains, or object categories;
-- build or update `business-dictionary.*` or `schema-view.*`;
-- model object relationships, business actions, state lifecycles, rules, or permissions;
-- respond to a `docs/product/model-triggers/MT-xxx.md` trigger;
-- produce `MODEL_IMPACT_REPORT.md`;
-- extract provisional business model knowledge from an existing project;
-- compile downstream views for product expression, requirements, database, backend, frontend, QA, or UX;
-- check whether UX / Design Engineering has a business-model gap or conflict.
-
-Do not use this Skill for:
-
-- pure visual styling or UI implementation;
-- generic product brainstorming that does not need durable business-model assets;
-- database migration, API generation, or backend implementation;
-- changing sealed UX / Design Engineering Work Items;
-- changing `docs/design/reference-library/**` or Color Card Registry assets.
+Read it first when present. It is the only default file shown to ordinary users, but it is a derived view, not source of truth.
 
 ## Required startup sequence
 
-For any stateful business-modeling task:
+For stateful business-modeling work:
 
-1. Read applicable project `AGENTS.md` instructions.
-2. Check whether the target project has:
-
-   ```text
-   docs/product/PRODUCT_WORK_ITEMS.md
-   docs/product/business-modeling/
-   docs/product/model-triggers/
-   docs/product/work-items/
-   ```
-
-3. Read the relevant lightweight project assets first:
-
-   ```text
-   docs/product/PRODUCT_WORK_ITEMS.md
-   docs/product/business-modeling/BUSINESS_MODEL_INDEX.md
-   docs/product/business-modeling/BUSINESS_MODEL_INDEX.yml
-   docs/product/business-modeling/business-dictionary.md
-   docs/product/business-modeling/business-dictionary.yml
-   docs/product/business-modeling/schema-view.json
-   docs/product/business-modeling/schema-view.md
-   ```
-
-4. If available, explicitly delegate Work Item binding and state updates to `product_model_state_steward`.
-5. If the steward is unavailable, perform the same state rules in the main thread and say so in the final summary.
-6. Classify the request into one primary entry mode.
-7. Read only the additional source-of-truth files required by that entry mode.
-8. Write proposed updates to the correct Work Item artifacts before changing long-lived source-of-truth assets.
+1. Read project `AGENTS.md` and runtime-resolution metadata.
+2. Read `docs/product/BUSINESS_MODEL_OVERVIEW.md` if present.
+3. Read `docs/product/PRODUCT_WORK_ITEMS.md` and semantically relevant unsealed `STATE.md` files.
+4. Explicitly delegate Work Item binding and state writes to `product_model_state_steward` when installed.
+5. If the steward is unavailable, apply the same frozen state contract in the main thread and record that fact only under `extensions` or in the State body.
+6. Select one primary entry mode.
+7. Load only the detailed model assets required by the task.
 
 ## Entry modes
-
-Every run must choose one primary entry mode:
 
 ```text
 direct_modeling
@@ -96,17 +53,9 @@ consistency_validation
 downstream_compilation
 ```
 
-Multiple modes may be chained, but the primary mode must stay clear in `STATE.md` and `MODELING_CONSUMPTION.md`.
+## Work Item identity
 
-## Work Item state rules
-
-A business-modeling Work Item lives at:
-
-```text
-docs/product/work-items/BM-xxx-<slug>/STATE.md
-```
-
-Use the same five state binding decisions as the wider Harness pattern:
+State binding returns exactly one of:
 
 ```text
 CREATE
@@ -116,96 +65,119 @@ NO_STATE
 AMBIGUOUS
 ```
 
-Do not create a Work Item for a read-only explanation with no durable modeling value.
+Do not create state for a read-only explanation. Do not resume sealed history. In `AMBIGUOUS`, do not write candidate states.
 
-Do not resume a sealed Work Item. Create a successor instead.
+## Canonical Work Item files
+
+Every durable Work Item at `docs/product/work-items/BM-xxx-<slug>/` has:
+
+```text
+STATE.md
+MODELING_CONSUMPTION.md
+MODELING_OUTPUT.md
+DECISION_NOTES.md
+```
+
+Standard reports live under `artifacts/`:
+
+```text
+SOURCE_EVIDENCE.md
+MODEL_EXTRACTION_REPORT.md
+MODEL_CONSISTENCY_REPORT.md
+MODEL_IMPACT_REPORT.md
+```
+
+The four root files always exist. Artifact applicability follows the Core protocol. Never move `MODELING_CONSUMPTION.md` into `artifacts/`; never use `PROPOSED_MODEL.md` or `EVIDENCE_AND_ASSUMPTIONS.md` as substitutes.
+
+## Frozen State Schema
+
+Use the exact Core fields:
+
+```text
+schema_version
+state_id
+title
+slug
+capability_id
+entry_mode
+binding_decision
+status
+phase
+knowledge_status
+awaiting_human
+sealed
+related_triggers
+predecessors
+created_at
+updated_at
+completed_at
+extensions
+```
+
+Runtime details belong only in `extensions` or the body. Do not replace Core fields with `primary_entry_mode`, `awaiting_user`, `gate`, `model_status`, `semantic_confirmation_status`, `state_steward`, or other authority flags.
 
 ## Human Decision Control Plane
 
-You may generate `draft` and `provisional` content automatically.
+AI may write `draft` and `provisional`; it must not silently confirm D2 / D3 semantics.
 
-You must not silently upgrade high-impact semantics to `confirmed`.
-
-You must request human confirmation before confirming or overwriting semantics that affect:
-
-- business object identity;
-- core object relationships;
-- business actions;
-- state lifecycles;
-- business rules or permissions;
-- responsibility, audit, compliance, or billing;
-- substantial model refactoring;
-- source-of-truth replacement;
-- sealing, deprecating, or superseding important model assets.
-
-When a human decision is needed, use the format in `references/core-contract.md` and write the decision or pending decision to:
+Use stable `BMD-xxx` IDs. Before asking the user, provide:
 
 ```text
-docs/product/work-items/BM-xxx-<slug>/DECISION_NOTES.md
+当前理解
+为什么重要
+2–3 个方案
+每个方案的优点与代价
+推荐
+用户可直接回复的选项
 ```
 
-## Source-of-truth writing rules
+Write the full record to `DECISION_NOTES.md` and compile the decision compression into `BUSINESS_MODEL_OVERVIEW.md`.
 
-Only write durable source-of-truth files after:
+## Canonical model contracts
 
-1. the Work Item is bound;
-2. evidence and assumptions are captured;
-3. high-impact decisions have been resolved or marked provisional;
-4. the target file ownership is clear.
-
-Core source-of-truth files:
-
-```text
-business-dictionary.*
-schema-view.*
-domain-objects/*
-relationships/*
-actions/*
-states/*
-rules/*
-roadmap/*
-risks/*
-downstream-views/*
-```
-
-`downstream-views/*` are derived views. They are not source of truth.
-
-## Business attribute rule
-
-Business Modeling Core has **business attributes**, not data fields.
-
-Never put database columns, API parameters, ORM fields, TypeScript properties, storage types, or persistence strategies into core model assets.
-
-Technical mappings may appear only in downstream views such as `database-view.md`, `backend-view.md`, or `frontend-view.md`, and must be labeled as derived mapping suggestions.
-
-## `schema-view.json` boundary
-
-`schema-view.json` may only answer:
-
-1. what business objects exist;
-2. each object's business domain;
-3. each object's object category;
-4. each object's business attributes;
-5. example content for each business attribute.
-
-It must not include relationships, actions, states, rules, permissions, database fields, field types, APIs, persistence, future risk, or downstream implementation details.
+- Core uses business attributes, not database fields.
+- `business-dictionary.yml` registers domains, categories, objects, attributes, actions, states, roles and prohibited technical terms.
+- `BUSINESS_MODEL_INDEX.yml` registers existing assets and the default user view.
+- `schema-view.json` uses only the frozen object/domain/category/attribute/example structure.
+- All cross-file references use stable IDs.
+- Actions include actor, target, preconditions and effects.
+- State transitions reference existing Action IDs.
+- One lifecycle belongs to one business object; cross-object creation is explicit.
+- Slash or compound object identities remain provisional or require D2 confirmation.
+- Context-dependent values are not intrinsic object attributes.
 
 ## Passive trigger handling
 
 For `docs/product/model-triggers/MT-xxx.md`:
 
-1. Triage and deduplicate the trigger.
+1. Triage and deduplicate.
 2. Bind or create a BM Work Item.
-3. Write `MODEL_IMPACT_REPORT.md` under the Work Item artifacts.
-4. Identify safe automatic updates and high-impact human decisions.
-5. Update source-of-truth assets only after decision boundaries are clear.
-6. Recompile relevant downstream views.
-7. Update the trigger resolution.
-8. Create follow-up triggers only when another cluster must respond.
+3. Write `artifacts/MODEL_IMPACT_REPORT.md`.
+4. Identify safe provisional updates and D2 / D3 decisions.
+5. Update the correct source-of-truth owners.
+6. Run consistency validation.
+7. Refresh the business-model overview and affected downstream views.
+8. Update trigger resolution and emit follow-up triggers only when another cluster must respond.
+
+## Mandatory post-write sequence
+
+After any persistent Core write, including Greenfield Modeling:
+
+```text
+write detailed source-of-truth assets
+→ write artifacts/MODEL_CONSISTENCY_REPORT.md
+→ fix or expose errors
+→ compile docs/product/BUSINESS_MODEL_OVERVIEW.md
+→ compile requested downstream views
+→ update MODELING_OUTPUT.md
+→ update STATE.md
+```
+
+Do not claim the model is complete while the consistency report contains blocking errors. The overview must expose `issues_found` when unresolved issues remain.
 
 ## UX / Design Engineering compatibility
 
-Business Modeling may produce UX-facing downstream views:
+Business Modeling may compile:
 
 ```text
 docs/product/business-modeling/downstream-views/ux-business-model-context.md
@@ -213,27 +185,10 @@ docs/product/business-modeling/downstream-views/ux-business-model-context.yml
 docs/product/business-modeling/downstream-views/ux-design-engineering-view.md
 ```
 
-Business Modeling must not directly rewrite:
+It must not directly rewrite `docs/design/**`, `REFERENCE_SELECTION.md`, Reference Library, Color Card Registry, or sealed Design Engineering states.
 
-```text
-docs/design/WORK_ITEMS.md
-docs/design/work-items/*/STATE.md
-docs/design/work-items/*/REFERENCE_SELECTION.md
-docs/design/reference-library/**
-docs/design/reference-library/assets/color-cards/**
-```
+## User delivery
 
-If UX is affected, express it through model impact reports, downstream views, and follow-up trigger or successor recommendations.
+At normal completion, provide a concise status and link only `docs/product/BUSINESS_MODEL_OVERVIEW.md`.
 
-## Completion summary
-
-At the end of a run, report:
-
-1. primary entry mode;
-2. Work Item decision and path;
-3. source files read;
-4. files created or modified;
-5. human decisions requested or resolved;
-6. whether source-of-truth assets were changed;
-7. downstream views recompiled;
-8. unresolved risks or follow-up triggers.
+List detailed files only when the user explicitly requests a model-maintainer view, audit trail, evidence, or implementation handoff.

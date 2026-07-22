@@ -2,17 +2,17 @@
 
 ## Given / 已知
 
-一次 `standard` 或 `deep` 商业分析完成。
+一次商业分析需要持久化。
 
 ## When / 当
 
-系统按当前分析深度和用户请求落盘。
+系统按分析深度落盘。
 
 ## Then / 则
 
-- Work Item 根目录只保存状态、消费、输出、决定、中文摘要和过程包；
-- 所有过程文件位于 `artifacts/`；
-- 用户请求阶段性或最终结论时，生成中文 `DECISION_SUMMARY.md`；
-- `DECISION_SUMMARY.md` 绑定 Primary Case、Work Item、Assurance、证据边界和用户决定状态；
+- quick 可只更新 Decision Case 与中文结论；
+- standard 默认核心为 `STATE.md`、`ANALYSIS_WORKSPACE.md`（按需）、`DECISION_SUMMARY.md` 和 `DECISION_NOTES.md`（按需）；
+- deep / audit 才生成消费、输出、路由、证据、模型选择、Synthesis 和 Process Package；
+- Decision Case 只有一份权威文件；
 - 不得为了模板完整无条件创建全部文件；
-- 不得创建第二个平行结论文件。
+- 所有人读输出有中文版本。

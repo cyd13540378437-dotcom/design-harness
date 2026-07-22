@@ -1,79 +1,92 @@
 ---
-schema_version: 1
+schema_version: 3
 language: zh-CN
 summary_id: BA-DS-000
 work_item_id: BA-000
 primary_case_id: BA-DC-000
-assurance_result: warn
-conclusion_status: provisional
+summary_mode: choice_request
+choice_loop_status: open
+decision_scope_id: ""
+boundary_status: within_scope
+overall_assurance: warn
+recommended_option_id: ""
+recommendation_status: provisional
 user_decision_status: pending
 generated_at: "YYYY-MM-DDTHH:mm:ssZ"
 ---
 
-# 商业分析阶段性结论：<标题>
+# 商业分析结论：<标题>
 
-## 1. 结论绑定
+## 1. 当前决策范围
 
-- Primary Decision Case：
-- Work Item：
-- Decision Assurance：
-- 当前结论状态：
-- 用户决定状态：
+- 本次解决的选择：
+- 明确不包含：
+- Choice Loop：`open | closed | reopened`
 
-## 2. 当前确认的商业问题
+## 2. 当前选择或已确认决定
 
-> <用一句中文说明本轮真正要帮助用户选择什么。>
+> `choice_request` 时说明当前要选什么；`decision_confirmed` / `post_decision_clarification` 时说明用户已经确认什么。
 
-## 3. 本次比较的真实业务选择
+## 3. 现实选项与后果（Choice Loop 打开时）
 
-| 选项 | 适用条件 | 主要价值 | 主要代价 / 风险 |
+| ID | 选项 | 当前状态 | 主要价值 | 主要代价 / 风险 |
+|---|---|---|---|---|
+
+## 4. 当前推荐或用户已确认路线
+
+- 推荐 / 已确认选项：
+- 状态：
+- 核心理由：
+- 接受的主要代价：
+- 证据边界：
+
+## 5. 决定后澄清（仅 `post_decision_clarification`）
+
+- 用户询问：
+- 概念级解释：
+- 该概念在已确认路线中的作用：
+- 当前 Case 不继续展开的实施细节：
+
+## 6. Claim-level Assurance
+
+| 关键声明 | 状态 | 当前可以说什么 | 当前不能说什么 |
 |---|---|---|---|
 
-## 4. 当前建议
+## 7. 改变或重开决定的条件
 
-## 5. 推荐理由与成立条件
-
-## 6. 反方观点与不做会怎样
-
-### 维持现状 / 不做的后果
-
-### 采用当前建议会增加的成本或风险
-
-### 当前建议最可能错在哪里
-
-## 7. 这份结论能证明什么
-
-## 8. 这份结论不能证明什么
-
-## 9. 证据边界
-
-## 10. Decision Assurance
-
-- 结果：
-- 主要警告：
-- 阻塞项：
-
-## 11. 用户决定状态
+## 8. 用户决定状态
 
 - 当前状态：
-- 用户已明确确认：
-- 用户仅表示知悉 / 认可但尚未确认：
+- Choice Loop：
+- 已确认：
 - 尚未确认：
 
-## 12. 验证、下一次决策点与复审条件
+## 9. 收口方式
 
-## 13. 实施考虑附录（可选，非商业结论）
+### 当 `summary_mode=choice_request`
 
-> 只有用户已经接受本轮商业选择，并继续要求实现细节时填写。本节不是权威产品、数据或技术规格。
+```text
+接受当前推荐
+拒绝并选择其他选项
+修改推荐方案或条件
+暂缓决定
+```
 
-## 14. 来源
+### 当 `summary_mode=decision_confirmed`
+
+本次选择已经确认，不再重复请求同一选择。当前 Case 进入 `completion-review`。
+
+### 当 `summary_mode=post_decision_clarification`
+
+澄清已经完成，原决定保持有效；具体实施请求不属于当前 Case。当前 Case 进入 `completion-review`。
+
+### 当 `summary_mode=review`
+
+说明重开原因、更新后的 Choice Set 和新的选择请求。
+
+## 10. 来源
 
 - Primary Decision Case：
 - Work Item：
+- Analysis Workspace：
 - 最新 Assurance：
-- Central Synthesis：
-- Analysis Output：
-
-## 15. 需要用户确认的业务选择
-
-> <最后一句必须回到用户的业务选择，不以模型、Case、文件或流程管理收尾。>

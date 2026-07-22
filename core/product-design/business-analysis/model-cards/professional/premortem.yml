@@ -28,28 +28,35 @@ outputs:
 - 预防措施
 - 应对措施
 - 需要验证的假设
-- Decision Delta
-- 对当前业务选择的 Decision Delta
+- Choice Delta
+- 对当前业务选择的 Choice Delta
 case_fields_updated:
-- 8. 专业分析工作区
-- 11. 反方观点 / 不做会怎样
-- 13. 验证方式
-- 14. 复审条件
+- ANALYSIS_WORKSPACE.md / 专业分析
+- Decision Basis / 反方分析
+- Decision Memory / 验证方式
+- Decision Memory / 复审条件
 interaction_prompts:
 - 假设这个方案三个月后失败了，最可能是因为什么？
 - 哪个失败原因现在最容易被低估？
 usage_prompts:
-  decision_relevance_prompt: 在使用《预演失败分析》前，先恢复当前 Decision Anchor。明确本模型试图降低哪个关键不确定性，以及不同分析结果会让哪个业务选项更强、更弱、被排除或变成有条件成立。如果结果不会改变选项排序、风险、阈值、投入方式或是否继续，则停止使用本模型。分析结束后必须输出中文 Decision Delta。
-  routing_prompt: 仅作内部适配判断。当方案看起来顺利但潜在失败点不清楚时使用。
+  decision_relevance_prompt: 在使用《预演失败分析》前，先恢复当前 Decision Anchor。明确本模型试图降低哪个关键不确定性，以及不同分析结果会让哪个业务选项更强、更弱、被排除或变成有条件成立。如果结果不会改变选项排序、风险、阈值、投入方式或是否继续，则停止使用本模型。分析结束后必须输出中文
+    Choice Delta。 在执行前必须明确本模型会改变 Choice Set、选项后果、当前推荐或推荐置信度中的哪一项；若不会，停止使用。 若 choice_loop_status=closed，除正式 review_signal 外必须停止使用本模型；不得越过
+    Decision Scope Lock；不得生成实施步骤、正式 Schema、公式权重、样例数据、代码或执行提议。
+  routing_prompt: 仅作内部适配判断。当方案看起来顺利但潜在失败点不清楚时使用。 若 choice_loop_status=closed，除正式 review_signal 外必须停止使用本模型；不得越过 Decision Scope
+    Lock；不得生成实施步骤、正式 Schema、公式权重、样例数据、代码或执行提议。
   user_input_prompt: '仅当缺少会改变当前业务选项排序或风险判断的关键输入时使用；一次最多用简体中文提出 1–2 个问题。只有当缺失信息会改变业务选项排序、风险判断、成功阈值或是否现在决策时，才向用户提问。不要为了填满模型字段而提问。
 
     用场景化问题引导用户，而不是让用户列风险表。'
-  execution_prompt: 只使用当前 Case 已接纳的事实、假设和证据执行分析；不得扩大问题边界或进入无关实施设计。假设方案失败，反推 5–7 个失败原因，标注早期信号和预防动作。
-  analysis_run_prompt: 用简体中文写入 Analysis Run，必须包含 decision_relevance、decision_delta、limitations 和 confidence。写入 Analysis Workspace、反方分析、验证方式和复审条件。
+  execution_prompt: 只使用当前 Case 已接纳的事实、假设和证据执行分析；不得扩大问题边界或进入无关实施设计。假设方案失败，反推 5–7 个失败原因，标注早期信号和预防动作。 若 choice_loop_status=closed，除正式
+    review_signal 外必须停止使用本模型；不得越过 Decision Scope Lock；不得生成实施步骤、正式 Schema、公式权重、样例数据、代码或执行提议。
+  analysis_run_prompt: 用简体中文写入 Analysis Run，必须包含 decision_relevance、choice_delta、limitations 和 confidence。写入 Analysis Workspace、反方分析、验证方式和复审条件。
+    输出必须包含 Choice Delta。 结果优先写入中文 `ANALYSIS_WORKSPACE.md`；独立 Analysis Run 文件仅在 deep / audit 或结果需要单独追溯时创建。
   conclusion_prompt: '本 Prompt 只向中央决策综合器返回候选含义，不得直接向用户输出最终建议或结束对话。本提示只供统一决策综合器内部使用，不得直接向用户输出本模型自己的最终结论。先把模型结果转译为：对当前商业问题的新认识、受影响的业务选项、选项排序变化、证据边界和仍待验证的关键未知。
 
-    输出 A继续但加防护、B缩小试点、C先验证失败点、D暂缓。'
-  misuse_guard_prompt: 检查问题漂移、解法前提未挑战、无 Decision Delta、伪精确和越界进入产品/技术设计。检查是否变成泛泛风险清单、是否没有早期信号、是否没有行动。
+    输出 A继续但加防护、B缩小试点、C先验证失败点、D暂缓。 向中央综合器返回受影响选项、推荐候选、接受的代价、证据边界和改变推荐的条件。 若 choice_loop_status=closed，除正式 review_signal 外必须停止使用本模型；不得越过
+    Decision Scope Lock；不得生成实施步骤、正式 Schema、公式权重、样例数据、代码或执行提议。'
+  misuse_guard_prompt: 检查问题漂移、解法前提未挑战、无 Choice Delta、伪精确和越界进入产品/技术设计。检查是否变成泛泛风险清单、是否没有早期信号、是否没有行动。 检查是否用 Assurance 替代 Recommendation，或因证据不足只要求用户补材料而没有给出当前现实路径。
+    若 choice_loop_status=closed，除正式 review_signal 外必须停止使用本模型；不得越过 Decision Scope Lock；不得生成实施步骤、正式 Schema、公式权重、样例数据、代码或执行提议。
 common_misuses:
 - 泛泛悲观
 - 没有早期信号
@@ -60,12 +67,18 @@ quality_checks:
 - 是否有早期信号
 - 是否有防护动作
 - 是否连接复审条件
-- 是否说明本模型对当前业务选择产生了什么 Decision Delta
+- 是否说明本模型对当前业务选择产生了什么 Choice Delta
 - 低相关结果是否被排除出用户可见结论
 - 是否保持当前 Decision Anchor
-- 是否产生可说明的 Decision Delta
+- 是否产生可说明的 Choice Delta
 - 是否以中文写入 Analysis Run
 - 是否仅向中央综合器提供结论素材
+- 是否形成或更新了真实 Choice Set
+- 是否产生可说明的 Choice Delta
+- 是否向中央综合器提供推荐候选与改变推荐的条件
+- Choice Loop 关闭后是否停止运行模型
+- 是否遵守 Decision Scope Lock
+- 是否避免实施产物与执行提议
 combines_well_with:
 - risk-matrix
 - counterfactual-opposition
@@ -73,3 +86,4 @@ combines_well_with:
 example_analysis_run:
 - 做企业版预演失败：销售周期过长、交付成本失控、安全承诺无法兑现。
 output_language: zh-CN
+runtime_role: professional_analysis

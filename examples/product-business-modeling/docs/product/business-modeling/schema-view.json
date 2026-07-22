@@ -1,0 +1,129 @@
+{
+  "schema_version": 1,
+  "view_type": "business_attribute_structure",
+  "objects": [
+    {
+      "object_id": "workspace",
+      "object_name": "Workspace",
+      "object_label": "工作区",
+      "business_domain": {
+        "id": "organization_membership",
+        "label": "组织与成员"
+      },
+      "object_category": {
+        "id": "context_object",
+        "label": "业务上下文类"
+      },
+      "business_attributes": [
+        {
+          "attribute_id": "workspace_membership_boundary",
+          "attribute_label": "成员资格边界",
+          "example_content": [
+            "设计团队工作区"
+          ]
+        }
+      ]
+    },
+    {
+      "object_id": "member",
+      "object_name": "Member",
+      "object_label": "成员",
+      "business_domain": {
+        "id": "organization_membership",
+        "label": "组织与成员"
+      },
+      "object_category": {
+        "id": "participant_identity",
+        "label": "参与者身份类"
+      },
+      "business_attributes": [
+        {
+          "attribute_id": "member_participation_status",
+          "attribute_label": "参与状态",
+          "example_content": [
+            "有效",
+            "已移除"
+          ]
+        }
+      ]
+    },
+    {
+      "object_id": "invitation",
+      "object_name": "Invitation",
+      "object_label": "邀请",
+      "business_domain": {
+        "id": "organization_membership",
+        "label": "组织与成员"
+      },
+      "object_category": {
+        "id": "process_record",
+        "label": "流程记录类"
+      },
+      "business_attributes": [
+        {
+          "attribute_id": "invitation_progress",
+          "attribute_label": "邀请进展",
+          "example_content": [
+            "等待接受",
+            "已接受",
+            "已失效"
+          ]
+        }
+      ]
+    },
+    {
+      "object_id": "billing_account",
+      "object_name": "BillingAccount",
+      "object_label": "计费账户",
+      "business_domain": {
+        "id": "billing_governance",
+        "label": "计费治理"
+      },
+      "object_category": {
+        "id": "governance_account",
+        "label": "治理账户类"
+      },
+      "business_attributes": [
+        {
+          "attribute_id": "billing_basis",
+          "attribute_label": "计费依据",
+          "example_content": [
+            "按席位"
+          ]
+        }
+      ]
+    },
+    {
+      "object_id": "seat",
+      "object_name": "Seat",
+      "object_label": "席位",
+      "business_domain": {
+        "id": "billing_governance",
+        "label": "计费治理"
+      },
+      "object_category": {
+        "id": "entitlement_object",
+        "label": "资格单位类"
+      },
+      "business_attributes": [
+        {
+          "attribute_id": "seat_occupancy_status",
+          "attribute_label": "席位占用状态",
+          "example_content": [
+            "可用",
+            "预留",
+            "已占用",
+            "已释放"
+          ]
+        },
+        {
+          "attribute_id": "seat_current_holder",
+          "attribute_label": "当前占用者",
+          "example_content": [
+            "成员李明"
+          ]
+        }
+      ]
+    }
+  ]
+}

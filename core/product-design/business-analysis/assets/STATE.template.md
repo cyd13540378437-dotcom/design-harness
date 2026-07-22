@@ -1,5 +1,5 @@
 ---
-schema_version: 1
+schema_version: 3
 state_id: BA-000
 title: ""
 status: active
@@ -12,12 +12,20 @@ analysis_depth: standard
 output_language: zh-CN
 primary_case_id: ""
 primary_case_path: ""
+decision_scope_id: ""
+decision_scope_type: ""
+decision_scope_status: provisional
+choice_loop_status: open
 last_turn_type: new_input
+decision_signal: none
+followup_request: none
+boundary_status: within_scope
 turn_continuity_status: initialized
-decision_anchor_status: provisional
-assurance_result: ""
-conclusion_status: draft
+overall_assurance: ""
+recommended_option_id: ""
+recommendation_status: provisional
 user_decision_status: not_requested
+summary_mode: choice_request
 latest_decision_summary: ""
 created_at: "YYYY-MM-DDTHH:mm:ssZ"
 updated_at: "YYYY-MM-DDTHH:mm:ssZ"
@@ -26,71 +34,80 @@ completed_at: ""
 
 # 商业分析 Work Item 状态
 
-## 工作摘要
+## 1. Decision Scope Lock
 
-## 范围
+- 决策范围 ID：
+- 决策类型：
+- 当前决策范围：
+- 范围状态：`provisional | locked | reopened`
+- 明确不包含：
+- 当前边界状态：`within_scope | clarification_only | out_of_scope_candidate`
 
-### 包含
+## 2. Choice Core
 
-### 不包含
-
-## Decision Anchor
-
-- 原始业务问题：
-- 已确认决策问题：
-- 决策所有者：
-- 受影响业务参与者：
-- 期望业务结果：
-- 当前真实业务选项：
-- 当前阻塞不确定性：
+- 当前决策问题：
+- 当前 Choice Set：
+- 当前推荐：
+- 推荐状态：
+- 接受的主要代价：
 - 证据边界：
+- 改变推荐的条件：
+- 用户决定状态：
+- Choice Loop：`open | closed | reopened`
 
-## 当前阶段
+## 3. 本轮混合输入
+
+- Decision signal：`none | acknowledged | confirmed | rejected | revised | deferred`
+- Follow-up request：`none | decision_clarification | evidence_clarification | implementation_detail | new_decision_candidate | summary_request`
+- 处理结果：
+
+## 4. Claim-level Assurance 摘要
+
+| 声明 | 状态 | 说明 |
+|---|---|---|
+
+## 5. Primary Decision Case
+
+- Case ID：
+- Case path：
+- Routing result：
+
+## 6. 当前阶段
+
+合法 phase：
 
 ```text
 input-understanding
-analysis-routing
-case-binding
-evidence-intake
-model-selection
+case-routing
+choice-set
 analysis
-option-synthesis
-decision-review
-validation-planning
+recommendation
+human-decision
+post-decision-clarification
+review
 completion-review
 complete
 ```
 
-## 本轮续接
+合法 gate：
 
-- Turn type:
-- 已读取状态与资产：
-- Continuity result:
-- Scope drift check:
+```text
+none
+decision-confirmation
+completion-approval
+```
 
-## Primary Decision Case
+## 7. 已确认决定
 
-- Case ID:
-- Case path:
-- Routing result:
+## 8. 待确认选择
 
-## 已生成或更新的输出物
+## 9. 当前假设与限制
 
-| 输出物 | 路径 | 状态 | 中文版本 |
-|---|---|---|---|
+## 10. 核心输出
 
-## 已确认决定
+| 输出物 | 路径 | 状态 | 中文版本 | 边界检查 |
+|---|---|---|---|---|
 
-## 待确认问题
+## 11. 下一步
 
-## 当前假设与限制
-
-## Decision Assurance
-
-- Result:
-- Blockers:
-- Warnings:
-
-## 下一步
-
-## 关键状态变更摘要
+## 12. 关键状态变更摘要

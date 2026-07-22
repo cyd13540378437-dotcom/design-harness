@@ -31,27 +31,37 @@ outputs:
 - 至少三条替代路径
 - 当前推荐的验证或行动路径
 - 商业结论与实施细节边界
-- Decision Delta
-- 对当前业务选择的 Decision Delta
+- Choice Delta
+- 对当前业务选择的 Choice Delta
 case_fields_updated:
-- 1. 当前问题
-- 3. 决策范围
-- 8. 专业分析工作区
-- 9. 可选方案
-- 10. 主要权衡
-- 11. 反方观点 / 不做会怎样
-- 12. 当前结论
+- Decision Core / 当前决策问题
+- Decision Basis / 决策范围
+- ANALYSIS_WORKSPACE.md / 专业分析
+- Decision Core / Choice Set
+- Decision Basis / 主要权衡
+- Decision Basis / 反方分析
+- Decision Core / 当前推荐
 interaction_prompts:
 - 你现在真正想验证的是“这个解法值得做”，还是“这个解法具体怎么做”？
 - 除了当前方案，你能接受更小的试验、等待真实数据，或先做规则级验证吗？
 usage_prompts:
-  decision_relevance_prompt: 在使用《解法前提挑战》前，先恢复当前 Decision Anchor。明确本模型试图降低哪个关键不确定性，以及不同分析结果会让哪个业务选项更强、更弱、被排除或变成有条件成立。如果结果不会改变选项排序、风险、阈值、投入方式或是否继续，则停止使用本模型。分析结束后必须输出中文 Decision Delta。
-  routing_prompt: 仅作内部适配判断。当用户带着具体解法进入，或系统准备直接讨论字段、UI、算法组件、数据结构时使用。先判断解法前提，不直接进入实现设计。
+  decision_relevance_prompt: 在使用《解法前提挑战》前，先恢复当前 Decision Anchor。明确本模型试图降低哪个关键不确定性，以及不同分析结果会让哪个业务选项更强、更弱、被排除或变成有条件成立。如果结果不会改变选项排序、风险、阈值、投入方式或是否继续，则停止使用本模型。分析结束后必须输出中文
+    Choice Delta。 在执行前必须明确本模型会改变 Choice Set、选项后果、当前推荐或推荐置信度中的哪一项；若不会，停止使用。 若 choice_loop_status=closed，除正式 review_signal 外必须停止使用本模型；不得越过
+    Decision Scope Lock；不得生成实施步骤、正式 Schema、公式权重、样例数据、代码或执行提议。
+  routing_prompt: 仅作内部适配判断。当用户带着具体解法进入，或系统准备直接讨论字段、UI、算法组件、数据结构时使用。先判断解法前提，不直接进入实现设计。 若 choice_loop_status=closed，除正式 review_signal
+    外必须停止使用本模型；不得越过 Decision Scope Lock；不得生成实施步骤、正式 Schema、公式权重、样例数据、代码或执行提议。
   user_input_prompt: 仅当缺少会改变当前业务选项排序或风险判断的关键输入时使用；一次最多用简体中文提出 1–2 个问题。只有当答案会改变验证路径时才提问。优先让用户确认目标结果、可接受投入和证据边界，不要求用户设计实现。
   execution_prompt: 只使用当前 Case 已接纳的事实、假设和证据执行分析；不得扩大问题边界或进入无关实施设计。比较至少四类路径：A维持现状或等待；B更小、更低成本验证；C用户提出的解法；D更重或更高保真方案（若适用）。比较价值、成本、证据质量、可逆性和伪精确风险。先形成商业选择，再把实施细节放到非权威附录。
-  analysis_run_prompt: 用简体中文写入 Analysis Run，必须包含 decision_relevance、decision_delta、limitations 和 confidence。写入 Analysis Workspace：用户候选解法、替代路径、每条路径的适用条件、主要代价、证据边界、实际 Decision Delta，以及商业结论与实施附录的边界。
+    若 choice_loop_status=closed，除正式 review_signal 外必须停止使用本模型；不得越过 Decision Scope Lock；不得生成实施步骤、正式 Schema、公式权重、样例数据、代码或执行提议。
+  analysis_run_prompt: 用简体中文写入 Analysis Run，必须包含 decision_relevance、choice_delta、limitations 和 confidence。写入 Analysis Workspace：用户候选解法、替代路径、每条路径的适用条件、主要代价、证据边界、实际
+    Choice Delta，以及商业结论与实施附录的边界。 输出必须包含 Choice Delta。 作为 internal_control，quick / standard 默认直接更新 Decision Case 或中央综合，不强制创建独立
+    Analysis Run；仅 deep / audit 或确有独立审计价值时落盘。
   conclusion_prompt: 本 Prompt 只向中央决策综合器返回候选含义，不得直接向用户输出最终建议或结束对话。本提示只供统一决策综合器内部使用，不得直接向用户输出。综合时优先回答“是否值得采用哪条路径、为什么、能证明什么和不能证明什么”；字段、UI、技术形式只能作为可选实施附录。
-  misuse_guard_prompt: 检查问题漂移、解法前提未挑战、无 Decision Delta、伪精确和越界进入产品/技术设计。检查是否默认接受用户解法；是否遗漏更小验证路径和维持现状；是否把实施规格当商业结论；是否在证据不足时推荐高保真方案；是否没有说明能证明与不能证明的边界。
+    向中央综合器返回受影响选项、推荐候选、接受的代价、证据边界和改变推荐的条件。 若 choice_loop_status=closed，除正式 review_signal 外必须停止使用本模型；不得越过 Decision Scope Lock；不得生成实施步骤、正式
+    Schema、公式权重、样例数据、代码或执行提议。
+  misuse_guard_prompt: 检查问题漂移、解法前提未挑战、无 Choice Delta、伪精确和越界进入产品/技术设计。检查是否默认接受用户解法；是否遗漏更小验证路径和维持现状；是否把实施规格当商业结论；是否在证据不足时推荐高保真方案；是否没有说明能证明与不能证明的边界。
+    检查是否用 Assurance 替代 Recommendation，或因证据不足只要求用户补材料而没有给出当前现实路径。 若 choice_loop_status=closed，除正式 review_signal 外必须停止使用本模型；不得越过
+    Decision Scope Lock；不得生成实施步骤、正式 Schema、公式权重、样例数据、代码或执行提议。
 common_misuses:
 - 把用户想做的东西直接当成正确答案
 - 只比较实现版本，不比较不做或替代验证路径
@@ -61,12 +71,18 @@ quality_checks:
 - 是否至少比较不做、更小验证、用户方案
 - 是否说明当前方案能证明什么和不能证明什么
 - 是否把实施细节放到非权威附录
-- 是否记录 Decision Delta
+- 是否记录 Choice Delta
 - 低相关结果是否被排除出用户可见结论
 - 是否保持当前 Decision Anchor
-- 是否产生可说明的 Decision Delta
+- 是否产生可说明的 Choice Delta
 - 是否以中文写入 Analysis Run
 - 是否仅向中央综合器提供结论素材
+- 是否形成或更新了真实 Choice Set
+- 是否产生可说明的 Choice Delta
+- 是否向中央综合器提供推荐候选与改变推荐的条件
+- Choice Loop 关闭后是否停止运行模型
+- 是否遵守 Decision Scope Lock
+- 是否避免实施产物与执行提议
 combines_well_with:
 - problem-framing
 - option-assessment
@@ -76,3 +92,4 @@ combines_well_with:
 example_analysis_run:
 - 用户想做调度模拟器 → 比较等待真实数据、规则级测试、合成场景实验台、完整数字孪生；推荐轻量实验台并明确不能证明真实业务效果。
 output_language: zh-CN
+runtime_role: internal_control

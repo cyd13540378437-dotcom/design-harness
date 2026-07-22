@@ -1,32 +1,36 @@
 schema_version: 1
 required_top_level:
-  - schema_version
-  - model_id
-  - title
-  - category
-  - status
-  - output_language
-  - purpose
-  - use_when
-  - avoid_when
-  - decision_questions
-  - required_inputs
-  - minimum_viable_inputs
-  - outputs
-  - case_fields_updated
-  - interaction_prompts
-  - usage_prompts
-  - common_misuses
-  - quality_checks
-  - combines_well_with
+- schema_version
+- model_id
+- title
+- category
+- runtime_role
+- status
+- output_language
+- purpose
+- use_when
+- avoid_when
+- decision_questions
+- required_inputs
+- minimum_viable_inputs
+- outputs
+- case_fields_updated
+- interaction_prompts
+- usage_prompts
+- common_misuses
+- quality_checks
+- combines_well_with
+allowed_runtime_roles:
+- internal_control
+- professional_analysis
 required_usage_prompts:
-  - decision_relevance_prompt
-  - routing_prompt
-  - user_input_prompt
-  - execution_prompt
-  - analysis_run_prompt
-  - conclusion_prompt
-  - misuse_guard_prompt
+- decision_relevance_prompt
+- routing_prompt
+- user_input_prompt
+- execution_prompt
+- analysis_run_prompt
+- conclusion_prompt
+- misuse_guard_prompt
 ready_contract:
   all_required_fields_non_empty: true
   every_usage_prompt_non_empty: true
@@ -34,3 +38,7 @@ ready_contract:
   path_exists: true
   output_language_is_zh_CN: true
   conclusion_prompt_is_central_synthesis_only: true
+  choice_delta_required: true
+  choice_loop_closure_respected: true
+  decision_scope_lock_respected: true
+  no_execution_offer: true

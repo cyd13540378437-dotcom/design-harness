@@ -1,93 +1,26 @@
 ---
-schema_version: 1
+schema_version: 3
 language: zh-CN
 summary_id: BA-DS-001
 work_item_id: BA-001
 primary_case_id: BA-DC-001
-assurance_result: pass
-conclusion_status: confirmed
+summary_mode: decision_confirmed
+choice_loop_status: closed
+decision_scope_id: seat-invitation-billing-policy
+boundary_status: within_scope
+overall_assurance: pass
+recommended_option_id: C
+recommendation_status: user_confirmed
 user_decision_status: confirmed
-generated_at: "2026-07-21T01:00:00Z"
+generated_at: "2026-07-22T00:00:00Z"
 ---
 
-# 商业分析阶段性结论：未激活邀请与付费 Seat
+# 商业分析结论：未激活邀请与付费 Seat
 
-## 1. 结论绑定
+用户已确认 C：未激活邀请默认不占用付费 Seat，同时设置待接受邀请数量上限。
 
-- Primary Decision Case：`BA-DC-001`
-- Work Item：`BA-001`
-- Decision Assurance：`pass`
-- 当前结论状态：`confirmed`
-- 用户决定状态：`confirmed`
+该选择在公平性、滥用控制和可逆性之间最平衡；代价是后续需要用真实行为数据校准上限。
 
-## 2. 当前确认的商业问题
+政策方向为 `supported`，精确上限值仍为 `blocked`。改为预购容量、滥用显著增加或客户要求容量锁定时重审。
 
-未激活邀请是否应占用付费 Seat；若不占用，如何控制无限邀请风险。
-
-## 3. 本次比较的真实业务选择
-
-| 选项 | 适用条件 | 主要价值 | 主要代价 / 风险 |
-|---|---|---|---|
-| 发出邀请即计费 | Seat 代表预留容量 | 规则保守、易控制超额 | 客户可能为未使用成员付费 |
-| 接受邀请后计费且不设上限 | Seat 代表实际可用成员 | 计费公平、易理解 | 可能产生大量待接受邀请 |
-| 接受邀请后计费并设上限 | 兼顾实际使用与滥用控制 | 公平、可控、可逆 | 需要定义合理上限 |
-| 发出邀请后短期预留 | 客户需要明确容量预留 | 折中容量和公平 | 规则更复杂、解释成本更高 |
-
-## 4. 当前建议
-
-未激活邀请默认不占用付费 Seat，同时设置待接受邀请数量上限。
-
-## 5. 推荐理由与成立条件
-
-该方案在计费公平、滥用控制和可逆性之间最平衡。它成立的前提是 Seat 主要代表已获得实际访问能力的成员，而不是客户预购的容量。
-
-## 6. 反方观点与不做会怎样
-
-- 如果发出邀请即计费，规则简单，但容易造成账单公平争议。
-- 如果完全不限制未激活邀请，客户体验更宽松，但可能出现占位和权限管理风险。
-- 当前建议最可能错在：真实滥用率很低，设置上限反而增加不必要复杂度。
-
-## 7. 这份结论能证明什么
-
-在当前已知业务语义下，该政策比“发出即计费”更公平，比“无限制不计费”更可控。
-
-## 8. 这份结论不能证明什么
-
-不能证明真实滥用率，也不能直接确定最佳邀请上限。
-
-## 9. 证据边界
-
-当前结论主要基于计费公平性、业务可解释性和滥用风险的业务推理，尚无真实邀请行为数据。
-
-## 10. Decision Assurance
-
-- 结果：`pass`
-- 主要警告：上限值仍需真实行为数据校准
-- 阻塞项：无
-
-## 11. 用户决定状态
-
-- 当前状态：`confirmed`
-- 用户已明确确认：未激活邀请不占用付费 Seat，并设置待接受邀请数量上限
-- 用户仅表示知悉 / 认可但尚未确认：无
-- 尚未确认：具体上限值
-
-## 12. 验证、下一次决策点与复审条件
-
-改为预购容量、滥用明显增加、客户要求容量锁定或账单争议模式变化时重开本 Case。
-
-## 13. 实施考虑附录（可选，非商业结论）
-
-上限值、邀请状态和产品提示属于后续产品与实现设计，不在本商业结论中冻结。
-
-## 14. 来源
-
-- Primary Decision Case：`../../decision-cases/BA-DC-001-seat-invitation-counts.md`
-- Work Item：`BA-001`
-- 最新 Assurance：`artifacts/DECISION_ASSURANCE_CHECK.md`
-- Central Synthesis：`artifacts/DECISION_SYNTHESIS.md`
-- Analysis Output：`ANALYSIS_OUTPUT.md`
-
-## 15. 需要用户确认的业务选择
-
-本轮核心政策已经确认；下一次需要决定的是具体待接受邀请上限，而不是重新讨论是否对未激活邀请计费。
+本次 Choice Loop 已关闭，不再重复讨论是否计费；当前 Work Item 已完成并封存。

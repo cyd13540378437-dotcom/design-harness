@@ -1,7 +1,7 @@
 schema_version: 1
 capability_id: product-business-modeling
 display_name: 业务模型能力集群
-version: v0.2.2-runtime-aware
+version: v0.2.3
 status: implementation-ready
 agent_neutral: true
 primary_language: zh-CN
@@ -9,13 +9,11 @@ stable_identifiers_language: en
 architecture:
   layers:
   - DesignHarnessAgent Core
-  - Shared Agent Skill Facade
-  - Runtime-specific Adapters
+  - Agent Runtime Adapters
   - Project Knowledge Assets
-  shared_facade_root: adapters/shared/agent-skill-facade/product-business-modeling
-  runtime_overlays_root: templates/project/runtime-overlays
   project_assets_root: docs/product
   business_modeling_root: docs/product/business-modeling
+  default_user_view: docs/product/BUSINESS_MODEL_OVERVIEW.md
 entry_modes:
 - id: direct_modeling
   label: 用户主动建模
@@ -84,6 +82,16 @@ subcapabilities:
 - id: model-consistency-validator
   label: 模型一致性检查器
   category: extraction-validation
+core_protocols:
+- core/product-design/business-modeling/protocols/source-of-truth.md
+- core/product-design/business-modeling/protocols/entry-modes.md
+- core/product-design/business-modeling/protocols/human-decision-control-plane.md
+- core/product-design/business-modeling/protocols/passive-trigger-interface.md
+- core/product-design/business-modeling/protocols/downstream-view-compilation.md
+- core/product-design/business-modeling/protocols/validation-and-evals.md
+- core/product-design/business-modeling/protocols/business-model-overview.md
+- core/product-design/business-modeling/protocols/work-item-file-contract.md
+- core/product-design/business-modeling/protocols/canonical-model-asset-contracts.md
 passive_trigger:
   directory: docs/product/model-triggers
   file_pattern: MT-xxx.md
@@ -101,7 +109,12 @@ passive_trigger:
   - dismissed
   - superseded
 project_assets:
+  default_user_view:
+    path: docs/product/BUSINESS_MODEL_OVERVIEW.md
+    writer: downstream-view-compiler
+    source_of_truth: false
   long_lived:
+  - docs/product/BUSINESS_MODEL_OVERVIEW.md
   - docs/product/business-modeling/BUSINESS_MODEL_INDEX.md
   - docs/product/business-modeling/BUSINESS_MODEL_INDEX.yml
   - docs/product/business-modeling/business-dictionary.md
@@ -125,25 +138,6 @@ project_assets:
   - docs/product/work-items/BM-xxx/artifacts/MODEL_CONSISTENCY_REPORT.md
   - docs/product/work-items/BM-xxx/artifacts/MODEL_IMPACT_REPORT.md
   - docs/product/work-items/BM-xxx/artifacts/SOURCE_EVIDENCE.md
-non_goals:
-- CLI
-- Hook
-- Plugin
-- Marketplace
-- 自动安装器
-- 外部运行时依赖
-- 自动数据库迁移
-- 自动 API 生成
-- 图形化控制台
-- 云端同步
-- 多用户并发锁
-compatibility_protocols:
-- core/product-design/business-modeling/protocols/ux-design-engineering-compatibility.md
-- core/product-design/business-modeling/assets/ux-design-engineering-view.template.md
-- core/product-design/business-modeling/protocols/ux-business-model-context-pack.md
-- core/product-design/business-modeling/assets/ux-business-model-context.template.md
-- core/product-design/business-modeling/assets/ux-business-model-context.template.yml
-- core/product-design/business-modeling/protocols/agent-runtime-adapter-resolution.md
 downstream_views:
 - product-expression-view.md
 - requirements-view.md
@@ -154,6 +148,10 @@ downstream_views:
 - ux-design-engineering-view.md
 - ux-business-model-context.md
 - ux-business-model-context.yml
+compatibility_protocols:
+- core/product-design/business-modeling/protocols/ux-design-engineering-compatibility.md
+- core/product-design/business-modeling/protocols/ux-business-model-context-pack.md
+- core/product-design/business-modeling/protocols/agent-runtime-adapter-resolution.md
 runtime_adapter_resolution:
   protocol: core/product-design/business-modeling/protocols/agent-runtime-adapter-resolution.md
   shared_facade: adapters/shared/agent-skill-facade/product-business-modeling/SKILL.md
@@ -166,3 +164,46 @@ runtime_adapter_resolution:
   - multi-runtime
   hard_rule: Every Agent-neutral Core must ship with a callable runtime adapter and
     a runtime adapter resolution protocol.
+hardening:
+  mandatory_post_write_sequence:
+  - consistency_validation
+  - business_model_overview_compilation
+  - applicable_downstream_compilation
+  canonical_work_item_root_files:
+  - STATE.md
+  - MODELING_CONSUMPTION.md
+  - MODELING_OUTPUT.md
+  - DECISION_NOTES.md
+  decision_id_prefix: BMD-
+  state_extensions_field: extensions
+  canonical_state_fields:
+  - schema_version
+  - state_id
+  - title
+  - slug
+  - capability_id
+  - entry_mode
+  - binding_decision
+  - status
+  - phase
+  - knowledge_status
+  - awaiting_human
+  - sealed
+  - related_triggers
+  - predecessors
+  - created_at
+  - updated_at
+  - completed_at
+  - extensions
+non_goals:
+- CLI
+- Hook
+- Plugin
+- Marketplace
+- 自动安装器
+- 外部运行时依赖
+- 自动数据库迁移
+- 自动 API 生成
+- 图形化控制台
+- 云端同步
+- 多用户并发锁

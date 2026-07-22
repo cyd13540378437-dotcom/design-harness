@@ -1,6 +1,20 @@
 schema_version: 1
 business_model_version: v0.1
 status: draft
+
+default_user_view:
+  id: business_model_overview
+  path: ../BUSINESS_MODEL_OVERVIEW.md
+  audience: product_owner
+  is_source_of_truth: false
+  status: draft
+
+consistency:
+  status: not_run
+  report: ""
+  checked_at: ""
+
+# Every registry entry must include at least: id, status, source.
 business_domains: []
 business_objects: []
 relationships: []

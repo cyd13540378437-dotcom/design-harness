@@ -1,13 +1,13 @@
-# 商业分析知识索引
+# 商业分析索引
 
-> `Decision Case`、Decision Network YML 和 Evidence Ledger YML 分别是其知识类型的权威源；本文件仅用于人类导航。
+> `BUSINESS_ANALYSIS_INDEX.yml` 用于机器导航；每个 Decision Case 是内容权威源。
 
 ## Decision Cases
 
-| Case ID | 标题 | 状态 | Assurance | 用户决定状态 | 路径 |
-|---|---|---|---|---|---|
+| Case ID | 标题 | Scope | Choice Loop | 推荐 / 已确认决定 | 状态 | 路径 |
+|---|---|---|---|---|---|---|
 
-## Decision Reviews
+## Reviews
 
-| Review ID | Case ID | 状态 | 路径 |
-|---|---|---|---|
+| Review ID | Case | 触发原因 | 状态 | 路径 |
+|---|---|---|---|---|

@@ -2,6 +2,7 @@ schema_version: 1
 model_id: example-model
 title: 示例分析模型
 category: core-decision
+runtime_role: professional_analysis
 status: draft
 output_language: zh-CN
 purpose: []
@@ -15,19 +16,19 @@ case_fields_updated: []
 interaction_prompts: []
 usage_prompts:
   decision_relevance_prompt: |
-    判断本模型是否会改变当前业务选项、风险、阈值或是否继续；若不会，停止使用。
+    判断本模型是否会改变 Choice Set、选项后果、当前推荐或置信度；若不会，停止使用。
   routing_prompt: |
     判断模型适配与最低输入。
   user_input_prompt: |
-    仅在缺少会改变决策的关键输入时，用简体中文提出最多 1–2 个问题。
+    仅在缺少会改变选择的关键输入时，用简体中文提出最多 1–2 个问题。
   execution_prompt: |
     执行模型分析，不虚构数据。
   analysis_run_prompt: |
-    写入中文 Analysis Run，并包含 Decision Relevance 和 Decision Delta。
+    写入中文 Analysis Workspace 或 Analysis Run，并明确 Choice Delta。
   conclusion_prompt: |
-    只向中央决策综合器返回候选含义，不直接向用户收尾。
+    只向中央综合器返回：受影响选项、推荐候选、接受代价和改变推荐的条件；不直接向用户收尾。
   misuse_guard_prompt: |
-    检查模型误用、伪精确和问题漂移。
+    检查模型误用、伪精确、问题漂移，以及是否用 Assurance 替代 Recommendation。
 common_misuses: []
 quality_checks: []
 combines_well_with: []

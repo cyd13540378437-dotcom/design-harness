@@ -1,10 +1,16 @@
 ---
-schema_version: 1
+schema_version: 3
 case_id: BA-DC-000
 title: ""
 language: zh-CN
 status: draft
-assurance_status: ""
+decision_scope_id: ""
+decision_scope_type: ""
+decision_scope_status: provisional
+choice_loop_status: open
+overall_assurance: ""
+recommended_option_id: ""
+recommendation_status: provisional
 user_decision_status: not_requested
 created_at: "YYYY-MM-DD"
 updated_at: "YYYY-MM-DD"
@@ -13,141 +19,91 @@ owner: ""
 
 # 决策案例：<标题>
 
-## 0. 原始输入
+# A. Decision Core / 决策核心
+
+## A0. Decision Scope Lock / 决策范围锁定
+
+- Scope ID：
+- Scope type：
+- 本 Case 解决的选择：
+- Scope status：`provisional | locked | reopened`
+- 明确不包含：
+- 允许的决定后澄清：
+- 触发正式重开的条件：
+
+## A1. 当前决策问题
+
+> <用一句中文说明用户现在真正要选择什么。>
+
+## A2. Choice Set / 选择集合
+
+| ID | 选项 | 状态 | 适用条件 | 主要价值 | 主要代价 / 风险 |
+|---|---|---|---|---|---|
+
+## A3. 当前推荐
+
+- 推荐选项 ID：
+- 推荐状态：`provisional | conditional | user_confirmed`
+- 推荐理由：
+- 接受的主要代价：
+- 证据边界：
+- 改变推荐的条件：
+
+## A4. 用户决定与 Choice Loop
+
+- 用户决定状态：`not_requested | pending | acknowledged | confirmed | rejected | revised | deferred`
+- Choice Loop：`open | closed | reopened`
+- 用户原话：
+- 已确认选择：
+- 已接受代价：
+- 尚未确认：
+- 关闭 / 重开原因：
+
+## A5. Claim-level Assurance 摘要
+
+| 关键声明 | 状态 | 当前允许的表述 | 需要的下一项证据 |
+|---|---|---|---|
+
+# B. Decision Basis / 决策依据
+
+## B0. 原始输入
 
 ### 用户第一次输入原文
 
 > <完整记录，不能用摘要替代。>
 
-### 输入元数据
+## B1. 为什么现在需要处理
 
-- 创建时间：
-- 来源：
-- 附件：
-- 用户说明的紧迫性：
-- 用户希望获得的结果：
+## B2. 决策范围与用户候选解法
 
-## 1. 当前问题与 Decision Anchor
+## B3. 关键线索
 
-- 当前状态：
-- 已确认的商业决策问题：
-- 用户确认记录：
-- 决策所有者：
-- 受影响业务参与者：
-- 期望业务结果：
-- 当前真实业务选项：
-- 当前阻塞不确定性：
-- 证据边界：
+## B4. 已知事实
 
-## 2. 为什么现在需要处理
+## B5. 重要假设
 
-- 触发原因：
-- 紧迫性：
-- 不处理的后果：
+## B6. 相关证据
 
-## 3. 决策范围
+## B7. 专业分析工作区摘要
 
-### 包含
+## B8. 主要权衡
 
-### 不包含
+## B9. 反方观点与不做分析
 
-### 适用对象、场景和时间范围
+# C. Decision Memory / 决策记忆
 
-### 用户提出的解法与前提状态
+## C1. 验证方式与下一次决策点
 
-- 用户提出的解法：
-- 是否已被验证为合适路径：
-- 仍需比较的替代路径：
+## C2. 复审条件
 
-## 4. 关键线索
+## C3. 关联决策
 
-| 线索 | 来源 | 与当前选择的关系 | 状态 |
+## C4. Choice Delta 日志
+
+| 日期 / Work Item | 新输入 | Choice Delta | 推荐是否改变 |
 |---|---|---|---|
 
-## 5. 已知事实
+## C5. 决定后澄清记录
 
-| 事实 | 来源 | 置信度 | 日期 |
-|---|---|---|---|
-
-## 6. 重要假设
-
-| 假设 | 为什么需要 | 如果错误会怎样 | 状态 |
-|---|---|---|---|
-
-## 7. 相关证据
-
-| 证据 | 支持 / 反对 | 强度 | 局限 |
-|---|---|---|---|
-
-## 8. 专业分析工作区
-
-### Analysis Runs
-
-每个运行必须包含：模型、目的、Decision Relevance、输入、分析结果、Decision Delta、局限和置信度。
-
-### 被考虑但未使用的模型
-
-| 模型 | 为什么考虑 | 为什么未使用 |
-|---|---|---|
-
-### 跨模型综合
-
-仅记录各模型对当前业务选择产生的共同或冲突影响。
-
-## 9. 可选方案
-
-| 选项 | 业务含义 | 适用条件 | 是否纳入 |
-|---|---|---|---|
-
-## 10. 主要权衡
-
-| 选项 | 价值 | 成本 | 风险 | 可逆性 |
+| 日期 | 用户追问 | 类型 | 概念级答复 | 是否重开 Choice Loop |
 |---|---|---|---|---|
-
-## 11. 反方观点与不做分析
-
-### 维持现状会怎样
-
-### 不做的损失
-
-### 做了的代价
-
-### 当前建议可能错在哪里
-
-### 更小、更可逆的选择
-
-## 12. 当前结论
-
-- 结论类型：
-- 系统推荐：
-- 用户决定：
-- 用户决定状态：
-- Assurance：
-- 能证明什么：
-- 不能证明什么：
-
-## 13. 验证方式
-
-- 要验证什么：
-- 如何验证：
-- 成功阈值：
-- 失败阈值：
-- 下一次决策点：
-- 复审日期：
-
-## 14. 复审条件
-
-| 触发条件 | 为什么重要 | 触发后动作 |
-|---|---|---|
-
-## 15. 关联决策
-
-### depends_on
-
-### affects
-
-### conflicts_with
-
-### supersedes
-
-### reopens

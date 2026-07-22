@@ -1,55 +1,31 @@
-# Product Business Modeling Core Contract
+# Product Business Modeling Core Contract v0.2.3
 
-This reference summarizes the non-negotiable Core contract used by runtime facades.
+The Core owns business-model semantics. Runtime adapters only expose it to an agent tool.
 
-## Identity
+## Default user entry
 
-`product-business-modeling` is an Agent-neutral DesignHarnessAgent Core capability. Codex, Claude Code, Cursor, and generic agents are runtime adapters.
+```text
+docs/product/BUSINESS_MODEL_OVERVIEW.md
+```
 
-Runtime Skills, rules, prompts, and agent files only make the Core callable in a tool. They are not the business-model source of truth.
+This is a derived product-owner view, not source of truth. Ordinary users should not need to inspect all detailed assets.
 
-## Project source of truth
-
-Long-lived business-model assets live under:
+## Source of truth and task roots
 
 ```text
 docs/product/business-modeling/
+docs/product/model-triggers/
+docs/product/work-items/
 ```
 
-Task-level outputs live under:
+## Hard contracts
 
-```text
-docs/product/work-items/BM-xxx-<slug>/
-```
-
-Model triggers live under:
-
-```text
-docs/product/model-triggers/MT-xxx.md
-```
-
-Do not move business model knowledge into `.agents/`, `.codex/`, `.claude/`, `.cursor/`, `AGENTS.md`, `CLAUDE.md`, or adapter directories.
-
-## Business attributes, not fields
-
-The core model uses business attributes, not database fields. Do not write database columns, API parameters, ORM fields, TypeScript properties, storage types, or persistence strategies into core model assets.
-
-Technical field mappings are downstream suggestions only and must stay in derived views such as `database-view.md`, `backend-view.md`, or `frontend-view.md`.
-
-## `schema-view.json`
-
-The schema view is a compact business attribute structure view. It only contains:
-
-- business objects;
-- business domain;
-- object category;
-- business attributes;
-- example content.
-
-It must not contain relationships, actions, states, rules, permissions, database fields, APIs, persistence, risk, roadmap, or downstream implementation details.
-
-## Human Decision Control Plane
-
-AI may generate `draft` and `provisional` content automatically. It must not silently upgrade D2/D3 semantics to `confirmed`, overwrite confirmed semantics, or seal a Work Item without explicit human decision.
-
-When a high-impact decision is required, record pending and resolved decisions in `DECISION_NOTES.md` and ask the user before confirmation.
+- Canonical Work Item root files are `STATE.md`, `MODELING_CONSUMPTION.md`, `MODELING_OUTPUT.md`, and `DECISION_NOTES.md`.
+- Runtime metadata belongs under the State `extensions` field or in the body.
+- Core models business attributes, not data fields.
+- Dictionary, Index and Schema use stable IDs and exact structures.
+- Actions and transitions use stable references; one lifecycle belongs to one object.
+- Context-dependent values are relational, evaluative or derived—not intrinsic.
+- D2 / D3 decisions use `BMD-xxx` and are compressed into the overview.
+- Every persistent Core write is followed by consistency validation and overview compilation.
+- AI cannot seal without explicit human approval.

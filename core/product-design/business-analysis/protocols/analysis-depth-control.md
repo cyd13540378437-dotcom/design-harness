@@ -1,34 +1,29 @@
-# Analysis Depth Control / 分析深度控制
+# Analysis Depth Control / 分析深度控制 v0.1.4
 
-## 1. 目的
+## quick
 
-分析深度与决策风险成比例，而不是与模板数量成比例。
+对话优先。低影响问题可只生成 Choice Set 与推荐；需要持久化时更新 Case / Summary。
 
-## 2. 选择因素
+## standard
+
+适用于多轮问题。默认核心文件：
 
 ```text
-影响范围
-不可逆性
-不确定性
-错误代价
-证据复杂度
-用户明确需要的审计程度
+STATE.md
+Decision Case
+ANALYSIS_WORKSPACE.md（按需）
+DECISION_SUMMARY.md
+DECISION_NOTES.md（按需）
 ```
 
-## 3. 深度
+## deep
 
-### quick
+重大投资、战略、合规、不可逆或多人决策时，才生成完整审计材料。
 
-低影响、可逆、局部。更新 Case、STATE 和中文摘要；按需创建一个轻量 Analysis Run。
+## 决定确认后
 
-### standard
+无论之前使用何种深度，Choice Loop 关闭后都切换为轻量续接：仅更新 Case、State、Notes 和必要 Summary。不得因为原先是 `deep` 就继续创建实施性产物。
 
-默认。创建必要的消费、输出、模型、Assurance 和综合记录，但不强制生成空洞 artifacts。
+## 禁止
 
-### deep
-
-高影响或复杂审计。生成完整过程包、多个 Analysis Runs、复审计划和网络更新。
-
-## 4. 禁止
-
-不得把“非平凡问题”机械等同于“完整重型包”。不得因为模板存在就全部创建。
+输出物数量不能替代分析质量，也不能成为跨越 Decision Scope 的理由。

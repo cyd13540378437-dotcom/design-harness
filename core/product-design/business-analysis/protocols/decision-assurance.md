@@ -1,54 +1,28 @@
-# Decision Assurance Check / 决策质量保障
+# Decision Assurance Check / 决策质量保障 v0.1.4
 
-## 1. 结果
-
-```text
-pass  可输出阶段性结论
-warn  可输出 provisional 建议，必须说明限制
-block 不得输出最终建议，只能明确下一步
-```
-
-## 2. 基础检查
+## 1. 整体成熟度
 
 ```text
-问题是否定义清楚
-原始输入是否完整保留
-事实、假设、解释是否分开
-是否存在真实业务选项
-是否包含不做、维持现状或更小选择
-反方分析是否完成
-模型是否适配
-证据强度是否说明
-验证和复审条件是否存在
-高影响决定是否由用户确认
+pass | warn | partial
 ```
 
-## 3. v0.1.2 连续性检查
+## 2. Claim-level Assurance
 
 ```text
-是否先恢复活动 Work Item
-最终回答是否仍在解决确认过的商业问题
-用户提出的解法是否被当成未经检验的前提
-下一问题是否具有 Decision Delta
-每个模型是否说明 decision_relevance / decision_delta
-是否只有中央综合器生成结论
-是否无提示滑入产品或技术设计
-结论是否绑定 Case ID、Assurance、状态与用户决定
-中文主输出是否存在
-过程文件路径是否合规
+supported | provisional | conditional | blocked
 ```
 
-## 4. block
-
-必须 block：
+## 3. 新增边界检查
 
 ```text
-理解仍高度歧义却提前推荐
-活动 Case 后续轮次未恢复状态
-结论已经偏离商业问题
-没有真实选项或解法未被挑战
-模型无决策相关性
-关键输入不足却伪造数值结论
-用户要求中文但没有中文输出
-D2/D3 被 AI 自动 confirmed
+Decision Scope 是否锁定；
+混合轮次是否同时识别决定和追问；
+confirmed 后 Choice Loop 是否关闭；
+决定后澄清是否保持概念级；
+是否创建越界实施产物；
+是否主动提出执行；
+phase / gate 是否使用合法枚举；
+Decision Summary 模式是否匹配当前 Choice Loop。
 ```
+
+Assurance 不得把“边界检查通过”的自我声明当成证据；必须检查实际文件和实际回复内容。

@@ -1,43 +1,27 @@
-# Analysis Model Card Protocol v0.1.2
+# Analysis Model Card Protocol v0.1.4
 
-Analysis Model Card 是专业分析知识对象和受控 Prompt 合同，不是方法名列表。
+## 1. 模型卡不是方法名
 
-## 1. ready 卡必填七类 Prompt
+模型卡必须说明适用 / 不适用场景、最低输入、输出、误用风险、用户提问、运行 Prompt、Choice Delta 和质量检查。
 
-```text
-decision_relevance_prompt
-routing_prompt
-user_input_prompt
-execution_prompt
-analysis_run_prompt
-conclusion_prompt
-misuse_guard_prompt
-```
+## 2. 运行角色
 
-## 2. 运行规则
+- `internal_control`：商业分析自身推理纪律，quick / standard 默认不单独落盘。
+- `professional_analysis`：针对具体商业问题运行，结果优先写入中文 `ANALYSIS_WORKSPACE.md`。
 
-- `decision_relevance_prompt`：先判断模型会不会改变当前业务选择。
-- `routing_prompt`：内部判断是否适用。
-- `user_input_prompt`：只有缺少会改变选项排序的输入时才问用户。
-- `execution_prompt`：内部执行分析。
-- `analysis_run_prompt`：写入 Analysis Workspace，必须包含 Decision Delta。
-- `misuse_guard_prompt`：内部自检。
-- `conclusion_prompt`：只向中央决策综合器返回候选含义，禁止直接对用户收尾。
+## 3. Choice-first 约束
 
-## 3. Analysis Run 必填
+Choice Loop 打开时，执行前必须明确模型会改变哪个选项、后果、推荐或置信度；执行后输出 Choice Delta。
+
+## 4. Closure 与 Scope 约束
 
 ```text
-model_id
-purpose
-decision_relevance
-inputs_used
-analysis_output
-decision_delta
-implications
-limitations
-confidence
+choice_loop_status=closed
+→ 除正式 review_signal 外，不得调用任何模型卡。
 ```
 
-## 4. 中文输出
+所有模型必须遵守 Decision Scope Lock，不得输出实施步骤、正式 Schema、公式权重、样例数据、代码或执行提议。
 
-模型内部 Prompt 可以使用英文或中文，但写入项目的 Analysis Run、用户问题和结论必须有中文版本。
+## 5. 结论出口
+
+模型卡的 `conclusion_prompt` 只向中央综合器提供候选含义，不得直接向用户输出最终结论。

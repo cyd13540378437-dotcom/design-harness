@@ -1,7 +1,3 @@
-# Standalone Product Business Analysis v0.1.2
+# Product Business Analysis Adapter v0.1.4
 
-Use `product-business-analysis` independently and read/write only `docs/product/business-analysis/`.
-
-Preserve the first input, confirm understanding before routing, resume an existing BA Work Item on every follow-up turn, maintain the Decision Anchor, challenge user-proposed solutions, ask only decision-relevant questions, require Decision Delta for model runs, use a single unified conclusion, and run counterfactual plus Assurance checks.
-
-All user-visible and human-readable project outputs must include a complete Simplified Chinese version. Never touch sibling capability assets.
+Use the standalone Business Analysis Core. Preserve Chinese human-readable outputs, maintain Decision Scope Lock and Choice Loop status, parse mixed turns, close the loop after confirmation, and never continue into implementation design or execution. Do not use sibling capabilities.

@@ -10,8 +10,8 @@ status: awaiting_human
 priority: high
 impact_level: D2
 dedupe_key: pricing-model-seat-change
-created_at: 2026-07-17
-updated_at: 2026-07-17
+created_at: "2026-07-17"
+updated_at: "2026-07-22"
 resolved_at: ""
 ---
 
@@ -21,41 +21,28 @@ resolved_at: ""
 
 商业分析层确认计费方式从按 Workspace 计费调整为按 Seat 计费。
 
-## Source Context
-
-来源为 `BA-002` 的 confirmed 商业分析决定。
-
 ## Source Decision or Evidence
 
+- Source Work Item: `BA-002`
 - Confirmed Decision: 按 Seat 计费
 - Decision Status: confirmed
 
 ## Observed Change, Gap, or Conflict
 
-当前业务模型只有 Workspace 与 Member，没有 Seat 的对象身份、占用规则、邀请关系或权限约束。
+当前模型已有 Workspace、Member、Invitation 和 BillingAccount，但没有 Seat 的身份、占用规则或生命周期。
 
 ## Why It Matters
 
-这个变化可能影响 Seat 是否成为独立业务对象、Member 与 Seat 的关系、Invitation 是否提前占用 Seat、权限规则、数据库视图、后端计费校验和 QA 验收。
+变化可能影响对象身份、成员与邀请关系、权限、审计和所有专业下游视图。
 
 ## Requested Response
 
-请业务模型能力执行影响分析，并提出需要人类确认的建模方案。
-
-## Initial Scope Hint
-
-- 可能涉及对象：Workspace, Member, Seat, Invitation, BillingAccount
-- 可能涉及规则：席位占用、邀请占用、移除成员后的历史保留
-
-## Human Decision Signals
-
-Seat 是否为独立业务对象属于 D2 决策。
+执行业务模型影响分析，并提出需要人类确认的建模方案。
 
 ## Resolution
 
-- Status: awaiting_human
-- Resolved by BM Work Item: BM-001
-- Impact Report: ../work-items/BM-001-seat-pricing-impact/artifacts/MODEL_IMPACT_REPORT.md
-- Human Decision Required: yes
-- Summary: awaiting decision BMD-001
-- Follow-up Triggers:
+- Status: `awaiting_human`
+- Resolved by BM Work Item: [`BM-001`](../work-items/BM-001-seat-pricing-impact/STATE.md)
+- Impact Report: [`MODEL_IMPACT_REPORT.md`](../work-items/BM-001-seat-pricing-impact/artifacts/MODEL_IMPACT_REPORT.md)
+- Human Decision Required: `BMD-001`
+- Summary: 当前 provisional 模型推荐 Seat 作为独立业务对象。

@@ -1,17 +1,9 @@
 <!-- BEGIN DesignHarnessAgent: product-business-modeling -->
-# DesignHarnessAgent — Product Business Modeling
+# DesignHarnessAgent — Product Business Modeling v0.2.3
 
-Use `/product-business-modeling` for Product Business Modeling tasks: business objects, business attributes, relationships, actions, states, rules, permissions, model triggers, impact reports, project extraction, consistency validation, and downstream views.
+Use `/product-business-modeling` for durable product business semantics.
 
-Business Modeling is an Agent-neutral Core. Claude Code files are only runtime adapters.
+Read `docs/product/BUSINESS_MODEL_OVERVIEW.md` first and present it as the only default user file. Detailed truth remains under `docs/product/business-modeling/`; canonical Work Items remain under `docs/product/work-items/`.
 
-Project source of truth:
-
-```text
-docs/product/business-modeling/
-docs/product/model-triggers/
-docs/product/work-items/
-```
-
-Do not move business model knowledge into `.claude/skills/`, `.claude/agents/`, or `CLAUDE.md`. Do not directly modify `docs/design/**` from Business Modeling. Escalate D2/D3 business semantics to the user before marking them confirmed.
+Use the frozen State Schema, stable IDs and `BMD-xxx` decisions. After every persistent Core write, generate a consistency report, refresh the overview and then compile requested downstream views. Do not edit `docs/design/**` or seal without explicit human approval.
 <!-- END DesignHarnessAgent: product-business-modeling -->

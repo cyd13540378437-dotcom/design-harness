@@ -1,21 +1,21 @@
 ---
-schema_version: 1
+schema_version: 2
 language: zh-CN
 analysis_run_id: AR-000
 model_id: ""
+runtime_role: professional_analysis
 status: draft
 ---
 
 # 专业分析运行：<模型中文名>
 
 - 目的：
-- Decision Relevance：本模型如何服务当前商业选择？
-- 选择原因：
+- 服务的当前选择：
 - 使用输入：
 - 分析结果：
-- Decision Delta：哪个选项、风险、阈值或下一步因此发生变化？
-- 对当前结论的含义：
+- Choice Delta：新增 / 排除 / 条件化 / 改荐 / 置信度变化 / 无变化
+- 对当前推荐的影响：
+- 关键声明及 Assurance：
 - 局限：
 - 置信度：
-- 更新的 Decision Case 字段：
-- 是否允许进入用户可见综合：是 / 否
+- 是否进入 `ANALYSIS_WORKSPACE.md`：是 / 否

@@ -1,5 +1,5 @@
 ---
-schema_version: 1
+schema_version: 2
 language: zh-CN
 review_id: BA-DR-000
 case_id: BA-DC-000
@@ -9,29 +9,40 @@ created_at: "YYYY-MM-DD"
 
 # 决策复审
 
-## 原决定
+## 原 Choice Core
+
+- 原决策问题：
+- 原 Choice Set：
+- 原推荐：
+- 原用户决定：
 
 ## 为什么开启复审
 
 ## 新证据或变化的假设
 
-## 仍然成立的部分
+## Choice Delta
 
-## 不再成立的部分
+- 仍然可行的选项：
+- 新增 / 排除 / 条件化的选项：
+- 原推荐是否仍成立：
 
-## 复审选项
+## 复审后的 Choice Set
+
+## 系统当前推荐
+
+- 推荐状态：`provisional | conditional | user_confirmed`
+- 接受的代价：
+- 改变推荐的条件：
+
+## Claim-level Assurance
+
+## 用户可以选择
 
 ```text
-A. 保持原决定
-B. 缩小或修改适用范围
-C. 用新决定替代
-D. 补充证据后再决定
+保持原决定
+接受新推荐
+修改推荐
+暂缓
 ```
 
-## 系统推荐
-
-## 用户决定
-
-## 产生的 Case / Network 更新
-
-## 下一次复审条件
+## Decision Network 更新与下一次复审条件

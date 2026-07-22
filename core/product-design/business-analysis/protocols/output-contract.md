@@ -1,16 +1,16 @@
-# Output Contract / 输出物契约 v0.1.2
+# Output Contract / 输出物契约 v0.1.4
 
-## 1. 中文用户可见输出
+## 1. 用户可见中文输出
 
 ```text
-输入理解反馈
-下一最有决策价值的问题
-中文阶段性决策摘要
+问题理解反馈
+Choice Set 与当前推荐
+阶段性 Decision Summary
 Human Decision Request
-验证或复审选择
+决定确认摘要
+决定后概念澄清
+复审或改荐说明
 ```
-
-所有用户可见输出默认使用简体中文。
 
 ## 2. 长期资产
 
@@ -21,55 +21,25 @@ Evidence Ledger
 Decision Review
 ```
 
-## 3. Work Item 根目录
+## 3. Standard Work Item 核心文件
 
 ```text
 STATE.md
-ANALYSIS_CONSUMPTION.md
-ANALYSIS_OUTPUT.md
-DECISION_NOTES.md
-DECISION_SUMMARY.md
-DECISION_PROCESS_PACKAGE.md
+ANALYSIS_WORKSPACE.md        # 使用专业模型时
+DECISION_SUMMARY.md          # choice_request / decision_confirmed / clarification / review
+DECISION_NOTES.md            # 用户明确决定时
 ```
 
-`DECISION_SUMMARY.md` 是唯一的中文用户可见结论文件名；不得再创建平行的“商业分析结论”文件。
+## 4. Deep / Audit 条件性文件
 
-## 4. 过程 artifacts
+保留消费、输出、过程包和 artifacts 等审计材料，但 quick / standard 不得机械创建。
 
-全部位于：
+## 5. Artifact Boundary
 
-```text
-work-items/BA-xxx/artifacts/
-```
+商业分析不得创建或主动维护实施 Runbook、手工模拟指南、正式数据 Schema、样例数据、脚本、UI / 技术规格或执行结果。
 
-包括：
-
-```text
-INPUT_UNDERSTANDING_SNAPSHOT.md
-TURN_CONTINUITY_CHECK.md
-ANALYSIS_ROUTING_RECORD.md
-EVIDENCE_INTAKE_RECORD.md
-MODEL_SELECTION_RECORD.md
-ANALYSIS_RUNS.md
-DECISION_ASSURANCE_CHECK.md
-DECISION_SYNTHESIS.md
-DECISION_NETWORK_UPDATE.md
-```
-
-其中 `TURN_CONTINUITY_CHECK.md` 是滚动检查点，只在 standard / deep、总结、决定、复审、范围变化或连续性风险时更新；不为每轮创建新文件。
-
-不得在 Work Item 根目录放置过程文件，不得创建临时 `intake/` 目录。
-
-## 5. 按深度生成
-
-- `quick`：更新 Case、STATE、中文 Decision Summary，加必要的轻量分析；可不创建 Turn Check 或完整 Process Package。
-- `standard`：生成必要消费、输出、模型、Assurance、Turn Continuity 和中央综合记录。
-- `deep`：生成完整 Process Package、全部必要审计材料和正式复审计划。
-
-不得为了模板完整而创建无价值空文件。
+概念级验证路径必须写入现有核心资产，不新建实施文件。
 
 ## 6. 中文版本合同
 
-- 所有项目级人读 Markdown 输出必须有完整简体中文内容。
-- 英文可以作为运行时 Prompt、稳定 ID、文件名、状态枚举或机器字段。
-- 用户要求英文时，可额外生成英文 companion，但中文主版本不能缺失。
+所有项目级人读 Markdown 必须有完整简体中文内容。英文可用于运行时 Prompt、稳定 ID、文件名、状态枚举和机器字段，但不能替代中文主版本。

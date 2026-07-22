@@ -10,4 +10,4 @@
 
 ## Then / 则
 
-Analysis Run 写入中文工作区，并包含 Decision Relevance 与 Decision Delta。
+Analysis Run 写入中文工作区，并包含 Decision Relevance 与 Choice Delta。

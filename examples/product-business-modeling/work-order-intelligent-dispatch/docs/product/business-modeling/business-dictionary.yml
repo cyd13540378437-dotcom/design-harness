@@ -1,0 +1,1149 @@
+schema_version: 1
+business_model_version: v0.1-provisional
+status: provisional
+business_domains:
+- id: service_demand
+  label: 服务需求
+  description: 承载工单、服务承诺和可调度要求。
+  status: provisional
+- id: facility_context
+  label: 设备设施上下文
+  description: 描述可维护资产与服务位置。
+  status: provisional
+- id: resource_capacity
+  label: 资源能力与容量
+  description: 描述资源、能力和可用性。
+  status: provisional
+- id: dispatch_decisioning
+  label: 调度决策
+  description: 描述策略、候选、决策与执行责任。
+  status: provisional
+- id: execution_feedback
+  label: 执行反馈
+  description: 描述实际执行过程和结果。
+  status: provisional
+- id: strategy_evaluation
+  label: 策略评估
+  description: 描述决策回放与效果证据。
+  status: provisional
+object_categories:
+- id: process_carrier
+  label: 流程承载类
+  description: 承载主要业务流程。
+  status: provisional
+- id: core_business_object
+  label: 核心业务对象类
+  description: 被服务或维护的核心对象。
+  status: provisional
+- id: context_object
+  label: 业务上下文类
+  description: 提供位置或环境约束。
+  status: provisional
+- id: requirement_object
+  label: 要求表达类
+  description: 把需求转成可判断约束。
+  status: provisional
+- id: participant_resource
+  label: 参与资源类
+  description: 承担业务责任的资源。
+  status: provisional
+- id: capability_object
+  label: 能力类
+  description: 表达可胜任条件。
+  status: provisional
+- id: capacity_object
+  label: 容量类
+  description: 表达时间与承诺容量。
+  status: provisional
+- id: policy_object
+  label: 策略规则类
+  description: 表达过滤、排序与护栏。
+  status: provisional
+- id: candidate_object
+  label: 候选方案类
+  description: 承载可比较方案。
+  status: provisional
+- id: decision_object
+  label: 业务决策类
+  description: 承载推荐、确认与覆盖。
+  status: provisional
+- id: commitment_object
+  label: 责任承诺类
+  description: 承载已形成的执行责任。
+  status: provisional
+- id: event_record
+  label: 事件记录类
+  description: 记录实际执行事实。
+  status: provisional
+- id: evidence_object
+  label: 证据类
+  description: 保存可回放评估证据。
+  status: provisional
+business_objects:
+- id: work_order
+  name: WorkOrder
+  label: 工单
+  definition: 承载一次设备设施服务需求、服务承诺和业务进展的流程对象；不等同于执行记录。
+  business_domain_id: service_demand
+  object_category_id: process_carrier
+  status: provisional
+- id: maintainable_asset
+  name: MaintainableAsset
+  label: 可维护资产
+  definition: 被维护或服务的设备、系统或设施构件；不包含空间位置本身。
+  business_domain_id: facility_context
+  object_category_id: core_business_object
+  status: provisional
+- id: service_location
+  name: ServiceLocation
+  label: 服务位置
+  definition: 服务发生的空间、区域和通行上下文；不固有包含从某个资源出发的到达成本。
+  business_domain_id: facility_context
+  object_category_id: context_object
+  status: provisional
+- id: work_requirement
+  name: WorkRequirement
+  label: 工单要求
+  definition: 把工单需求转化为能力、资质、安全、工具和时间约束的要求对象。
+  business_domain_id: service_demand
+  object_category_id: requirement_object
+  status: provisional
+- id: service_resource
+  name: ServiceResource
+  label: 服务资源
+  definition: 可承担工单执行责任的资源抽象；第一期可覆盖个人、班组、岗位和外包资源，具体身份仍待确认。
+  business_domain_id: resource_capacity
+  object_category_id: participant_resource
+  status: provisional
+- id: capability
+  name: Capability
+  label: 能力
+  definition: 资源胜任某类服务的业务能力及等级约束；不等同于证书文件或技能字段。
+  business_domain_id: resource_capacity
+  object_category_id: capability_object
+  status: provisional
+- id: resource_availability
+  name: ResourceAvailability
+  label: 资源可用性
+  definition: 某个服务资源在特定时段可被业务承诺的容量与限制。
+  business_domain_id: resource_capacity
+  object_category_id: capacity_object
+  status: provisional
+- id: dispatch_policy
+  name: DispatchPolicy
+  label: 调度策略
+  definition: 用于候选过滤、排序和护栏判断的业务策略，不是算法代码。
+  business_domain_id: dispatch_decisioning
+  object_category_id: policy_object
+  status: provisional
+- id: dispatch_candidate
+  name: DispatchCandidate
+  label: 派工候选
+  definition: 由工单、资源、候选开始窗口和上下文评估组成的可比较派工方案。
+  business_domain_id: dispatch_decisioning
+  object_category_id: candidate_object
+  status: provisional
+- id: dispatch_decision
+  name: DispatchDecision
+  label: 派工决策
+  definition: 记录推荐、人工确认、覆盖、拒绝和提交理由的业务决策。
+  business_domain_id: dispatch_decisioning
+  object_category_id: decision_object
+  status: provisional
+- id: assignment
+  name: Assignment
+  label: 派工责任
+  definition: 派工决策提交后形成的执行责任与承诺。
+  business_domain_id: dispatch_decisioning
+  object_category_id: commitment_object
+  status: provisional
+- id: execution_record
+  name: ExecutionRecord
+  label: 执行记录
+  definition: 记录实际开始、完成、异常、质量和重派结果的执行事实。
+  business_domain_id: execution_feedback
+  object_category_id: event_record
+  status: provisional
+- id: dispatch_evaluation_snapshot
+  name: DispatchEvaluationSnapshot
+  label: 调度评估快照
+  definition: 保存候选集合、排序、最终选择和执行反馈的可回放策略评估证据。
+  business_domain_id: strategy_evaluation
+  object_category_id: evidence_object
+  status: provisional
+business_attributes:
+- id: work_order_identity
+  object_id: work_order
+  label: 工单业务身份
+  meaning: 唯一识别服务需求
+  attribute_kind: intrinsic
+  example_content:
+  - WO-2026-0001
+  status: provisional
+- id: service_type
+  object_id: work_order
+  label: 服务类型
+  meaning: 需要执行的服务类别
+  attribute_kind: intrinsic
+  example_content:
+  - 空调故障维修
+  status: provisional
+- id: priority
+  object_id: work_order
+  label: 优先级
+  meaning: 业务紧急程度
+  attribute_kind: intrinsic
+  example_content:
+  - 紧急
+  status: provisional
+- id: service_commitment
+  object_id: work_order
+  label: 服务承诺
+  meaning: 响应、到场或完成承诺
+  attribute_kind: intrinsic
+  example_content:
+  - 2 小时内到场
+  status: provisional
+- id: desired_service_window
+  object_id: work_order
+  label: 期望服务窗口
+  meaning: 业务希望的执行时间范围
+  attribute_kind: intrinsic
+  example_content:
+  - 今日 14:00-17:00
+  status: provisional
+- id: estimated_effort
+  object_id: work_order
+  label: 预计工作量
+  meaning: 执行所需业务工作量
+  attribute_kind: intrinsic
+  example_content:
+  - 约 60 分钟
+  status: provisional
+- id: related_maintainable_asset
+  object_id: work_order
+  label: 关联可维护资产
+  meaning: 本次服务对象
+  attribute_kind: relational
+  example_content:
+  - 3 号楼中央空调主机
+  status: provisional
+- id: service_location
+  object_id: work_order
+  label: 服务位置
+  meaning: 服务发生的业务位置
+  attribute_kind: relational
+  example_content:
+  - A 园区 3 号楼 B1 机房
+  status: provisional
+- id: required_capabilities
+  object_id: work_order
+  label: 所需能力
+  meaning: 完成服务所需能力集合
+  attribute_kind: relational
+  example_content:
+  - 暖通维修、低压电工资质
+  status: provisional
+- id: work_order_status
+  object_id: work_order
+  label: 工单状态
+  meaning: 工单当前业务阶段
+  attribute_kind: intrinsic
+  example_content:
+  - 待调度
+  status: provisional
+- id: asset_identity
+  object_id: maintainable_asset
+  label: 资产业务身份
+  meaning: 唯一识别被维护对象
+  attribute_kind: intrinsic
+  example_content:
+  - FAC-HVAC-003
+  status: provisional
+- id: asset_name
+  object_id: maintainable_asset
+  label: 资产名称
+  meaning: 业务可理解名称
+  attribute_kind: intrinsic
+  example_content:
+  - 中央空调主机
+  status: provisional
+- id: facility_system
+  object_id: maintainable_asset
+  label: 所属专业系统
+  meaning: 资产所属设施系统
+  attribute_kind: intrinsic
+  example_content:
+  - 暖通系统
+  status: provisional
+- id: criticality
+  object_id: maintainable_asset
+  label: 重要等级
+  meaning: 停机或故障的业务影响
+  attribute_kind: intrinsic
+  example_content:
+  - 关键设备
+  status: provisional
+- id: installed_location
+  object_id: maintainable_asset
+  label: 所在位置
+  meaning: 资产安装或作用位置
+  attribute_kind: relational
+  example_content:
+  - A 园区 3 号楼 B1 机房
+  status: provisional
+- id: service_constraints
+  object_id: maintainable_asset
+  label: 服务限制
+  meaning: 维护时必须满足的业务条件
+  attribute_kind: intrinsic
+  example_content:
+  - 需双人进入机房
+  status: provisional
+- id: operating_status
+  object_id: maintainable_asset
+  label: 运行状态
+  meaning: 资产当前服务或故障状态
+  attribute_kind: intrinsic
+  example_content:
+  - 故障停机
+  status: provisional
+- id: location_name
+  object_id: service_location
+  label: 位置名称
+  meaning: 业务可识别位置
+  attribute_kind: intrinsic
+  example_content:
+  - A 园区 3 号楼 B1 机房
+  status: provisional
+- id: location_hierarchy
+  object_id: service_location
+  label: 区域层级
+  meaning: 位置在项目空间中的层级
+  attribute_kind: intrinsic
+  example_content:
+  - 项目 / 楼栋 / 楼层 / 房间
+  status: provisional
+- id: responsibility_scope
+  object_id: service_location
+  label: 责任范围
+  meaning: 负责该区域的组织范围
+  attribute_kind: relational
+  example_content:
+  - 工程一组负责
+  status: provisional
+- id: access_restrictions
+  object_id: service_location
+  label: 通行限制
+  meaning: 进入或服务该位置的条件
+  attribute_kind: intrinsic
+  example_content:
+  - 需机房权限
+  status: provisional
+- id: requirement_source
+  object_id: work_requirement
+  label: 要求来源
+  meaning: 要求来自何种业务事实
+  attribute_kind: intrinsic
+  example_content:
+  - 工单描述与资产类型推导
+  status: provisional
+- id: capability_requirements
+  object_id: work_requirement
+  label: 能力要求
+  meaning: 必须具备的专业能力
+  attribute_kind: relational
+  example_content:
+  - 暖通维修
+  status: provisional
+- id: qualification_requirements
+  object_id: work_requirement
+  label: 资质要求
+  meaning: 必须具备的业务资质
+  attribute_kind: intrinsic
+  example_content:
+  - 低压电工证
+  status: provisional
+- id: safety_requirements
+  object_id: work_requirement
+  label: 安全要求
+  meaning: 必须满足的作业条件
+  attribute_kind: intrinsic
+  example_content:
+  - 双人作业
+  status: provisional
+- id: tool_requirements
+  object_id: work_requirement
+  label: 工具要求
+  meaning: 执行所需工具条件
+  attribute_kind: intrinsic
+  example_content:
+  - 压力表
+  status: provisional
+- id: time_requirements
+  object_id: work_requirement
+  label: 时间要求
+  meaning: 需要满足的业务时限
+  attribute_kind: intrinsic
+  example_content:
+  - 今日完成
+  status: provisional
+- id: requirement_status
+  object_id: work_requirement
+  label: 要求确认状态
+  meaning: 要求是否已足以进入调度
+  attribute_kind: intrinsic
+  example_content:
+  - 待班组长确认
+  status: provisional
+- id: resource_identity
+  object_id: service_resource
+  label: 资源身份
+  meaning: 承担执行责任的资源身份
+  attribute_kind: intrinsic
+  example_content:
+  - 暖通技工张三
+  status: provisional
+- id: resource_type
+  object_id: service_resource
+  label: 资源类型
+  meaning: 个人、班组、岗位或外包等分类
+  attribute_kind: intrinsic
+  example_content:
+  - 个人技工
+  status: provisional
+- id: organization
+  object_id: service_resource
+  label: 所属组织
+  meaning: 资源所属业务组织
+  attribute_kind: relational
+  example_content:
+  - 工程一组
+  status: provisional
+- id: coverage_area
+  object_id: service_resource
+  label: 覆盖区域
+  meaning: 资源可服务范围
+  attribute_kind: relational
+  example_content:
+  - A 园区
+  status: provisional
+- id: capability_set
+  object_id: service_resource
+  label: 能力集合
+  meaning: 资源可承担的工作能力
+  attribute_kind: relational
+  example_content:
+  - 暖通维修、空调保养
+  status: provisional
+- id: current_load
+  object_id: service_resource
+  label: 当前负载
+  meaning: 已承诺的业务工作量
+  attribute_kind: derived
+  example_content:
+  - 今日已承诺 4 小时
+  status: provisional
+- id: work_status
+  object_id: service_resource
+  label: 工作状态
+  meaning: 资源当前可服务状态
+  attribute_kind: intrinsic
+  example_content:
+  - 可接单
+  status: provisional
+- id: capability_name
+  object_id: capability
+  label: 能力名称
+  meaning: 业务能力名称
+  attribute_kind: intrinsic
+  example_content:
+  - 暖通维修
+  status: provisional
+- id: capability_level
+  object_id: capability
+  label: 能力等级
+  meaning: 胜任程度
+  attribute_kind: intrinsic
+  example_content:
+  - 熟练
+  status: provisional
+- id: applicable_service_types
+  object_id: capability
+  label: 适用服务类型
+  meaning: 能力适用的服务范围
+  attribute_kind: relational
+  example_content:
+  - 空调故障、风机盘管维修
+  status: provisional
+- id: qualification_constraints
+  object_id: capability
+  label: 资质约束
+  meaning: 能力成立所需资质
+  attribute_kind: intrinsic
+  example_content:
+  - 低压电工证
+  status: provisional
+- id: validity_status
+  object_id: capability
+  label: 有效状态
+  meaning: 能力当前是否有效
+  attribute_kind: intrinsic
+  example_content:
+  - 有效
+  status: provisional
+- id: resource_reference
+  object_id: resource_availability
+  label: 对应资源
+  meaning: 可用性所属资源
+  attribute_kind: relational
+  example_content:
+  - 暖通技工张三
+  status: provisional
+- id: available_window
+  object_id: resource_availability
+  label: 可服务时段
+  meaning: 可被承诺的时间范围
+  attribute_kind: contextual
+  example_content:
+  - 今日 09:00-18:00
+  status: provisional
+- id: committable_capacity
+  object_id: resource_availability
+  label: 可承诺容量
+  meaning: 剩余可承诺工作量
+  attribute_kind: derived
+  example_content:
+  - 剩余约 3 小时
+  status: provisional
+- id: existing_commitments
+  object_id: resource_availability
+  label: 已有占用
+  meaning: 当前任务承诺
+  attribute_kind: relational
+  example_content:
+  - 15:00-16:00 已有保养任务
+  status: provisional
+- id: unavailable_reason
+  object_id: resource_availability
+  label: 不可用原因
+  meaning: 不能承诺的业务原因
+  attribute_kind: contextual
+  example_content:
+  - 请假、培训、跨区支援
+  status: provisional
+- id: availability_status
+  object_id: resource_availability
+  label: 可承诺状态
+  meaning: 整体可承诺程度
+  attribute_kind: derived
+  example_content:
+  - 可部分承诺
+  status: provisional
+- id: policy_name
+  object_id: dispatch_policy
+  label: 策略名称
+  meaning: 业务可识别策略
+  attribute_kind: intrinsic
+  example_content:
+  - SLA 护栏下的利用率优先策略
+  status: provisional
+- id: applicable_scenario
+  object_id: dispatch_policy
+  label: 适用场景
+  meaning: 策略适用条件
+  attribute_kind: intrinsic
+  example_content:
+  - 非应急维修
+  status: provisional
+- id: hard_constraints
+  object_id: dispatch_policy
+  label: 硬性约束
+  meaning: 决定是否可派的条件
+  attribute_kind: intrinsic
+  example_content:
+  - 必须具备技能且在班
+  status: provisional
+- id: ranking_preferences
+  object_id: dispatch_policy
+  label: 排序偏好
+  meaning: 候选之间的优先依据
+  attribute_kind: intrinsic
+  example_content:
+  - SLA 风险、预计到达成本、负载均衡
+  status: provisional
+- id: guardrail_metrics
+  object_id: dispatch_policy
+  label: 护栏指标
+  meaning: 优化时不能伤害的目标
+  attribute_kind: intrinsic
+  example_content:
+  - 不增加加班、不牺牲应急缓冲
+  status: provisional
+- id: policy_status
+  object_id: dispatch_policy
+  label: 生效状态
+  meaning: 策略是否可用于生产或试验
+  attribute_kind: intrinsic
+  example_content:
+  - 试运行
+  status: provisional
+- id: candidate_work_order
+  object_id: dispatch_candidate
+  label: 候选工单
+  meaning: 被安排的工单
+  attribute_kind: relational
+  example_content:
+  - WO-2026-0001
+  status: provisional
+- id: candidate_resource
+  object_id: dispatch_candidate
+  label: 候选资源
+  meaning: 可能承担工作的资源
+  attribute_kind: relational
+  example_content:
+  - 暖通技工张三
+  status: provisional
+- id: candidate_start_window
+  object_id: dispatch_candidate
+  label: 候选开始窗口
+  meaning: 可能承诺的开始时间
+  attribute_kind: contextual
+  example_content:
+  - 今日 15:30-16:30
+  status: provisional
+- id: match_reasons
+  object_id: dispatch_candidate
+  label: 匹配理由
+  meaning: 为什么该方案可行
+  attribute_kind: derived
+  example_content:
+  - 技能匹配且同园区
+  status: provisional
+- id: estimated_arrival_cost
+  object_id: dispatch_candidate
+  label: 预计到达成本
+  meaning: 基于资源位置、服务位置和时间窗口的上下文评估
+  attribute_kind: contextual
+  example_content:
+  - 从当前任务地点预计 12 分钟
+  status: provisional
+- id: business_risks
+  object_id: dispatch_candidate
+  label: 业务风险
+  meaning: 采用候选方案的业务代价
+  attribute_kind: derived
+  example_content:
+  - 可能压缩应急缓冲
+  status: provisional
+- id: candidate_status
+  object_id: dispatch_candidate
+  label: 候选状态
+  meaning: 是否可推荐或被排除
+  attribute_kind: derived
+  example_content:
+  - 可推荐
+  status: provisional
+- id: decision_work_order
+  object_id: dispatch_decision
+  label: 决策对象
+  meaning: 被决定的工单
+  attribute_kind: relational
+  example_content:
+  - WO-2026-0001
+  status: provisional
+- id: selected_resource
+  object_id: dispatch_decision
+  label: 被选资源
+  meaning: 最终选择的资源
+  attribute_kind: relational
+  example_content:
+  - 暖通技工张三
+  status: provisional
+- id: planned_start_window
+  object_id: dispatch_decision
+  label: 计划开始窗口
+  meaning: 决策中的开始承诺
+  attribute_kind: contextual
+  example_content:
+  - 今日 15:30-16:30
+  status: provisional
+- id: decision_method
+  object_id: dispatch_decision
+  label: 决策方式
+  meaning: 系统建议、人工确认或覆盖
+  attribute_kind: intrinsic
+  example_content:
+  - 系统建议、人工确认
+  status: provisional
+- id: decision_reason
+  object_id: dispatch_decision
+  label: 业务理由
+  meaning: 为什么做出该选择
+  attribute_kind: intrinsic
+  example_content:
+  - 满足 SLA 且同区域空闲
+  status: provisional
+- id: override_reason
+  object_id: dispatch_decision
+  label: 覆盖原因
+  meaning: 人工改变建议的原因
+  attribute_kind: intrinsic
+  example_content:
+  - 更熟悉该设备
+  status: provisional
+- id: decision_status
+  object_id: dispatch_decision
+  label: 决策状态
+  meaning: 推荐、确认、覆盖、提交等阶段
+  attribute_kind: intrinsic
+  example_content:
+  - 已确认
+  status: provisional
+- id: assigned_work_order
+  object_id: assignment
+  label: 责任工单
+  meaning: 责任对应工单
+  attribute_kind: relational
+  example_content:
+  - WO-2026-0001
+  status: provisional
+- id: responsible_resource
+  object_id: assignment
+  label: 责任资源
+  meaning: 承担执行责任的资源
+  attribute_kind: relational
+  example_content:
+  - 暖通技工张三
+  status: provisional
+- id: committed_start_window
+  object_id: assignment
+  label: 承诺开始窗口
+  meaning: 已形成责任的开始范围
+  attribute_kind: contextual
+  example_content:
+  - 今日 15:30-16:30
+  status: provisional
+- id: acceptance_status
+  object_id: assignment
+  label: 接受状态
+  meaning: 资源是否接受责任
+  attribute_kind: intrinsic
+  example_content:
+  - 已接单
+  status: provisional
+- id: assignment_status
+  object_id: assignment
+  label: 责任状态
+  meaning: 创建、通知、执行、完成等状态
+  attribute_kind: intrinsic
+  example_content:
+  - 执行中
+  status: provisional
+- id: change_reason
+  object_id: assignment
+  label: 变更原因
+  meaning: 取消或重派的业务原因
+  attribute_kind: intrinsic
+  example_content:
+  - 紧急工单插入导致重排
+  status: provisional
+- id: work_order_reference
+  object_id: execution_record
+  label: 对应工单
+  meaning: 执行事实所属工单
+  attribute_kind: relational
+  example_content:
+  - WO-2026-0001
+  status: provisional
+- id: actual_start
+  object_id: execution_record
+  label: 实际开始
+  meaning: 实际开始时间
+  attribute_kind: intrinsic
+  example_content:
+  - 今日 15:42
+  status: provisional
+- id: actual_completion
+  object_id: execution_record
+  label: 实际完成
+  meaning: 实际结束时间
+  attribute_kind: intrinsic
+  example_content:
+  - 今日 16:35
+  status: provisional
+- id: execution_result
+  object_id: execution_record
+  label: 执行结果
+  meaning: 业务完成结果
+  attribute_kind: intrinsic
+  example_content:
+  - 已修复
+  status: provisional
+- id: exception_reason
+  object_id: execution_record
+  label: 异常原因
+  meaning: 未按计划执行的原因
+  attribute_kind: intrinsic
+  example_content:
+  - 缺少配件
+  status: provisional
+- id: quality_feedback
+  object_id: execution_record
+  label: 质量反馈
+  meaning: 业务质量确认
+  attribute_kind: intrinsic
+  example_content:
+  - 客户确认正常
+  status: provisional
+- id: reassignment_result
+  object_id: execution_record
+  label: 重派情况
+  meaning: 执行过程是否发生重派
+  attribute_kind: intrinsic
+  example_content:
+  - 未重派
+  status: provisional
+- id: evaluated_decision
+  object_id: dispatch_evaluation_snapshot
+  label: 评估对象
+  meaning: 被回放的调度决策
+  attribute_kind: relational
+  example_content:
+  - WO-2026-0001 的调度决策
+  status: provisional
+- id: decision_context
+  object_id: dispatch_evaluation_snapshot
+  label: 决策现场
+  meaning: 当时工单、资源和可用性上下文
+  attribute_kind: contextual
+  example_content:
+  - 决策时点快照
+  status: provisional
+- id: candidate_set
+  object_id: dispatch_evaluation_snapshot
+  label: 候选集合
+  meaning: 当时可比较方案
+  attribute_kind: relational
+  example_content:
+  - 3 个可推荐资源
+  status: provisional
+- id: policy_ranking
+  object_id: dispatch_evaluation_snapshot
+  label: 策略排序
+  meaning: 策略对候选的排序
+  attribute_kind: derived
+  example_content:
+  - 张三第一，李四第二
+  status: provisional
+- id: final_selection
+  object_id: dispatch_evaluation_snapshot
+  label: 最终选择
+  meaning: 实际提交的方案
+  attribute_kind: derived
+  example_content:
+  - 张三 15:30 开始
+  status: provisional
+- id: execution_feedback
+  object_id: dispatch_evaluation_snapshot
+  label: 执行反馈
+  meaning: 后续执行结果
+  attribute_kind: derived
+  example_content:
+  - 未逾期，耗时 53 分钟
+  status: provisional
+- id: evidence_completeness
+  object_id: dispatch_evaluation_snapshot
+  label: 证据完整性
+  meaning: 快照是否足以评估
+  attribute_kind: derived
+  example_content:
+  - 候选、理由、结果齐全
+  status: provisional
+actions:
+- id: ACT-001
+  label: 确认工单要求
+  actor_type: role
+  actor_ids:
+  - dispatcher
+  target_object_id: work_requirement
+  meaning: 形成可调度要求
+  status: provisional
+- id: ACT-002
+  label: 生成派工候选
+  actor_type: system
+  actor_ids:
+  - scheduling_system
+  target_object_id: dispatch_candidate
+  meaning: 形成满足硬约束的候选集合
+  status: provisional
+- id: ACT-003
+  label: 推荐派工候选
+  actor_type: system
+  actor_ids:
+  - scheduling_system
+  target_object_id: dispatch_decision
+  meaning: 形成 recommended 决策
+  status: provisional
+- id: ACT-004
+  label: 确认派工决策
+  actor_type: role
+  actor_ids:
+  - dispatcher
+  target_object_id: dispatch_decision
+  meaning: 将建议确认为 confirmed
+  status: provisional
+- id: ACT-005
+  label: 覆盖派工决策
+  actor_type: role
+  actor_ids:
+  - dispatcher
+  target_object_id: dispatch_decision
+  meaning: 记录覆盖方案与原因
+  status: provisional
+- id: ACT-006
+  label: 拒绝派工建议
+  actor_type: role
+  actor_ids:
+  - dispatcher
+  target_object_id: dispatch_decision
+  meaning: 标记 rejected 并返回调度
+  status: provisional
+- id: ACT-007
+  label: 提交派工决策
+  actor_type: role
+  actor_ids:
+  - dispatcher
+  target_object_id: dispatch_decision
+  meaning: 决策 committed 并创建 Assignment
+  status: provisional
+- id: ACT-008
+  label: 通知派工责任
+  actor_type: system
+  actor_ids:
+  - scheduling_system
+  target_object_id: assignment
+  meaning: 责任进入 notified
+  status: provisional
+- id: ACT-009
+  label: 接受派工责任
+  actor_type: role
+  actor_ids:
+  - service_resource_actor
+  target_object_id: assignment
+  meaning: 责任进入 accepted
+  status: provisional
+- id: ACT-010
+  label: 开始执行
+  actor_type: role
+  actor_ids:
+  - service_resource_actor
+  target_object_id: assignment
+  meaning: 责任 active，工单 in_progress
+  status: provisional
+- id: ACT-011
+  label: 暂停执行
+  actor_type: role
+  actor_ids:
+  - service_resource_actor
+  target_object_id: assignment
+  meaning: 责任 paused 并记录原因
+  status: provisional
+- id: ACT-012
+  label: 恢复执行
+  actor_type: role
+  actor_ids:
+  - service_resource_actor
+  target_object_id: assignment
+  meaning: 责任返回 active
+  status: provisional
+- id: ACT-013
+  label: 完成执行
+  actor_type: role
+  actor_ids:
+  - service_resource_actor
+  target_object_id: assignment
+  meaning: 责任 finished，工单 awaiting_close
+  status: provisional
+- id: ACT-014
+  label: 请求重派
+  actor_type: role
+  actor_ids:
+  - service_resource_actor
+  target_object_id: assignment
+  meaning: 责任进入 reassignment_requested，工单返回调度
+  status: provisional
+- id: ACT-015
+  label: 取消派工责任
+  actor_type: role
+  actor_ids:
+  - dispatcher
+  target_object_id: assignment
+  meaning: 责任 cancelled 并保留原因
+  status: provisional
+- id: ACT-016
+  label: 关闭工单
+  actor_type: role
+  actor_ids:
+  - supervisor
+  target_object_id: work_order
+  meaning: 工单 closed
+  status: provisional
+- id: ACT-017
+  label: 取消工单
+  actor_type: role
+  actor_ids:
+  - dispatcher
+  target_object_id: work_order
+  meaning: 工单 cancelled 并保留原因
+  status: provisional
+- id: ACT-018
+  label: 取消派工决策
+  actor_type: role
+  actor_ids:
+  - dispatcher
+  target_object_id: dispatch_decision
+  meaning: 决策 cancelled
+  status: provisional
+states:
+- id: work_order.created
+  object_id: work_order
+  label: 已创建
+  meaning: 工单处于“已创建”阶段时成立的业务状态。
+  status: provisional
+- id: work_order.ready_for_dispatch
+  object_id: work_order
+  label: 可调度
+  meaning: 工单处于“可调度”阶段时成立的业务状态。
+  status: provisional
+- id: work_order.dispatching
+  object_id: work_order
+  label: 调度中
+  meaning: 工单处于“调度中”阶段时成立的业务状态。
+  status: provisional
+- id: work_order.assigned
+  object_id: work_order
+  label: 已形成责任
+  meaning: 工单处于“已形成责任”阶段时成立的业务状态。
+  status: provisional
+- id: work_order.in_progress
+  object_id: work_order
+  label: 执行中
+  meaning: 工单处于“执行中”阶段时成立的业务状态。
+  status: provisional
+- id: work_order.awaiting_close
+  object_id: work_order
+  label: 待关闭
+  meaning: 工单处于“待关闭”阶段时成立的业务状态。
+  status: provisional
+- id: work_order.closed
+  object_id: work_order
+  label: 已关闭
+  meaning: 工单处于“已关闭”阶段时成立的业务状态。
+  status: provisional
+- id: work_order.cancelled
+  object_id: work_order
+  label: 已取消
+  meaning: 工单处于“已取消”阶段时成立的业务状态。
+  status: provisional
+- id: dispatch_decision.recommended
+  object_id: dispatch_decision
+  label: 已推荐
+  meaning: 派工决策处于“已推荐”阶段时成立的业务状态。
+  status: provisional
+- id: dispatch_decision.confirmed
+  object_id: dispatch_decision
+  label: 已确认
+  meaning: 派工决策处于“已确认”阶段时成立的业务状态。
+  status: provisional
+- id: dispatch_decision.overridden
+  object_id: dispatch_decision
+  label: 已覆盖
+  meaning: 派工决策处于“已覆盖”阶段时成立的业务状态。
+  status: provisional
+- id: dispatch_decision.rejected
+  object_id: dispatch_decision
+  label: 已拒绝
+  meaning: 派工决策处于“已拒绝”阶段时成立的业务状态。
+  status: provisional
+- id: dispatch_decision.committed
+  object_id: dispatch_decision
+  label: 已提交
+  meaning: 派工决策处于“已提交”阶段时成立的业务状态。
+  status: provisional
+- id: dispatch_decision.cancelled
+  object_id: dispatch_decision
+  label: 已取消
+  meaning: 派工决策处于“已取消”阶段时成立的业务状态。
+  status: provisional
+- id: assignment.created
+  object_id: assignment
+  label: 已创建
+  meaning: 派工责任处于“已创建”阶段时成立的业务状态。
+  status: provisional
+- id: assignment.notified
+  object_id: assignment
+  label: 已通知
+  meaning: 派工责任处于“已通知”阶段时成立的业务状态。
+  status: provisional
+- id: assignment.accepted
+  object_id: assignment
+  label: 已接受
+  meaning: 派工责任处于“已接受”阶段时成立的业务状态。
+  status: provisional
+- id: assignment.active
+  object_id: assignment
+  label: 执行中
+  meaning: 派工责任处于“执行中”阶段时成立的业务状态。
+  status: provisional
+- id: assignment.paused
+  object_id: assignment
+  label: 已暂停
+  meaning: 派工责任处于“已暂停”阶段时成立的业务状态。
+  status: provisional
+- id: assignment.reassignment_requested
+  object_id: assignment
+  label: 已请求重派
+  meaning: 派工责任处于“已请求重派”阶段时成立的业务状态。
+  status: provisional
+- id: assignment.finished
+  object_id: assignment
+  label: 已完成
+  meaning: 派工责任处于“已完成”阶段时成立的业务状态。
+  status: provisional
+- id: assignment.cancelled
+  object_id: assignment
+  label: 已取消
+  meaning: 派工责任处于“已取消”阶段时成立的业务状态。
+  status: provisional
+roles:
+- id: scheduling_system
+  label: 调度系统
+  meaning: 生成候选与推荐，不承担人类批准责任。
+  status: provisional
+- id: dispatcher
+  label: 调度员
+  meaning: 确认、覆盖或取消派工决策。
+  status: provisional
+- id: supervisor
+  label: 班组长 / 主管
+  meaning: 处理资源、异常和高影响覆盖。
+  status: provisional
+- id: service_resource_actor
+  label: 服务资源执行者
+  meaning: 接受责任并反馈执行。
+  status: provisional
+- id: operations_manager
+  label: 运营管理者
+  meaning: 复盘策略与资源配置。
+  status: provisional
+terms_not_to_use:
+- term: Asset / Facility
+  reason: 复合对象身份不清；本模型使用 MaintainableAsset 与 ServiceLocation。
+  preferred_term: MaintainableAsset 与 ServiceLocation
+- term: 到达成本是 ServiceLocation 固有属性
+  reason: 到达成本依赖资源起点、时间和通行条件，应属于 DispatchCandidate 或关系上下文。
+  preferred_term: DispatchCandidate.estimated_arrival_cost
+- term: current_executor_id
+  reason: 技术字段，不是核心业务属性。
+  preferred_term: 当前执行责任或 Assignment

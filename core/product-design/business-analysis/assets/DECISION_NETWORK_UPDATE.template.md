@@ -1,5 +1,5 @@
 ---
-schema_version: 1
+schema_version: 2
 language: zh-CN
 ---
 
@@ -7,8 +7,8 @@ language: zh-CN
 
 ## 新增或更新关系
 
-| 来源 Case | 关系 | 目标 Case / 决策主题 | 中文说明 |
-|---|---|---|---|
+| 来源 Case | 关系 | 目标 Case / 决策主题 | 对 Choice Set / 推荐的影响 | 中文说明 |
+|---|---|---|---|---|
 
 ## 是否触发旧 Case 复审
 

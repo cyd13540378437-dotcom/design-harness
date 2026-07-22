@@ -1,17 +1,14 @@
-# Analysis Model Card Registry
+# Analysis Model Card Registry v0.1.4
 
-模型卡是长期可复用的专业分析知识对象。每张 ready 卡必须通过：
+模型卡是商业分析的可复用专业方法知识。当前共 26 张 ready 卡：10 张 Core、16 张 Professional。
+
+v0.1.4 新增统一边界：
 
 ```text
-适配条件
-最低输入
-Decision Relevance
-七类 usage prompts
-Decision Delta
-误用保护
-中文输出合同
+Choice Loop 关闭后，除正式 Review 外停止运行模型；
+所有模型遵守 Decision Scope Lock；
+不得输出实施步骤、正式 Schema、公式权重、样例数据、代码或执行提议；
+模型结论只进入中央综合器。
 ```
 
-## 运行边界
-
-模型卡不得独立向用户输出最终结论。所有模型结果进入 Analysis Workspace，最后由中央决策综合器统一生成中文 `DECISION_SUMMARY.md`。
+模型卡不等于用户可见流程，也不能成为商业分析继续向实施层蔓延的理由。

@@ -1,26 +1,32 @@
 ---
-schema_version: 1
+schema_version: 3
 language: zh-CN
 work_item_id: BA-000
 ---
 
 # 本轮商业分析输出
 
-## 新建
+## 1. Decision Signal 与 Follow-up
 
-## 更新
+## 2. Choice Delta 或 Closure Delta
 
-## 保持不变
+- 新增 / 排除 / 条件化的选项：
+- 推荐是否改变：
+- 用户决定状态变化：
+- Choice Loop 变化：
 
-## 标记复审、替代或过期
+## 3. Decision Scope 与边界
 
-## 用户可见中文结论
+- Scope 是否改变：
+- Boundary status：
+- 被排除的实施内容：
 
-- `DECISION_SUMMARY.md`：
-- Case ID：
-- Assurance：
-- 用户决定状态：
+## 4. 当前推荐或已确认决定
 
-## 明确不在本轮范围内
+## 5. Claim-level Assurance 变化
 
-## 下一步
+## 6. 更新的商业分析资产
+
+## 7. 下一步
+
+> Choice Loop 已关闭时，不再要求同一业务选择；只允许概念澄清、复审或 completion-review。

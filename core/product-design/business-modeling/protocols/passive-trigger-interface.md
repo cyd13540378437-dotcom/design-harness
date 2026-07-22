@@ -31,7 +31,8 @@ Trigger 只有在以下条件满足时才能 `resolved`；若 `dismissed` 或 `s
 2. 已执行安全自动更新或记录不可自动更新原因；
 3. 必要的人类决策已记录；
 4. 相关核心模型已更新或明确不更新；
-5. 一致性校验已执行；
-6. 必要的下游视图已重编译；
-7. Follow-up Trigger 已创建或明确无需创建；
-8. Resolution 区块已回写。
+5. 一致性校验已执行且没有未披露 error；
+6. `docs/product/BUSINESS_MODEL_OVERVIEW.md` 已重新编译并反映决策与校验状态；
+7. 必要的专业下游视图已重编译；
+8. Follow-up Trigger 已创建或明确无需创建；
+9. Resolution 区块已回写。

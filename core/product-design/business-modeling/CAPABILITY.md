@@ -1,28 +1,127 @@
 ---
 capability_id: product-business-modeling
 display_name: 业务模型能力集群
-version: v0.2.2-runtime-aware
+version: v0.2.3
 status: implementation-ready
 language: zh-CN
 agent_neutral: true
 created_at: 2026-07-17
+updated_at: 2026-07-22
 ---
 
-# 业务模型能力集群（`product-business-modeling`）CAPABILITY
+# 业务模型能力集群（`product-business-modeling`）CAPABILITY v0.2.3
 
 ## 1. 一句话定义
 
 业务模型能力集群负责把业务世界抽象成统一、稳定、可演进的产品语义模型，使商业分析、产品表达、需求表达、UX、前端、后端、数据库和 QA 可以在同一套业务语言下协作。
 
-它是 DesignHarnessAgent 的 **Agent-neutral Core**，不是 Codex、Cursor、Claude 或任一运行时的专属 Skill。运行时只负责适配；项目里的 `docs/product/business-modeling/` 才是业务模型知识资产的长期 source of truth。
+它是 DesignHarnessAgent 的 **Agent-neutral Core**。运行时只负责调用与状态适配；项目里的 `docs/product/business-modeling/` 才是业务模型知识资产的长期 source of truth。
+
+v0.2.3 增加一项重要用户体验合同：
+
+> 业务负责人和产品负责人默认只阅读 `docs/product/BUSINESS_MODEL_OVERVIEW.md`；详细资产继续保留，用于维护、验证、审计和下游编译。
 
 ---
 
-## 2. 能力边界
+## 2. v0.2.3 解决的问题
 
-### 2.1 它负责什么
+真实 Greenfield 试运行证明核心建模质量已经可用，但暴露了以下协议漂移：
 
-本能力集群负责生产和维护：
+1. 模型文件很多，用户不知道先看什么；
+2. Work Item 标准文件被自定义文件名替代或放错目录；
+3. `STATE.md` 模板与 runtime steward 使用了不同字段；
+4. `schema-view.json` 内容边界正确，但结构键不符合冻结协议；
+5. `business-dictionary.yml` 和机器索引过薄，无法稳定引用；
+6. Human Decision 只形成问题清单，没有完整决策压缩；
+7. Action / State 缺少 stable ID 和跨文件引用；
+8. 一个对象的推荐 / 决策状态被混入另一个对象的责任生命周期；
+9. 上下文相关值被错误建模为单一对象固有属性；
+10. 写完文件后没有强制追加 consistency validation 和总览编译。
+
+v0.2.3 将这些问题从“建议”升级为 Core 的强制合同。
+
+---
+
+## 3. 三层架构
+
+```text
+DesignHarnessAgent Core
+        ↓
+Agent Runtime Adapters
+        ↓
+Project Knowledge Assets
+```
+
+### 3.1 Core
+
+定义协议、入口模式、子能力、输出物、模板、评测和不可越界规则。
+
+### 3.2 Runtime Adapters
+
+将 Core 接入 Codex、Claude Code、Cursor 或其他 Agent。Adapter 可以改变调用形式，但不得改变 Core Schema、业务语义、文件协议、Human Decision Control Plane 或默认用户入口。
+
+### 3.3 Project Knowledge Assets
+
+```text
+docs/product/BUSINESS_MODEL_OVERVIEW.md
+docs/product/business-modeling/
+docs/product/model-triggers/
+docs/product/work-items/
+docs/product/PRODUCT_WORK_ITEMS.md
+```
+
+`.codex/`、`.agents/`、`.claude/`、`.cursor/`、`AGENTS.md` 和 `CLAUDE.md` 是运行时入口，不是业务模型知识资产。
+
+---
+
+## 4. 用户阅读体验
+
+### 4.1 唯一默认入口
+
+```text
+docs/product/BUSINESS_MODEL_OVERVIEW.md
+```
+
+它必须让用户仅阅读这一份文件就能理解：
+
+```text
+产品或业务模型是什么
+当前边界是什么
+核心对象和流程是什么
+关键规则与权限是什么
+当前版本应开发什么
+哪些已经确认
+哪些只是 provisional
+现在需要用户确认什么
+主要风险和最近更新是什么
+```
+
+### 4.2 其他文件继续保留
+
+底层文件按原定义继续存在：
+
+- 详细 Source of Truth 用于维护；
+- Work Item 文件用于恢复、证据、审计和变更记录；
+- 下游视图用于专业角色消费；
+- Model Trigger 用于跨 Cluster 变化响应。
+
+总览不会把这些文件合并成一个巨型 source of truth。
+
+### 4.3 总览是编译视图
+
+```text
+is_default_user_entry: true
+is_source_of_truth: false
+writer: downstream-view-compiler
+```
+
+若总览与详细模型冲突，以详细模型为准，并立即重新编译总览。
+
+---
+
+## 5. 能力边界
+
+### 5.1 负责生产和维护
 
 ```text
 业务对象画像
@@ -35,146 +134,111 @@ created_at: 2026-07-17
 权限策略
 业务能力路线图
 业务风险与模型风险
+用户业务模型总览
 下游业务模型视图
 模型触发响应与影响分析
 UX 业务模型上下文包
 ```
 
-### 2.2 它不负责什么
-
-本能力不是数据库建模器、PRD 生成器、页面流程设计器或代码生成器。
-
-它不得把以下内容写入核心业务模型 source of truth：
+### 5.2 不负责
 
 ```text
-数据库字段
-表字段
-column
-后端接口参数
-持久化类型
-ORM 结构
-具体页面布局
-实现代码
+数据库建模本体
+数据库迁移
+API 生成
+页面流程或视觉设计
+生产代码
 测试代码
+CLI / Hook / Plugin / Installer
+云端同步与多用户锁
 ```
 
-这些内容只能出现在 `downstream-views/*` 派生视图中，并且必须标注为从业务语义编译出的实现建议，而非业务事实本身。
+技术字段、接口和实现结构只能出现在下游视图，并标明为派生建议。
 
 ---
 
-## 3. 四层架构
+## 6. 硬原则
+
+### 6.1 业务属性不是数据字段
+
+合法：当前执行人、工单状态、审批意见、执行证据、业务角色。
+
+非法核心表达：`current_executor_id`、`work_order.status`、`approval_comment`、`role_id`。
+
+### 6.2 属性必须属于对象自身
+
+若一个值依赖另一个对象、时间、起点与终点、策略版本、候选方案或评估上下文，它通常不是单一对象固有属性。
+
+例如“到达成本”应属于资源与位置关系、候选评估或派生计算，而不是位置对象本身。
+
+### 6.3 `schema-view.json` 只有唯一结构
+
+它只回答五个问题：对象、领域、分类、业务属性和示例内容。
+
+允许键固定为：
 
 ```text
-DesignHarnessAgent Core
-        ↓
-Shared Agent Skill Facade
-        ↓
-Runtime-specific Adapters
-        ↓
-Project Knowledge Assets
+schema_version
+view_type
+objects
+object_id
+object_name
+object_label
+business_domain: {id, label}
+object_category: {id, label}
+business_attributes: [{attribute_id, attribute_label, example_content}]
 ```
 
-### 3.1 Core
+不得用其他键创建平行结构，也不得包含关系、动作、状态、规则、权限、技术字段、风险或下游影响。
 
-Core 定义协议、入口模式、子能力、输出物、模板、评测和不可越界规则。
+### 6.4 对象身份必须单一明确
 
-### 3.2 Shared Agent Skill Facade
+一个 `object_id` 只能代表一个业务身份。`Asset / Facility` 这类斜杠合并名称需要明确 umbrella concept，或进入 D2 对象身份决策。
 
-Shared Facade 定义可移植的 Agent 工作流入口，标准位置是 `adapters/shared/agent-skill-facade/product-business-modeling/`。它不得重新定义 Core 语义，也不得携带具体运行时专属语法，除非明确标注为 runtime-specific。
+### 6.5 Action / State 使用稳定引用
 
-### 3.3 Runtime-specific Adapters
+- Action 必须有 stable ID、actor role IDs、target object ID、preconditions 和 business effects；
+- State transition 必须引用现有 state ID 与 action ID；
+- Rule / Permission 必须绑定现有对象、动作或状态 ID。
 
-Adapters 负责把 shared facade 接入不同 Agent 运行时，例如 Codex、Claude Code、Cursor。Adapter 可以改变调用形式，但不得改变业务语义、文件协议和 Human Decision Control Plane。安装到目标项目前必须先执行 Runtime Adapter Resolution。
+### 6.6 一个生命周期只属于一个对象
 
-### 3.4 Project Knowledge Assets
+推荐、决策、责任、Assignment 等不同业务对象必须拥有各自生命周期。
 
-真实项目中的业务模型知识资产，标准位置为：
+若一个 Action 从对象 A 创建对象 B，使用 Cross-object Materialization 表达，不得把 A 的状态塞进 B 的生命周期。
 
-```text
-docs/product/business-modeling/
-docs/product/model-triggers/
-docs/product/work-items/
-```
+### 6.7 证据先于确认
+
+从代码、数据库、接口、页面或测试中解析出的业务知识默认只能是 `draft` / `provisional`。
+
+### 6.8 派生视图不能反向成为权威源
+
+包括 `BUSINESS_MODEL_OVERVIEW.md` 在内的所有派生视图只能暴露缺口并创建 Trigger，不能直接改写 Core 语义。
+
+### 6.9 高影响语义不可静默覆盖
+
+未确认方案不得覆盖 confirmed 语义。被替代内容显式进入 `superseded` / `deprecated`。
+
+### 6.10 封存权属于人类
+
+AI 可以建议关闭，但不能自行 `sealed`。sealed 内容只读。
 
 ---
 
-## 4. 硬原则
+## 7. 知识状态与影响等级
 
-### 4.1 业务属性不是数据字段
-
-业务模型阶段只有业务属性，没有数据字段。
-
-合法表达：
+### 7.1 知识状态
 
 ```text
-当前执行人
-工单状态
-审批意见
-执行证据
-业务角色
+draft
+provisional
+confirmed
+superseded
+deprecated
+sealed
 ```
 
-非法核心模型表达：
-
-```text
-current_executor_id
-work_order.status
-approval_comment
-role_id
-```
-
-下游数据库视图可以给出“业务属性 → 可能字段映射”，但该映射不是业务事实。
-
-### 4.2 `schema-view.json` 只回答五个问题
-
-`schema-view.json` 只允许表达：
-
-```text
-1. 有哪些业务对象
-2. 每个对象属于哪个业务领域
-3. 每个对象属于哪种对象分类
-4. 每个对象有哪些业务属性
-5. 每个业务属性有哪些示例内容
-```
-
-它不得包含关系、动作、状态、规则、权限、数据库字段、接口、路线图、风险或下游影响。
-
-### 4.3 证据先于确认
-
-从现有代码、数据库、接口、页面或测试中解析出的业务知识，默认只能是 `draft` 或 `provisional`。实现现状不能自动升级为 confirmed 业务事实。
-
-### 4.4 派生视图不能反向成为权威源
-
-`downstream-views/*` 可以暴露缺口并创建 Model Trigger，但不能直接改写业务字典、对象画像、关系、动作、状态、规则或权限。
-
-### 4.5 高影响语义不可静默覆盖
-
-新的 provisional 资产可以建立；但未确认方案不得静默覆盖既有 confirmed 业务语义。
-
-### 4.6 封存权属于人类
-
-AI 可以建议关闭或封存，但不能自行 `sealed`。sealed 内容只读；后续变化必须通过新 Work Item、Successor 或明确的新决策记录表达。
-
----
-
-## 5. 知识状态
-
-业务模型知识资产统一使用以下状态：
-
-```text
-draft         刚生成，不建议下游正式使用
-provisional   可临时消费，但带假设或缺口
-confirmed     已确认，可作为稳定输入
-superseded    被新版本替代
-deprecated    历史保留，不推荐继续使用
-sealed        任务或决策已封存，不得静默改写
-```
-
-AI 可以自动生成 `draft` 与 `provisional`。高影响语义从 `draft/provisional` 升级到 `confirmed` 前，必须经过 Human Decision Control Plane。
-
----
-
-## 6. 决策影响等级
+### 7.2 决策影响等级
 
 ```text
 D0 = 机械同步，可自动执行
@@ -183,247 +247,88 @@ D2 = 核心产品语义，确认或覆盖 confirmed 前必须由人决定
 D3 = 治理与终态，必须明确人类决定
 ```
 
-典型 D2 / D3 场景：
-
-```text
-业务对象身份存在互斥判断
-对象关系会影响权限、流程或数据库
-业务动作会改变核心流程
-状态流转存在多个合理方案
-规则涉及责任、权限、审计或合规
-上游商业分析变化导致模型重构
-provisional 判断已经被下游依赖
-将 draft/provisional 升级为 confirmed
-关闭、封存或废弃重要模型资产
-```
+D2 / D3 包括对象身份、核心关系、业务动作、状态方案、责任、权限、审计、合规、计费、模型重构、confirmed 升级和 seal。
 
 ---
 
-## 7. 六种入口模式
+## 8. 六种入口模式
 
-### 7.1 用户主动建模（`direct_modeling`）
-
-用户明确要求新增对象、补充属性、梳理关系、整理业务字典或建立某部分业务模型。
-
-最小必调模块：
-
-```text
-modeling-orchestrator
-model-update-router
-相关核心生产模块
-model-consistency-validator
-```
-
-### 7.2 被动触发（`passive_trigger`）
-
-来自上游商业分析变化、下游缺口或横向冲突的触发。
-
-最小必调模块：
-
-```text
-model-trigger-handler
-modeling-orchestrator
-model-update-router
-相关核心生产模块
-model-consistency-validator
-downstream-view-compiler
-```
-
-必须生成 `MODEL_IMPACT_REPORT.md`。
-
-### 7.3 当前项目解析（`project_extraction`）
-
-从已有项目、文档、接口、测试、数据库 schema 或 UI 中反推业务模型。
-
-解析结果默认是候选，不得自动 confirmed。必须生成 `SOURCE_EVIDENCE.md` 与 `MODEL_EXTRACTION_REPORT.md`。
-
-### 7.4 从零建模（`greenfield_modeling`）
-
-用户只有模糊想法或早期产品方向时，建立 provisional 初始业务模型。
-
-### 7.5 一致性校验（`consistency_validation`）
-
-检查业务字典、schema-view、对象画像、关系、动作、状态、规则、权限和下游视图之间是否一致。
-
-必须生成 `MODEL_CONSISTENCY_REPORT.md`。
-
-### 7.6 下游视图编译（`downstream_compilation`）
-
-将核心业务模型编译给产品表达、需求表达、数据库、后端、前端、QA 和 UX / Design Engineering。UX 侧至少应获得 `ux-business-model-context.*` 与必要时的 `ux-design-engineering-view.md`。
-
-编译器不得直接修改核心模型；发现缺口时应创建 Model Trigger。
-
----
-
-## 8. 14 个子能力
-
-| 序号 | 子能力 | 英文 ID | 职责摘要 |
-|---|---|---|---|
-| 1 | 业务模型总协调器 | `modeling-orchestrator` | 判定入口模式、绑定 Work Item、编排模块、检查决策边界。 |
-| 2 | 模型更新分发器 | `model-update-router` | 将变更计划路由给单一写入者模块，避免越权写入。 |
-| 3 | 模型触发处理器 | `model-trigger-handler` | 创建、去重、分流、推进和关闭 `MT-xxx.md`。 |
-| 4 | 业务字典构建器 | `business-dictionary-builder` | 维护术语、业务属性、动作、状态、角色、领域和分类。 |
-| 5 | 业务结构视图生成器 | `schema-view-structurer` | 生成严格边界内的 `schema-view.json` 与 `schema-view.md`。 |
-| 6 | 业务对象画像构建器 | `domain-object-profiler` | 维护对象身份、边界、责任、生命周期和属性解释。 |
-| 7 | 对象关系建模器 | `relationship-modeler` | 定义业务对象之间的语义关系。 |
-| 8 | 业务动作建模器 | `action-command-modeler` | 定义谁能对谁做什么，以及动作前置条件与效果。 |
-| 9 | 状态生命周期建模器 | `state-lifecycle-modeler` | 定义对象状态、状态转换和触发动作。 |
-| 10 | 规则权限建模器 | `rule-policy-modeler` | 定义业务不变量、约束、权限与审计相关规则。 |
-| 11 | 路线图与风险分析器 | `roadmap-risk-modeler` | 识别 MVP 简化、未来演进、业务风险和模型风险。 |
-| 12 | 下游视图编译器 | `downstream-view-compiler` | 编译 database/backend/frontend/QA/product/requirements 等派生视图。 |
-| 13 | 项目业务模型解析器 | `project-model-extractor` | 从现有项目提取候选业务模型和证据链。 |
-| 14 | 模型一致性检查器 | `model-consistency-validator` | 校验模型一致性、发现冲突、生成修复建议或触发。 |
-
----
-
-## 9. Source of Truth 写入所有权
-
-| 知识类型 | Source of Truth | 单一写入者 |
+| 模式 | ID | 最小要求 |
 |---|---|---|
-| 业务术语、业务属性、动作、状态、角色、分类 | `business-dictionary.*` | `business-dictionary-builder` |
-| 结构浏览视图 | `schema-view.json`, `schema-view.md` | `schema-view-structurer` |
-| 对象深度画像 | `domain-objects/<id>.md` | `domain-object-profiler` |
-| 对象关系 | `relationships/relationship-map.md` | `relationship-modeler` |
-| 业务动作 | `actions/action-command-catalog.md` | `action-command-modeler` |
-| 状态生命周期 | `states/state-lifecycle-model.md` | `state-lifecycle-modeler` |
-| 业务规则与权限策略 | `rules/*` | `rule-policy-modeler` |
+| 用户主动建模 | `direct_modeling` | 相关 modeler → validator → overview compiler |
+| 被动触发 | `passive_trigger` | Impact Report → model update → validator → overview → downstream → trigger resolution |
+| 当前项目解析 | `project_extraction` | Evidence + Extraction Report；结果 provisional |
+| 从零建模 | `greenfield_modeling` | provisional Core + decisions + validator + overview |
+| 一致性校验 | `consistency_validation` | Consistency Report；必要时更新 overview |
+| 下游视图编译 | `downstream_compilation` | overview + requested professional views |
+
+所有修改 Core 的模式必须追加：
+
+```text
+consistency_validation
+→ BUSINESS_MODEL_OVERVIEW.md compilation
+→ required downstream compilation
+```
+
+---
+
+## 9. 14 个子能力
+
+| # | 子能力 | ID | 职责 |
+|---|---|---|---|
+| 1 | 业务模型总协调器 | `modeling-orchestrator` | 入口模式、Work Item、完成边界和交付体验。 |
+| 2 | 模型更新分发器 | `model-update-router` | 将变更路由给单一写入者。 |
+| 3 | 模型触发处理器 | `model-trigger-handler` | 创建、去重、推进和关闭 Trigger。 |
+| 4 | 业务字典构建器 | `business-dictionary-builder` | 维护结构化术语、对象、属性、动作、状态、角色、领域和分类。 |
+| 5 | 业务结构视图生成器 | `schema-view-structurer` | 生成唯一结构的 `schema-view.*`。 |
+| 6 | 业务对象画像构建器 | `domain-object-profiler` | 对象身份、边界、责任和演进。 |
+| 7 | 对象关系建模器 | `relationship-modeler` | 关系与上下文属性归属。 |
+| 8 | 业务动作建模器 | `action-command-modeler` | actor、target、conditions、effects 和审计意义。 |
+| 9 | 状态生命周期建模器 | `state-lifecycle-modeler` | 单对象生命周期、action 引用和跨对象创建。 |
+| 10 | 规则权限建模器 | `rule-policy-modeler` | 规则、权限、责任与审计。 |
+| 11 | 路线图与风险分析器 | `roadmap-risk-modeler` | MVP 简化、未来演进和风险。 |
+| 12 | 下游视图编译器 | `downstream-view-compiler` | 编译用户总览与专业下游视图。 |
+| 13 | 项目业务模型解析器 | `project-model-extractor` | 从项目证据提取候选模型。 |
+| 14 | 模型一致性检查器 | `model-consistency-validator` | 执行完整合同校验并生成报告。 |
+
+Human Decision Control Plane 与 Passive Trigger Interface 是横切机制。
+
+---
+
+## 10. Source of Truth 写入所有权
+
+| 知识类型 | 文件 | 单一写入者 |
+|---|---|---|
+| 业务语言注册表 | `business-dictionary.*` | `business-dictionary-builder` |
+| 结构浏览视图 | `schema-view.json/md` | `schema-view-structurer` |
+| 对象画像 | `domain-objects/*` | `domain-object-profiler` |
+| 关系 | `relationships/*` | `relationship-modeler` |
+| 动作 | `actions/*` | `action-command-modeler` |
+| 状态生命周期 | `states/*` | `state-lifecycle-modeler` |
+| 规则与权限 | `rules/*` | `rule-policy-modeler` |
 | Roadmap 与风险 | `roadmap/*`, `risks/*` | `roadmap-risk-modeler` |
-| 下游视图 | `downstream-views/*`，包括 `ux-business-model-context.*` 与 `ux-design-engineering-view.md` | `downstream-view-compiler` |
-| Model Trigger | `model-triggers/MT-xxx.md` | `model-trigger-handler` |
-| 任务级状态 | `work-items/BM-xxx/STATE.md` | `modeling-orchestrator` / Adapter state wrapper |
-| 高影响决策 | `work-items/BM-xxx/DECISION_NOTES.md` | Human Decision Control Plane |
+| 用户总览 | `docs/product/BUSINESS_MODEL_OVERVIEW.md` | `downstream-view-compiler` |
+| 专业下游视图 | `downstream-views/*` | `downstream-view-compiler` |
+| Trigger | `model-triggers/MT-xxx.md` | `model-trigger-handler` |
+| 任务状态 | `work-items/BM-xxx/STATE.md` | orchestrator / runtime state wrapper |
+| D2 / D3 决策 | `DECISION_NOTES.md` | Human Decision Control Plane |
 
-其他模块可以提供候选、报告和建议，但不得跨所有权直接写入。
-
----
-
-## 10. 被动触发接口
-
-### 10.1 Trigger 类型
-
-```text
-upstream_change          上游商业分析变化
-downstream_gap           下游缺口或实现视图缺失
-cross_cluster_conflict   横向能力集群冲突
-internal_discovery       解析或校验时发现的内部缺口
-```
-
-### 10.2 Trigger 生命周期
-
-```text
-open → triaged → in_progress → awaiting_human → resolved | dismissed | superseded
-```
-
-### 10.3 处理规则
-
-- 每个 Trigger 必须有稳定 `trigger_id` 和 `dedupe_key`。
-- 被动触发必须生成或关联一个 BM Work Item。
-- 高影响变更必须生成 `MODEL_IMPACT_REPORT.md`。
-- Trigger 只有在影响分析、模型响应、必要决策、校验、下游重编译和回写完成后才能 `resolved`。
+总览与下游视图都是派生视图，不是核心 source of truth。
 
 ---
 
-## 11. 人类决策控制层
-
-Human Decision Control Plane 是横切机制，不是普通子能力。它负责在所有模块写入或升级知识状态前判断是否需要人类确认。
-
-### 11.1 决策请求格式
-
-```markdown
-## 需要你确认的产品判断
-
-### 当前理解
-
-我目前理解为：……
-
-### 为什么重要
-
-这个判断会影响：业务对象定义、对象关系、状态流转、权限规则、数据库视图、UX 表达和 QA 验收。
-
-### 可选方案
-
-#### 方案 A：……
-
-优点：……
-代价：……
-
-#### 方案 B：……
-
-优点：……
-代价：……
-
-### 推荐
-
-推荐方案 B。原因：……
-
-### 需要确认
-
-请确认：选 A / 选 B / 我补充一个规则
-```
-
-### 11.2 决策记录
-
-所有 D2 / D3 决策必须写入 `DECISION_NOTES.md`，建议使用稳定 ID：
-
-```text
-BMD-001
-BMD-002
-...
-```
-
----
-
-## 12. 任务级文件
-
-每个业务模型 Work Item 推荐结构：
-
-```text
-docs/product/work-items/BM-xxx-<slug>/
-├── STATE.md
-├── MODELING_CONSUMPTION.md
-├── MODELING_OUTPUT.md
-├── DECISION_NOTES.md
-└── artifacts/
-    ├── MODEL_EXTRACTION_REPORT.md
-    ├── MODEL_CONSISTENCY_REPORT.md
-    ├── MODEL_IMPACT_REPORT.md
-    └── SOURCE_EVIDENCE.md
-```
-
-### 12.1 `STATE.md`
-
-记录当前任务身份、入口模式、状态、阶段、决策等待、关联 Trigger、产物链接和下一步。
-
-### 12.2 `MODELING_CONSUMPTION.md`
-
-记录本次建模消费了哪些 confirmed / provisional 来源、假设、缺口和明确非范围。
-
-### 12.3 `MODELING_OUTPUT.md`
-
-记录本次建模创建或更新了哪些资产、哪些只是 provisional、哪些被 superseded/deprecated、哪些 Trigger 已关闭或继续派发。
-
-### 12.4 `DECISION_NOTES.md`
-
-记录高影响决策、备选方案、推荐理由、人类决定、影响和后续更新。
-
-### 12.5 `SOURCE_EVIDENCE.md`
-
-记录项目解析、上游文档、下游缺口或用户说明的证据来源。
-
----
-
-## 13. 项目资产结构
+## 11. 项目资产结构
 
 ```text
 product-repository/
-├── AGENTS.md
 ├── docs/
 │   └── product/
+│       ├── BUSINESS_MODEL_OVERVIEW.md      # 用户唯一默认入口
 │       ├── PRODUCT_WORK_ITEMS.md
 │       ├── model-triggers/
 │       ├── business-modeling/
-│       │   ├── BUSINESS_MODEL_INDEX.md
-│       │   ├── BUSINESS_MODEL_INDEX.yml
+│       │   ├── BUSINESS_MODEL_INDEX.md     # 维护者导航
+│       │   ├── BUSINESS_MODEL_INDEX.yml    # 机器索引
 │       │   ├── business-dictionary.md
 │       │   ├── business-dictionary.yml
 │       │   ├── schema-view.json
@@ -443,32 +348,175 @@ product-repository/
 │               ├── MODELING_OUTPUT.md
 │               ├── DECISION_NOTES.md
 │               └── artifacts/
-├── .codex/
-├── .cursor/
-└── CLAUDE.md
+│                   ├── SOURCE_EVIDENCE.md
+│                   ├── MODEL_EXTRACTION_REPORT.md
+│                   ├── MODEL_CONSISTENCY_REPORT.md
+│                   └── MODEL_IMPACT_REPORT.md
+└── runtime-specific adapter files
 ```
 
 ---
 
-## 14. Adapter 合同
+## 12. Canonical Work Item 合同
 
-Adapter 可以改变提示词格式、工具调用方式或本地规则文件位置，但必须遵守：
+根目录四个文件和 `artifacts/` 四个标准报告使用固定名称和位置。
 
-1. 不改变 Core 的入口模式、状态枚举和文件协议；
-2. 不把运行时会话当作 Work Item 身份；
-3. 不绕过 Human Decision Control Plane；
-4. 不把下游视图当成核心模型 source of truth；
-5. 不把数据库字段写回核心业务模型；
-6. 不自动 sealed；
-7. 不在 AMBIGUOUS 时自行选择。
+`PROPOSED_MODEL.md`、`EVIDENCE_AND_ASSUMPTIONS.md` 是 legacy aliases：新运行不得生成；读取旧项目时只能作为迁移输入，不能替代 canonical 文件。
+
+### 12.1 `STATE.md` 冻结字段
+
+```yaml
+schema_version
+state_id
+title
+slug
+capability_id
+entry_mode
+binding_decision
+status
+phase
+knowledge_status
+awaiting_human
+sealed
+related_triggers
+predecessors
+created_at
+updated_at
+completed_at
+extensions
+```
+
+Runtime Adapter 不得使用 `primary_entry_mode`、`awaiting_user`、`gate` 或自定义 authority 字段替代这些字段；运行时信息只能进入 `extensions` 或正文。
+
+### 12.2 Phase 枚举
+
+```text
+intake
+evidence
+modeling
+awaiting_decision
+validation
+compilation
+completion_review
+complete
+```
 
 ---
 
-## 14A. 与 UX / Design Engineering Harness 的兼容性
+## 13. 结构化模型合同
 
-Business Modeling Core 可能影响 UX，但不得接管已经完成的 Design Engineering Harness。
+### 13.1 Business Dictionary
 
-如果目标项目中存在 `docs/design/`，业务模型能力必须把它视为另一个能力集群的资产：
+`business-dictionary.yml` 必须完整注册：
+
+```text
+business_domains
+object_categories
+business_objects
+business_attributes
+actions
+states
+roles
+terms_not_to_use
+```
+
+每个引用使用 stable ID；Markdown 与 YAML 保持一致。
+
+### 13.2 Business Model Index
+
+`BUSINESS_MODEL_INDEX.yml` 必须登记存在的领域、对象、关系、动作、状态、规则、权限、下游视图和 open triggers，并声明默认用户视图。
+
+### 13.3 Schema View
+
+严格遵守五项边界和唯一键结构；所有 ID 必须可解析到业务字典。
+
+### 13.4 Action / State / Rule
+
+- Action actor / target / effects 缺失为 error；
+- Transition action 或 state 引用缺失为 error；
+- 生命周期跨对象混用为 error；
+- Rule / Permission 绑定不存在 ID 为 error。
+
+---
+
+## 14. Human Decision Control Plane
+
+所有 D2 / D3 判断使用 `BMD-xxx`。
+
+在询问用户前必须给出：
+
+```text
+当前理解
+为什么重要
+2–3 个可行方案
+各自优点与代价
+Agent 推荐
+用户可直接回复的选项
+```
+
+完整记录写入 `DECISION_NOTES.md`；用户可直接决策的压缩版本同步进入 `BUSINESS_MODEL_OVERVIEW.md`。
+
+等待期间：
+
+```yaml
+phase: awaiting_decision
+awaiting_human: true
+```
+
+---
+
+## 15. 被动触发接口
+
+Trigger 类型：
+
+```text
+upstream_change
+downstream_gap
+cross_cluster_conflict
+internal_discovery
+```
+
+生命周期：
+
+```text
+open → triaged → in_progress → awaiting_human → resolved | dismissed | superseded
+```
+
+Trigger 只有在影响分析、模型响应、必要决策、一致性校验、总览编译、必要下游重编译和回写完成后才能 resolved。
+
+---
+
+## 16. 强制完成流水线
+
+```text
+绑定或创建 Work Item
+→ 写 MODELING_CONSUMPTION.md
+→ 写任务报告与候选
+→ 解决或标记 Human Decisions
+→ 更新正确的 source of truth
+→ 执行 MODEL_CONSISTENCY_REPORT.md
+→ 编译 BUSINESS_MODEL_OVERVIEW.md
+→ 编译其他必要下游视图
+→ 更新 MODELING_OUTPUT.md
+→ 更新 STATE.md
+→ 向用户只突出总览
+```
+
+若 consistency report 有 error，Work Item 不得被描述为完成；总览必须显示 `validation_status: issues_found`。
+
+---
+
+## 17. UX / Design Engineering 兼容性
+
+Business Modeling 可以编译：
+
+```text
+ux-business-model-context.md
+ux-business-model-context.yml
+ux-design-engineering-view.md
+```
+
+但不得直接修改：
 
 ```text
 docs/design/WORK_ITEMS.md
@@ -478,201 +526,81 @@ docs/design/reference-library/**
 docs/design/reference-library/assets/color-cards/**
 ```
 
-业务模型变化对 UX 的影响必须通过以下方式表达：
-
-```text
-MODEL_IMPACT_REPORT.md
-docs/product/business-modeling/downstream-views/ux-design-engineering-view.md
-Follow-up Trigger 或 Design Engineering Successor 建议
-```
-
-业务模型能力不得直接修改 sealed 的 DE Work Item，不得把 `REFERENCE_SELECTION.md` 或 Reference Library 当作业务模型资产，也不得因业务对象变化而静默修改 Color Card Registry。详细规则见 `protocols/ux-design-engineering-compatibility.md`。
+UX 发现业务模型缺口时创建 `downstream_gap`，发现 confirmed 冲突时创建 `cross_cluster_conflict`。
 
 ---
 
-## 14B. UX 业务模型上下文包
+## 18. Runtime Adapter 合同
 
-Business Modeling Core 必须支持面向 UX / Design Engineering 的轻量下游上下文包：
+支持：Codex、Claude Code、Cursor、Generic Agent 和 Multi-runtime。
 
-```text
-docs/product/business-modeling/downstream-views/ux-business-model-context.md
-docs/product/business-modeling/downstream-views/ux-business-model-context.yml
-```
+Adapter 必须：
 
-它与 `ux-design-engineering-view.md` 的区别是：
-
-```text
-ux-business-model-context.* = UX 启动和设计过程中的轻量业务语义输入
-ux-design-engineering-view.md = 某次业务模型变化后对 UX 的影响分析和后续建议
-```
-
-Context Pack 是派生视图，不是 source of truth。UX 启动时如果该包存在应读取；如果缺失或不完整，不阻断 UX 启动。UX 侧只提示两类候选信号：
-
-```text
-business_model_gap_candidate
-business_model_conflict_candidate
-```
-
-UX 不负责 confirmed 业务模型。涉及业务对象、动作、状态、规则、权限、责任、审计或核心流程的缺口 / 冲突，应通过 `docs/product/model-triggers/MT-xxx.md` 反馈给 Business Modeling Core。
-
-未解决的高影响缺口或 confirmed 业务冲突，不得被 UX sealed 为 confirmed 产品行为。
-
-详细规则见 `protocols/ux-business-model-context-pack.md`。
+1. 读取 Core 合同；
+2. 采用 canonical Work Item 文件；
+3. 使用冻结 State Schema；
+4. 在 Core 写入后强制校验与总览编译；
+5. 向用户只突出总览；
+6. 不重定义业务模型 source of truth。
 
 ---
 
-## 15. 人工评测合同
+## 19. 人工评测合同
 
-本能力集群至少必须通过以下 20 个场景：
+v0.2.3 保留全部既有场景，并新增覆盖：
 
 ```text
-01 新增低影响业务属性
-02 核心对象身份歧义
-03 上游计费模式变化
-04 下游字段不能反推为核心属性
-05 横向“提交 / 完成”冲突
-06 项目解析不得自动 confirmed
-07 schema-view 边界
-08 动作缺少 actor
-09 状态转换缺少动作
-10 下游编译发现模型缺口
-11 provisional 不能伪装 confirmed
-12 sealed 历史不可改写
-13 Trigger 去重
-14 confirmed 冲突必须人类处理
-15 Context Pack 是派生视图
-16 Context Pack 不包含数据字段
-17 UX 缺口候选创建 downstream_gap
-18 UX 冲突候选创建 cross_cluster_conflict
-19 Context Pack 缺失不阻断 UX 启动
-20 sealed UX Work Item 不被 Context Pack 静默改写
+唯一用户入口
+总览派生边界与新鲜度
+Canonical Work Item 文件
+State Schema 一致性
+Dictionary / Index / Schema 归一化
+BMD 决策压缩
+Action / State 稳定引用
+跨对象生命周期边界
+上下文属性归属
+对象身份歧义
+写入后强制校验与总览编译
+最终用户交付只突出总览
 ```
+
+所有场景使用 Given / When / Then。
 
 ---
 
-## 16. Definition of Done
+## 20. Definition of Done
 
-### 架构与边界
+### 用户体验
 
-- [ ] Core / Adapter / Project Assets 分层明确；
-- [ ] 能力是 Agent-neutral，不依赖 Codex 私有机制；
-- [ ] 核心模型不出现数据库字段语义；
-- [ ] `schema-view.json` 严格保持五项边界。
+- [ ] `BUSINESS_MODEL_OVERVIEW.md` 存在且为唯一默认用户入口；
+- [ ] 用户不打开其他文件也能理解模型并处理待确认决策；
+- [ ] 技术文件继续保留，不被粗暴合并。
 
-### 协议与模板
+### 协议
 
-- [ ] `MT-xxx.md`、`MODEL_IMPACT_REPORT.md`、`DECISION_NOTES.md` 模板齐全；
-- [ ] 任务级文件齐全；
-- [ ] Source of Truth 写入所有权明确；
-- [ ] 下游视图是派生视图，不是权威源；
-- [ ] `ux-design-engineering-view.md` 说明业务模型对 UX 的影响但不写入 `docs/design/`；
-- [ ] `ux-business-model-context.md/yml` 作为 UX 轻量上下文包存在，并明确不是 source of truth。
+- [ ] Canonical Work Item 文件完整且位置固定；
+- [ ] State 模板、Steward 和所有 Adapter 使用同一字段；
+- [ ] `schema-view.json` 使用唯一结构；
+- [ ] Dictionary / Index / Schema 引用一致；
+- [ ] Action / State / Rule 使用 stable ID；
+- [ ] 生命周期不跨对象混用；
+- [ ] 上下文相关值不伪装成固有属性。
 
-### Human Decision Control Plane
+### Human Decision
 
-- [ ] D0-D3 分级可执行；
-- [ ] D2 / D3 不会被自动 confirmed；
-- [ ] AI 不会自动 sealed；
-- [ ] confirmed 被覆盖前必须有明确人类决策。
+- [ ] D2 / D3 使用 `BMD-xxx`；
+- [ ] 用户请求前完成决策压缩；
+- [ ] 总览包含足以直接决策的内容；
+- [ ] AI 不自动 confirmed 或 sealed。
 
-### Passive Trigger Interface
+### 完成流水线
 
-- [ ] `model-triggers/` 取代 `model-requests/`；
-- [ ] Trigger 类型、生命周期、去重和关闭规则明确；
-- [ ] 被动触发会生成影响分析；
-- [ ] 影响分析会驱动模型更新、校验、重编译和回写。
+- [ ] 每次 Core 写入后执行 consistency validation；
+- [ ] 总览反映最新校验、状态和决策；
+- [ ] 需要的专业下游视图完成重编译；
+- [ ] 最终回复默认只突出总览。
 
-### 评测
+### 范围
 
-- [ ] 20 个评测场景均可人工执行；
-- [ ] 每个场景包含 Given / When / Then；
-- [ ] 评测覆盖边界、决策、触发、下游编译、UX 兼容性与 sealed 行为。
-
-
----
-
-## 17. UX Business Model Context Pack
-
-Business Modeling Core 必须提供面向 UX / Design Engineering 的轻量业务模型上下文包：
-
-```text
-docs/product/business-modeling/downstream-views/ux-business-model-context.md
-docs/product/business-modeling/downstream-views/ux-business-model-context.yml
-```
-
-该包是 `downstream-view-compiler` 生成的派生视图，不是 source of truth。它用于让 UX 在 Work Item 启动、关键交互设计和完成封存前低成本读取业务语义。
-
-该包只暴露 UX 必要的内容：
-
-```text
-业务对象摘要
-UX 相关业务动作
-UX 相关状态
-UX 相关规则与权限
-影响 UX 的 open Model Trigger
-UX 何时应创建 downstream_gap 或 cross_cluster_conflict
-UX 何时不应创建 Model Trigger
-```
-
-UX 侧只负责提示两类候选问题：
-
-```text
-business_model_gap_candidate
-business_model_conflict_candidate
-```
-
-本能力不引入复杂语义差异分层；纯视觉、布局、Reference Library、Color Card、局部 UI 控制和不改变业务结果理解的文案调整，不触发业务模型。
-
-`ux-business-model-context.*` 与 `ux-design-engineering-view.md` 的区别：
-
-```text
-ux-business-model-context.* = UX 启动与设计过程中的轻量语义输入
-ux-design-engineering-view.md = 业务模型变化后对 UX 的影响分析视图
-```
-
-未解决的高影响业务模型缺口或 confirmed 冲突不得被 UX sealed 为 confirmed 产品行为。
-
----
-
-## 18. Agent Runtime Adapter Resolution
-
-Business Modeling remains an Agent-neutral Core, but every runtime must have a callable adapter. A package is not implementation-ready if it has Core documents but no runnable agent entry for the user’s current tool.
-
-Required pattern:
-
-```text
-Product Business Modeling Core
-        ↓
-Shared Agent Skill Facade
-        ↓
-Runtime-specific Adapter
-        ↓
-Project Knowledge Assets
-```
-
-Runtime resolution is defined in:
-
-```text
-core/product-design/business-modeling/protocols/agent-runtime-adapter-resolution.md
-adapters/adapter-registry.yml
-```
-
-Supported profiles:
-
-```text
-codex
-claude-code
-cursor
-generic-agent
-multi-runtime
-```
-
-Hard rules:
-
-- Core defines capability semantics.
-- Shared Facade defines portable workflow language.
-- Runtime adapters map the facade into the current tool.
-- Project knowledge assets remain under `docs/product/**`.
-- Ambiguous runtime detection requires user confirmation or explicit multi-runtime installation.
-- Runtime adapters must not redefine business model semantics.
-- No CLI, Hook, Plugin, Installer, or external runtime dependency is introduced in v0.2.2.
+- [ ] 无 CLI、Hook、Plugin、Installer 或外部运行时依赖；
+- [ ] Agent-neutral Core 与 runtime adapters 边界保持不变。

@@ -1,26 +1,20 @@
 ---
 name: product-business-modeling
-description: Product business modeling workflow for business objects, business attributes, relationships, actions, states, rules, permissions, model triggers, impact reports, project extraction, consistency validation, and downstream business-model views. Use when the user asks to model or validate product business semantics.
+description: Build, validate, or compile Agent-neutral Product Business Modeling assets, including the default business-model overview, canonical Work Item files, model triggers, consistency reports, and downstream views.
 ---
 
-# Product Business Modeling for Claude Code
+# Product Business Modeling — Claude Code Adapter
 
-This is the Claude Code runtime adapter for the Agent-neutral Product Business Modeling Core.
+This Skill exposes the Agent-neutral Core to Claude Code. Read the Core capability and v0.2.3 contracts before modeling.
 
-Use `/product-business-modeling` to invoke it directly, or apply it automatically when the user asks for business modeling, model triggers, business object extraction, or model consistency validation.
+## Required flow
 
-## Required behavior
+1. Read `docs/product/BUSINESS_MODEL_OVERVIEW.md` first when present.
+2. Resolve `CREATE / RESUME / SUCCESSOR / NO_STATE / AMBIGUOUS` through the installed state steward when available.
+3. Use the canonical Work Item root files and frozen `STATE.md` schema.
+4. Keep dictionary, index, schema, objects, relationships, actions, states and rules aligned by stable IDs.
+5. Route D2 / D3 decisions through `BMD-xxx` packages.
+6. After every persistent Core write, generate `MODEL_CONSISTENCY_REPORT.md`, refresh the overview, then compile requested downstream views.
+7. At normal completion, show only `docs/product/BUSINESS_MODEL_OVERVIEW.md` to the user.
 
-1. Treat this Skill as a runtime facade, not as the source of truth.
-2. Use `docs/product/business-modeling/`, `docs/product/model-triggers/`, and `docs/product/work-items/` as project knowledge asset roots.
-3. Follow the Core contract in `references/core-contract.md`.
-4. Use the entry mode reference in `references/entry-modes.md`.
-5. Use the state steward contract in `references/state-steward.md` when managing BM Work Item state.
-6. Do not confirm D2/D3 semantics without the user.
-7. Do not modify `docs/design/**` directly.
-8. Keep business attributes separate from database fields, API parameters, ORM fields, and implementation types.
-9. Keep `schema-view.json` limited to business objects, domains, categories, business attributes, and example content.
-
-## When installing
-
-If this Skill is not already in `.claude/skills/product-business-modeling/`, apply `adapters/claude-code/INSTALL_PROFILE.md`.
+Do not create substitute files, write data fields into Core assets, mix object lifecycles, treat context-dependent values as intrinsic attributes, modify `docs/design/**`, or seal without explicit human approval.

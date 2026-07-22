@@ -1,6 +1,8 @@
 # Business Rules
 
-| Rule ID | Rule | Bound Object | Bound Action | Bound State | Impact | Status |
+> Bound IDs must exist in the business dictionary, action catalog or state lifecycle.
+
+| Rule ID | Rule | Bound Object IDs | Bound Action IDs | Bound State IDs | Impact | Status |
 |---|---|---|---|---|---|---|
 
 ## Invariants

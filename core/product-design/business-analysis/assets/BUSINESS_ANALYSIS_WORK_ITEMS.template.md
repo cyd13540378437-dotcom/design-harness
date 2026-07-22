@@ -4,18 +4,18 @@
 
 ## Active
 
-| ID | 标题 | Primary Case | 阶段 | Gate | 状态文件 |
-|---|---|---|---|---|---|
+| ID | 标题 | Primary Case | 阶段 | 当前推荐 / 已确认决定 | Choice Loop | 用户决定状态 | 状态文件 |
+|---|---|---|---|---|---|---|---|
 
 ## Paused
 
-| ID | 标题 | Primary Case | 原因 | 状态文件 |
-|---|---|---|---|---|
+| ID | 标题 | Primary Case | Choice Loop | 暂停原因 | 状态文件 |
+|---|---|---|---|---|---|
 
 ## Completed
 
-| ID | 标题 | Primary Case | 完成时间 | 状态文件 |
-|---|---|---|---|---|
+| ID | 标题 | Primary Case | 已确认选择 | 完成时间 | 状态文件 |
+|---|---|---|---|---|---|
 
 ## Cancelled
 

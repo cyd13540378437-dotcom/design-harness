@@ -23,14 +23,12 @@ adapters/cursor/INSTALL_PROFILE.md
 adapters/cursor/rules/product-business-modeling.mdc
 adapters/cursor/skills/product-business-modeling/
 templates/project/.designharness/
-templates/project/.designharnessagent/
-templates/project/runtime-overlays/codex/
-templates/project/runtime-overlays/claude-code/
-templates/project/runtime-overlays/cursor/
+templates/project/.claude/
+templates/project/.cursor/
 docs/PRD.product-business-modeling-runtime-adapter-resolution-v0.2.2.md
 docs/CODEX_BUILD_BRIEF.product-business-modeling-runtime-adapter-resolution-v0.2.2.md
 docs/RUNTIME_ADAPTER_READINESS_AUDIT.product-business-modeling-v0.2.2.md
-evals/product-business-modeling/scenarios/23-28
+evals/product-business-modeling/scenarios/23-27
 ```
 
 ## Hard rule

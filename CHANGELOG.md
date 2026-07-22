@@ -1,5 +1,43 @@
 # 变更日志
 
+## Unreleased / product business modeling v0.2.3
+
+- 升级 `product-business-modeling` 到 v0.2.3，新增 `docs/product/BUSINESS_MODEL_OVERVIEW.md` 作为唯一默认用户总览。
+- 保留 `docs/product/business-modeling/`、BM Work Item、证据、校验和专业 downstream views 的模块化 source-of-truth 结构，总览只是派生视图。
+- 将 canonical Work Item 根文件固定为 `STATE.md`、`MODELING_CONSUMPTION.md`、`MODELING_OUTPUT.md` 和 `DECISION_NOTES.md`。
+- 冻结 Core、Codex、Claude Code、Cursor 和 state steward 共用的 State Schema，runtime 元数据只能进入 `extensions`。
+- 强化 `business-dictionary.yml`、`BUSINESS_MODEL_INDEX.yml` 和 `schema-view.json` 的结构化合同、stable ID 与交叉引用。
+- 新增业务模型总览编译协议、canonical asset 合同、work item 文件合同和语义归属 / 派生属性边界规则。
+- 强化 Human Decision：D2 / D3 使用 `BMD-xxx`，总览中必须包含可直接回复的决策压缩。
+- Core 写入后必须执行 consistency validation，再编译 `BUSINESS_MODEL_OVERVIEW.md` 和必要 downstream views。
+- 新增 Work Order Intelligent Dispatch Greenfield 回归示例，并将业务模型评测扩展到 41 个场景。
+- 继续保持 Agent-neutral、runtime-aware 和文档型边界；不新增 CLI、Hook、Plugin、Installer、外部依赖、数据库迁移或 API 生成。
+
+## Unreleased / product business analysis core v0.1.4
+
+- 升级 `product-business-analysis` 到 v0.1.4，主题为 Decision Boundary & Choice Closure，在 v0.1.3 Choice-first 基础上补齐“用户确认后必须停止”的闭环边界。
+- 新增 Mixed-turn Interpretation：同一轮分别识别决定信号和后续请求，先处理用户决定。
+- 新增 Choice Loop Closure：用户确认后设置 `choice_loop_status=closed`，将推荐转为 `user_confirmed`，写入 `DECISION_NOTES.md`，不再重复请求同一选择。
+- 新增 Decision Scope Lock：每个 Case 记录当前决策粒度、范围状态与 explicit non-scope，防止静默下沉为实验设计、技术设计或执行。
+- 新增 Post-decision Clarification、Artifact Boundary Gate 和 No Execution Offer：决定后只做概念级澄清，禁止实施 Runbook、手工指南、数据 Schema、样例数据、公式、脚本、UI / 技术规格、执行结果和主动代跑提议。
+- 新增 State Enum Enforcement，并将 State / Case / Summary / Notes / Continuity / Assurance 升级到 schema 3。
+- ARCOS 回归升级：将“其他的都没问题，你说的 M0 手工跑是怎么个跑法”识别为 B+ confirmed + implementation_detail，只记录决定和解释 M0 业务目的，不创建 M0 手工模拟指南。
+- 评测场景从 44 个扩展到 56 个，覆盖混合轮次、指代性确认、Choice Closure、Scope Lock、决定后澄清、产物边界、No Execution、State Enum 和正式重开。
+- 26 张 ready Analysis Model Cards 继续通过，并新增 Choice Loop Closure Guard、Decision Scope Lock 和实施边界守卫。
+- 继续保持 Business Analysis 与 Business Modeling、Design Engineering、Motivation Analysis 以及所有兄弟能力完全独立；不新增跨模块 Trigger、downstream views、共享 Work Item 目录、CLI、Hook、Plugin、installer 或外部依赖。
+
+## Unreleased / product business analysis core v0.1.3
+
+- 升级 `product-business-analysis` 到 v0.1.3，采用 Choice-first Decision Support，把“选择”和“推荐”提升为商业分析核心对象。
+- 新增 Choice Core、provisional Choice Set、选项生命周期、Recommendation Obligation、Choice Delta、No Dead-End Rule 和 Decision Closure Contract。
+- 将 Assurance 从 Case 级 `pass / warn / block` 迁移为整体 `pass / warn / partial` 与声明级 `supported / provisional / conditional / blocked`；blocked 只能阻塞具体声明，不得终止整个 Case。
+- 新增 `ANALYSIS_WORKSPACE.md`，收敛 standard 默认输出；完整路由、证据、模型选择、Synthesis 和 Process Package 转为 deep / audit 按需。
+- 新增 `choice-set-construction` model card，ready 卡从 25 张增至 26 张；所有 ready 卡必须具备 `runtime_role`、7 个 usage prompts 和 Choice Delta。
+- 重写 ARCOS 回归：缺少排班结构与策略规则时比较 A/B/C/D 四条路径，并推荐“双轨冷启动”，不得以全局 block 收尾。
+- 新增 v0.1.3 PRD、Choice-first 架构决策、Build Brief、Readiness Audit、Package Manifest、迁移说明和产品总结。
+- 评测场景从 34 个扩展到 44 个，覆盖推荐义务、No Dead-End、声明级 Assurance、用户拒绝/修改/暂缓、Decision Closure 和输出经济性。
+- 继续保持 Business Analysis 与 Business Modeling、Design Engineering、Motivation Analysis 以及所有兄弟能力完全独立；不新增跨模块 Trigger、downstream views、共享 Work Item 目录、CLI、Hook、Plugin、installer 或外部依赖。
+
 ## Unreleased / product business analysis core v0.1.2
 
 - 升级 `product-business-analysis` 到 v0.1.2，重点修复多轮对话中商业分析从 Decision Case 漂移成普通咨询回答的问题。

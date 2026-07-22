@@ -1,70 +1,52 @@
 ---
-schema_version: 1
+schema_version: 3
 language: zh-CN
 work_item_id: BA-000
 primary_case_id: BA-DC-000
-turn_type: clarification
+decision_signal: none
+followup_request: none
+choice_loop_status: open
+boundary_status: within_scope
 continuity_result: passed
 updated_at: "YYYY-MM-DDTHH:mm:ssZ"
 ---
 
-# 多轮对话续接检查
+# 多轮对话续接检查（Deep / Audit 或连续性风险时）
 
-> 本文件是滚动检查点，不为每一轮创建新文件。`quick` 模式可只在 `STATE.md` 更新检查点；`standard / deep` 或出现范围、决定状态、Case 绑定风险时更新本文件。
+## 1. 本轮混合输入
 
-## 1. 本轮输入分类
+- Decision signal：`none | acknowledged | confirmed | rejected | revised | deferred`
+- Follow-up request：`none | decision_clarification | evidence_clarification | implementation_detail | new_decision_candidate | summary_request`
+- 用户原话：
 
-- Turn type：
-- 当前输入摘要：
-- 是否可能属于新 Case：
+## 2. 回复前已读取
 
-## 2. 回复前已读取的最小恢复集
-
-- `BUSINESS_ANALYSIS_WORK_ITEMS.md`：
 - `STATE.md`：
 - Primary Decision Case：
-- 最新 `ANALYSIS_OUTPUT.md`：
+- 最近 `DECISION_SUMMARY.md`：
 - `DECISION_NOTES.md`：
-- 最近 `DECISION_SUMMARY.md` / `DECISION_PROCESS_PACKAGE.md`：
-- 最新 `DECISION_ASSURANCE_CHECK.md`：
+- 最新 Claim-level Assurance：
 
-## 3. 当前 Decision Anchor
+## 3. Decision Scope 与 Choice Loop
 
-- 原始商业问题：
-- 已确认商业问题：
-- 当前真实业务选项：
-- 当前阻塞不确定性：
-- 证据边界：
-- 最新 Assurance：
-- 用户决定状态：
+- Scope ID：
+- 当前决策范围：
+- 明确不包含：
+- Choice Loop：`open | closed | reopened`
 
-## 4. 连续性判断
+## 4. 处理顺序
 
-- Continuity result：`passed | warning | blocked`
-- 是否发生范围漂移：
-- 是否退化成无状态普通建议：
-- 是否需要重新做 Input Understanding：
+- 决定信号处理：
+- 后续请求处理：
+- 是否需要 Choice Delta：
+- 是否需要正式重开：
 
-## 5. 本轮后续动作
+## 5. 边界与连续性
 
-```text
-continue_current_case
-add_evidence
-check_understanding
-record_user_decision
-provide_case_bound_summary
-reopen_or_review
-candidate_new_case
-no_case_needed
-```
+- Boundary status：`within_scope | clarification_only | out_of_scope_candidate`
+- 是否发生抽象层级下沉：
+- 是否创建越界产物：
+- 是否出现执行提议：
+- phase / gate 是否合法：
 
-- 选择：
-- 理由：
-
-## 6. 用户表达的决定含义
-
-- 原话：
-- 解释为：`pending | acknowledged | confirmed | rejected | revised`
-- 为什么：
-
-## 7. 本轮需要更新的资产
+## 6. 需要更新的资产

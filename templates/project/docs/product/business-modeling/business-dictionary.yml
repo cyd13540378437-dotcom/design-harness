@@ -1,9 +1,32 @@
 schema_version: 1
+business_model_version: v0.1
+status: draft
+
+# Entry shape: {id, label, description, status}
 business_domains: []
+
+# Entry shape: {id, label, description, status}
 object_categories: []
+
+# Entry shape:
+# {id, name, label, definition, business_domain_id, object_category_id, status}
 business_objects: []
+
+# Entry shape:
+# {id, object_id, label, meaning, attribute_kind, example_content: [], status}
+# attribute_kind: intrinsic | relational | contextual | derived
 business_attributes: []
+
+# Entry shape:
+# {id, label, actor_type, actor_ids: [], target_object_id, meaning, status}
 actions: []
+
+# Entry shape:
+# {id, object_id, label, meaning, status}
 states: []
+
+# Entry shape: {id, label, meaning, status}
 roles: []
+
+# Entry shape: {term, reason, preferred_term}
 terms_not_to_use: []

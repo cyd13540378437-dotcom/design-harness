@@ -1,15 +1,19 @@
-schema_version: 1
+schema_version: 3
 language: zh-CN
 cases:
-  - id: BA-DC-001
-    title: 未激活邀请是否占用付费 Seat
-    status: confirmed
-    assurance_status: pass
-    user_decision_status: confirmed
-    path: decision-cases/BA-DC-001-seat-invitation-counts.md
-  - id: BA-DC-002
-    title: 无历史数据时如何验证智能调度策略
-    status: provisional
-    assurance_status: warn
-    user_decision_status: pending
-    path: decision-cases/BA-DC-002-smart-dispatch-strategy-validation.md
+- id: BA-DC-001
+  title: 未激活邀请是否占用付费 Seat
+  status: confirmed
+  choice_loop_status: closed
+  overall_assurance: pass
+  recommended_option_id: C
+  user_decision_status: confirmed
+  path: decision-cases/BA-DC-001-seat-invitation-counts.md
+- id: BA-DC-002
+  title: 冷启动条件下如何启动调度策略验证
+  status: confirmed
+  choice_loop_status: closed
+  overall_assurance: partial
+  recommended_option_id: B+
+  user_decision_status: confirmed
+  path: decision-cases/BA-DC-002-smart-dispatch-strategy-validation.md
