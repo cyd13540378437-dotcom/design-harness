@@ -233,6 +233,8 @@ skills/design-engineering/assets/visual-reference-packs/
 
 参考包只用于启发，不复制第三方产品截图，不使用真实品牌 Logo。Agent 应说明哪些特征可借鉴，哪些不应复制。
 
+配色方向使用 Color Card Registry 的 project-first 解析：如果项目存在 `docs/design/reference-library/assets/color-cards/palette-index.yml`，优先使用项目色卡库；如果项目没有安装色卡库，Skill 会把内置 `skills/design-engineering/assets/color-cards/` 安装到项目路径，在 `REFERENCE_SELECTION.md` 中记录来源为 `project-installed-from-skill-bundled`，并用大图色卡和业务语义让用户确认。只有项目安装不安全或失败时，才临时使用 `skill-bundled`；只有项目级和内置色卡都不可用时，才退回非 registry 配色方案。
+
 ## `VISUAL_DESIGN.md` 与 `STATE.md`
 
 `STATE.md` 记录单个 Work Item 的状态、Gate、批准决定、验收标准和验证证据。

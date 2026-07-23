@@ -46,6 +46,36 @@ docs/design/work-items/<STATE_ID>-<slug>/REFERENCE_SELECTION.md
 
 不要复制第三方品牌资产、图标、插画、截图、专有文案或完整页面布局。跨终端参考只能用于抽象模式，不能直接复制为布局、导航、手势、密度或视觉比例。
 
+## Color Card Registry
+
+UI/UX Work Item 进入配色确认前，必须解析 Color Card Registry 来源。
+
+优先使用项目级 registry：
+
+```text
+docs/design/reference-library/assets/color-cards/
+```
+
+如果项目级 registry 缺失，先把 Design Engineering Skill 内置 registry 安装到项目路径：
+
+```text
+<skill-root>/assets/color-cards/
+```
+
+安全自动安装的条件是目标 `docs/design/reference-library/assets/color-cards/` 不存在、为空，或只包含 `.gitkeep` 占位文件。不得静默覆盖部分安装或自定义项目色卡库。如果目标目录已有非 `.gitkeep` 文件但缺少有效 `palette-index.yml`，本轮临时使用 Skill 内置 registry，并要求用户明确批准修复或覆盖。
+
+只有项目级和 Skill 内置 registry 都缺失，或都没有 `status: ready` 且 `gate_preview: true` 的有效色卡时，才可以继续使用非 registry 配色方案。
+
+有效色卡不是单张图片，而是：
+
+```text
+palette-index.yml entry + image + palette + annotation
+```
+
+使用色卡前必须检查 `image`、`palette`、`annotation` 路径存在，文件 stem 与 card `id` 一致，palette 与 annotation ID 匹配 index ID，并排除 `draft`、`deprecated`、orphan asset 和 `gate_preview: false` 条目。
+
+配色确认时必须展示大图色卡和业务语义，不得让用户主要通过 HEX/RGB 或小色块决定。实际色卡消费写入 Work Item 的 `REFERENCE_SELECTION.md`，并记录 registry source：`project`、`project-installed-from-skill-bundled` 或 `skill-bundled`。使用 `skill-bundled` 时，不要声称当前项目已有项目级正式色卡库。
+
 ## Lifecycle Memory and Outputs
 
 新建 v0.1.3 Work Item 时，优先使用 Lifecycle Event ID：

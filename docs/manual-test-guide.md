@@ -98,6 +98,8 @@ docs/manual-test-guide.md
 
 确认 `skills/design-engineering/assets/visual-reference-packs/` 下有 5 个参考包，每个包至少包含 2 张自制 SVG 和 `notes.md`。
 
+确认 `skills/design-engineering/assets/color-cards/` 包含内置 Color Card Registry：`palette-index.yml`、`palette-index.md`、`color-card.schema.yml`、集中式 `images/`、`palettes/`、`annotations/`，并且至少有 3 张 `status: ready` 且 `gate_preview: true` 的可用色卡。
+
 确认 `templates/project/docs/design/reference-library/` 包含产品索引、模式索引、单产品条目、单模式条目、截图素材目录、schema 和 `assets/color-cards/` 注册表结构。`color-cards/` 必须包含 `palette-index.yml`、`palette-index.md`、`color-card.schema.yml`、集中式 `images/`、`palettes/`、`annotations/`。确认 `templates/project/docs/design/project-memory/` 与 `templates/project/docs/design/outputs/` 存在。不得存在 `templates/project/docs/design/reference-library/reference-packs/`、`color-cards/cards/`、`docs/design/product-work-items/` 或项目根目录 `outputs/` 模板。
 
 ## 2. 手动安装冒烟测试
@@ -113,6 +115,8 @@ scripts/install-agent-compat.sh doctor /path/to/test-project
 
 - `.cursor/design-harness/` 包含 Cursor adapter 和 vendored skill。
 - `docs/design/` 包含 Work Items、`VISUAL_DESIGN.md`、Project Memory、Outputs、Reference Library 和 Color Card Registry。
+- 若测试项目临时移除 `docs/design/reference-library/assets/color-cards/palette-index.yml` 且目标色卡目录为空或只含 `.gitkeep`，Design Engineering 会从 vendored skill 的 `assets/color-cards/` 安装项目级色卡库，并在 `REFERENCE_SELECTION.md` 记录来源为 `project-installed-from-skill-bundled`。
+- 若测试项目的 `color-cards/` 目录已有非 `.gitkeep` 文件但缺少有效 `palette-index.yml`，Design Engineering 不得静默覆盖；本轮只能临时使用 `skill-bundled` 并提示需要明确批准修复。
 - doctor 输出不报告缺失文件。
 
 在一次性业务仓库中：

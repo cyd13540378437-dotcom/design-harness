@@ -2,8 +2,11 @@
 
 ### Registry Source
 
-- Color card registry: `docs/design/reference-library/assets/color-cards/palette-index.yml`
-- Integrity check result: `pass | skipped-incomplete | no-ready-cards`
+- Registry source: `project | project-installed-from-skill-bundled | skill-bundled | none`
+- Project color card registry: `docs/design/reference-library/assets/color-cards/palette-index.yml`
+- Skill-bundled color card registry: `<skill-root>/assets/color-cards/palette-index.yml`
+- Integrity check result: `pass | skipped-incomplete | no-ready-cards | no-registry`
+- Source note: If using `project-installed-from-skill-bundled`, state that the project had no installed Color Card Registry and the Skill installed the bundled registry into the project before palette selection. If using `skill-bundled`, state why project installation was unsafe or impossible.
 
 ### Color Direction Query
 

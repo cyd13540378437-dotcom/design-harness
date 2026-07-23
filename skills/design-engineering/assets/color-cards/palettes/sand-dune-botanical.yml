@@ -1,0 +1,35 @@
+schema_version: 1
+id: sand-dune-botanical
+title: 沙丘植物暖绿
+source_image: ../images/sand-dune-botanical.png
+colors:
+- role: primary
+  name: 沙丘橄榄绿
+  hex: '#5F6F52'
+  usage: 主按钮、关键导航、重要标题或深色信息锚点
+- role: secondary
+  name: 植物暖绿
+  hex: '#9BAE75'
+  usage: 次级行动、链接、图表主系列或模块重点
+- role: accent
+  name: 阳光草绿
+  hex: '#D8B77A'
+  usage: 状态反馈、局部强调、插画点缀或关键数字高亮
+- role: soft_background
+  name: 沙色浅底
+  hex: '#F0DEC0'
+  usage: 卡片浅底、空状态、标签底色或轻量分区
+- role: page_background
+  name: 暖白户外底
+  hex: '#FFF9EE'
+  usage: 页面底色、低噪音背景或大面积留白区域
+token_suggestions:
+  color.primary: primary
+  color.secondary: secondary
+  color.accent: accent
+  color.surface.tint: soft_background
+  color.background: page_background
+token_hint: 暖绿做品牌锚点，草绿做积极反馈，沙色浅底表达阳光和户外。
+accessibility_notes:
+- 整体对比风险较低，但浅底上的次级文字仍需检查 WCAG 对比度。
+- 大面积浅色背景应搭配足够深的正文色，避免低饱和灰字过淡。

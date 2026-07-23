@@ -1,0 +1,35 @@
+schema_version: 1
+id: morning-mist-blue-gray
+title: 晨雾蓝灰
+source_image: ../images/morning-mist-blue-gray.png
+colors:
+- role: primary
+  name: 晨雾蓝灰
+  hex: '#526D82'
+  usage: 主按钮、关键导航、重要标题或深色信息锚点
+- role: secondary
+  name: 安静天蓝
+  hex: '#7E99A3'
+  usage: 次级行动、链接、图表主系列或模块重点
+- role: accent
+  name: 浅湖蓝强调
+  hex: '#B4C9D1'
+  usage: 状态反馈、局部强调、插画点缀或关键数字高亮
+- role: soft_background
+  name: 薄雾浅蓝
+  hex: '#E4EEF1'
+  usage: 卡片浅底、空状态、标签底色或轻量分区
+- role: page_background
+  name: 空气白底
+  hex: '#F8FBFC'
+  usage: 页面底色、低噪音背景或大面积留白区域
+token_suggestions:
+  color.primary: primary
+  color.secondary: secondary
+  color.accent: accent
+  color.surface.tint: soft_background
+  color.background: page_background
+token_hint: 蓝灰做文字和导航，晴空蓝做行动，薄雾蓝做卡片/阅读区底。
+accessibility_notes:
+- 整体对比风险较低，但浅底上的次级文字仍需检查 WCAG 对比度。
+- 大面积浅色背景应搭配足够深的正文色，避免低饱和灰字过淡。

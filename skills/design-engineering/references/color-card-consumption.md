@@ -33,19 +33,35 @@ docs/design/reference-library/assets/color-cards/
 
 `palette-index.yml` is the source of truth.
 
+## Source Resolution
+
+Resolve and ensure the color-card source before palette selection:
+
+1. Use the project registry when `docs/design/reference-library/assets/color-cards/palette-index.yml` exists.
+2. If the project registry is missing and the Skill-bundled registry exists at `<skill-root>/assets/color-cards/palette-index.yml`, install the bundled registry into `docs/design/reference-library/assets/color-cards/` before palette selection.
+3. If installation is not safe or not possible, use the Skill-bundled registry as a temporary fallback.
+4. If both project and bundled registries are missing, or both have no valid ready cards, continue with non-registry color direction proposals.
+
+Safe installation means the target `docs/design/reference-library/assets/color-cards/` directory is missing, empty, or contains only `.gitkeep` placeholders. Create the needed directories and copy the full bundled `color-cards/` contents, preserving centralized `images/`, `palettes/`, and `annotations/`.
+
+Do not silently overwrite a partial or custom project registry. If the target directory contains non-`.gitkeep` files but lacks a valid `palette-index.yml`, report that the project registry is incomplete, use the bundled registry for the current Work Item, and ask for explicit repair/overwrite approval before modifying those assets.
+
+When installing from the bundled registry, tell the user that the project had no installed Color Card Registry and that the Skill installed one from bundled assets. Record `registry_source: project-installed-from-skill-bundled` in `REFERENCE_SELECTION.md`. When installation is impossible and the bundled registry is used only temporarily, record `registry_source: skill-bundled`. Do not pretend the project already had a project-level registry.
+
 ## Retrieval Rules
 
 Before proposing color direction candidates:
 
-1. Read `palette-index.yml`.
-2. Exclude entries whose `status` is not `ready`; only `status: ready` cards may be consumed.
-3. Exclude entries whose `gate_preview` is not `true` when preparing user-facing approval choices; only `status: ready` and `gate_preview: true` cards may appear in `visual-direction-approval`.
-4. Verify the referenced `image`, `palette`, and `annotation` exist.
-5. Verify palette and annotation IDs match the index ID.
-6. Prefer cards whose `surfaces` match the Work Item surface target.
-7. Prefer cards whose mood and business semantics fit the task diagnosis.
+1. Resolve and ensure the registry source: project-first, auto-install from Skill-bundled assets when absent, temporary Skill-bundled fallback only when installation is unsafe or impossible.
+2. Read the selected `palette-index.yml`.
+3. Exclude entries whose `status` is not `ready`; only `status: ready` cards may be consumed.
+4. Exclude entries whose `gate_preview` is not `true` when preparing user-facing approval choices; only `status: ready` and `gate_preview: true` cards may appear in `visual-direction-approval`.
+5. Verify the referenced `image`, `palette`, and `annotation` exist relative to the selected registry directory.
+6. Verify palette and annotation IDs match the index ID.
+7. Prefer cards whose `surfaces` match the Work Item surface target.
+8. Prefer cards whose mood and business semantics fit the task diagnosis.
 
-If no valid cards exist, say that no ready color cards are available and continue with non-library color direction proposals. Do not pretend that a missing or draft card came from the registry.
+If no valid cards exist in either the project registry or the Skill-bundled registry, say that no ready color cards are available and continue with non-library color direction proposals. Do not pretend that a missing or draft card came from the registry.
 
 ## User-Facing Gate Rules
 
@@ -75,6 +91,7 @@ Choose #006C9F + #1CA6D9 + #23B8B5.
 When color cards are considered, add a color section to the Work Item's `REFERENCE_SELECTION.md`:
 
 - candidate color-card IDs;
+- registry source: `project`, `project-installed-from-skill-bundled`, or `skill-bundled`;
 - included / rejected reason;
 - selected color-card ID after user approval;
 - user-facing color direction summary;

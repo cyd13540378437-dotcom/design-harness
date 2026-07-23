@@ -146,6 +146,8 @@ Before reference retrieval, Codex records the target surface: `web-app`, `mobile
 
 Users may provide images in `docs/design/reference-images/`. When they have no references, the Skill can also use the built-in self-made packs in `skills/design-engineering/assets/visual-reference-packs/`.
 
+Color direction uses Color Card Registry with project-first resolution. If `docs/design/reference-library/assets/color-cards/palette-index.yml` exists, the Skill uses the project registry. If it is missing, the Skill installs the bundled registry from `skills/design-engineering/assets/color-cards/` into the project, records the source as `project-installed-from-skill-bundled`, and presents large color cards with business-language trade-offs. It uses `skill-bundled` only as a temporary fallback when project installation is unsafe or impossible.
+
 ## Workflow
 
 `design-engineering` orchestrates the design process. It must explicitly call `design_state_steward` before stateful design work, before each Gate checkpoint, after Gate replies, before task switches, before closure review, and before sealing.

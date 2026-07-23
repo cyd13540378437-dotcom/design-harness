@@ -1,0 +1,35 @@
+schema_version: 1
+id: ivory-black-gold
+title: 象牙黑金精品
+source_image: ../images/ivory-black-gold.png
+colors:
+- role: primary
+  name: 象牙黑
+  hex: '#111111'
+  usage: 主按钮、关键导航、重要标题或深色信息锚点
+- role: secondary
+  name: 古金主色
+  hex: '#7A6238'
+  usage: 次级行动、链接、图表主系列或模块重点
+- role: accent
+  name: 柔金强调
+  hex: '#C7A35A'
+  usage: 状态反馈、局部强调、插画点缀或关键数字高亮
+- role: soft_background
+  name: 象牙浅金底
+  hex: '#F1E8D2'
+  usage: 卡片浅底、空状态、标签底色或轻量分区
+- role: page_background
+  name: 精品暖白底
+  hex: '#FFFCF5'
+  usage: 页面底色、低噪音背景或大面积留白区域
+token_suggestions:
+  color.primary: primary
+  color.secondary: secondary
+  color.accent: accent
+  color.surface.tint: soft_background
+  color.background: page_background
+token_hint: 黑色做标题与高端锚点，金色只做少量强调，象牙白承载大面积阅读。
+accessibility_notes:
+- 中等风险：浅色底上的彩色小字、细线和禁用态需要单独验证对比度。
+- 主 CTA 建议优先使用最深色阶或高饱和强调色，避免只用浅色承担关键行动。

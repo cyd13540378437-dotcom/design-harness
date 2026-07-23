@@ -48,11 +48,21 @@ docs/design/work-items/<STATE_ID>-<slug>/REFERENCE_SELECTION.md
 
 ## Color Card Registry Rules
 
-When working on UI/UX Work Items with color direction decisions, use the project color-card registry if present:
+When working on UI/UX Work Items with color direction decisions, resolve a color-card registry before palette selection. Use the project registry first:
 
 ```text
 docs/design/reference-library/assets/color-cards/
 ```
+
+If the project registry is missing, install the Design Engineering Skill-bundled registry into the project before palette selection:
+
+```text
+<skill-root>/assets/color-cards/
+```
+
+Safe auto-install means the target `docs/design/reference-library/assets/color-cards/` directory is missing, empty, or contains only `.gitkeep` placeholders. Do not silently overwrite a partial or custom project registry. If the target directory contains non-`.gitkeep` files but lacks a valid `palette-index.yml`, use the Skill-bundled registry for the current Work Item and ask for explicit repair/overwrite approval.
+
+Only if both the project registry and the Skill-bundled registry are missing or have no ready cards may the agent continue with non-registry palette proposals.
 
 ### Registry Identity
 
@@ -95,6 +105,8 @@ When asking the user to confirm color direction, show large color-card visuals a
 ### Work Item Recording
 
 Write actual color-card consumption into the Work Item's `REFERENCE_SELECTION.md`.
+
+Record the registry source as `project`, `project-installed-from-skill-bundled`, or `skill-bundled`. When using `skill-bundled`, do not claim the project has an installed project-level Color Card Registry.
 
 Keep `STATE.md` small: selected color-card ID, color direction summary, approved decision, and link to `REFERENCE_SELECTION.md` are enough.
 
