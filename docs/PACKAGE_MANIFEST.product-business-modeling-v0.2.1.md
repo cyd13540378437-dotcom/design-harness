@@ -57,10 +57,10 @@ UX Business Model Context Pack
 ## 4. 项目模板
 
 ```text
-templates/project/docs/product/PRODUCT_WORK_ITEMS.md
-templates/project/docs/product/model-triggers/
+templates/project/docs/product/business-modeling/BUSINESS_MODEL_WORK_ITEMS.md
+templates/project/docs/product/business-modeling/model-triggers/
 templates/project/docs/product/business-modeling/
-templates/project/docs/product/work-items/
+templates/project/docs/product/business-modeling/work-items/
 ```
 
 其中业务模型长期资产包含：

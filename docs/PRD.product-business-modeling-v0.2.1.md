@@ -149,10 +149,10 @@ Adapter 负责把 Core 接入 Codex、Claude Code、Cursor 等运行时。Adapte
 真实项目里的业务模型资产位于：
 
 ```text
-docs/product/PRODUCT_WORK_ITEMS.md
-docs/product/model-triggers/
+docs/product/business-modeling/BUSINESS_MODEL_WORK_ITEMS.md
+docs/product/business-modeling/model-triggers/
 docs/product/business-modeling/
-docs/product/work-items/
+docs/product/business-modeling/work-items/
 ```
 
 `.codex/`、`.cursor/`、`CLAUDE.md` 等只是运行时入口，不是业务模型知识资产。
@@ -193,7 +193,7 @@ docs/product/business-modeling/
 ### 7.2 任务级输出
 
 ```text
-docs/product/work-items/BM-xxx/
+docs/product/business-modeling/work-items/BM-xxx/
 ├── STATE.md
 ├── MODELING_CONSUMPTION.md
 ├── MODELING_OUTPUT.md

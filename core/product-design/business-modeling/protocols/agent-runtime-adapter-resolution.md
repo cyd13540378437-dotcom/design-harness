@@ -79,8 +79,8 @@ Always remain Agent-neutral:
 
 ```text
 docs/product/business-modeling/
-docs/product/model-triggers/
-docs/product/work-items/
+docs/product/business-modeling/model-triggers/
+docs/product/business-modeling/work-items/
 ```
 
 Runtime files are never source of truth for business semantics.
@@ -136,10 +136,10 @@ Human confirmation is required when:
 ### Always install or preserve common project assets
 
 ```text
-docs/product/PRODUCT_WORK_ITEMS.md
-docs/product/model-triggers/
+docs/product/business-modeling/BUSINESS_MODEL_WORK_ITEMS.md
+docs/product/business-modeling/model-triggers/
 docs/product/business-modeling/
-docs/product/work-items/
+docs/product/business-modeling/work-items/
 ```
 
 ### Codex profile

@@ -34,8 +34,8 @@ Do not move or duplicate project knowledge source of truth outside:
 
 ```text
 docs/product/business-modeling/
-docs/product/model-triggers/
-docs/product/work-items/
+docs/product/business-modeling/model-triggers/
+docs/product/business-modeling/work-items/
 ```
 
 ## Final response must include

@@ -19,7 +19,7 @@ updated_at: 2026-07-22
 
 v0.2.3 增加一项重要用户体验合同：
 
-> 业务负责人和产品负责人默认只阅读 `docs/product/BUSINESS_MODEL_OVERVIEW.md`；详细资产继续保留，用于维护、验证、审计和下游编译。
+> 在业务模型模块内，业务负责人和产品负责人默认只阅读 `docs/product/business-modeling/BUSINESS_MODEL_OVERVIEW.md`；详细资产继续保留，用于维护、验证、审计和下游编译。若项目启用 `docs/project-delivery/`，该总览作为业务模型模块出口被项目交付层消费。
 
 ---
 
@@ -63,11 +63,11 @@ Project Knowledge Assets
 ### 3.3 Project Knowledge Assets
 
 ```text
-docs/product/BUSINESS_MODEL_OVERVIEW.md
+docs/product/business-modeling/BUSINESS_MODEL_OVERVIEW.md
 docs/product/business-modeling/
-docs/product/model-triggers/
-docs/product/work-items/
-docs/product/PRODUCT_WORK_ITEMS.md
+docs/product/business-modeling/model-triggers/
+docs/product/business-modeling/work-items/
+docs/product/business-modeling/BUSINESS_MODEL_WORK_ITEMS.md
 ```
 
 `.codex/`、`.agents/`、`.claude/`、`.cursor/`、`AGENTS.md` 和 `CLAUDE.md` 是运行时入口，不是业务模型知识资产。
@@ -76,10 +76,10 @@ docs/product/PRODUCT_WORK_ITEMS.md
 
 ## 4. 用户阅读体验
 
-### 4.1 唯一默认入口
+### 4.1 模块唯一默认入口
 
 ```text
-docs/product/BUSINESS_MODEL_OVERVIEW.md
+docs/product/business-modeling/BUSINESS_MODEL_OVERVIEW.md
 ```
 
 它必须让用户仅阅读这一份文件就能理解：
@@ -111,6 +111,8 @@ docs/product/BUSINESS_MODEL_OVERVIEW.md
 
 ```text
 is_default_user_entry: true
+is_default_module_delivery_view: true
+is_project_delivery_entry: false
 is_source_of_truth: false
 writer: downstream-view-compiler
 ```
@@ -307,7 +309,7 @@ Human Decision Control Plane 与 Passive Trigger Interface 是横切机制。
 | 状态生命周期 | `states/*` | `state-lifecycle-modeler` |
 | 规则与权限 | `rules/*` | `rule-policy-modeler` |
 | Roadmap 与风险 | `roadmap/*`, `risks/*` | `roadmap-risk-modeler` |
-| 用户总览 | `docs/product/BUSINESS_MODEL_OVERVIEW.md` | `downstream-view-compiler` |
+| 用户总览 | `docs/product/business-modeling/BUSINESS_MODEL_OVERVIEW.md` | `downstream-view-compiler` |
 | 专业下游视图 | `downstream-views/*` | `downstream-view-compiler` |
 | Trigger | `model-triggers/MT-xxx.md` | `model-trigger-handler` |
 | 任务状态 | `work-items/BM-xxx/STATE.md` | orchestrator / runtime state wrapper |
@@ -323,35 +325,37 @@ Human Decision Control Plane 与 Passive Trigger Interface 是横切机制。
 product-repository/
 ├── docs/
 │   └── product/
-│       ├── BUSINESS_MODEL_OVERVIEW.md      # 用户唯一默认入口
-│       ├── PRODUCT_WORK_ITEMS.md
-│       ├── model-triggers/
-│       ├── business-modeling/
-│       │   ├── BUSINESS_MODEL_INDEX.md     # 维护者导航
-│       │   ├── BUSINESS_MODEL_INDEX.yml    # 机器索引
-│       │   ├── business-dictionary.md
-│       │   ├── business-dictionary.yml
-│       │   ├── schema-view.json
-│       │   ├── schema-view.md
-│       │   ├── domain-objects/
-│       │   ├── relationships/
-│       │   ├── actions/
-│       │   ├── states/
-│       │   ├── rules/
-│       │   ├── roadmap/
-│       │   ├── risks/
-│       │   └── downstream-views/
-│       └── work-items/
-│           └── BM-001-example/
-│               ├── STATE.md
-│               ├── MODELING_CONSUMPTION.md
-│               ├── MODELING_OUTPUT.md
-│               ├── DECISION_NOTES.md
-│               └── artifacts/
-│                   ├── SOURCE_EVIDENCE.md
-│                   ├── MODEL_EXTRACTION_REPORT.md
-│                   ├── MODEL_CONSISTENCY_REPORT.md
-│                   └── MODEL_IMPACT_REPORT.md
+│       └── business-modeling/
+│           ├── README.md
+│           ├── BUSINESS_MODEL_OVERVIEW.md      # 业务模型模块默认用户入口
+│           ├── DELIVERY_EXPORTS.yml            # 项目交付层出口声明
+│           ├── BUSINESS_MODEL_INDEX.md         # 维护者导航
+│           ├── BUSINESS_MODEL_INDEX.yml        # 机器索引
+│           ├── BUSINESS_MODEL_WORK_ITEMS.md
+│           ├── business-dictionary.md
+│           ├── business-dictionary.yml
+│           ├── schema-view.json
+│           ├── schema-view.md
+│           ├── domain-objects/
+│           ├── relationships/
+│           ├── actions/
+│           ├── states/
+│           ├── rules/
+│           ├── roadmap/
+│           ├── risks/
+│           ├── downstream-views/
+│           ├── model-triggers/
+│           └── work-items/
+│               └── BM-001-example/
+│                   ├── STATE.md
+│                   ├── MODELING_CONSUMPTION.md
+│                   ├── MODELING_OUTPUT.md
+│                   ├── DECISION_NOTES.md
+│                   └── artifacts/
+│                       ├── SOURCE_EVIDENCE.md
+│                       ├── MODEL_EXTRACTION_REPORT.md
+│                       ├── MODEL_CONSISTENCY_REPORT.md
+│                       └── MODEL_IMPACT_REPORT.md
 └── runtime-specific adapter files
 ```
 
@@ -572,7 +576,7 @@ Action / State 稳定引用
 
 ### 用户体验
 
-- [ ] `BUSINESS_MODEL_OVERVIEW.md` 存在且为唯一默认用户入口；
+- [ ] `BUSINESS_MODEL_OVERVIEW.md` 存在且为业务模型模块默认用户入口；
 - [ ] 用户不打开其他文件也能理解模型并处理待确认决策；
 - [ ] 技术文件继续保留，不被粗暴合并。
 

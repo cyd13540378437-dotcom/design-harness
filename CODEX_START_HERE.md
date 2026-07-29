@@ -2,7 +2,7 @@
 
 ## Product Business Modeling v0.2.3
 
-This package is the runtime-aware Codex entry for `product-business-modeling`. v0.2.3 keeps the Core / Adapter / Project Assets separation from v0.2.2 and adds a single default user-facing overview plus stricter canonical file contracts.
+This package is the runtime-aware Codex entry for `product-business-modeling`. v0.2.3 keeps the Core / Adapter / Project Assets separation from v0.2.2 and adds a business-model module overview plus stricter canonical file contracts.
 
 Read in this order:
 
@@ -16,7 +16,7 @@ Read in this order:
 8. `skills/product-business-modeling/SKILL.md`
 9. `adapters/codex/skills/product-business-modeling/SKILL.md`
 10. `adapters/codex/agents/product-model-state-steward.toml`
-11. `templates/project/docs/product/BUSINESS_MODEL_OVERVIEW.md`
+11. `templates/project/docs/product/business-modeling/BUSINESS_MODEL_OVERVIEW.md`
 12. `templates/project/runtime-overlays/codex/.agents/skills/product-business-modeling/SKILL.md`
 
 Do not remove the Core / Adapter / Project Assets separation.
@@ -32,7 +32,7 @@ v0.2.3 Codex rules:
 - use the exact Core State fields; runtime metadata belongs in `extensions`;
 - write Core assets only within owned boundaries;
 - run consistency validation after Core writes;
-- compile `docs/product/BUSINESS_MODEL_OVERVIEW.md`;
+- compile `docs/product/business-modeling/BUSINESS_MODEL_OVERVIEW.md`;
 - present the overview as the only default user reading link.
 
 If you are applying runtime files from Codex, use the Codex profile. If the target project is meant for Claude Code or Cursor, do not install only Codex files; apply `core/product-design/business-modeling/protocols/agent-runtime-adapter-resolution.md` and the matching install profile.

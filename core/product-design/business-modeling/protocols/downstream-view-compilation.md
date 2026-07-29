@@ -5,7 +5,7 @@
 固定编译：
 
 ```text
-docs/product/BUSINESS_MODEL_OVERVIEW.md
+docs/product/business-modeling/BUSINESS_MODEL_OVERVIEW.md
 ```
 
 这是面向 product owner 的唯一默认用户入口。它位于 `docs/product/` 根目录以便发现，但仍是派生视图，不是 source of truth。

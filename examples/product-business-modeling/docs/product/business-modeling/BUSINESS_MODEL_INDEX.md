@@ -1,6 +1,6 @@
 # Business Model Index
 
-> Maintainer navigation only. Product owners should read [`../BUSINESS_MODEL_OVERVIEW.md`](../BUSINESS_MODEL_OVERVIEW.md).
+> Maintainer navigation only. Product owners should read [`BUSINESS_MODEL_OVERVIEW.md`](BUSINESS_MODEL_OVERVIEW.md).
 
 ## Current Model
 

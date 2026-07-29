@@ -5,7 +5,7 @@ description: Apply the Agent-neutral Product Business Modeling Core in Cursor fo
 
 # Product Business Modeling — Cursor Adapter
 
-- Read `docs/product/BUSINESS_MODEL_OVERVIEW.md` first when present.
+- Read `docs/product/business-modeling/BUSINESS_MODEL_OVERVIEW.md` first when present.
 - Follow `core/product-design/business-modeling/CAPABILITY.md` and the v0.2.3 overview, Work Item, canonical asset, Human Decision and validation contracts.
 - Use exact canonical Work Item files and the frozen State Schema.
 - Keep all model references stable by ID.

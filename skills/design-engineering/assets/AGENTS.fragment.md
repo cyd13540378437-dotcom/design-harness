@@ -89,6 +89,8 @@ yyyy-mm-dd-hhmm-PD-001
 
 `docs/design/project-memory/` 是跨 Work Item 的长期项目记忆。它只保存业务、产品、UX、视觉、工程和决策的压缩基线，不保存完整聊天记录、完整参考分析或完整色卡知识。
 
+`docs/design/DESIGN_OVERVIEW.md` 是 Design Engineering 的默认模块交付出口：它从 sealed `STATE.md`、`VISUAL_DESIGN.md`、Project Memory 和 `outputs/current/` 编译当前 UX / 产品设计 / 视觉入口；它不是 source of truth，冲突时以源文件为准。
+
 `docs/design/outputs/` 是交付物系统：
 
 - `outputs/archive/<event_id>/` 保存 sealed 事件的交付快照。

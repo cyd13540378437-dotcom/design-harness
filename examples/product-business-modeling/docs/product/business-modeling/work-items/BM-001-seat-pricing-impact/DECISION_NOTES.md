@@ -66,4 +66,4 @@ Pending human decision.
 
 ### Overview Compilation
 
-- Included in `docs/product/BUSINESS_MODEL_OVERVIEW.md`: `yes`
+- Included in `docs/product/business-modeling/BUSINESS_MODEL_OVERVIEW.md`: `yes`

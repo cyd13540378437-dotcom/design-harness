@@ -4,7 +4,7 @@ Codex Design Harness is a human-in-the-loop design engineering protocol for Code
 
 v0.1.3-alpha is an incremental update on top of the v0.1.2-alpha Color Card Registry revision. It stays deliberately document-based, and adds Project Lifecycle Memory & Artifacts: Lifecycle Event IDs, `project-memory/`, `outputs/`, Context-bound Final Review, Fast Profile, and `PD` product-design events. It includes a small file-copy compatibility helper for Codex, Claude Code, and Cursor; it does not include a CLI product, hook, plugin package, cloud service, or runtime dependency.
 
-v0.2.3 updates the runtime-aware Product Business Modeling Core. It keeps the business semantics layer agent-neutral under `core/product-design/business-modeling/`, preserves shared Agent Skill Facade and Codex / Claude Code / Cursor / generic / multi-runtime adapter resolution, and adds `docs/product/BUSINESS_MODEL_OVERVIEW.md` as the single default user-facing overview. It also hardens canonical Work Item files, one frozen State Schema, exact Dictionary / Index / Schema contracts, stable references, and post-write consistency validation. It remains document-based: no CLI, hook, plugin package, installer, migration tool, API generator, or external runtime dependency.
+v0.2.3 updates the runtime-aware Product Business Modeling Core. It keeps the business semantics layer agent-neutral under `core/product-design/business-modeling/`, preserves shared Agent Skill Facade and Codex / Claude Code / Cursor / generic / multi-runtime adapter resolution, and adds `docs/product/business-modeling/BUSINESS_MODEL_OVERVIEW.md` as the business-model module's default user-facing overview. It also hardens canonical Work Item files, one frozen State Schema, exact Dictionary / Index / Schema contracts, stable references, and post-write consistency validation. It remains document-based: no CLI, hook, plugin package, installer, migration tool, API generator, or external runtime dependency.
 
 v0.1.4 updates the standalone Product Business Analysis Core with decision boundary and choice closure controls. It keeps the v0.1.3 choice-first model, then adds Mixed-turn Interpretation, Choice Loop Closure, Decision Scope Lock, Post-decision Clarification, Artifact Boundary Gate, No Execution Offer, State Enum Enforcement, schema 3 state assets, and ARCOS confirmation-plus-implementation-question regression coverage. It remains independent from Business Modeling, Motivation Analysis, and every other sibling capability: no cross-capability triggers, no downstream views, no shared Work Item directory, and no external runtime dependency.
 
@@ -39,6 +39,7 @@ VISUAL_DESIGN.md
 - `REFERENCE_SELECTION.md` records how one Work Item consumed the reference library and color-card registry.
 - `project-memory/` stores durable cross-Work Item business, product, UX, visual, engineering, and decision context.
 - `outputs/` tracks current confirmed deliverables and archived Lifecycle Event snapshots.
+- `docs/design/DESIGN_OVERVIEW.md` is the default Design Engineering module delivery export compiled from sealed state, visual baseline, Project Memory, and current outputs.
 - Color Card Registry is the checked color-reference layer under `reference-library/assets/color-cards/`.
 - New Work Items prefer Lifecycle Event IDs such as `2026-07-06-1530-UX-001`; legacy `DE-xxx` remains valid.
 - Gates are points where Codex must wait for user approval.
@@ -55,9 +56,9 @@ Before preparing a target project, apply Runtime Adapter Resolution with `core/p
 
 The neutral project template contains only portable project assets and runtime-selection metadata. Runtime-specific files stay in `templates/project/runtime-overlays/<runtime>/` until a profile is selected; the default template must not include root `.agents/`, `.codex/`, `.claude/`, or `.cursor/` directories.
 
-The business model source of truth is `docs/product/business-modeling/`. Passive triggers use `docs/product/model-triggers/MT-xxx.md`; task state lives in `docs/product/work-items/BM-xxx/`. Core model files use business attributes, not database fields. `schema-view.json` is intentionally limited to objects, domains, categories, business attributes, and example content.
+The business model source of truth is `docs/product/business-modeling/`. Passive triggers use `docs/product/business-modeling/model-triggers/MT-xxx.md`; task state lives in `docs/product/business-modeling/work-items/BM-xxx/`. Core model files use business attributes, not database fields. `schema-view.json` is intentionally limited to objects, domains, categories, business attributes, and example content.
 
-The single default product-owner view is `docs/product/BUSINESS_MODEL_OVERVIEW.md`. It is compiled after consistency validation, is not source of truth, and must compress pending `BMD-xxx` human decisions enough that the user can respond without opening the detailed files. New persistent BM Work Items use canonical root files: `STATE.md`, `MODELING_CONSUMPTION.md`, `MODELING_OUTPUT.md`, and `DECISION_NOTES.md`.
+The default product-owner view for the Business Modeling module is `docs/product/business-modeling/BUSINESS_MODEL_OVERVIEW.md`. It is compiled after consistency validation, is not source of truth, and must compress pending `BMD-xxx` human decisions enough that the user can respond without opening the detailed files. New persistent BM Work Items use canonical root files: `STATE.md`, `MODELING_CONSUMPTION.md`, `MODELING_OUTPUT.md`, and `DECISION_NOTES.md`.
 
 Business Modeling can inform UX through derived downstream views only: `ux-design-engineering-view.md` and `ux-business-model-context.md/yml`. Existing `docs/design/`, Reference Library, Color Card Registry, `REFERENCE_SELECTION.md`, and sealed UX `STATE.md` files remain owned by Design Engineering.
 
@@ -67,11 +68,29 @@ Business Modeling can inform UX through derived downstream views only: `ux-desig
 
 The Business Analysis source of truth is `docs/product/business-analysis/`. Decision Cases are authoritative only in `decision-cases/BA-DC-xxx.md`; BA Work Items live under `work-items/BA-xxx/` and link to Cases without copying `DECISION_CASE.md`. Decision Network and Evidence Ledger use YML as machine authority and Markdown as human-readable views.
 
+The default Business Analysis module delivery export is `docs/product/business-analysis/BUSINESS_DECISION_OVERVIEW.md`. It compiles current choices, recommendations, evidence boundaries, pending decisions, and source links from module-owned assets without becoming source of truth.
+
 Business Analysis follow-up turns must recover the active BA Work Item and its linked Decision Case before answering; summary and conclusion requests must stay case-bound. v0.1.4 keeps provisional Choice Sets, Recommendation Obligation, Choice Delta, claim-level Assurance, and No Dead-End handling, then requires mixed-turn parsing: one user reply can both confirm a choice and ask a follow-up question. Confirmed decisions close the Choice Loop, move recommendations to `user_confirmed`, record `DECISION_NOTES.md`, and stop asking for the same choice.
 
 Standard outputs now emphasize `STATE.md`, the authoritative Decision Case, `ANALYSIS_WORKSPACE.md` when professional analysis is used, `DECISION_SUMMARY.md`, and `DECISION_NOTES.md` when the user decides. Deep / Audit materials still live under `work-items/BA-xxx/artifacts/`, not `intake/` or the Work Item root. State assets use schema 3 with fixed `status`, `phase`, and `gate` enums; business-specific phases such as simulator design are invalid. Ready Analysis Model Cards must include `runtime_role`, seven usage prompts, Choice Delta, Choice Loop Closure Guard, Decision Scope Lock, and implementation-boundary guards; v0.1.4 ships 26 ready cards.
 
-Business Analysis intentionally uses five operational domains rather than the Business Modeling six-domain shape. After a decision is confirmed, post-decision clarification stays at the original business decision layer: purpose, rationale, tradeoffs, evidence boundary, escalation, stop, and review conditions. Implementation runbooks, manual guides, concrete schemas, sample data, formulas, scripts, UI / technical design, execution offers, passive triggers, cross-capability impact propagation, downstream view compilation, shared `docs/product/work-items/`, CLI, hooks, plugins, installers, and automatic D2/D3 human decisions are out of scope.
+Business Analysis intentionally uses five operational domains rather than the Business Modeling six-domain shape. After a decision is confirmed, post-decision clarification stays at the original business decision layer: purpose, rationale, tradeoffs, evidence boundary, escalation, stop, and review conditions. Implementation runbooks, manual guides, concrete schemas, sample data, formulas, scripts, UI / technical design, execution offers, passive triggers, cross-capability impact propagation, downstream view compilation, shared `docs/product/business-modeling/work-items/`, CLI, hooks, plugins, installers, and automatic D2/D3 human decisions are out of scope.
+
+## Module Overviews and Project Delivery
+
+The reusable overview-definition method lives in [core/product-design/module-overview-definition.md](core/product-design/module-overview-definition.md); the Chinese version is [module-overview-definition.zh-CN.md](core/product-design/module-overview-definition.zh-CN.md). Each capability declares its own module root, default module delivery view, source-of-truth roots, open-question source, and exportable sections. A future `docs/project-delivery/` layer should consume those exports instead of hard-coding internal module files.
+
+Canonical module roots:
+
+- Business Modeling: `docs/product/business-modeling/`
+- Business Analysis: `docs/product/business-analysis/`
+- Design Engineering: `docs/design/`
+
+Current module delivery exports:
+
+- Business Modeling: `docs/product/business-modeling/BUSINESS_MODEL_OVERVIEW.md`
+- Business Analysis: `docs/product/business-analysis/BUSINESS_DECISION_OVERVIEW.md`
+- Design Engineering: `docs/design/DESIGN_OVERVIEW.md`
 
 ## Agent Compatibility
 

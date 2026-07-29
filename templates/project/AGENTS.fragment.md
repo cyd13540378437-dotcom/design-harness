@@ -139,6 +139,8 @@ yyyy-mm-dd-hhmm-PD-001
 
 `docs/design/project-memory/` 是跨 Work Item 的长期项目记忆。它只保存业务、产品、UX、视觉、工程和决策的压缩基线，不保存完整聊天记录、完整参考分析或完整色卡知识。
 
+`docs/design/DESIGN_OVERVIEW.md` 是 Design Engineering 的默认模块交付出口：它从 sealed `STATE.md`、`VISUAL_DESIGN.md`、Project Memory 和 `outputs/current/` 编译当前 UX / 产品设计 / 视觉入口；它不是 source of truth，冲突时以源文件为准。
+
 `docs/design/outputs/` 是交付物系统：
 
 - `outputs/archive/<event_id>/` 保存 sealed 事件的交付快照。
@@ -194,10 +196,10 @@ Default project templates must stay runtime-neutral. Runtime-specific files belo
 ## Source of truth
 
 - Business model source of truth lives in `docs/product/business-modeling/`.
-- Work Item state lives in `docs/product/work-items/BM-xxx/STATE.md`.
-- Passive triggers live in `docs/product/model-triggers/MT-xxx.md`.
-- `PRODUCT_WORK_ITEMS.md` is a navigation index, not the authoritative state source.
-- `docs/product/BUSINESS_MODEL_OVERVIEW.md` is the single default user-facing overview. It is compiled, not source of truth.
+- Work Item state lives in `docs/product/business-modeling/work-items/BM-xxx/STATE.md`.
+- Passive triggers live in `docs/product/business-modeling/model-triggers/MT-xxx.md`.
+- `BUSINESS_MODEL_WORK_ITEMS.md` is a navigation index, not the authoritative state source.
+- `docs/product/business-modeling/BUSINESS_MODEL_OVERVIEW.md` is the business-model module's default user-facing overview. It is compiled, not source of truth. If project delivery exists, it consumes this overview as the business-model export.
 
 ## Required behavior
 

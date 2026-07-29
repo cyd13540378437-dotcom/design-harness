@@ -12,8 +12,8 @@ The real project knowledge assets live under:
 
 ```text
 docs/product/business-modeling/
-docs/product/model-triggers/
-docs/product/work-items/
+docs/product/business-modeling/model-triggers/
+docs/product/business-modeling/work-items/
 ```
 
 Runtime adapters only make the Core callable in a specific agent tool. They do not redefine business semantics.

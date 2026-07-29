@@ -91,7 +91,7 @@ status
 
 ```text
 audience: product_owner
-output: docs/product/BUSINESS_MODEL_OVERVIEW.md
+output: docs/product/business-modeling/BUSINESS_MODEL_OVERVIEW.md
 ```
 
 总览是唯一默认用户入口，但不是 source of truth。

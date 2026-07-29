@@ -61,10 +61,10 @@ Runtime-specific adapters
   adapters/cursor/
         ↓
 Neutral project assets
-  docs/product/BUSINESS_MODEL_OVERVIEW.md
+  docs/product/business-modeling/BUSINESS_MODEL_OVERVIEW.md
   docs/product/business-modeling/
-  docs/product/model-triggers/
-  docs/product/work-items/BM-xxx/
+  docs/product/business-modeling/model-triggers/
+  docs/product/business-modeling/work-items/BM-xxx/
         ↓
 Consistency Validation
   MODEL_CONSISTENCY_REPORT.md
@@ -88,7 +88,7 @@ Design Engineering 只读消费业务语义
 
 Business Modeling 的 source of truth 是 `docs/product/business-modeling/`，而不是数据库 schema、前端页面、后端接口、runtime adapter、Skill facade 或 `BUSINESS_MODEL_OVERVIEW.md`。`model-triggers/MT-xxx.md` 是上游变化、下游缺口、横向冲突和内部发现的被动触发入口。BM Work Item 使用 canonical 根文件 `STATE.md`、`MODELING_CONSUMPTION.md`、`MODELING_OUTPUT.md`、`DECISION_NOTES.md` 和 artifacts 记录影响分析、证据、决策和校验。
 
-`docs/product/BUSINESS_MODEL_OVERVIEW.md` 是 consistency validation 后编译出的唯一默认用户总览。它必须压缩当前模型、一线能力建议、confirmed / provisional 语义和 `BMD-xxx` 待确认决策，让用户无需打开专业文件也能作出下一步判断。详细文件继续保留各自职责。
+`docs/product/business-modeling/BUSINESS_MODEL_OVERVIEW.md` 是 consistency validation 后编译出的业务模型模块默认用户总览。它必须压缩当前模型、一线能力建议、confirmed / provisional 语义和 `BMD-xxx` 待确认决策，让用户无需打开专业文件也能作出下一步判断。详细文件继续保留各自职责。若项目启用 `docs/project-delivery/`，该文件作为业务模型模块出口被消费。
 
 安装到目标项目前必须执行 Runtime Adapter Resolution。默认只 materialize 一个 runtime overlay：`codex`、`claude-code`、`cursor` 或 `generic-agent`；`multi-runtime` 只能来自用户明确选择。默认 `templates/project/` 不包含根层 `.agents/`、`.codex/`、`.claude/` 或 `.cursor/`，这些文件只存在于 `templates/project/runtime-overlays/<runtime>/` 或已被明确安装的目标项目中。
 
@@ -107,6 +107,7 @@ Runtime adapter fragments
         ↓
 Project assets
   docs/product/business-analysis/
+    BUSINESS_DECISION_OVERVIEW.md
     BUSINESS_ANALYSIS_INDEX.md/yml
     BUSINESS_ANALYSIS_WORK_ITEMS.md
     decision-cases/BA-DC-xxx.md
@@ -130,7 +131,7 @@ Project assets
         DECISION_NETWORK_UPDATE.md
 ```
 
-Business Analysis 的 source of truth 是 `docs/product/business-analysis/`。Decision Case 只在 `decision-cases/BA-DC-xxx.md` 中拥有权威文件；Standard Work Item 默认围绕 `STATE.md`、按需 `ANALYSIS_WORKSPACE.md`、`DECISION_SUMMARY.md` 和发生用户决定时的 `DECISION_NOTES.md` 工作。`ANALYSIS_CONSUMPTION.md`、`ANALYSIS_OUTPUT.md`、`DECISION_PROCESS_PACKAGE.md` 和 `artifacts/` 下的过程文件仍受支持，但属于 Deep / Audit 按需输出。Work Item 不复制完整 Decision Case，不创建 `intake/`。
+Business Analysis 的 source of truth 是 `docs/product/business-analysis/`。Decision Case 只在 `decision-cases/BA-DC-xxx.md` 中拥有权威文件；`BUSINESS_DECISION_OVERVIEW.md` 是商业分析模块默认交付出口，只编译当前关键选择、推荐、证据边界、待确认问题和来源路径。Standard Work Item 默认围绕 `STATE.md`、按需 `ANALYSIS_WORKSPACE.md`、`DECISION_SUMMARY.md` 和发生用户决定时的 `DECISION_NOTES.md` 工作。`ANALYSIS_CONSUMPTION.md`、`ANALYSIS_OUTPUT.md`、`DECISION_PROCESS_PACKAGE.md` 和 `artifacts/` 下的过程文件仍受支持，但属于 Deep / Audit 按需输出。Work Item 不复制完整 Decision Case，不创建 `intake/`。
 
 每个后续对话轮次必须先恢复当前 BA Work Item 和所链接的 Decision Case，再按用户新输入分类继续；普通总结请求也必须绑定 Case。Choice Core 在 `STATE.md` 与 Decision Case 顶部维持当前决策问题、Choice Set、当前推荐、接受代价、证据边界、改变推荐条件、用户决定状态、`choice_loop_status` 和 Claim-level Assurance。每轮还必须分别解析 `decision_signal` 与 `followup_request`：同一轮可以同时包含 confirmed 和 implementation_detail，且必须先记录决定，再回答后续请求。Analysis Model Card 的输出必须产生 Choice Delta，再进入 Central Decision Synthesis；单个模型卡不得直接生成用户可见最终结论。
 
@@ -155,6 +156,8 @@ Business Analysis 使用 schema 3 State，并固定枚举：`status=active|pause
 `REFERENCE_SELECTION.md` 是 Work Item 级消费结果。它记录本任务如何筛选、采用和排除参考；`STATE.md` 只链接它并保留摘要。
 
 `project-memory/` 是跨 Work Item 的长期项目记忆。它保存业务、产品、UX、视觉、工程和决策基线，不保存完整聊天记录、完整参考分析或完整色卡知识。
+
+`DESIGN_OVERVIEW.md` 是 Design Engineering 模块默认交付出口。它从 sealed `STATE.md`、`VISUAL_DESIGN.md`、Project Memory 和 `outputs/current/` 编译当前 UX、产品设计、视觉基线和确认入口，但不是 source of truth。
 
 `outputs/` 是交付物系统。`outputs/archive/<event_id>/` 保存 sealed 事件快照；`outputs/current/` 只保存用户确认或项目采纳的当前入口；`outputs/index.yml` 串联当前入口、历史归档和 source `STATE.md`。
 

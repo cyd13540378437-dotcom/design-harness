@@ -90,8 +90,8 @@ templates/project/docs/product/business-analysis/
 禁止创建或依赖：
 
 ```text
-templates/project/docs/product/work-items/
-templates/project/docs/product/model-triggers/
+templates/project/docs/product/business-modeling/work-items/
+templates/project/docs/product/business-modeling/model-triggers/
 templates/project/docs/product/business-analysis/downstream-views/
 ```
 

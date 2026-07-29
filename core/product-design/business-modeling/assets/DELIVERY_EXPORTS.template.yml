@@ -1,0 +1,28 @@
+schema_version: 1
+capability_id: product-business-modeling
+delivery_exports:
+  default_module_delivery_view:
+    id: business_model_overview
+    path: BUSINESS_MODEL_OVERVIEW.md
+    view_type: business_model_overview
+    audience: product_owner
+    is_source_of_truth: false
+    status: draft
+  source_of_truth:
+    - BUSINESS_MODEL_INDEX.yml
+    - business-dictionary.yml
+    - schema-view.json
+    - domain-objects/
+    - relationships/
+    - actions/
+    - states/
+    - rules/
+  open_questions_source:
+    - BUSINESS_MODEL_OVERVIEW.md
+  exportable_sections:
+    - current_model_summary
+    - model_boundary
+    - core_objects_and_flow
+    - current_software_capabilities
+    - confirmed_provisional_pending_decisions
+    - risks_and_validation_status

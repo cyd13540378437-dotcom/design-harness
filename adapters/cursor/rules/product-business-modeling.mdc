@@ -8,7 +8,7 @@ alwaysApply: false
 
 Business Modeling is Agent-neutral Core. Cursor rules are runtime guidance only.
 
-- Read `docs/product/BUSINESS_MODEL_OVERVIEW.md` first when present.
+- Read `docs/product/business-modeling/BUSINESS_MODEL_OVERVIEW.md` first when present.
 - Use canonical Work Item files and the frozen State Schema.
 - Keep dictionary, index, schema, objects, relationships, actions, states and rules aligned by stable IDs.
 - Keep business attributes separate from data fields.

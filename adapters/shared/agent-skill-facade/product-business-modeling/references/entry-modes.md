@@ -13,7 +13,7 @@ All modes that write Core assets must finish with:
 
 ```text
 MODEL_CONSISTENCY_REPORT.md
-→ docs/product/BUSINESS_MODEL_OVERVIEW.md
+→ docs/product/business-modeling/BUSINESS_MODEL_OVERVIEW.md
 → other required downstream views
 ```
 

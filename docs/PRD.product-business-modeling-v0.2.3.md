@@ -51,7 +51,7 @@ Core Source of Truth
 路径：
 
 ```text
-docs/product/BUSINESS_MODEL_OVERVIEW.md
+docs/product/business-modeling/BUSINESS_MODEL_OVERVIEW.md
 ```
 
 属性：

@@ -307,7 +307,7 @@ CREATE / RESUME / SUCCESSOR / NO_STATE / AMBIGUOUS
 - `NO_STATE`：只读解释、极小无状态检查或无需持久建模；
 - `AMBIGUOUS`：存在多个合理候选，停止写入并请求用户绑定。
 
-`completed + sealed` 的 Work Item 不得 RESUME，只能只读引用并创建 SUCCESSOR。`PRODUCT_WORK_ITEMS.md` 是导航索引；冲突时以各 Work Item 的 `STATE.md` 为准。
+`completed + sealed` 的 Work Item 不得 RESUME，只能只读引用并创建 SUCCESSOR。`BUSINESS_MODEL_WORK_ITEMS.md` 是导航索引；冲突时以各 Work Item 的 `STATE.md` 为准。
 
 ---
 
@@ -722,7 +722,7 @@ none | local | cross_asset | cross_domain | cross_cluster | breaking
 
 - 标准请求封装；
 - 项目根目录和 `AGENTS.md` / Adapter 规则；
-- `PRODUCT_WORK_ITEMS.md`；
+- `BUSINESS_MODEL_WORK_ITEMS.md`；
 - 相关 BM Work Item 的 `STATE.md`；
 - `BUSINESS_MODEL_INDEX.yml`；
 - 可选 Trigger、上游决定或下游消费请求。
@@ -748,7 +748,7 @@ none | local | cross_asset | cross_domain | cross_cluster | breaking
 - `MODELING_CONSUMPTION.md`；
 - `MODELING_OUTPUT.md`；
 - `DECISION_NOTES.md` 的索引或调用结果；
-- `PRODUCT_WORK_ITEMS.md` 的导航更新；
+- `BUSINESS_MODEL_WORK_ITEMS.md` 的导航更新；
 - `BUSINESS_MODEL_INDEX.yml / .md` 的事务性索引更新；
 - 标准输出封装。
 
@@ -916,7 +916,7 @@ none | local | cross_asset | cross_domain | cross_cluster | breaking
 
 #### 输出与写入范围
 
-- `docs/product/model-triggers/MT-xxx.md`；
+- `docs/product/business-modeling/model-triggers/MT-xxx.md`；
 - Trigger 索引（若项目采用）；
 - 与 `MODEL_IMPACT_REPORT.md`、BM Work Item 的双向链接；
 - Follow-up Trigger。
@@ -2219,7 +2219,7 @@ consistency_validation → passive_trigger（向其他 Cluster 传播冲突）
 ### 12.1 推荐结构
 
 ```text
-docs/product/work-items/BM-xxx/
+docs/product/business-modeling/work-items/BM-xxx/
 ├── STATE.md
 ├── MODELING_CONSUMPTION.md
 ├── MODELING_OUTPUT.md

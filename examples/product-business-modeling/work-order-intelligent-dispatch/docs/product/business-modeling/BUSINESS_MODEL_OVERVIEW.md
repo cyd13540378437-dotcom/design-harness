@@ -14,8 +14,8 @@ source_assets:
   - docs/product/business-modeling/BUSINESS_MODEL_INDEX.yml
   - docs/product/business-modeling/business-dictionary.yml
   - docs/product/business-modeling/schema-view.json
-  - docs/product/work-items/BM-001-work-order-intelligent-dispatch/DECISION_NOTES.md
-  - docs/product/work-items/BM-001-work-order-intelligent-dispatch/artifacts/MODEL_CONSISTENCY_REPORT.md
+  - docs/product/business-modeling/work-items/BM-001-work-order-intelligent-dispatch/DECISION_NOTES.md
+  - docs/product/business-modeling/work-items/BM-001-work-order-intelligent-dispatch/artifacts/MODEL_CONSISTENCY_REPORT.md
 ---
 
 # 设备设施工单智能调度业务模型总览

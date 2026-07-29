@@ -2,7 +2,7 @@
 
 ## 1. 目的
 
-`docs/product/BUSINESS_MODEL_OVERVIEW.md` 是业务负责人、产品负责人和非建模专业用户的唯一默认阅读入口。
+`docs/product/business-modeling/BUSINESS_MODEL_OVERVIEW.md` 是业务模型模块面向业务负责人、产品负责人和非建模专业用户的唯一默认阅读入口。
 
 它解决的是**阅读与决策体验**，不是替代底层模型资产：
 
@@ -18,7 +18,7 @@ BUSINESS_MODEL_OVERVIEW.md = 面向用户的当前模型编译视图
 固定路径：
 
 ```text
-docs/product/BUSINESS_MODEL_OVERVIEW.md
+docs/product/business-modeling/BUSINESS_MODEL_OVERVIEW.md
 ```
 
 固定写入者：
@@ -33,6 +33,8 @@ downstream-view-compiler
 view_type: business_model_overview
 audience: product_owner
 is_default_user_entry: true
+is_default_module_delivery_view: true
+is_project_delivery_entry: false
 is_source_of_truth: false
 ```
 
@@ -124,10 +126,12 @@ source_assets
 业务模型任务的常规最终回复只突出：
 
 ```text
-docs/product/BUSINESS_MODEL_OVERVIEW.md
+docs/product/business-modeling/BUSINESS_MODEL_OVERVIEW.md
 ```
 
 不得默认向用户抛出长文件清单。详细文件仅在用户明确要求审计、开发交接或查看证据时再按需提供。
+
+若项目启用了 `docs/project-delivery/`，该文件作为业务模型模块出口被项目交付层消费；项目最终默认入口由项目交付层决定。本文件仍不变成项目级 source of truth。
 
 ## 8. 与其他文件的关系
 

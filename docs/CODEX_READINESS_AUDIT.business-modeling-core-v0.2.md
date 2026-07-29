@@ -51,4 +51,4 @@ docs/design/reference-library/assets/color-cards/**
 ## Remaining Non-blocking Suggestions
 
 - 未来可以为产品表达、需求表达和 UX 各自定义正式 Trigger 协议，以便跨 Cluster 全链路闭环更稳定。
-- 未来可以把 `PRODUCT_WORK_ITEMS.md` 与 `docs/design/WORK_ITEMS.md` 的跨索引关系做成更明确的 federated index，但 v0.2 不需要实现。
+- 未来可以把 `BUSINESS_MODEL_WORK_ITEMS.md` 与 `docs/design/WORK_ITEMS.md` 的跨索引关系做成更明确的 federated index，但 v0.2 不需要实现。

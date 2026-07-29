@@ -47,7 +47,7 @@ This package is ready to be handed to Codex for a controlled merge into an exist
 |---|---|
 | Cross-capability Trigger | absent |
 | Downstream view compilation | absent |
-| Shared `docs/product/work-items/` template | absent |
+| Shared `docs/product/business-modeling/work-items/` template | absent |
 | CLI / Hook / Plugin / Installer | absent |
 | External runtime dependency | absent |
 

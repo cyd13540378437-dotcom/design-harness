@@ -25,18 +25,18 @@ Codex is a runtime facade. Project business-model knowledge remains under `docs/
 ## Default user-facing file
 
 ```text
-docs/product/BUSINESS_MODEL_OVERVIEW.md
+docs/product/business-modeling/BUSINESS_MODEL_OVERVIEW.md
 ```
 
-Read it first when present. It is the only default file shown to ordinary users, but it is a derived view, not source of truth.
+Read it first when present. It is the business-model module's default file shown to ordinary users, but it is a derived view, not source of truth. If a project-level delivery layer exists, that layer may consume this overview as the business-model export.
 
 ## Required startup sequence
 
 For stateful business-modeling work:
 
 1. Read project `AGENTS.md` and runtime-resolution metadata.
-2. Read `docs/product/BUSINESS_MODEL_OVERVIEW.md` if present.
-3. Read `docs/product/PRODUCT_WORK_ITEMS.md` and semantically relevant unsealed `STATE.md` files.
+2. Read `docs/product/business-modeling/BUSINESS_MODEL_OVERVIEW.md` if present.
+3. Read `docs/product/business-modeling/BUSINESS_MODEL_WORK_ITEMS.md` and semantically relevant unsealed `STATE.md` files.
 4. Explicitly delegate Work Item binding and state writes to `product_model_state_steward` when installed.
 5. If the steward is unavailable, apply the same frozen state contract in the main thread and record that fact only under `extensions` or in the State body.
 6. Select one primary entry mode.
@@ -69,7 +69,7 @@ Do not create state for a read-only explanation. Do not resume sealed history. I
 
 ## Canonical Work Item files
 
-Every durable Work Item at `docs/product/work-items/BM-xxx-<slug>/` has:
+Every durable Work Item at `docs/product/business-modeling/work-items/BM-xxx-<slug>/` has:
 
 ```text
 STATE.md
@@ -148,7 +148,7 @@ Write the full record to `DECISION_NOTES.md` and compile the decision compressio
 
 ## Passive trigger handling
 
-For `docs/product/model-triggers/MT-xxx.md`:
+For `docs/product/business-modeling/model-triggers/MT-xxx.md`:
 
 1. Triage and deduplicate.
 2. Bind or create a BM Work Item.
@@ -167,7 +167,7 @@ After any persistent Core write, including Greenfield Modeling:
 write detailed source-of-truth assets
 → write artifacts/MODEL_CONSISTENCY_REPORT.md
 → fix or expose errors
-→ compile docs/product/BUSINESS_MODEL_OVERVIEW.md
+→ compile docs/product/business-modeling/BUSINESS_MODEL_OVERVIEW.md
 → compile requested downstream views
 → update MODELING_OUTPUT.md
 → update STATE.md
@@ -189,6 +189,6 @@ It must not directly rewrite `docs/design/**`, `REFERENCE_SELECTION.md`, Referen
 
 ## User delivery
 
-At normal completion, provide a concise status and link only `docs/product/BUSINESS_MODEL_OVERVIEW.md`.
+At normal completion, provide a concise status and link only `docs/product/business-modeling/BUSINESS_MODEL_OVERVIEW.md`.
 
 List detailed files only when the user explicitly requests a model-maintainer view, audit trail, evidence, or implementation handoff.

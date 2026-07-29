@@ -2,7 +2,7 @@
 
 ## Unreleased / product business modeling v0.2.3
 
-- 升级 `product-business-modeling` 到 v0.2.3，新增 `docs/product/BUSINESS_MODEL_OVERVIEW.md` 作为唯一默认用户总览。
+- 升级 `product-business-modeling` 到 v0.2.3，新增 `docs/product/business-modeling/BUSINESS_MODEL_OVERVIEW.md` 作为业务模型模块默认用户总览。
 - 保留 `docs/product/business-modeling/`、BM Work Item、证据、校验和专业 downstream views 的模块化 source-of-truth 结构，总览只是派生视图。
 - 将 canonical Work Item 根文件固定为 `STATE.md`、`MODELING_CONSUMPTION.md`、`MODELING_OUTPUT.md` 和 `DECISION_NOTES.md`。
 - 冻结 Core、Codex、Claude Code、Cursor 和 state steward 共用的 State Schema，runtime 元数据只能进入 `extensions`。

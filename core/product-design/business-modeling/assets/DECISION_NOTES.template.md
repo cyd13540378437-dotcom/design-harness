@@ -7,7 +7,7 @@ updated_at: YYYY-MM-DDTHH:mm:ssZ
 
 # Business Modeling Decision Notes
 
-> All D2 / D3 decisions use stable `BMD-xxx` IDs. This file is the full audit record; user-facing decision compression must also be compiled into `docs/product/BUSINESS_MODEL_OVERVIEW.md`.
+> All D2 / D3 decisions use stable `BMD-xxx` IDs. This file is the full audit record; user-facing decision compression must also be compiled into `docs/product/business-modeling/BUSINESS_MODEL_OVERVIEW.md`.
 
 ## BMD-000 — <Decision Title>
 
@@ -62,4 +62,4 @@ updated_at: YYYY-MM-DDTHH:mm:ssZ
 
 ### Overview Compilation
 
-- Included in `docs/product/BUSINESS_MODEL_OVERVIEW.md`: `yes | no`
+- Included in `docs/product/business-modeling/BUSINESS_MODEL_OVERVIEW.md`: `yes | no`

@@ -38,7 +38,7 @@ updated_at: YYYY-MM-DD
 
 ## 11. Affected User Overview and Downstream Views
 
-- `docs/product/BUSINESS_MODEL_OVERVIEW.md`
+- `docs/product/business-modeling/BUSINESS_MODEL_OVERVIEW.md`
 - Professional downstream views:
 
 ## 12. Safe Automatic Updates

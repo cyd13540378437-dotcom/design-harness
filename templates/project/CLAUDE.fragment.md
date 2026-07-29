@@ -9,8 +9,8 @@ Project source of truth:
 
 ```text
 docs/product/business-modeling/
-docs/product/model-triggers/
-docs/product/work-items/
+docs/product/business-modeling/model-triggers/
+docs/product/business-modeling/work-items/
 ```
 
 Do not move business model knowledge into `.claude/skills/`, `.claude/agents/`, or `CLAUDE.md`. Do not directly modify `docs/design/**` from Business Modeling. Escalate D2/D3 business semantics to the user before marking them confirmed.

@@ -8,7 +8,7 @@
 写入核心资产
 → consistency_validation
 → 修复可安全修复的问题
-→ 编译 docs/product/BUSINESS_MODEL_OVERVIEW.md
+→ 编译 docs/product/business-modeling/BUSINESS_MODEL_OVERVIEW.md
 → 编译其他必要下游视图
 → 更新 MODELING_OUTPUT.md 与 STATE.md
 ```

@@ -1,0 +1,23 @@
+schema_version: 1
+capability_id: product-business-analysis
+delivery_exports:
+  default_module_delivery_view:
+    id: business_decision_overview
+    path: BUSINESS_DECISION_OVERVIEW.md
+    view_type: business_decision_overview
+    audience: product_owner
+    is_source_of_truth: false
+    status: draft
+  source_of_truth:
+    - decision-cases/
+    - decision-network/
+    - evidence/
+  open_questions_source:
+    - BUSINESS_DECISION_OVERVIEW.md
+  exportable_sections:
+    - current_choice_set
+    - current_recommendation
+    - pending_user_decisions
+    - confirmed_or_deferred_decisions
+    - evidence_boundary
+    - review_conditions

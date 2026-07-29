@@ -7,8 +7,8 @@ Project source of truth remains:
 
 ```text
 docs/product/business-modeling/
-docs/product/model-triggers/
-docs/product/work-items/
+docs/product/business-modeling/model-triggers/
+docs/product/business-modeling/work-items/
 ```
 
 Runtime rules and skills are not source of truth. Do not directly modify `docs/design/**` from Business Modeling.

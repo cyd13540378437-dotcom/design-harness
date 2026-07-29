@@ -60,4 +60,4 @@ awaiting_human: true
 
 ## 7. 用户可见体验
 
-用户通常只需阅读 `docs/product/BUSINESS_MODEL_OVERVIEW.md`。总览必须包含所有当前待确认判断的可决策信息；`DECISION_NOTES.md` 继续保留完整审计用途。
+用户通常只需阅读 `docs/product/business-modeling/BUSINESS_MODEL_OVERVIEW.md`。总览必须包含所有当前待确认判断的可决策信息；`DECISION_NOTES.md` 继续保留完整审计用途。

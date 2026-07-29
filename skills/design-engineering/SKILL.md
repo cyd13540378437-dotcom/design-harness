@@ -57,18 +57,19 @@ execution_profile: "fast"
 3. 读取语义相关的 active、paused 和 sealed `STATE.md`。
 4. 读取 `docs/design/VISUAL_DESIGN.md`，如果存在。
 5. 读取 `docs/design/project-memory/` 中与请求相关的摘要，如果存在。
-6. 检查 `docs/design/outputs/index.yml` 是否存在；若存在，用于判断当前基线和归档入口。
-7. 检查 `docs/design/reference-library/` 是否存在；若存在，后续视觉方向必须按 Surface Resolution 检索它。
-8. 检查 `docs/design/reference-library/assets/color-cards/palette-index.yml` 是否存在；若存在，配色方向必须按项目级 Color Card Registry 规则检索它；若不存在，记录为待安装，并在确认这是 stateful UX Work Item 后、`palette-selection` 前从本 Skill 内置 `assets/color-cards/` 安装项目级 registry。
-9. 显式调用状态 Steward：Codex 使用 `design_state_steward`，Claude Code 使用 `design-state-steward`，Cursor 使用已安装的 steward 规则文件。
-10. 只接受以下结果之一：
+6. 读取 `docs/design/DESIGN_OVERVIEW.md`，如果存在；它是设计模块默认交付出口，不是 source of truth。
+7. 检查 `docs/design/outputs/index.yml` 是否存在；若存在，用于判断当前基线和归档入口。
+8. 检查 `docs/design/reference-library/` 是否存在；若存在，后续视觉方向必须按 Surface Resolution 检索它。
+9. 检查 `docs/design/reference-library/assets/color-cards/palette-index.yml` 是否存在；若存在，配色方向必须按项目级 Color Card Registry 规则检索它；若不存在，记录为待安装，并在确认这是 stateful UX Work Item 后、`palette-selection` 前从本 Skill 内置 `assets/color-cards/` 安装项目级 registry。
+10. 显式调用状态 Steward：Codex 使用 `design_state_steward`，Claude Code 使用 `design-state-steward`，Cursor 使用已安装的 steward 规则文件。
+11. 只接受以下结果之一：
 
    ```text
    CREATE / RESUME / SUCCESSOR / NO_STATE / AMBIGUOUS
    ```
 
-11. 若结果为 `AMBIGUOUS`，请用户选择并停止。
-12. 若结果为 `NO_STATE`，不创建设计状态，直接完成当前请求。
+12. 若结果为 `AMBIGUOUS`，请用户选择并停止。
+13. 若结果为 `NO_STATE`，不创建设计状态，直接完成当前请求。
 
 不得恢复 `completed + sealed` 状态。相关后续工作必须使用 `SUCCESSOR`。
 
@@ -322,6 +323,7 @@ docs/design/work-items/<event-id-slug>/review.md
 - 更新 `docs/design/outputs/index.yml`。
 - 将被确认的入口写入 `docs/design/outputs/current/`。
 - 将 `project_memory_updates` 从 `proposed` 变为 `applied` 并写入目标 Project Memory 文件。
+- 编译或更新 `docs/design/DESIGN_OVERVIEW.md`，作为设计模块默认交付出口。
 
 未确认结果不得写成项目基线。
 
@@ -346,6 +348,7 @@ awaiting_user: true
 - Outputs archive / current 建议
 - Project Memory 更新建议
 - `VISUAL_DESIGN.md` 更新状态
+- `DESIGN_OVERVIEW.md` 更新状态
 - 剩余限制
 - 建议关闭、继续、暂停或创建 successor
 
@@ -381,3 +384,4 @@ PD 事件可以跳过不适用的视觉 Gate，但仍必须：
 - [project-memory-and-artifacts.md](references/project-memory-and-artifacts.md)
 - [context-bound-final-review.md](references/context-bound-final-review.md)
 - [product-design-events.md](references/product-design-events.md)
+- [design-overview.md](references/design-overview.md)

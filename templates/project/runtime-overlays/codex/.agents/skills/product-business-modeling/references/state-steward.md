@@ -1,6 +1,6 @@
 # Product Model State Steward Contract v0.2.3
 
-The state steward manages Work Item binding, `STATE.md`, and `PRODUCT_WORK_ITEMS.md` only. It does not perform business modeling or approve product decisions.
+The state steward manages Work Item binding, `STATE.md`, and `BUSINESS_MODEL_WORK_ITEMS.md` only. It does not perform business modeling or approve product decisions.
 
 ## Binding decisions
 

@@ -7,8 +7,8 @@ Runtime-neutral project assets live in:
 
 ```text
 docs/product/business-modeling/
-docs/product/model-triggers/
-docs/product/work-items/
+docs/product/business-modeling/model-triggers/
+docs/product/business-modeling/work-items/
 ```
 
 Runtime adapters under `.agents/`, `.codex/`, `.claude/`, `.cursor/`, `AGENTS.md`, or `CLAUDE.md` are not business model source of truth.

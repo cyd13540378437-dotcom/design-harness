@@ -70,6 +70,7 @@ Project Knowledge Assets
 
 ## 6. 核心产物
 
+- `Business Decision Overview`：商业分析模块的默认交付出口，压缩当前关键选择、推荐、证据边界、待确认问题和来源路径。
 - `Decision Case`：带 Decision Scope Lock 与 Choice Loop 状态的长期权威决策对象。
 - `Decision Summary`：根据 `choice_request / decision_confirmed / post_decision_clarification / review` 模式生成的中文结论。
 - `Analysis Workspace`：真正影响 Choice Set 的专业分析内容。
@@ -98,3 +99,13 @@ Project Knowledge Assets
 11. `acknowledged ≠ confirmed`，但明确的指代性接受可以构成确认。
 12. 所有人读输出必须有完整中文版本。
 13. 商业分析不得跨模块读写或触发。
+
+## 9. 模块总览出口
+
+商业分析的默认模块交付视图是：
+
+```text
+docs/product/business-analysis/BUSINESS_DECISION_OVERVIEW.md
+```
+
+它遵守 [business-decision-overview.md](protocols/business-decision-overview.md)，从商业分析自有资产编译，不替代 Decision Case，也不创建跨能力 downstream view。项目级 `docs/project-delivery/` 可以消费该总览及其 source map，但不得反写商业分析 source of truth。

@@ -51,13 +51,13 @@ docs/product/business-modeling/
 任务级资产位于：
 
 ```text
-docs/product/work-items/BM-xxx/
+docs/product/business-modeling/work-items/BM-xxx/
 ```
 
 被动触发入口位于：
 
 ```text
-docs/product/model-triggers/MT-xxx.md
+docs/product/business-modeling/model-triggers/MT-xxx.md
 ```
 
 ## 5. 工作流总览

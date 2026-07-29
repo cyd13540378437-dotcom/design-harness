@@ -123,7 +123,7 @@ AI 可以自动生成 `draft` / `provisional`，但不能自动确认高影响�
 
 ```text
 docs/product/
-├── PRODUCT_WORK_ITEMS.md
+├── BUSINESS_MODEL_WORK_ITEMS.md
 ├── model-triggers/
 ├── business-modeling/
 └── work-items/

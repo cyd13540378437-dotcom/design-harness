@@ -106,10 +106,10 @@ core/product-design/business-modeling/references/*
 
 ```text
 templates/project/AGENTS.fragment.md
-templates/project/docs/product/PRODUCT_WORK_ITEMS.md
-templates/project/docs/product/model-triggers/MT-000.template.md
+templates/project/docs/product/business-modeling/BUSINESS_MODEL_WORK_ITEMS.md
+templates/project/docs/product/business-modeling/model-triggers/MT-000.template.md
 templates/project/docs/product/business-modeling/**
-templates/project/docs/product/work-items/*.template.md
+templates/project/docs/product/business-modeling/work-items/*.template.md
 ```
 
 必须包含下游视图：

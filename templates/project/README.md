@@ -2,11 +2,20 @@
 
 This default template contains portable project knowledge assets and runtime-selection metadata.
 
-The single default user-facing file is:
+The Business Modeling module's default user-facing file is:
 
 ```text
-docs/product/BUSINESS_MODEL_OVERVIEW.md
+docs/product/business-modeling/BUSINESS_MODEL_OVERVIEW.md
 ```
+
+Other module delivery exports in this template:
+
+```text
+docs/product/business-analysis/BUSINESS_DECISION_OVERVIEW.md
+docs/design/DESIGN_OVERVIEW.md
+```
+
+Future project-level delivery should consume module exports instead of hard-coding internal Work Item files.
 
 Detailed source-of-truth, Work Item, evidence and downstream files remain available for maintainers and agents under `docs/product/**`.
 

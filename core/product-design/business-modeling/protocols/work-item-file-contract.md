@@ -5,7 +5,7 @@
 每个持久化业务模型 Work Item 必须使用：
 
 ```text
-docs/product/work-items/BM-xxx-<slug>/
+docs/product/business-modeling/work-items/BM-xxx-<slug>/
 ├── STATE.md
 ├── MODELING_CONSUMPTION.md
 ├── MODELING_OUTPUT.md
@@ -25,7 +25,7 @@ docs/product/work-items/BM-xxx-<slug>/
 - 不得把它们放入 `artifacts/`；
 - 新运行不得生成 `PROPOSED_MODEL.md`、`EVIDENCE_AND_ASSUMPTIONS.md` 等平行别名；
 - 读取旧项目时可将这些文件视为 legacy input，但必须迁移到标准文件名；
-- `PRODUCT_WORK_ITEMS.md` 是索引，冲突时以各 Work Item 的 `STATE.md` 为准。
+- `BUSINESS_MODEL_WORK_ITEMS.md` 是索引，冲突时以各 Work Item 的 `STATE.md` 为准。
 
 ## 3. `STATE.md` Frontmatter 合同
 

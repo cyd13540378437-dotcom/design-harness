@@ -1,6 +1,6 @@
 # Runtime Prompt: Product Business Modeling v0.2.3
 
-1. Read `docs/product/BUSINESS_MODEL_OVERVIEW.md` first when present.
+1. Read `docs/product/business-modeling/BUSINESS_MODEL_OVERVIEW.md` first when present.
 2. Resolve the runtime adapter and BM Work Item binding.
 3. Use canonical root files and the frozen `STATE.md` schema.
 4. Model business semantics with stable IDs; never use data fields as Core attributes.

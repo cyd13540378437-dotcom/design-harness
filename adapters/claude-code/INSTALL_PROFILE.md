@@ -16,10 +16,10 @@ Strong signals:
 Install common project assets once:
 
 ```text
-docs/product/PRODUCT_WORK_ITEMS.md
-docs/product/model-triggers/
+docs/product/business-modeling/BUSINESS_MODEL_WORK_ITEMS.md
+docs/product/business-modeling/model-triggers/
 docs/product/business-modeling/
-docs/product/work-items/
+docs/product/business-modeling/work-items/
 ```
 
 Then install Claude Code runtime files:

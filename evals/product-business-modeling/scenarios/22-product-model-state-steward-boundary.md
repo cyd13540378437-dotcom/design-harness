@@ -10,4 +10,4 @@ A business-modeling Work Item is created, resumed, or sealed.
 
 ## Then
 
-The steward may update `STATE.md` and `PRODUCT_WORK_ITEMS.md`, but must not create business objects, relationships, actions, states, rules, or permissions.
+The steward may update `STATE.md` and `BUSINESS_MODEL_WORK_ITEMS.md`, but must not create business objects, relationships, actions, states, rules, or permissions.

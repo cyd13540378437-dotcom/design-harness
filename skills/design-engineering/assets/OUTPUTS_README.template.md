@@ -8,7 +8,8 @@ Use:
 - `archive/<event_id>/` for sealed Lifecycle Event snapshots.
 - `index.yml` for the project-level output map.
 
+The default user-facing design module export is `../DESIGN_OVERVIEW.md`. It compiles current outputs, the visual baseline, relevant Project Memory, and source events into one readable overview without becoming source of truth.
+
 Do not use this directory for build artifacts, temporary screenshots, or unconfirmed experiments. Work-in-progress material belongs in `docs/design/work-items/<event-id-slug>/artifacts/`.
 
 Files promoted into `current/` must be listed in `current/index.yml` with their source event and confirmation status.
-

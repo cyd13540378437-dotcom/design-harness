@@ -6,7 +6,7 @@
 
 ## Long-lived Assets Created or Updated
 
-- `docs/product/BUSINESS_MODEL_OVERVIEW.md`；
+- `docs/product/business-modeling/BUSINESS_MODEL_OVERVIEW.md`；
 - `docs/product/business-modeling/BUSINESS_MODEL_INDEX.md/.yml`；
 - `business-dictionary.md/.yml`；
 - `schema-view.json/.md`；

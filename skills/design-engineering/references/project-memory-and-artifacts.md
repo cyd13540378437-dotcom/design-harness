@@ -23,6 +23,12 @@ docs/design/project-memory/
 Compressed cross-task project context. This is not a transcript and does not replace `STATE.md`.
 
 ```text
+docs/design/DESIGN_OVERVIEW.md
+```
+
+Default user-facing compiled design module export. This is not source of truth and must be regenerated when sealed state, current outputs, Project Memory, or `VISUAL_DESIGN.md` changes.
+
+```text
 docs/design/outputs/archive/<event_id>/
 ```
 
@@ -63,4 +69,4 @@ Long-lived reference material. Do not store Work Item-specific selections here.
 - Keep archive entries traceable to source `STATE.md`.
 - Promote to `outputs/current/` only after user confirmation or explicit baseline adoption.
 - Keep `outputs/current/` small; prefer pointers or latest entry files over copied history.
-
+- Compile `docs/design/DESIGN_OVERVIEW.md` from confirmed outputs, sealed state, `VISUAL_DESIGN.md`, and approved Project Memory so project delivery can consume one stable design export.

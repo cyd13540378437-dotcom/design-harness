@@ -31,7 +31,7 @@ BUSINESS_MODEL_INDEX.md  = 模型维护者导航
 ## 4. 用户默认编译视图
 
 ```text
-docs/product/BUSINESS_MODEL_OVERVIEW.md
+docs/product/business-modeling/BUSINESS_MODEL_OVERVIEW.md
 ```
 
 它是面向 product owner 的派生视图：

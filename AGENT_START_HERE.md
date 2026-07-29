@@ -2,7 +2,7 @@
 
 ## Product Business Modeling v0.2.3
 
-This package keeps the v0.2.2 runtime-aware architecture and adds a single default user-facing overview plus stricter Core contracts.
+This package keeps the v0.2.2 runtime-aware architecture and adds a business-model module overview plus stricter Core contracts.
 
 Read in this order:
 
@@ -24,7 +24,7 @@ Hard rule:
 Every Agent-neutral Core must ship with a runtime adapter resolution protocol.
 A runtime adapter must make the Core callable in the user’s current agent tool.
 Project knowledge assets remain in docs/product/** and never move into runtime adapters.
-docs/product/BUSINESS_MODEL_OVERVIEW.md is the single default user-facing file.
+docs/product/business-modeling/BUSINESS_MODEL_OVERVIEW.md is the business-model module's default user-facing file.
 Canonical Work Item files and the frozen State Schema are runtime-independent.
 Every Core write is followed by consistency validation and overview compilation.
 ```

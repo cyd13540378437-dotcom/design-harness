@@ -4,7 +4,7 @@ Codex Design Harness 是一套给 Codex 使用的 Human-in-the-loop 设计工程
 
 它不是组件库、CLI 或自动化平台。v0.1.3-alpha 是在 v0.1.2-alpha Color Card Registry 版基础上的增量：继续保持文档型交付，并新增 Project Lifecycle Memory & Artifacts，让 Work Item、`STATE.md`、Project Memory、Outputs、Review 和后续 Successor 可以串起来。本版本补充了 Lifecycle Event ID、`project-memory/`、`outputs/`、Fast Profile、Context-bound Final Review 和 `PD` 产品设计事件；它仍然不是插件市场包、Hook、云服务或外部运行时。
 
-v0.2.3 更新 runtime-aware 的 Product Business Modeling Core：业务语义层仍在 `core/product-design/business-modeling/` 下保持 Agent-neutral，继续使用 shared Agent Skill Facade、Codex / Claude Code / Cursor / generic / multi-runtime adapter resolution，并新增 `docs/product/BUSINESS_MODEL_OVERVIEW.md` 作为唯一默认用户总览。它同时强化 canonical Work Item 文件、冻结 State Schema、Dictionary / Index / Schema 精确合同、stable references 和 Core 写入后的 consistency validation。它仍然是文档型能力，不是 CLI、Hook、插件包、安装器、迁移工具、API 生成器或外部运行时依赖。
+v0.2.3 更新 runtime-aware 的 Product Business Modeling Core：业务语义层仍在 `core/product-design/business-modeling/` 下保持 Agent-neutral，继续使用 shared Agent Skill Facade、Codex / Claude Code / Cursor / generic / multi-runtime adapter resolution，并新增 `docs/product/business-modeling/BUSINESS_MODEL_OVERVIEW.md` 作为业务模型模块默认用户总览。它同时强化 canonical Work Item 文件、冻结 State Schema、Dictionary / Index / Schema 精确合同、stable references 和 Core 写入后的 consistency validation。它仍然是文档型能力，不是 CLI、Hook、插件包、安装器、迁移工具、API 生成器或外部运行时依赖。
 
 v0.1.4 更新独立 Product Business Analysis Core：保留 v0.1.3 Choice-first 决策支持，并补上 Decision Boundary 与 Choice Closure。它新增 Mixed-turn Interpretation、Choice Loop Closure、Decision Scope Lock、Post-decision Clarification、Artifact Boundary Gate、No Execution Offer、State Enum Enforcement、schema 3 状态资产，以及 ARCOS“确认路线 + 追问实施细节”回归覆盖。它不依赖业务建模、Motivation Analysis 或任何兄弟能力，不创建跨模块 Trigger、downstream views 或共享 Work Item 目录。
 
@@ -65,9 +65,9 @@ docs/design/VISUAL_DESIGN.md
 
 默认项目模板只包含可移植的 `docs/product/**` 和 runtime-selection metadata。Runtime-specific 文件必须留在 `templates/project/runtime-overlays/<runtime>/`，直到 resolver 选中某个 profile；默认 `templates/project/` 根层不得包含 `.agents/`、`.codex/`、`.claude/` 或 `.cursor/`。
 
-业务模型 source of truth 是 `docs/product/business-modeling/`。被动触发使用 `docs/product/model-triggers/MT-xxx.md`，任务状态位于 `docs/product/work-items/BM-xxx/`。核心模型只写业务属性，不写数据库字段；`schema-view.json` 只保留业务对象、业务领域、对象分类、业务属性和属性示例内容。
+业务模型 source of truth 是 `docs/product/business-modeling/`。被动触发使用 `docs/product/business-modeling/model-triggers/MT-xxx.md`，任务状态位于 `docs/product/business-modeling/work-items/BM-xxx/`。核心模型只写业务属性，不写数据库字段；`schema-view.json` 只保留业务对象、业务领域、对象分类、业务属性和属性示例内容。
 
-默认给产品负责人阅读的唯一入口是 `docs/product/BUSINESS_MODEL_OVERVIEW.md`。它是 consistency validation 之后编译出来的派生总览，不是 source of truth；它必须把待确认的 `BMD-xxx` 人类决策压缩到用户无需打开详细文件也能回复。新的持久 BM Work Item 使用 canonical 根文件：`STATE.md`、`MODELING_CONSUMPTION.md`、`MODELING_OUTPUT.md` 和 `DECISION_NOTES.md`。
+业务模型模块默认给产品负责人阅读的入口是 `docs/product/business-modeling/BUSINESS_MODEL_OVERVIEW.md`。它是 consistency validation 之后编译出来的派生总览，不是 source of truth；它必须把待确认的 `BMD-xxx` 人类决策压缩到用户无需打开详细文件也能回复。新的持久 BM Work Item 使用 canonical 根文件：`STATE.md`、`MODELING_CONSUMPTION.md`、`MODELING_OUTPUT.md` 和 `DECISION_NOTES.md`。
 
 业务模型可以通过派生下游视图影响 UX：`ux-design-engineering-view.md` 和 `ux-business-model-context.md/yml`。既有 `docs/design/`、Reference Library、Color Card Registry、`REFERENCE_SELECTION.md` 和 sealed UX `STATE.md` 仍由 Design Engineering 管理，Business Modeling 不直接修改。
 
@@ -77,11 +77,13 @@ docs/design/VISUAL_DESIGN.md
 
 商业分析的项目资产根目录是 `docs/product/business-analysis/`。Decision Case 的唯一权威文件位于 `decision-cases/BA-DC-xxx.md`；BA Work Item 位于 `work-items/BA-xxx/`，只链接 Case，不复制 `DECISION_CASE.md`。Decision Network 和 Evidence Ledger 的 YML 是机器权威源，Markdown 是人读视图。
 
+商业分析模块默认交付出口是 `docs/product/business-analysis/BUSINESS_DECISION_OVERVIEW.md`。它从 Decision Case、Decision Network、Evidence Ledger 和 Work Item 结论编译当前关键选择、推荐、证据边界和待确认问题，但不是 source of truth。
+
 商业分析的后续对话必须先恢复当前 BA Work Item 和所链接的 Decision Case，再回答用户；总结和结论请求也必须绑定 Case。v0.1.4 保留 provisional Choice Set、Recommendation Obligation、Choice Delta、Claim-level Assurance 和 No Dead-End Rule，并要求同轮分别解析决定信号与追问：一条回复可以同时确认选择并询问后续概念。用户确认后必须关闭 Choice Loop，将推荐转为 `user_confirmed`，写入 `DECISION_NOTES.md`，并停止再次请求同一选择。
 
 Standard 默认输出收敛为 `STATE.md`、权威 Decision Case、按需 `ANALYSIS_WORKSPACE.md`、`DECISION_SUMMARY.md` 和发生用户决定时的 `DECISION_NOTES.md`。Deep / Audit 过程文件仍只能放在 `work-items/BA-xxx/artifacts/` 下，不创建 `intake/`，也不散落在 Work Item 根目录。State 资产升级到 schema 3，并强制使用固定 `status`、`phase`、`gate` 枚举；`simulator-design` 这类业务专属 phase 非法。ready Analysis Model Cards 必须包含 `runtime_role`、七个 usage prompts、Choice Delta、Choice Loop Closure Guard、Decision Scope Lock 和实施边界守卫；v0.1.4 共 26 张 ready 卡。
 
-商业分析采用五个运行域，不继承业务建模的 Passive Trigger。决定确认后的澄清只能停留在原业务决策层，说明目的、理由、取舍、证据边界、升级、停止和复审条件；不得继续生产实施 Runbook、手工指南、具体 Schema、样例数据、公式、脚本、UI / 技术设计或主动执行提议。跨模块触发、跨模块影响传播、downstream view、共享 `docs/product/work-items/`、CLI、Hook、Plugin、安装器、外部依赖和自动替用户确认 D2/D3 决定均不属于当前版本。
+商业分析采用五个运行域，不继承业务建模的 Passive Trigger。决定确认后的澄清只能停留在原业务决策层，说明目的、理由、取舍、证据边界、升级、停止和复审条件；不得继续生产实施 Runbook、手工指南、具体 Schema、样例数据、公式、脚本、UI / 技术设计或主动执行提议。跨模块触发、跨模块影响传播、downstream view、共享 `docs/product/business-modeling/work-items/`、CLI、Hook、Plugin、安装器、外部依赖和自动替用户确认 D2/D3 决定均不属于当前版本。
 
 ## Agent 兼容安装
 
@@ -211,7 +213,25 @@ docs/design/outputs/
 - `outputs/current/`：用户确认或项目采纳的当前入口。
 - `outputs/index.yml`：记录 current、archive、source `STATE.md` 和 baseline 资格。
 
+Design Engineering 模块默认交付出口是 `docs/design/DESIGN_OVERVIEW.md`。它从 sealed `STATE.md`、`VISUAL_DESIGN.md`、Project Memory 和 `outputs/current/` 编译当前 UX / 产品设计 / 视觉入口，但不是 source of truth。
+
 Work Item 的 `artifacts/` 是任务现场；`outputs/archive/` 是封存快照；`reference-library/` 仍然是长期参考资料层。
+
+## 模块总览与项目交付层
+
+模块总览定义方法沉淀在 [core/product-design/module-overview-definition.zh-CN.md](core/product-design/module-overview-definition.zh-CN.md)，英文版见 [module-overview-definition.md](core/product-design/module-overview-definition.md)。每个能力模块自己声明模块根、默认模块交付视图、source of truth、开放问题来源和可导出栏目；未来 `docs/project-delivery/` 只消费这些模块出口，不硬编码各模块内部文件。
+
+当前标准模块根是：
+
+- 业务模型：`docs/product/business-modeling/`
+- 商业分析：`docs/product/business-analysis/`
+- Design Engineering：`docs/design/`
+
+当前三个模块出口是：
+
+- 业务模型：`docs/product/business-modeling/BUSINESS_MODEL_OVERVIEW.md`
+- 商业分析：`docs/product/business-analysis/BUSINESS_DECISION_OVERVIEW.md`
+- Design Engineering：`docs/design/DESIGN_OVERVIEW.md`
 
 ## 为什么不要求产品人格
 

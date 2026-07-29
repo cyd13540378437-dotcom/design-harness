@@ -25,10 +25,10 @@
 - 默认 `templates/project/` 必须保持 runtime-neutral，不得在根层包含 `.agents/`、`.codex/`、`.claude/` 或 `.cursor/`。
 - Runtime-specific 文件只能存在于 `templates/project/runtime-overlays/<runtime>/`、`adapters/<runtime>/`，或被明确 materialize 到目标项目。
 - `docs/product/**` 是唯一业务模型 source of truth；runtime adapter、Skill facade、`AGENTS.md` 和 `CLAUDE.md` 只负责路由与调用。
-- `docs/product/BUSINESS_MODEL_OVERVIEW.md` 是唯一默认用户总览；它是 consistency validation 后编译出的派生视图，不是 source of truth。
+- `docs/product/business-modeling/BUSINESS_MODEL_OVERVIEW.md` 是业务模型模块默认用户总览；它是 consistency validation 后编译出的派生视图，不是 source of truth。若项目启用 `docs/project-delivery/`，它作为业务模型模块出口被消费。
 - BM Work Item 根层必须使用 canonical 文件：`STATE.md`、`MODELING_CONSUMPTION.md`、`MODELING_OUTPUT.md` 和 `DECISION_NOTES.md`；旧 `PROPOSED_MODEL.md`、`EVIDENCE_AND_ASSUMPTIONS.md` 只能作为迁移输入，不能替代新输出。
 - `STATE.md` 必须使用 Core 冻结字段；runtime-specific metadata 只能进入 `extensions` 或正文说明，不得新增替代性顶层 schema。
-- 被动触发使用 `docs/product/model-triggers/`，不得创建 `model-requests/`。
+- 被动触发使用 `docs/product/business-modeling/model-triggers/`，不得创建 `model-requests/`。
 - 核心业务模型只表达业务属性，不写数据库字段、接口参数、ORM 结构或实现类型。
 - `schema-view.json` 只包含业务对象、业务领域、对象分类、业务属性和属性示例内容，且必须使用 v0.2.3 的精确结构。
 - Dictionary、Business Model Index、Schema、Action、State、Rule 和 Permission 必须使用 stable IDs 并保持交叉引用一致。
@@ -38,6 +38,8 @@
 - `ux-business-model-context.md/yml` 是业务模型下游派生视图，不是 UX 侧 source of truth。
 - Business Modeling Core 不得直接修改既有 `docs/design/`、`REFERENCE_SELECTION.md`、Reference Library、Color Card Registry 或 sealed UX `STATE.md`。
 - 不新增 CLI、Hook、Plugin、Installer、外部依赖、自动数据库迁移或 API 生成。
+
+模块总览定义方法沉淀在 `core/product-design/module-overview-definition.zh-CN.md`，英文版为 `core/product-design/module-overview-definition.md`。各能力模块必须自己声明模块根、默认模块交付视图、source of truth、open questions source 和 exportable sections；项目交付层只能消费这些声明，不得自行硬编码模块内部文件。新项目的标准模块根是 `docs/product/business-analysis/`、`docs/product/business-modeling/` 和 `docs/design/`；新运行不得再创建共享 `docs/product/work-items/` 作为业务模型 Work Item 根。
 
 修改下列业务建模文件之一时，完成前必须检查对应文件是否仍一致：
 
@@ -105,7 +107,7 @@
 - 数值模型输入不足时必须阻止伪精确，不得伪造 NPV、IRR 或其他财务结论。
 - D2 / D3 人类决定必须明确记录，系统建议不得冒充用户决定。
 - 不得读取、触发、依赖或集成 `motivation-analysis`。
-- 不得创建跨模块 Trigger、downstream views、共享 `docs/product/work-items/`、CLI、Hook、Plugin、installer 或外部依赖。
+- 不得创建跨模块 Trigger、downstream views、共享 `docs/product/business-modeling/work-items/`、CLI、Hook、Plugin、installer 或外部依赖。
 - 不得修改任何兄弟能力的 Core、Adapter、template、example、eval 或 project asset。
 
 修改下列商业分析文件之一时，完成前必须检查对应文件是否仍一致：

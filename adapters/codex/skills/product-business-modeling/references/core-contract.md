@@ -5,7 +5,7 @@ The Core owns business-model semantics. Runtime adapters only expose it to an ag
 ## Default user entry
 
 ```text
-docs/product/BUSINESS_MODEL_OVERVIEW.md
+docs/product/business-modeling/BUSINESS_MODEL_OVERVIEW.md
 ```
 
 This is a derived product-owner view, not source of truth. Ordinary users should not need to inspect all detailed assets.
@@ -14,8 +14,8 @@ This is a derived product-owner view, not source of truth. Ordinary users should
 
 ```text
 docs/product/business-modeling/
-docs/product/model-triggers/
-docs/product/work-items/
+docs/product/business-modeling/model-triggers/
+docs/product/business-modeling/work-items/
 ```
 
 ## Hard contracts

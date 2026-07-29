@@ -15,11 +15,14 @@ Human Decision Request
 ## 2. 长期资产
 
 ```text
+Business Decision Overview
 Decision Case
 Decision Network
 Evidence Ledger
 Decision Review
 ```
+
+`BUSINESS_DECISION_OVERVIEW.md` 是商业分析模块的默认交付出口。它从 Decision Case、Decision Network、Evidence Ledger 和 Work Item 结论编译当前推荐、证据边界和待确认选择，但不是 source of truth。
 
 ## 3. Standard Work Item 核心文件
 

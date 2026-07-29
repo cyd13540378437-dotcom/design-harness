@@ -35,8 +35,8 @@ Business Modeling Core 默认只写：
 
 ```text
 docs/product/business-modeling/
-docs/product/model-triggers/
-docs/product/work-items/
+docs/product/business-modeling/model-triggers/
+docs/product/business-modeling/work-items/
 ```
 
 它不得直接修改：

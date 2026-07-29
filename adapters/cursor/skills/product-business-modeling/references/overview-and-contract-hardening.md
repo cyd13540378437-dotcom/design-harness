@@ -1,6 +1,6 @@
 # Overview and Contract Hardening
 
-- `docs/product/BUSINESS_MODEL_OVERVIEW.md` is the sole default user-facing file.
+- `docs/product/business-modeling/BUSINESS_MODEL_OVERVIEW.md` is the business-model module's default user-facing file.
 - It is compiled from detailed assets and is not source of truth.
 - Any core write requires consistency validation before overview compilation.
 - The four canonical Work Item root files must remain at the root.

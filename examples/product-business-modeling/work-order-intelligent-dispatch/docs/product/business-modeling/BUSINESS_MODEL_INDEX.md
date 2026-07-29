@@ -1,6 +1,6 @@
 # Business Model Index
 
-> `BUSINESS_MODEL_INDEX.yml` 是机器可读注册表。本文件是详细资产导航；用户默认先看 [`BUSINESS_MODEL_OVERVIEW.md`](../BUSINESS_MODEL_OVERVIEW.md)。
+> `BUSINESS_MODEL_INDEX.yml` 是机器可读注册表。本文件是详细资产导航；用户默认先看 [`BUSINESS_MODEL_OVERVIEW.md`](BUSINESS_MODEL_OVERVIEW.md)。
 
 ## Current Model
 

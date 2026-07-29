@@ -6,5 +6,6 @@
 - `archive/<event_id>/` contains sealed Lifecycle Event snapshots.
 - `index.yml` maps current outputs and archived events back to their source `STATE.md`.
 
-Work-in-progress artifacts belong under `docs/design/work-items/<event-id-slug>/artifacts/`. Do not put temporary screenshots, build output, or unconfirmed experiments in `outputs/current/`.
+The default user-facing design module export is `../DESIGN_OVERVIEW.md`. It compiles current outputs, the visual baseline, relevant Project Memory, and source events into one readable overview without becoming source of truth.
 
+Work-in-progress artifacts belong under `docs/design/work-items/<event-id-slug>/artifacts/`. Do not put temporary screenshots, build output, or unconfirmed experiments in `outputs/current/`.

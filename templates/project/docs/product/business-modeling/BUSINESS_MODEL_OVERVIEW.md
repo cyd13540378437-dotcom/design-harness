@@ -3,6 +3,8 @@ schema_version: 1
 view_type: business_model_overview
 audience: product_owner
 is_default_user_entry: true
+is_default_module_delivery_view: true
+is_project_delivery_entry: false
 is_source_of_truth: false
 source_model_version: "v0.1"
 source_model_status: draft
@@ -18,7 +20,7 @@ source_assets:
 
 # 业务模型总览
 
-> 这是业务负责人、产品负责人和非建模专业用户的唯一默认阅读入口。详细模型资产、任务文件和报告继续按原协议保留，但用户通常不需要逐一阅读。
+> 这是业务模型模块面向业务负责人、产品负责人和非建模专业用户的唯一默认阅读入口。详细模型资产、任务文件和报告继续按原协议保留，但用户通常不需要逐一阅读。
 
 ## 1. 一句话模型
 

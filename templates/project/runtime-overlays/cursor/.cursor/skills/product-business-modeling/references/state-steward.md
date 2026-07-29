@@ -6,7 +6,7 @@ The runtime adapter should delegate BM state operations to the installed state s
 
 - return `CREATE / RESUME / SUCCESSOR / NO_STATE / AMBIGUOUS`;
 - create/update canonical `STATE.md`;
-- update `PRODUCT_WORK_ITEMS.md` as an index;
+- update `BUSINESS_MODEL_WORK_ITEMS.md` as an index;
 - record decision wait and closure readiness;
 - protect sealed Work Items.
 

@@ -2,7 +2,7 @@
 
 ## Breaking structure fixes
 
-1. Move BA Work Items from `docs/product/work-items/BA-xxx/` to `docs/product/business-analysis/work-items/BA-xxx/`.
+1. Move BA Work Items from `docs/product/business-modeling/work-items/BA-xxx/` to `docs/product/business-analysis/work-items/BA-xxx/`.
 2. Remove Work Item-level `DECISION_CASE.md`; keep the authoritative Case only under `decision-cases/`.
 3. Add `BUSINESS_ANALYSIS_WORK_ITEMS.md` under the module root.
 4. Add `ANALYSIS_CONSUMPTION.md`, `ANALYSIS_OUTPUT.md`, and `DECISION_NOTES.md`.

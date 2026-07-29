@@ -13,7 +13,25 @@ architecture:
   - Project Knowledge Assets
   project_assets_root: docs/product
   business_modeling_root: docs/product/business-modeling
-  default_user_view: docs/product/BUSINESS_MODEL_OVERVIEW.md
+  default_user_view: docs/product/business-modeling/BUSINESS_MODEL_OVERVIEW.md
+delivery_exports:
+  default_module_delivery_view:
+    path: docs/product/business-modeling/BUSINESS_MODEL_OVERVIEW.md
+    view_type: business_model_overview
+    audience: product_owner
+    source_of_truth: false
+    writer: downstream-view-compiler
+  source_of_truth:
+  - docs/product/business-modeling/
+  open_questions_source:
+  - docs/product/business-modeling/BUSINESS_MODEL_OVERVIEW.md
+  exportable_sections:
+  - current_model_summary
+  - model_boundary
+  - core_objects_and_flow
+  - current_software_capabilities
+  - confirmed_provisional_pending_decisions
+  - risks_and_validation_status
 entry_modes:
 - id: direct_modeling
   label: 用户主动建模
@@ -93,7 +111,7 @@ core_protocols:
 - core/product-design/business-modeling/protocols/work-item-file-contract.md
 - core/product-design/business-modeling/protocols/canonical-model-asset-contracts.md
 passive_trigger:
-  directory: docs/product/model-triggers
+  directory: docs/product/business-modeling/model-triggers
   file_pattern: MT-xxx.md
   trigger_types:
   - upstream_change
@@ -110,11 +128,11 @@ passive_trigger:
   - superseded
 project_assets:
   default_user_view:
-    path: docs/product/BUSINESS_MODEL_OVERVIEW.md
+    path: docs/product/business-modeling/BUSINESS_MODEL_OVERVIEW.md
     writer: downstream-view-compiler
     source_of_truth: false
   long_lived:
-  - docs/product/BUSINESS_MODEL_OVERVIEW.md
+  - docs/product/business-modeling/BUSINESS_MODEL_OVERVIEW.md
   - docs/product/business-modeling/BUSINESS_MODEL_INDEX.md
   - docs/product/business-modeling/BUSINESS_MODEL_INDEX.yml
   - docs/product/business-modeling/business-dictionary.md
@@ -130,14 +148,14 @@ project_assets:
   - docs/product/business-modeling/risks/
   - docs/product/business-modeling/downstream-views/
   task_level:
-  - docs/product/work-items/BM-xxx/STATE.md
-  - docs/product/work-items/BM-xxx/MODELING_CONSUMPTION.md
-  - docs/product/work-items/BM-xxx/MODELING_OUTPUT.md
-  - docs/product/work-items/BM-xxx/DECISION_NOTES.md
-  - docs/product/work-items/BM-xxx/artifacts/MODEL_EXTRACTION_REPORT.md
-  - docs/product/work-items/BM-xxx/artifacts/MODEL_CONSISTENCY_REPORT.md
-  - docs/product/work-items/BM-xxx/artifacts/MODEL_IMPACT_REPORT.md
-  - docs/product/work-items/BM-xxx/artifacts/SOURCE_EVIDENCE.md
+  - docs/product/business-modeling/work-items/BM-xxx/STATE.md
+  - docs/product/business-modeling/work-items/BM-xxx/MODELING_CONSUMPTION.md
+  - docs/product/business-modeling/work-items/BM-xxx/MODELING_OUTPUT.md
+  - docs/product/business-modeling/work-items/BM-xxx/DECISION_NOTES.md
+  - docs/product/business-modeling/work-items/BM-xxx/artifacts/MODEL_EXTRACTION_REPORT.md
+  - docs/product/business-modeling/work-items/BM-xxx/artifacts/MODEL_CONSISTENCY_REPORT.md
+  - docs/product/business-modeling/work-items/BM-xxx/artifacts/MODEL_IMPACT_REPORT.md
+  - docs/product/business-modeling/work-items/BM-xxx/artifacts/SOURCE_EVIDENCE.md
 downstream_views:
 - product-expression-view.md
 - requirements-view.md

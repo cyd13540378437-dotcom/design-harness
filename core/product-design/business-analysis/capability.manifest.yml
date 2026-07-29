@@ -22,6 +22,26 @@ architecture:
   - Project Knowledge Assets
   project_assets_root: docs/product/business-analysis
   passive_trigger_interface: not_implemented
+delivery_exports:
+  default_module_delivery_view:
+    path: docs/product/business-analysis/BUSINESS_DECISION_OVERVIEW.md
+    view_type: business_decision_overview
+    audience: product_owner
+    source_of_truth: false
+    writer: business-analysis-orchestrator
+  source_of_truth:
+  - docs/product/business-analysis/decision-cases/
+  - docs/product/business-analysis/decision-network/
+  - docs/product/business-analysis/evidence/
+  open_questions_source:
+  - docs/product/business-analysis/BUSINESS_DECISION_OVERVIEW.md
+  exportable_sections:
+  - current_choice_set
+  - current_recommendation
+  - pending_user_decisions
+  - confirmed_or_deferred_decisions
+  - evidence_boundary
+  - review_conditions
 entry_modes:
 - direct_decision_support
 - case_continuation
@@ -149,6 +169,7 @@ artifact_boundary:
   no_execution_offer: true
 project_assets:
   long_lived:
+  - docs/product/business-analysis/BUSINESS_DECISION_OVERVIEW.md
   - docs/product/business-analysis/BUSINESS_ANALYSIS_INDEX.md
   - docs/product/business-analysis/BUSINESS_ANALYSIS_INDEX.yml
   - docs/product/business-analysis/BUSINESS_ANALYSIS_WORK_ITEMS.md

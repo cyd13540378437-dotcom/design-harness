@@ -12,7 +12,7 @@ work-order-intelligent-dispatch/
 
 This is the primary v0.2.3 regression example derived from a real Greenfield modeling run. It demonstrates:
 
-- one default product-owner file: `docs/product/BUSINESS_MODEL_OVERVIEW.md`;
+- one default product-owner file: `docs/product/business-modeling/BUSINESS_MODEL_OVERVIEW.md`;
 - canonical Work Item files and the frozen State Schema;
 - structured Index / Dictionary / Schema contracts;
 - full `BMD-xxx` decision compression in the overview;

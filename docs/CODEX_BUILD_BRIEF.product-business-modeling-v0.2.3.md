@@ -14,7 +14,7 @@
 ### Milestone 1：用户总览
 
 - 新增 Core overview 模板和编译协议；
-- 新增项目模板 `docs/product/BUSINESS_MODEL_OVERVIEW.md`；
+- 新增项目模板 `docs/product/business-modeling/BUSINESS_MODEL_OVERVIEW.md`；
 - 明确唯一默认用户入口与派生边界。
 
 ### Milestone 2：协议归一化

@@ -1,0 +1,26 @@
+schema_version: 1
+capability_id: design-engineering
+delivery_exports:
+  default_module_delivery_view:
+    id: design_overview
+    path: DESIGN_OVERVIEW.md
+    view_type: design_overview
+    audience: product_owner
+    is_source_of_truth: false
+    status: draft
+  source_of_truth:
+    - work-items/
+    - VISUAL_DESIGN.md
+    - project-memory/
+    - outputs/index.yml
+    - outputs/current/
+  open_questions_source:
+    - DESIGN_OVERVIEW.md
+  exportable_sections:
+    - current_design_state
+    - confirmed_entry_points
+    - product_and_ux_scope
+    - key_flows_and_surfaces
+    - visual_baseline
+    - validation_status
+    - pending_design_decisions

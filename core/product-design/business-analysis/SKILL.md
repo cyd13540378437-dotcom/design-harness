@@ -32,6 +32,16 @@ Decision Case、证据、模型、状态和治理文件都服务于“选择”�
 
 本 Skill 完全独立运行，不读取、触发或修改任何兄弟能力。当前版本不依赖共享的动机分析能力；输入理解与问题确认仍是商业分析自身的基本责任。
 
+## 2.1 模块总览出口
+
+商业分析的默认模块交付视图是：
+
+```text
+docs/product/business-analysis/BUSINESS_DECISION_OVERVIEW.md
+```
+
+它从 Decision Case、Decision Network、Evidence Ledger 和 Work Item 结论编译当前关键选择、推荐、证据边界和待确认问题。它不是 source of truth；冲突时以 Decision Case 为准。项目交付层只能消费该总览，不得反写商业分析资产。
+
 ## 3. 每轮强制恢复与混合轮次解析
 
 存在相关活动 BA Work Item 时，每轮回复前至少读取：
@@ -317,6 +327,12 @@ Primary Decision Case
 ANALYSIS_WORKSPACE.md（使用专业模型时）
 DECISION_SUMMARY.md
 DECISION_NOTES.md（发生用户决定时）
+```
+
+形成或更新推荐、用户决定、复审条件或 completion review 前，必须编译或更新：
+
+```text
+docs/product/business-analysis/BUSINESS_DECISION_OVERVIEW.md
 ```
 
 ### `deep`

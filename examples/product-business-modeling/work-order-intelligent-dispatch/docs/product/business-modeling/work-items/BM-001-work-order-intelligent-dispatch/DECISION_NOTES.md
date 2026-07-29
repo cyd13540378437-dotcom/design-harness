@@ -56,7 +56,7 @@ updated_at: "2026-07-22T00:00:00Z"
 
 ### Overview Compilation
 
-- Included in `docs/product/BUSINESS_MODEL_OVERVIEW.md`: `yes`
+- Included in `docs/product/business-modeling/BUSINESS_MODEL_OVERVIEW.md`: `yes`
 
 ## BMD-002 — Service Resource 是否保持统一抽象
 
@@ -105,7 +105,7 @@ updated_at: "2026-07-22T00:00:00Z"
 
 ### Overview Compilation
 
-- Included in `docs/product/BUSINESS_MODEL_OVERVIEW.md`: `yes`
+- Included in `docs/product/business-modeling/BUSINESS_MODEL_OVERVIEW.md`: `yes`
 
 ## BMD-003 — 自动派单权限
 
@@ -154,7 +154,7 @@ updated_at: "2026-07-22T00:00:00Z"
 
 ### Overview Compilation
 
-- Included in `docs/product/BUSINESS_MODEL_OVERVIEW.md`: `yes`
+- Included in `docs/product/business-modeling/BUSINESS_MODEL_OVERVIEW.md`: `yes`
 
 ## BMD-004 — 调度目标优先级
 
@@ -203,7 +203,7 @@ SLA、安全和紧急程度是护栏，在护栏内优化能力匹配、预计�
 
 ### Overview Compilation
 
-- Included in `docs/product/BUSINESS_MODEL_OVERVIEW.md`: `yes`
+- Included in `docs/product/business-modeling/BUSINESS_MODEL_OVERVIEW.md`: `yes`
 
 ## BMD-005 — 最小调度可观测性是否进入第一期
 
@@ -252,4 +252,4 @@ SLA、安全和紧急程度是护栏，在护栏内优化能力匹配、预计�
 
 ### Overview Compilation
 
-- Included in `docs/product/BUSINESS_MODEL_OVERVIEW.md`: `yes`
+- Included in `docs/product/business-modeling/BUSINESS_MODEL_OVERVIEW.md`: `yes`

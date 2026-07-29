@@ -45,8 +45,8 @@ Runtime files only route and invoke. They do not own business modeling knowledge
 
 ```text
 docs/product/business-modeling/
-docs/product/model-triggers/
-docs/product/work-items/
+docs/product/business-modeling/model-triggers/
+docs/product/business-modeling/work-items/
 ```
 
 ## 6. Acceptance criteria

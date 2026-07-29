@@ -2,7 +2,7 @@
 
 Use the installed `product-business-modeling` adapter for durable product business semantics.
 
-- Default user entry: `docs/product/BUSINESS_MODEL_OVERVIEW.md`.
+- Business-model module default user entry: `docs/product/business-modeling/BUSINESS_MODEL_OVERVIEW.md`.
 - Detailed source of truth remains under `docs/product/business-modeling/`.
 - Use canonical Work Item root files and the frozen State Schema.
 - Do not substitute custom summaries for `MODELING_OUTPUT.md` or the overview.

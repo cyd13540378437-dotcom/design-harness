@@ -24,7 +24,7 @@ The detailed files remain in place. Only the default reading experience is simpl
 ## Single default user artifact
 
 ```text
-docs/product/BUSINESS_MODEL_OVERVIEW.md
+docs/product/business-modeling/BUSINESS_MODEL_OVERVIEW.md
 ```
 
 This file is a derived product-owner view. It is not source of truth and must be recompiled after validated model changes.
@@ -43,7 +43,7 @@ core/product-design/business-modeling/references/subcapability-work-logic-v0.2.3
 ## New project template file
 
 ```text
-templates/project/docs/product/BUSINESS_MODEL_OVERVIEW.md
+templates/project/docs/product/business-modeling/BUSINESS_MODEL_OVERVIEW.md
 ```
 
 ## v0.2.3 release documents
@@ -78,7 +78,7 @@ Root start-here, README, AGENTS and CHANGELOG files
 Every persistent BM Work Item uses:
 
 ```text
-docs/product/work-items/BM-xxx/
+docs/product/business-modeling/work-items/BM-xxx/
 ├── STATE.md
 ├── MODELING_CONSUMPTION.md
 ├── MODELING_OUTPUT.md

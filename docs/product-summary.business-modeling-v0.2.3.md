@@ -11,7 +11,7 @@
 业务负责人和产品负责人默认只需要看：
 
 ```text
-docs/product/BUSINESS_MODEL_OVERVIEW.md
+docs/product/business-modeling/BUSINESS_MODEL_OVERVIEW.md
 ```
 
 这份总览回答：

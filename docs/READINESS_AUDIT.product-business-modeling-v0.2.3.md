@@ -8,7 +8,7 @@
 
 ## 1. User experience
 
-- [x] `docs/product/BUSINESS_MODEL_OVERVIEW.md` is the single default file shown to product owners and business stakeholders.
+- [x] `docs/product/business-modeling/BUSINESS_MODEL_OVERVIEW.md` is the single default file shown to product owners and business stakeholders.
 - [x] The overview is explicitly a derived view and never becomes source of truth.
 - [x] D2 / D3 decisions are compressed into the overview with current understanding, impact, alternatives, recommendation and a direct reply format.
 - [x] Detailed model, Work Item, evidence, audit and downstream files remain available in their original professional roles.
