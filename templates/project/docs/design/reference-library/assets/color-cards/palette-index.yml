@@ -969,3 +969,597 @@ cards:
     type: generated-canonical-card
     based_on: color-card-sourcing-board-v1 candidate approved by user
     candidate_no: '36'
+- id: dropbox-creative-contrast
+  title: '创意强对比'
+  status: ready
+  gate_preview: true
+  image: images/dropbox-creative-contrast.png
+  palette: palettes/dropbox-creative-contrast.yml
+  annotation: annotations/dropbox-creative-contrast.md
+  surfaces:
+  - responsive-web
+  - web-app
+  - desktop-app
+  - tablet
+  mood_tags:
+  - '鲜明'
+  - '创意'
+  - '编辑'
+  - '高对比'
+  business_semantics:
+    best_for:
+    - '创意工具'
+    - '个人作品集'
+    - '内容品牌'
+    - '协作产品'
+    avoid_for:
+    - '严肃金融'
+    - '医疗后台'
+    - '长时间密集操作'
+  user_facing_summary: '高纯度蓝与意外暖色并置，适合需要鲜明品牌记忆的创意型产品。'
+  token_hint: '石墨与椰白建立阅读底盘，高纯度蓝负责结构，粉色和亮黄只承担记忆点。'
+  accessibility_risk_level: medium
+  source:
+    type: project-palette-lab
+    based_on: 'Dropbox Brand Color 关系衍生，不复制具体页面。'
+- id: mozilla-gutsy-neon
+  title: '黑白霓虹宣言'
+  status: ready
+  gate_preview: true
+  image: images/mozilla-gutsy-neon.png
+  palette: palettes/mozilla-gutsy-neon.yml
+  annotation: annotations/mozilla-gutsy-neon.md
+  surfaces:
+  - responsive-web
+  - web-app
+  - desktop-app
+  - tablet
+  mood_tags:
+  - '大胆'
+  - '直接'
+  - '霓虹'
+  - '宣言感'
+  business_semantics:
+    best_for:
+    - '品牌发布'
+    - '实验项目'
+    - '创意社区'
+    - '活动页面'
+    avoid_for:
+    - '长期工作台'
+    - '复杂表单'
+    - '低刺激阅读'
+  user_facing_summary: '黑白主体配少量霓虹色块，适合需要强烈态度和传播感的品牌页面。'
+  token_hint: '黑白占据主要阅读区域，深紫建立纵深，霓虹绿和柠檬黄严格限制在关键块。'
+  accessibility_risk_level: high
+  source:
+    type: project-palette-lab
+    based_on: 'Mozilla 黑白主色与霓虹辅助色原则衍生。'
+- id: ibm-luminous-blue
+  title: '工业蓝灰秩序'
+  status: ready
+  gate_preview: true
+  image: images/ibm-luminous-blue.png
+  palette: palettes/ibm-luminous-blue.yml
+  annotation: annotations/ibm-luminous-blue.md
+  surfaces:
+  - responsive-web
+  - web-app
+  - desktop-app
+  - tablet
+  mood_tags:
+  - '工程'
+  - '清晰'
+  - '秩序'
+  - '可信'
+  business_semantics:
+    best_for:
+    - '开发者工具'
+    - '企业系统'
+    - '技术文档'
+    - '数据平台'
+    avoid_for:
+    - '生活方式品牌'
+    - '儿童产品'
+    - '强情绪消费'
+  user_facing_summary: '灰阶统治内容层级，核心蓝只承担行动与结构，形成硬朗的工程纪律。'
+  token_hint: '中性灰承担大多数界面，核心蓝作为主行动，亮蓝只用于局部信息提示。'
+  accessibility_risk_level: low
+  source:
+    type: project-palette-lab
+    based_on: 'IBM Design Language 的灰阶主导与核心蓝原则衍生。'
+- id: figma-tonal-vibrancy
+  title: '色相振动实验'
+  status: ready
+  gate_preview: true
+  image: images/figma-tonal-vibrancy.png
+  palette: palettes/figma-tonal-vibrancy.yml
+  annotation: annotations/figma-tonal-vibrancy.md
+  surfaces:
+  - responsive-web
+  - web-app
+  - desktop-app
+  - tablet
+  mood_tags:
+  - '活跃'
+  - '实验'
+  - '协作'
+  - '多元'
+  business_semantics:
+    best_for:
+    - '创作工具'
+    - '设计社区'
+    - '作品集'
+    - '协作产品'
+    avoid_for:
+    - '严肃后台'
+    - '合规金融'
+    - '超长阅读'
+  user_facing_summary: '相邻但不安分的色彩并置，适合把作品集变成持续变化的视觉实验场。'
+  token_hint: '紫与绿形成主张，芥末黄作为第三节拍；大面积使用时必须保持结构清晰。'
+  accessibility_risk_level: high
+  source:
+    type: project-palette-lab
+    based_on: 'Figma Tonal Vibrancy 原则衍生，不复制品牌组合。'
+- id: stripe-slate-blurple
+  title: '深蓝紫科技'
+  status: ready
+  gate_preview: true
+  image: images/stripe-slate-blurple.png
+  palette: palettes/stripe-slate-blurple.yml
+  annotation: annotations/stripe-slate-blurple.md
+  surfaces:
+  - responsive-web
+  - web-app
+  - desktop-app
+  - tablet
+  mood_tags:
+  - '精密'
+  - '现代'
+  - '技术'
+  - '流动'
+  business_semantics:
+    best_for:
+    - '支付科技'
+    - '基础设施'
+    - '开发平台'
+    - '数据产品'
+    avoid_for:
+    - '自然生活方式'
+    - '儿童教育'
+    - '传统文化内容'
+  user_facing_summary: '用深蓝与清晰紫色建立现代技术可信度，适合需要精密感的数字产品。'
+  token_hint: '深 Slate 负责文字与技术纵深，紫色负责行动，青色只做活跃信号。'
+  accessibility_risk_level: medium
+  source:
+    type: project-palette-lab
+    based_on: 'Stripe Slate 与 Blurple 关系衍生，辅助阶为项目适配值。'
+- id: night-lab-mint-faithful
+  title: '旧版复原：夜间实验室'
+  status: ready
+  gate_preview: true
+  image: images/night-lab-mint-faithful.png
+  palette: palettes/night-lab-mint-faithful.yml
+  annotation: annotations/night-lab-mint-faithful.md
+  surfaces:
+  - responsive-web
+  - web-app
+  - desktop-app
+  - tablet
+  mood_tags:
+  - '夜间'
+  - '编辑器'
+  - '实验室'
+  - '克制'
+  business_semantics:
+    best_for:
+    - 'AI 实验室'
+    - '开发者作品集'
+    - '研究工具'
+    - '技术叙事'
+    avoid_for:
+    - '高饱和营销'
+    - '儿童产品'
+    - '明亮生活服务'
+  user_facing_summary: '近黑绿、奶白、灰褐和低亮薄荷绿共同形成克制的编辑器实验室。'
+  token_hint: '近黑绿承担画布，奶白用于标题，薄荷绿只表示运行、索引和主行动。'
+  accessibility_risk_level: low
+  source:
+    type: project-palette-lab
+    based_on: '用户提供的旧版 Yudi AI Lab 截图提取。'
+- id: night-lab-editor-blue
+  title: '旧版变体：代码编辑器蓝'
+  status: ready
+  gate_preview: true
+  image: images/night-lab-editor-blue.png
+  palette: palettes/night-lab-editor-blue.yml
+  annotation: annotations/night-lab-editor-blue.md
+  surfaces:
+  - responsive-web
+  - web-app
+  - desktop-app
+  - tablet
+  mood_tags:
+  - '代码'
+  - '冷静'
+  - '编辑器'
+  - '精确'
+  business_semantics:
+    best_for:
+    - '代码工具'
+    - '技术文档'
+    - '开发者平台'
+    - '系统作品集'
+    avoid_for:
+    - '温暖社区'
+    - '生活消费'
+    - '传统文化内容'
+  user_facing_summary: '蓝黑画布配冰蓝焦点色，更接近代码工作区和技术文档系统。'
+  token_hint: '蓝黑保持长时间阅读，冰蓝只用于焦点、链接和索引。'
+  accessibility_risk_level: medium
+  source:
+    type: project-palette-lab
+    based_on: '用户提供的旧版 Yudi AI Lab 结构衍生。'
+- id: night-lab-phosphor-terminal
+  title: '旧版变体：荧光终端'
+  status: ready
+  gate_preview: true
+  image: images/night-lab-phosphor-terminal.png
+  palette: palettes/night-lab-phosphor-terminal.yml
+  annotation: annotations/night-lab-phosphor-terminal.md
+  surfaces:
+  - responsive-web
+  - web-app
+  - desktop-app
+  - tablet
+  mood_tags:
+  - '终端'
+  - '磷光'
+  - '实验'
+  - '锐利'
+  business_semantics:
+    best_for:
+    - '实验工具'
+    - '终端产品'
+    - '技术展览'
+    - '个人作品集'
+    avoid_for:
+    - '医疗健康'
+    - '金融后台'
+    - '低刺激长阅读'
+  user_facing_summary: '黑与暖白构成主体，磷光黄绿带来更鲜明的个人实验室记忆。'
+  token_hint: '磷光黄绿严格限制在状态、编号和主按钮，避免变成游戏 HUD。'
+  accessibility_risk_level: high
+  source:
+    type: project-palette-lab
+    based_on: '用户提供的旧版 Yudi AI Lab 结构衍生。'
+- id: gradient-night-aurora
+  title: '渐变：夜幕极光'
+  status: ready
+  gate_preview: true
+  image: images/gradient-night-aurora.png
+  palette: palettes/gradient-night-aurora.yml
+  annotation: annotations/gradient-night-aurora.md
+  surfaces:
+  - responsive-web
+  - web-app
+  - desktop-app
+  - tablet
+  mood_tags:
+  - '极光'
+  - '深邃'
+  - '高级'
+  - '克制'
+  business_semantics:
+    best_for:
+    - 'AI 实验室'
+    - '研究平台'
+    - '开发者作品集'
+    - '技术品牌'
+    avoid_for:
+    - '明亮儿童产品'
+    - '高频交易后台'
+    - '强促销页面'
+  user_facing_summary: '近黑绿正文区域配边缘青绿和深海蓝环境光，克制但具有空间纵深。'
+  token_hint: '正文区域保持近黑纯色，极光只在边缘发生，面板使用极轻玻璃渐变。'
+  accessibility_risk_level: low
+  source:
+    type: project-palette-lab
+    based_on: 'Yudi AI Lab 旧版夜间实验室定制多光源渐变。'
+- id: gradient-cobalt-ember
+  title: '渐变：钴蓝余烬'
+  status: ready
+  gate_preview: true
+  image: images/gradient-cobalt-ember.png
+  palette: palettes/gradient-cobalt-ember.yml
+  annotation: annotations/gradient-cobalt-ember.md
+  surfaces:
+  - responsive-web
+  - web-app
+  - desktop-app
+  - tablet
+  mood_tags:
+  - '钴蓝'
+  - '仪器'
+  - '冷暖'
+  - '精密'
+  business_semantics:
+    best_for:
+    - '硬件科技'
+    - '数据平台'
+    - '基础设施'
+    - '工程作品集'
+    avoid_for:
+    - '儿童产品'
+    - '自然健康'
+    - '传统文化内容'
+  user_facing_summary: '深蓝黑底叠加钴蓝冷光与少量琥珀余温，呈现精密仪器般的技术气质。'
+  token_hint: '冷光承担技术纵深，暖光只在对角边缘平衡温度，正文保持稳定暗面。'
+  accessibility_risk_level: medium
+  source:
+    type: project-palette-lab
+    based_on: 'Yudi AI Lab 项目定制双光源渐变。'
+- id: gradient-aubergine-plasma
+  title: '渐变：茄紫等离子'
+  status: ready
+  gate_preview: true
+  image: images/gradient-aubergine-plasma.png
+  palette: palettes/gradient-aubergine-plasma.yml
+  annotation: annotations/gradient-aubergine-plasma.md
+  surfaces:
+  - responsive-web
+  - web-app
+  - desktop-app
+  - tablet
+  mood_tags:
+  - '茄紫'
+  - '编辑'
+  - '文化'
+  - '等离子'
+  business_semantics:
+    best_for:
+    - '文化科技'
+    - '设计作品集'
+    - '创意工具'
+    - '数字出版'
+    avoid_for:
+    - '严肃金融'
+    - '医疗后台'
+    - '高频操作工具'
+  user_facing_summary: '酒红、茄紫和冷莓色形成暗色编辑感，在科技之外增加文化与作者性。'
+  token_hint: '渐变集中在画布边缘，不让紫色进入长段正文。'
+  accessibility_risk_level: medium
+  source:
+    type: project-palette-lab
+    based_on: 'Yudi AI Lab 项目定制暗色编辑渐变。'
+- id: gradient-obsidian-spectrum
+  title: '渐变：黑曜光谱'
+  status: ready
+  gate_preview: true
+  image: images/gradient-obsidian-spectrum.png
+  palette: palettes/gradient-obsidian-spectrum.yml
+  annotation: annotations/gradient-obsidian-spectrum.md
+  surfaces:
+  - responsive-web
+  - web-app
+  - desktop-app
+  - tablet
+  mood_tags:
+  - '黑曜石'
+  - '光谱'
+  - '精密'
+  - '稀缺'
+  business_semantics:
+    best_for:
+    - '精品科技'
+    - '硬件品牌'
+    - '高级作品集'
+    - '研究产品'
+    avoid_for:
+    - '欢乐社群'
+    - '儿童教育'
+    - '明亮生活服务'
+  user_facing_summary: '几乎黑白的页面，只在暗部浮现青紫油膜般的微弱色偏。'
+  token_hint: '第一眼接近高级黑，停留后才感受到青紫光谱。'
+  accessibility_risk_level: low
+  source:
+    type: project-palette-lab
+    based_on: 'Yudi AI Lab 项目定制低饱和光谱渐变。'
+- id: gradient-titanium-dawn
+  title: '渐变：钛金属晨光'
+  status: ready
+  gate_preview: true
+  image: images/gradient-titanium-dawn.png
+  palette: palettes/gradient-titanium-dawn.yml
+  annotation: annotations/gradient-titanium-dawn.md
+  surfaces:
+  - responsive-web
+  - web-app
+  - desktop-app
+  - tablet
+  mood_tags:
+  - '钛金属'
+  - '晨光'
+  - '明亮'
+  - '精密'
+  business_semantics:
+    best_for:
+    - '高级 SaaS'
+    - '硬件品牌'
+    - '设计系统'
+    - '技术作品集'
+    avoid_for:
+    - '强娱乐'
+    - '复古文化'
+    - '自然手作'
+  user_facing_summary: '冷银、雾蓝和极淡紫灰构成明亮金属反射，兼顾科技感与阅读清晰度。'
+  token_hint: '大面积近白保持内容清晰，蓝紫只模拟金属反射。'
+  accessibility_risk_level: low
+  source:
+    type: project-palette-lab
+    based_on: 'Yudi AI Lab 项目定制浅色金属渐变。'
+- id: gradient-ivory-prism
+  title: '渐变：象牙棱镜'
+  status: ready
+  gate_preview: true
+  image: images/gradient-ivory-prism.png
+  palette: palettes/gradient-ivory-prism.yml
+  annotation: annotations/gradient-ivory-prism.md
+  surfaces:
+  - responsive-web
+  - web-app
+  - desktop-app
+  - tablet
+  mood_tags:
+  - '象牙'
+  - '棱镜'
+  - '编辑'
+  - '精品'
+  business_semantics:
+    best_for:
+    - '精品作品集'
+    - '文化科技'
+    - '会员品牌'
+    - '数字出版'
+    avoid_for:
+    - '重型后台'
+    - '监控系统'
+    - '儿童游戏'
+  user_facing_summary: '象牙白叠加灰紫、玫瑰金和冷蓝微光，呈现精品出版物般的金属油墨质感。'
+  token_hint: '暖白承担阅读，灰紫负责结构，玫瑰金只做局部光泽。'
+  accessibility_risk_level: medium
+  source:
+    type: project-palette-lab
+    based_on: 'Yudi AI Lab 项目定制浅色编辑渐变。'
+- id: blueprint-archive
+  title: '蓝晒档案'
+  status: ready
+  gate_preview: true
+  image: images/blueprint-archive.png
+  palette: palettes/blueprint-archive.yml
+  annotation: annotations/blueprint-archive.md
+  surfaces:
+  - responsive-web
+  - web-app
+  - desktop-app
+  - tablet
+  mood_tags:
+  - '档案'
+  - '工程'
+  - '编辑'
+  - '克制'
+  business_semantics:
+    best_for:
+    - 'AI 设计工具'
+    - '案例长页'
+    - '研究档案'
+    - '专业作品集'
+    avoid_for:
+    - '夜间工作台'
+    - '高饱和娱乐'
+    - '儿童产品'
+  user_facing_summary: '暖灰纸面、普鲁士蓝和克制朱砂构成稳定对照组，具有档案、工程与编辑秩序。'
+  token_hint: '纸白承担长内容，普鲁士蓝建立导航与章节秩序，朱砂只用于关键判断和证据。'
+  accessibility_risk_level: low
+  source:
+    type: project-palette-lab
+    based_on: '用户提供的 Yudi AI Lab 配色渐变升级实验稿：蓝晒档案。'
+- id: blueprint-mist
+  title: '蓝晒雾光'
+  status: ready
+  gate_preview: true
+  image: images/blueprint-mist.png
+  palette: palettes/blueprint-mist.yml
+  annotation: annotations/blueprint-mist.md
+  surfaces:
+  - responsive-web
+  - web-app
+  - desktop-app
+  - tablet
+  mood_tags:
+  - '雾光'
+  - '档案'
+  - '理性'
+  - '空间感'
+  business_semantics:
+    best_for:
+    - 'AI 设计工具'
+    - '产品案例'
+    - '知识系统'
+    - '专业作品集'
+    avoid_for:
+    - '纯暗色终端'
+    - '强促销页面'
+    - '高饱和社群'
+  user_facing_summary: '在蓝晒档案的秩序上加入雾蓝、纸白与黄铜环境光，空间更柔和但仍然克制。'
+  token_hint: '渐变只制造章节呼吸和边缘光，内容卡片继续使用稳定纸面，黄铜光不得承担正文层级。'
+  accessibility_risk_level: low
+  source:
+    type: project-palette-lab
+    based_on: '用户提供的 Yudi AI Lab 配色渐变升级实验稿：蓝晒雾光。'
+- id: vermilion-dusk-gold
+  title: '朱砂暮金'
+  status: ready
+  gate_preview: true
+  image: images/vermilion-dusk-gold.png
+  palette: palettes/vermilion-dusk-gold.yml
+  annotation: annotations/vermilion-dusk-gold.md
+  surfaces:
+  - responsive-web
+  - web-app
+  - desktop-app
+  - tablet
+  mood_tags:
+  - '朱砂'
+  - '暮色'
+  - '黄铜'
+  - '编辑'
+  business_semantics:
+    best_for:
+    - '文化科技'
+    - '精品案例'
+    - '品牌叙事'
+    - '个人作品集'
+    avoid_for:
+    - '高频后台'
+    - '医疗系统'
+    - '需要强冷静感的数据平台'
+  user_facing_summary: '暖纸白承载内容，朱砂像暮色从边缘渗入，黄铜金只在关键时刻抬升层级。'
+  token_hint: '朱砂用于章节锚点和人的判断，暮金用于稀缺高光；长文区域仍保持低刺激暖纸白。'
+  accessibility_risk_level: medium
+  source:
+    type: project-palette-lab
+    based_on: '用户提供的 Yudi AI Lab 配色渐变升级实验稿：朱砂暮金。'
+- id: twilight-archive
+  title: '暮色档案'
+  status: ready
+  gate_preview: true
+  image: images/twilight-archive.png
+  palette: palettes/twilight-archive.yml
+  annotation: annotations/twilight-archive.md
+  surfaces:
+  - responsive-web
+  - web-app
+  - desktop-app
+  - tablet
+  mood_tags:
+  - '暮色'
+  - '档案'
+  - '融合'
+  - '高级'
+  business_semantics:
+    best_for:
+    - 'AI 设计工具'
+    - '复杂产品案例'
+    - '研究作品集'
+    - '文化科技'
+    avoid_for:
+    - '纯暗色终端'
+    - '儿童产品'
+    - '高频促销'
+  user_facing_summary: '暖纸白、普鲁士蓝、朱砂与黄铜形成冷暖融合，兼顾技术秩序和作者判断。'
+  token_hint: '普鲁士蓝负责系统秩序，朱砂只标记人的判断，黄铜作为低频光源，避免平均铺色。'
+  accessibility_risk_level: low
+  source:
+    type: project-palette-lab
+    based_on: '用户提供的 Yudi AI Lab 配色渐变升级实验稿：暮色档案。'

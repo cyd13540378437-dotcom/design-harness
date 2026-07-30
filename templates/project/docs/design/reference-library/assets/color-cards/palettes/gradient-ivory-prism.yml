@@ -1,0 +1,39 @@
+schema_version: 1
+id: gradient-ivory-prism
+title: '渐变：象牙棱镜'
+source_image: ../images/gradient-ivory-prism.png
+colors:
+- role: primary
+  name: '主色'
+  hex: '#2D2930'
+  usage: '深色锚点、主文字、主导航或暗色画布'
+- role: secondary
+  name: '次色'
+  hex: '#76628B'
+  usage: '主行动、链接、模块重点或主要结构'
+- role: accent
+  name: '强调色'
+  hex: '#B97872'
+  usage: '状态、编号、局部高亮或视觉记忆点'
+- role: soft_background
+  name: '柔和背景'
+  hex: '#E6DDE8'
+  usage: '卡片浅底、次级文字、边界或低优先级分区'
+- role: page_background
+  name: '页面背景'
+  hex: '#FBF8F1'
+  usage: '页面留白、主要阅读底或高对比文字'
+
+gradient_specs:
+  ambient: 'radial-gradient(circle at 5% 14%, rgba(139, 112, 173, 0.22), transparent 31%), radial-gradient(circle at 92% 2%, rgba(202, 137, 118, 0.2), transparent 30%), radial-gradient(circle at 72% 96%, rgba(116, 153, 184, 0.14), transparent 28%), linear-gradient(145deg, #F7F1EA 0%, #FBF8F1 48%, #F0EDF3 100%)'
+  panel_ambient: 'linear-gradient(145deg, rgba(118, 98, 139, 0.075), transparent 46%, rgba(185, 120, 114, 0.055))'
+token_suggestions:
+  color.primary: primary
+  color.secondary: secondary
+  color.accent: accent
+  color.surface.tint: soft_background
+  color.background: page_background
+token_hint: '暖白承担阅读，灰紫负责结构，玫瑰金只做局部光泽。'
+accessibility_notes:
+- '中风险：正式实现仍需验证小字、细线、按钮和半透明面板对比度。'
+- '渐变只能承担环境光，正文与交互控件必须落在稳定色面上。'

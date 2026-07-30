@@ -1,0 +1,39 @@
+schema_version: 1
+id: blueprint-mist
+title: '蓝晒雾光'
+source_image: ../images/blueprint-mist.png
+colors:
+- role: primary
+  name: '主色'
+  hex: '#17212A'
+  usage: '深色锚点、主文字、主导航或暗色画布'
+- role: secondary
+  name: '次色'
+  hex: '#245474'
+  usage: '主行动、链接、模块重点或主要结构'
+- role: accent
+  name: '强调色'
+  hex: '#B45B43'
+  usage: '状态、编号、局部高亮或视觉记忆点'
+- role: soft_background
+  name: '柔和背景'
+  hex: '#DDDAD1'
+  usage: '卡片浅底、次级文字、边界或低优先级分区'
+- role: page_background
+  name: '页面背景'
+  hex: '#F6F2E9'
+  usage: '页面留白、主要阅读底或高对比文字'
+
+gradient_specs:
+  ambient: 'linear-gradient(rgba(23, 33, 42, 0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(23, 33, 42, 0.018) 1px, transparent 1px), radial-gradient(ellipse 62% 44% at 6% 4%, rgba(44, 93, 126, 0.20), transparent 68%), radial-gradient(ellipse 48% 36% at 91% 10%, rgba(255, 248, 232, 0.82), transparent 70%), radial-gradient(ellipse 46% 34% at 74% 76%, rgba(194, 153, 77, 0.09), transparent 72%), linear-gradient(145deg, #D8D7D1 0%, #E5E1D8 48%, #D9D6CF 100%)'
+  panel_ambient: 'linear-gradient(145deg, rgba(255, 252, 245, 0.72), rgba(232, 232, 226, 0.42))'
+token_suggestions:
+  color.primary: primary
+  color.secondary: secondary
+  color.accent: accent
+  color.surface.tint: soft_background
+  color.background: page_background
+token_hint: '渐变只制造章节呼吸和边缘光，内容卡片继续使用稳定纸面，黄铜光不得承担正文层级。'
+accessibility_notes:
+- '低风险：正式实现仍需验证小字、细线、按钮和半透明面板对比度。'
+- '渐变只能承担环境光，正文与交互控件必须落在稳定色面上。'

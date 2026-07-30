@@ -1,0 +1,35 @@
+schema_version: 1
+id: night-lab-editor-blue
+title: '旧版变体：代码编辑器蓝'
+source_image: ../images/night-lab-editor-blue.png
+colors:
+- role: primary
+  name: '主色'
+  hex: '#090D12'
+  usage: '深色锚点、主文字、主导航或暗色画布'
+- role: secondary
+  name: '次色'
+  hex: '#192635'
+  usage: '主行动、链接、模块重点或主要结构'
+- role: accent
+  name: '强调色'
+  hex: '#75B7F3'
+  usage: '状态、编号、局部高亮或视觉记忆点'
+- role: soft_background
+  name: '柔和背景'
+  hex: '#93A5B5'
+  usage: '卡片浅底、次级文字、边界或低优先级分区'
+- role: page_background
+  name: '页面背景'
+  hex: '#F1F4F6'
+  usage: '页面留白、主要阅读底或高对比文字'
+token_suggestions:
+  color.primary: primary
+  color.secondary: secondary
+  color.accent: accent
+  color.surface.tint: soft_background
+  color.background: page_background
+token_hint: '蓝黑保持长时间阅读，冰蓝只用于焦点、链接和索引。'
+accessibility_notes:
+- '中风险：正式实现仍需验证小字、细线、按钮和半透明面板对比度。'
+- '彩色面积越大，越需要控制饱和度并保持清晰的文字层级。'

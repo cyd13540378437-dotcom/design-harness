@@ -1,0 +1,39 @@
+schema_version: 1
+id: twilight-archive
+title: '暮色档案'
+source_image: ../images/twilight-archive.png
+colors:
+- role: primary
+  name: '主色'
+  hex: '#171D23'
+  usage: '深色锚点、主文字、主导航或暗色画布'
+- role: secondary
+  name: '次色'
+  hex: '#244E6B'
+  usage: '主行动、链接、模块重点或主要结构'
+- role: accent
+  name: '强调色'
+  hex: '#A94D3A'
+  usage: '状态、编号、局部高亮或视觉记忆点'
+- role: soft_background
+  name: '柔和背景'
+  hex: '#DDD9D0'
+  usage: '卡片浅底、次级文字、边界或低优先级分区'
+- role: page_background
+  name: '页面背景'
+  hex: '#F6F2E9'
+  usage: '页面留白、主要阅读底或高对比文字'
+
+gradient_specs:
+  ambient: 'linear-gradient(rgba(23, 29, 35, 0.024) 1px, transparent 1px), linear-gradient(90deg, rgba(23, 29, 35, 0.017) 1px, transparent 1px), radial-gradient(ellipse 58% 40% at 2% 5%, rgba(36, 78, 107, 0.18), transparent 70%), radial-gradient(ellipse 48% 38% at 98% 7%, rgba(255, 237, 211, 0.58), transparent 72%), radial-gradient(ellipse 40% 34% at 83% 72%, rgba(169, 77, 58, 0.075), transparent 72%), radial-gradient(ellipse 44% 30% at 48% 100%, rgba(178, 143, 66, 0.075), transparent 72%), linear-gradient(144deg, #D8D7D2 0%, #E7E2D9 47%, #DCD7D0 100%)'
+  panel_ambient: 'linear-gradient(145deg, rgba(255, 252, 245, 0.74), rgba(231, 229, 225, 0.39))'
+token_suggestions:
+  color.primary: primary
+  color.secondary: secondary
+  color.accent: accent
+  color.surface.tint: soft_background
+  color.background: page_background
+token_hint: '普鲁士蓝负责系统秩序，朱砂只标记人的判断，黄铜作为低频光源，避免平均铺色。'
+accessibility_notes:
+- '低风险：正式实现仍需验证小字、细线、按钮和半透明面板对比度。'
+- '渐变只能承担环境光，正文与交互控件必须落在稳定色面上。'

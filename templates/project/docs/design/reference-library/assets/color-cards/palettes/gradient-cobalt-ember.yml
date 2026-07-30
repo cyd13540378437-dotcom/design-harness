@@ -1,0 +1,39 @@
+schema_version: 1
+id: gradient-cobalt-ember
+title: '渐变：钴蓝余烬'
+source_image: ../images/gradient-cobalt-ember.png
+colors:
+- role: primary
+  name: '主色'
+  hex: '#080D18'
+  usage: '深色锚点、主文字、主导航或暗色画布'
+- role: secondary
+  name: '次色'
+  hex: '#162849'
+  usage: '主行动、链接、模块重点或主要结构'
+- role: accent
+  name: '强调色'
+  hex: '#6D96FF'
+  usage: '状态、编号、局部高亮或视觉记忆点'
+- role: soft_background
+  name: '柔和背景'
+  hex: '#B79574'
+  usage: '卡片浅底、次级文字、边界或低优先级分区'
+- role: page_background
+  name: '页面背景'
+  hex: '#F5F2EA'
+  usage: '页面留白、主要阅读底或高对比文字'
+
+gradient_specs:
+  ambient: 'radial-gradient(circle at 18% 4%, rgba(76, 117, 255, 0.3), transparent 34%), radial-gradient(circle at 94% 86%, rgba(191, 119, 67, 0.18), transparent 28%), linear-gradient(135deg, #070B14 0%, #0C1425 52%, #10100F 100%)'
+  panel_ambient: 'linear-gradient(135deg, rgba(109, 150, 255, 0.08), transparent 52%, rgba(183, 149, 116, 0.055))'
+token_suggestions:
+  color.primary: primary
+  color.secondary: secondary
+  color.accent: accent
+  color.surface.tint: soft_background
+  color.background: page_background
+token_hint: '冷光承担技术纵深，暖光只在对角边缘平衡温度，正文保持稳定暗面。'
+accessibility_notes:
+- '中风险：正式实现仍需验证小字、细线、按钮和半透明面板对比度。'
+- '渐变只能承担环境光，正文与交互控件必须落在稳定色面上。'

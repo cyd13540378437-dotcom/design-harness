@@ -1,0 +1,39 @@
+schema_version: 1
+id: gradient-titanium-dawn
+title: '渐变：钛金属晨光'
+source_image: ../images/gradient-titanium-dawn.png
+colors:
+- role: primary
+  name: '主色'
+  hex: '#252934'
+  usage: '深色锚点、主文字、主导航或暗色画布'
+- role: secondary
+  name: '次色'
+  hex: '#6571A8'
+  usage: '主行动、链接、模块重点或主要结构'
+- role: accent
+  name: '强调色'
+  hex: '#A27AB8'
+  usage: '状态、编号、局部高亮或视觉记忆点'
+- role: soft_background
+  name: '柔和背景'
+  hex: '#D9E1F0'
+  usage: '卡片浅底、次级文字、边界或低优先级分区'
+- role: page_background
+  name: '页面背景'
+  hex: '#F7F6F2'
+  usage: '页面留白、主要阅读底或高对比文字'
+
+gradient_specs:
+  ambient: 'radial-gradient(circle at 12% 0%, rgba(132, 155, 214, 0.32), transparent 32%), radial-gradient(circle at 86% 18%, rgba(180, 139, 198, 0.22), transparent 29%), linear-gradient(145deg, #EEF2F7 0%, #F7F6F2 52%, #EBEAF0 100%)'
+  panel_ambient: 'linear-gradient(140deg, rgba(101, 113, 168, 0.08), transparent 50%, rgba(162, 122, 184, 0.07))'
+token_suggestions:
+  color.primary: primary
+  color.secondary: secondary
+  color.accent: accent
+  color.surface.tint: soft_background
+  color.background: page_background
+token_hint: '大面积近白保持内容清晰，蓝紫只模拟金属反射。'
+accessibility_notes:
+- '低风险：正式实现仍需验证小字、细线、按钮和半透明面板对比度。'
+- '渐变只能承担环境光，正文与交互控件必须落在稳定色面上。'

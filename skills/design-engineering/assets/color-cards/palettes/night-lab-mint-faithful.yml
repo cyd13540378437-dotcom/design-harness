@@ -1,0 +1,35 @@
+schema_version: 1
+id: night-lab-mint-faithful
+title: '旧版复原：夜间实验室'
+source_image: ../images/night-lab-mint-faithful.png
+colors:
+- role: primary
+  name: '主色'
+  hex: '#0B0E0B'
+  usage: '深色锚点、主文字、主导航或暗色画布'
+- role: secondary
+  name: '次色'
+  hex: '#1F2B24'
+  usage: '主行动、链接、模块重点或主要结构'
+- role: accent
+  name: '强调色'
+  hex: '#90D1B3'
+  usage: '状态、编号、局部高亮或视觉记忆点'
+- role: soft_background
+  name: '柔和背景'
+  hex: '#A1A099'
+  usage: '卡片浅底、次级文字、边界或低优先级分区'
+- role: page_background
+  name: '页面背景'
+  hex: '#F4F0E7'
+  usage: '页面留白、主要阅读底或高对比文字'
+token_suggestions:
+  color.primary: primary
+  color.secondary: secondary
+  color.accent: accent
+  color.surface.tint: soft_background
+  color.background: page_background
+token_hint: '近黑绿承担画布，奶白用于标题，薄荷绿只表示运行、索引和主行动。'
+accessibility_notes:
+- '低风险：正式实现仍需验证小字、细线、按钮和半透明面板对比度。'
+- '彩色面积越大，越需要控制饱和度并保持清晰的文字层级。'

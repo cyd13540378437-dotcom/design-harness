@@ -1,0 +1,35 @@
+schema_version: 1
+id: night-lab-phosphor-terminal
+title: '旧版变体：荧光终端'
+source_image: ../images/night-lab-phosphor-terminal.png
+colors:
+- role: primary
+  name: '主色'
+  hex: '#090B08'
+  usage: '深色锚点、主文字、主导航或暗色画布'
+- role: secondary
+  name: '次色'
+  hex: '#20291A'
+  usage: '主行动、链接、模块重点或主要结构'
+- role: accent
+  name: '强调色'
+  hex: '#B7E35A'
+  usage: '状态、编号、局部高亮或视觉记忆点'
+- role: soft_background
+  name: '柔和背景'
+  hex: '#9EA58E'
+  usage: '卡片浅底、次级文字、边界或低优先级分区'
+- role: page_background
+  name: '页面背景'
+  hex: '#F5F1DE'
+  usage: '页面留白、主要阅读底或高对比文字'
+token_suggestions:
+  color.primary: primary
+  color.secondary: secondary
+  color.accent: accent
+  color.surface.tint: soft_background
+  color.background: page_background
+token_hint: '磷光黄绿严格限制在状态、编号和主按钮，避免变成游戏 HUD。'
+accessibility_notes:
+- '高风险：正式实现仍需验证小字、细线、按钮和半透明面板对比度。'
+- '彩色面积越大，越需要控制饱和度并保持清晰的文字层级。'

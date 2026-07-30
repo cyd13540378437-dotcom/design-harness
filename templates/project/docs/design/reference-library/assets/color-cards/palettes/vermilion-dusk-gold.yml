@@ -1,0 +1,39 @@
+schema_version: 1
+id: vermilion-dusk-gold
+title: '朱砂暮金'
+source_image: ../images/vermilion-dusk-gold.png
+colors:
+- role: primary
+  name: '主色'
+  hex: '#1B1815'
+  usage: '深色锚点、主文字、主导航或暗色画布'
+- role: secondary
+  name: '次色'
+  hex: '#A74735'
+  usage: '主行动、链接、模块重点或主要结构'
+- role: accent
+  name: '强调色'
+  hex: '#B18A4A'
+  usage: '状态、编号、局部高亮或视觉记忆点'
+- role: soft_background
+  name: '柔和背景'
+  hex: '#E1DAD0'
+  usage: '卡片浅底、次级文字、边界或低优先级分区'
+- role: page_background
+  name: '页面背景'
+  hex: '#F8F2E8'
+  usage: '页面留白、主要阅读底或高对比文字'
+
+gradient_specs:
+  ambient: 'linear-gradient(rgba(41, 30, 25, 0.021) 1px, transparent 1px), linear-gradient(90deg, rgba(41, 30, 25, 0.016) 1px, transparent 1px), radial-gradient(ellipse 58% 40% at 91% 3%, rgba(255, 235, 205, 0.72), transparent 70%), radial-gradient(ellipse 46% 36% at 8% 14%, rgba(168, 66, 49, 0.135), transparent 72%), radial-gradient(ellipse 42% 34% at 70% 86%, rgba(195, 146, 69, 0.10), transparent 72%), linear-gradient(142deg, #DDD5CB 0%, #EAE1D6 48%, #DED7CF 100%)'
+  panel_ambient: 'linear-gradient(145deg, rgba(255, 251, 243, 0.76), rgba(241, 226, 213, 0.39))'
+token_suggestions:
+  color.primary: primary
+  color.secondary: secondary
+  color.accent: accent
+  color.surface.tint: soft_background
+  color.background: page_background
+token_hint: '朱砂用于章节锚点和人的判断，暮金用于稀缺高光；长文区域仍保持低刺激暖纸白。'
+accessibility_notes:
+- '中风险：正式实现仍需验证小字、细线、按钮和半透明面板对比度。'
+- '渐变只能承担环境光，正文与交互控件必须落在稳定色面上。'

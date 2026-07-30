@@ -35,6 +35,35 @@
 | 35 | `oceanic-deep-mode` | 深海沉浸模式 | ready | [PNG](images/oceanic-deep-mode.png) | 深邃、专注、安静、探索 | 夜间仪表盘、阅读、研究、开发者工具、数据探索 | medium |
 | 36 | `high-contrast-monochrome` | 高对比黑白单色 | ready | [PNG](images/high-contrast-monochrome.png) | 极简、力量、直接、现代 | 艺术作品集、品牌发布页、开发者文档、命令式工具 | medium |
 
+<!-- PROJECT-ADDITIONS:START -->
+
+## Reusable additions promoted from Yudi AI Lab
+
+以下 18 张色卡来自 Yudi AI Lab 项目的配色实验板，均已补齐预览图、配色规格和说明，并提升为可跨项目复用的参考对象。
+
+| No. | ID | Title | Status | Preview | Mood | Best For | Risk |
+|---|---|---|---|---|---|---|---|
+| 37 | `dropbox-creative-contrast` | 创意强对比 | ready | [PNG](images/dropbox-creative-contrast.png) | 鲜明、创意、编辑、高对比 | 创意工具、个人作品集、内容品牌、协作产品 | medium |
+| 38 | `mozilla-gutsy-neon` | 黑白霓虹宣言 | ready | [PNG](images/mozilla-gutsy-neon.png) | 大胆、直接、霓虹、宣言感 | 品牌发布、实验项目、创意社区、活动页面 | high |
+| 39 | `ibm-luminous-blue` | 工业蓝灰秩序 | ready | [PNG](images/ibm-luminous-blue.png) | 工程、清晰、秩序、可信 | 开发者工具、企业系统、技术文档、数据平台 | low |
+| 40 | `figma-tonal-vibrancy` | 色相振动实验 | ready | [PNG](images/figma-tonal-vibrancy.png) | 活跃、实验、协作、多元 | 创作工具、设计社区、作品集、协作产品 | high |
+| 41 | `stripe-slate-blurple` | 深蓝紫科技 | ready | [PNG](images/stripe-slate-blurple.png) | 精密、现代、技术、流动 | 支付科技、基础设施、开发平台、数据产品 | medium |
+| 42 | `night-lab-mint-faithful` | 旧版复原：夜间实验室 | ready | [PNG](images/night-lab-mint-faithful.png) | 夜间、编辑器、实验室、克制 | AI 实验室、开发者作品集、研究工具、技术叙事 | low |
+| 43 | `night-lab-editor-blue` | 旧版变体：代码编辑器蓝 | ready | [PNG](images/night-lab-editor-blue.png) | 代码、冷静、编辑器、精确 | 代码工具、技术文档、开发者平台、系统作品集 | medium |
+| 44 | `night-lab-phosphor-terminal` | 旧版变体：荧光终端 | ready | [PNG](images/night-lab-phosphor-terminal.png) | 终端、磷光、实验、锐利 | 实验工具、终端产品、技术展览、个人作品集 | high |
+| 45 | `gradient-night-aurora` | 渐变：夜幕极光 | ready | [PNG](images/gradient-night-aurora.png) | 极光、深邃、高级、克制 | AI 实验室、研究平台、开发者作品集、技术品牌 | low |
+| 46 | `gradient-cobalt-ember` | 渐变：钴蓝余烬 | ready | [PNG](images/gradient-cobalt-ember.png) | 钴蓝、仪器、冷暖、精密 | 硬件科技、数据平台、基础设施、工程作品集 | medium |
+| 47 | `gradient-aubergine-plasma` | 渐变：茄紫等离子 | ready | [PNG](images/gradient-aubergine-plasma.png) | 茄紫、编辑、文化、等离子 | 文化科技、设计作品集、创意工具、数字出版 | medium |
+| 48 | `gradient-obsidian-spectrum` | 渐变：黑曜光谱 | ready | [PNG](images/gradient-obsidian-spectrum.png) | 黑曜石、光谱、精密、稀缺 | 精品科技、硬件品牌、高级作品集、研究产品 | low |
+| 49 | `gradient-titanium-dawn` | 渐变：钛金属晨光 | ready | [PNG](images/gradient-titanium-dawn.png) | 钛金属、晨光、明亮、精密 | 高级 SaaS、硬件品牌、设计系统、技术作品集 | low |
+| 50 | `gradient-ivory-prism` | 渐变：象牙棱镜 | ready | [PNG](images/gradient-ivory-prism.png) | 象牙、棱镜、编辑、精品 | 精品作品集、文化科技、会员品牌、数字出版 | medium |
+| 51 | `blueprint-archive` | 蓝晒档案 | ready | [PNG](images/blueprint-archive.png) | 档案、工程、编辑、克制 | AI 设计工具、案例长页、研究档案、专业作品集 | low |
+| 52 | `blueprint-mist` | 蓝晒雾光 | ready | [PNG](images/blueprint-mist.png) | 雾光、档案、理性、空间感 | AI 设计工具、产品案例、知识系统、专业作品集 | low |
+| 53 | `vermilion-dusk-gold` | 朱砂暮金 | ready | [PNG](images/vermilion-dusk-gold.png) | 朱砂、暮色、黄铜、编辑 | 文化科技、精品案例、品牌叙事、个人作品集 | medium |
+| 54 | `twilight-archive` | 暮色档案 | ready | [PNG](images/twilight-archive.png) | 暮色、档案、融合、高级 | AI 设计工具、复杂产品案例、研究作品集、文化科技 | low |
+
+<!-- PROJECT-ADDITIONS:END -->
+
 ## Rejected in round 1
 
 以下候选由用户明确排除，本次未进入正式 registry：

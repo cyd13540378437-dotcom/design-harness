@@ -19,6 +19,7 @@ index_entry_required_fields:
   - mood_tags
   - business_semantics
   - user_facing_summary
+  - accessibility_risk_level
   - gate_preview
 
 index_entry_fields:
@@ -53,6 +54,10 @@ index_entry_fields:
   user_facing_summary:
     type: string
     description: One-sentence explanation suitable for visual-direction approval.
+  accessibility_risk_level:
+    type: enum
+    values: [low, medium, high]
+    description: Accessibility review risk for text, controls, boundaries, and state communication.
   gate_preview:
     type: boolean
     description: Whether this card may be shown in visual-direction-approval.
@@ -69,6 +74,7 @@ palette_color_roles:
     - primary
     - secondary
     - accent
+    - soft_background
     - page_background
     - surface_background
     - border

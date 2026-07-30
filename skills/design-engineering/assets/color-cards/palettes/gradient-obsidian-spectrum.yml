@@ -1,0 +1,39 @@
+schema_version: 1
+id: gradient-obsidian-spectrum
+title: '渐变：黑曜光谱'
+source_image: ../images/gradient-obsidian-spectrum.png
+colors:
+- role: primary
+  name: '主色'
+  hex: '#07080B'
+  usage: '深色锚点、主文字、主导航或暗色画布'
+- role: secondary
+  name: '次色'
+  hex: '#1B2230'
+  usage: '主行动、链接、模块重点或主要结构'
+- role: accent
+  name: '强调色'
+  hex: '#78D8D0'
+  usage: '状态、编号、局部高亮或视觉记忆点'
+- role: soft_background
+  name: '柔和背景'
+  hex: '#A9A7C8'
+  usage: '卡片浅底、次级文字、边界或低优先级分区'
+- role: page_background
+  name: '页面背景'
+  hex: '#F4F4F2'
+  usage: '页面留白、主要阅读底或高对比文字'
+
+gradient_specs:
+  ambient: 'radial-gradient(ellipse at 22% -8%, rgba(91, 207, 194, 0.18), transparent 34%), radial-gradient(ellipse at 94% 42%, rgba(124, 104, 203, 0.18), transparent 31%), linear-gradient(140deg, #07080B 0%, #0C1017 52%, #08070C 100%)'
+  panel_ambient: 'linear-gradient(140deg, rgba(120, 216, 208, 0.045), transparent 48%, rgba(169, 167, 200, 0.06))'
+token_suggestions:
+  color.primary: primary
+  color.secondary: secondary
+  color.accent: accent
+  color.surface.tint: soft_background
+  color.background: page_background
+token_hint: '第一眼接近高级黑，停留后才感受到青紫光谱。'
+accessibility_notes:
+- '低风险：正式实现仍需验证小字、细线、按钮和半透明面板对比度。'
+- '渐变只能承担环境光，正文与交互控件必须落在稳定色面上。'
